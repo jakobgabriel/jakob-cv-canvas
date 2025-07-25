@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/resume/HeroSection";
 import { ExperienceSection } from "@/components/resume/ExperienceSection";
+import { EducationSection } from "@/components/resume/EducationSection";
 import { SkillsSection } from "@/components/resume/SkillsSection";
 import { ContactSection } from "@/components/resume/ContactSection";
 
@@ -8,6 +9,7 @@ const Index = () => {
     <div className="min-h-screen">
       <HeroSection />
       <ExperienceSection />
+      <EducationSection />
       <SkillsSection />
       <ContactSection />
       

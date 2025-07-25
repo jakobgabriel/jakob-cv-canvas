@@ -1,34 +1,58 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Brain, Code, Users, TrendingUp, Zap, Target } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Technical Leadership",
+    icon: Brain,
+    color: "text-blue-400",
     skills: [
-      { name: "Strategic Planning", level: 95 },
-      { name: "Team Management", level: 90 },
-      { name: "Digital Transformation", level: 92 },
-      { name: "Process Optimization", level: 88 }
+      { name: "Strategic Planning", level: 95, description: "Long-term technology roadmaps" },
+      { name: "Team Management", level: 90, description: "Leading cross-functional teams" },
+      { name: "Digital Transformation", level: 92, description: "Enterprise-wide change management" },
+      { name: "Process Optimization", level: 88, description: "Lean methodologies & automation" }
     ]
   },
   {
     title: "Technology Stack",
+    icon: Code,
+    color: "text-green-400",
     skills: [
-      { name: "Cloud Architecture", level: 90 },
-      { name: "AI/ML Solutions", level: 85 },
-      { name: "Data Analytics", level: 88 },
-      { name: "System Integration", level: 92 }
+      { name: "Cloud Architecture", level: 90, description: "AWS, Azure, GCP solutions" },
+      { name: "AI/ML Solutions", level: 85, description: "Machine learning implementation" },
+      { name: "Data Analytics", level: 88, description: "Big data & business intelligence" },
+      { name: "System Integration", level: 92, description: "API design & microservices" }
     ]
   },
   {
     title: "Business Acumen",
+    icon: TrendingUp,
+    color: "text-orange-400",
     skills: [
-      { name: "Stakeholder Management", level: 95 },
-      { name: "Project Management", level: 90 },
-      { name: "Business Analysis", level: 87 },
-      { name: "ROI Optimization", level: 91 }
+      { name: "Stakeholder Management", level: 95, description: "C-level communication" },
+      { name: "Project Management", level: 90, description: "Agile & traditional methodologies" },
+      { name: "Business Analysis", level: 87, description: "Requirements & process mapping" },
+      { name: "ROI Optimization", level: 91, description: "Value-driven decision making" }
     ]
   }
+];
+
+const technicalProficiencies = [
+  { category: "Programming", skills: ["Python", "JavaScript", "TypeScript", "Java", "Go"] },
+  { category: "Cloud Platforms", skills: ["AWS", "Azure", "Google Cloud", "Kubernetes", "Docker"] },
+  { category: "Data & AI", skills: ["TensorFlow", "PyTorch", "Pandas", "Apache Spark", "Tableau"] },
+  { category: "DevOps", skills: ["CI/CD", "Terraform", "Jenkins", "GitLab", "Monitoring"] },
+  { category: "Frameworks", skills: ["React", "Node.js", "Django", "Spring Boot", "FastAPI"] },
+  { category: "Databases", skills: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Neo4j"] }
+];
+
+const softSkills = [
+  { skill: "Leadership", icon: Users },
+  { skill: "Innovation", icon: Zap },
+  { skill: "Strategy", icon: Target },
+  { skill: "Communication", icon: Brain }
 ];
 
 export const SkillsSection = () => {
@@ -45,27 +69,80 @@ export const SkillsSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic">
-              <h3 className="text-xl font-bold mb-6 text-center">{category.title}</h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, i) => (
-                  <div key={i} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-xs text-primary font-mono">{skill.level}%</span>
-                    </div>
-                    <Progress 
-                      value={skill.level} 
-                      className="h-2 bg-muted"
-                    />
+        {/* Primary Skills with Progress Bars */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+          {skillCategories.map((category, index) => {
+            const IconComponent = category.icon;
+            return (
+              <Card key={index} className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic hover:bg-card/70 transition-smooth animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`p-2 rounded-lg bg-primary/10`}>
+                    <IconComponent className={`w-6 h-6 ${category.color}`} />
                   </div>
-                ))}
-              </div>
-            </Card>
-          ))}
+                  <h3 className="text-xl font-bold">{category.title}</h3>
+                </div>
+                <div className="space-y-6">
+                  {category.skills.map((skill, i) => (
+                    <div key={i} className="space-y-2">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <span className="text-sm font-medium">{skill.name}</span>
+                          <p className="text-xs text-muted-foreground">{skill.description}</p>
+                        </div>
+                        <span className="text-xs text-primary font-mono ml-2">{skill.level}%</span>
+                      </div>
+                      <Progress 
+                        value={skill.level} 
+                        className="h-2 bg-muted/50"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            );
+          })}
         </div>
+        
+        {/* Technical Proficiencies */}
+        <Card className="p-8 bg-card/50 backdrop-blur-sm border-border shadow-dramatic mb-16 animate-fade-in">
+          <h3 className="text-2xl font-bold mb-6 text-center">Technical Proficiencies</h3>
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {technicalProficiencies.map((tech, index) => (
+              <div key={index} className="space-y-3">
+                <h4 className="font-semibold text-primary text-sm">{tech.category}</h4>
+                <div className="space-y-2">
+                  {tech.skills.map((skill, i) => (
+                    <Badge 
+                      key={i} 
+                      variant="secondary" 
+                      className="w-full justify-center bg-muted/30 text-muted-foreground border-border/50 hover:bg-primary/10 hover:text-primary transition-colors text-xs py-1"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+        
+        {/* Soft Skills */}
+        <Card className="p-8 bg-card/50 backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
+          <h3 className="text-2xl font-bold mb-6 text-center">Leadership & Soft Skills</h3>
+          <div className="grid md:grid-cols-4 gap-6">
+            {softSkills.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={index} className="text-center p-4 rounded-lg bg-background/30 border border-border/50 hover:bg-primary/5 hover:border-primary/20 transition-colors">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <IconComponent className="w-6 h-6 text-primary" />
+                  </div>
+                  <span className="font-medium">{item.skill}</span>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
       </div>
     </section>
   );
