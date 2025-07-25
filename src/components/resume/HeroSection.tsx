@@ -12,9 +12,23 @@ export const HeroSection = () => {
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col items-center text-center space-y-12">
+          {/* Portrait */}
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-geometric-accent rounded-full blur-lg opacity-20"></div>
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
+                <img 
+                  src={jakobPortrait} 
+                  alt="Jakob Gabriel" 
+                  className="w-full h-full object-cover transition-smooth hover:scale-110"
+                />
+              </div>
+            </div>
+          </div>
+          
           {/* Content */}
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-4xl">
             <div className="space-y-4">
               <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
                 Jakob{" "}
@@ -25,13 +39,13 @@ export const HeroSection = () => {
               </h2>
             </div>
             
-            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Transforming digital landscapes through strategic engineering and innovative solutions. 
               Bridging the gap between technology and business value.
             </p>
             
             {/* Social Links */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Button 
                 variant="social" 
                 size="lg"
@@ -86,20 +100,6 @@ export const HeroSection = () => {
               <FileText className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
               Download Resume
             </Button>
-          </div>
-          
-          {/* Portrait */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-geometric-accent rounded-full blur-lg opacity-30"></div>
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
-                <img 
-                  src={jakobPortrait} 
-                  alt="Jakob Gabriel" 
-                  className="w-full h-full object-cover transition-smooth hover:scale-110"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>

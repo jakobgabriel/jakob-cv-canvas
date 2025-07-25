@@ -61,57 +61,58 @@ export const SkillsSection = () => {
           </p>
         </div>
         
-        {/* Primary Skills with Progress Bars */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <Card key={index} className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic hover:bg-card/70 transition-smooth animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-lg bg-primary/10`}>
-                    <IconComponent className={`w-6 h-6 ${category.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold">{category.title}</h3>
-                </div>
-                <div className="space-y-6">
-                  {category.skills.map((skill, i) => (
-                    <div key={i} className="space-y-2">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <span className="text-sm font-medium">{skill.name}</span>
-                          <p className="text-xs text-muted-foreground">{skill.description}</p>
-                        </div>
-                        <span className="text-xs text-primary font-mono ml-2">{skill.level}%</span>
+        {/* Skills Overview - Compact Design */}
+        <div className="max-w-4xl mx-auto">
+          <Card className="p-8 bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {skillCategories.map((category, index) => {
+                const IconComponent = category.icon;
+                return (
+                  <div key={index} className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-lg bg-primary/10">
+                        <IconComponent className="w-6 h-6 text-primary" />
                       </div>
-                      <Progress 
-                        value={skill.level} 
-                        className="h-2 bg-muted/50"
-                      />
+                      <h3 className="text-lg font-bold">{category.title}</h3>
                     </div>
-                  ))}
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-        
-        {/* Soft Skills */}
-        <Card className="p-8 bg-card/50 backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
-          <h3 className="text-2xl font-bold mb-6 text-center">Leadership & Soft Skills</h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            {softSkills.map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <div key={index} className="text-center p-4 rounded-lg bg-background/30 border border-border/50 hover:bg-primary/5 hover:border-primary/20 transition-colors">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <IconComponent className="w-6 h-6 text-primary" />
+                    <div className="space-y-3">
+                      {category.skills.slice(0, 3).map((skill, i) => (
+                        <div key={i} className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-primary rounded-full transition-all"
+                                style={{ width: `${skill.level}%` }}
+                              />
+                            </div>
+                            <span className="text-xs text-muted-foreground font-mono w-8 text-right">{skill.level}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <span className="font-medium">{item.skill}</span>
-                </div>
-              );
-            })}
-          </div>
-        </Card>
+                );
+              })}
+            </div>
+            
+            {/* Soft Skills - Inline */}
+            <div className="mt-8 pt-8 border-t border-border">
+              <h4 className="text-lg font-semibold mb-4 text-center">Key Strengths</h4>
+              <div className="flex flex-wrap justify-center gap-4">
+                {softSkills.map((item, index) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <div key={index} className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                      <IconComponent className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">{item.skill}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     </section>
   );

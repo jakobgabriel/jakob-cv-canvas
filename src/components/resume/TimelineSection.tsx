@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ChevronDown } from "lucide-react";
 
 const experiences = [
   {
@@ -97,87 +98,140 @@ export const TimelineSection = () => {
           </p>
         </div>
         
-        <div className="relative max-w-6xl mx-auto">
-          {/* Central Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/50 to-transparent"></div>
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Experience Section */}
+          <div className="space-y-8">
+            <div className="text-center lg:text-left">
+              <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
+                <Briefcase className="w-8 h-8 text-primary" />
+                Professional Experience
+              </h3>
+            </div>
+            
+            <div className="space-y-6">
+              {experiences.map((exp, index) => (
+                <Card key={index} className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
+                  <Accordion type="single" collapsible>
+                    <AccordionItem value={`exp-${index}`} className="border-0">
+                      <AccordionTrigger className="px-6 pt-6 pb-4 hover:no-underline">
+                        <div className="flex items-start gap-4 w-full text-left">
+                          <div className="p-2 rounded-lg bg-primary/10">
+                            <Briefcase className="w-5 h-5 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 text-primary mb-1">
+                              <Calendar className="w-4 h-4" />
+                              <span className="text-sm font-mono">{exp.period}</span>
+                            </div>
+                            <h4 className="text-lg font-bold leading-tight">{exp.title}</h4>
+                            <div className="text-muted-foreground font-medium flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              {exp.company}
+                            </div>
+                          </div>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-6 pb-6">
+                        <div className="space-y-4 pt-4">
+                          <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
+                          
+                          <div>
+                            <h5 className="font-semibold mb-2 text-foreground flex items-center gap-2">
+                              <Award className="w-4 h-4 text-primary" />
+                              Key Achievements
+                            </h5>
+                            <ul className="space-y-1 text-muted-foreground">
+                              {exp.achievements.map((achievement, i) => (
+                                <li key={i} className="flex items-start">
+                                  <span className="text-primary mr-2 mt-1 text-xs">▸</span>
+                                  {achievement}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2">
+                            {exp.technologies.map((tech, i) => (
+                              <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </Card>
+              ))}
+            </div>
+          </div>
           
-          <div className="space-y-12">
-            {timelineItems.map((item, index) => (
-              <div key={index} className={`relative flex items-center ${item.type === 'experience' ? 'justify-start' : 'justify-end'}`}>
-                {/* Timeline Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
-                </div>
-                
-                {/* Year Label */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-8 z-10">
-                  <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-mono font-semibold">
-                    {item.year}
-                  </div>
-                </div>
-                
-                {/* Content Card */}
-                <div className={`w-5/12 ${item.type === 'experience' ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
-                  <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:bg-card/70 transition-smooth shadow-dramatic animate-fade-in">
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <div className={`p-2 rounded-lg ${item.type === 'experience' ? 'bg-blue-500/10' : 'bg-green-500/10'}`}>
-                          {item.type === 'experience' ? 
-                            <Briefcase className="w-5 h-5 text-blue-400" /> : 
-                            <GraduationCap className="w-5 h-5 text-green-400" />
-                          }
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 text-primary mb-1">
-                            <Calendar className="w-4 h-4" />
-                            <span className="text-sm font-mono">{item.period}</span>
+          {/* Education Section */}
+          <div className="space-y-8">
+            <div className="text-center lg:text-left">
+              <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
+                <GraduationCap className="w-8 h-8 text-primary" />
+                Education
+              </h3>
+            </div>
+            
+            <div className="space-y-6">
+              {education.map((edu, index) => (
+                <Card key={index} className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
+                  <Accordion type="single" collapsible>
+                    <AccordionItem value={`edu-${index}`} className="border-0">
+                      <AccordionTrigger className="px-6 pt-6 pb-4 hover:no-underline">
+                        <div className="flex items-start gap-4 w-full text-left">
+                          <div className="p-2 rounded-lg bg-primary/10">
+                            <GraduationCap className="w-5 h-5 text-primary" />
                           </div>
-                          <h3 className="text-lg font-bold leading-tight">
-                            {item.type === 'experience' ? (item as any).title : (item as any).degree}
-                          </h3>
-                          <div className="text-muted-foreground font-medium flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
-                            {item.type === 'experience' ? (item as any).company : (item as any).institution}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 text-primary mb-1">
+                              <Calendar className="w-4 h-4" />
+                              <span className="text-sm font-mono">{edu.period}</span>
+                            </div>
+                            <h4 className="text-lg font-bold leading-tight">{edu.degree}</h4>
+                            <div className="text-muted-foreground font-medium flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              {edu.institution}
+                            </div>
+                            <div className="text-sm text-primary font-semibold mt-1">GPA: {edu.gpa}</div>
                           </div>
-                          {item.type === 'education' && (
-                            <div className="text-sm text-primary font-semibold mt-1">GPA: {(item as any).gpa}</div>
-                          )}
                         </div>
-                      </div>
-                      
-                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-                      
-                      <div>
-                        <h4 className="font-semibold mb-2 text-foreground flex items-center gap-2 text-sm">
-                          <Award className="w-4 h-4 text-primary" />
-                          {item.type === 'experience' ? 'Key Achievements:' : 'Achievements:'}
-                        </h4>
-                        <ul className="space-y-1 text-muted-foreground text-sm">
-                          {item.achievements.map((achievement, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className="text-primary mr-2 mt-1 text-xs">▸</span>
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-1">
-                        {(item.type === 'experience' ? (item as any).technologies : (item as any).subjects).map((tech: string, i: number) => (
-                          <Badge key={i} variant="secondary" className={`text-xs ${
-                            item.type === 'experience' 
-                              ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
-                              : 'bg-green-500/10 text-green-400 border-green-500/20'
-                          }`}>
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-              </div>
-            ))}
+                      </AccordionTrigger>
+                      <AccordionContent className="px-6 pb-6">
+                        <div className="space-y-4 pt-4">
+                          <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
+                          
+                          <div>
+                            <h5 className="font-semibold mb-2 text-foreground flex items-center gap-2">
+                              <Award className="w-4 h-4 text-primary" />
+                              Achievements
+                            </h5>
+                            <ul className="space-y-1 text-muted-foreground">
+                              {edu.achievements.map((achievement, i) => (
+                                <li key={i} className="flex items-start">
+                                  <span className="text-primary mr-2 mt-1 text-xs">▸</span>
+                                  {achievement}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2">
+                            {edu.subjects.map((subject, i) => (
+                              <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
+                                {subject}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
