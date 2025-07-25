@@ -17,7 +17,7 @@ export const HeroSection = () => {
           <div className="flex justify-center">
             <div className="relative">
               <div className="absolute -inset-4 bg-geometric-accent rounded-full blur-lg opacity-20"></div>
-              <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
+              <div className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
                 <img 
                   src={jakobPortrait} 
                   alt="Jakob Gabriel" 

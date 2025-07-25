@@ -8,42 +8,42 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Light and clean theme */
+    /* Business theme - Professional black/grey/white */
     --background: 0 0% 98%;
-    --foreground: 225 15% 20%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 225 15% 20%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 225 15% 20%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 215 100% 60%; /* Clean blue accent */
+    --primary: 0 0% 15%; /* Professional dark grey */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 215 15% 96%;
-    --secondary-foreground: 225 15% 20%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 215 15% 96%;
-    --muted-foreground: 225 15% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 215 100% 60%; /* Clean blue accent */
+    --accent: 0 0% 20%; /* Charcoal accent */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 15% 88%;
-    --input: 215 15% 96%;
-    --ring: 215 100% 60%;
+    --border: 0 0% 88%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 15%;
 
     --radius: 0.75rem;
     
     /* Custom design tokens */
-    --geometric-bg: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(215 15% 96%) 100%);
-    --geometric-accent: linear-gradient(135deg, hsl(215 100% 60%) 0%, hsl(215 100% 65%) 100%);
-    --text-glow: 0 0 20px hsl(215 100% 60% / 0.2);
-    --shadow-dramatic: 0 10px 30px -5px hsl(215 15% 20% / 0.1);
+    --geometric-bg: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 96%) 100%);
+    --geometric-accent: linear-gradient(135deg, hsl(0 0% 15%) 0%, hsl(0 0% 25%) 100%);
+    --text-glow: 0 0 20px hsl(0 0% 15% / 0.2);
+    --shadow-dramatic: 0 10px 30px -5px hsl(0 0% 10% / 0.1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -64,26 +64,40 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Light theme for consistency */
-    --background: 0 0% 98%;
-    --foreground: 225 15% 20%;
-    --card: 0 0% 100%;
-    --card-foreground: 225 15% 20%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 225 15% 20%;
-    --primary: 215 100% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 215 15% 96%;
-    --secondary-foreground: 225 15% 20%;
-    --muted: 215 15% 96%;
-    --muted-foreground: 225 15% 45%;
-    --accent: 215 100% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84% 60%;
+    /* Business dark theme */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 85%; /* Light grey for dark mode */
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 80%; /* Light grey accent */
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 15% 88%;
-    --input: 215 15% 96%;
-    --ring: 215 100% 60%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 85%;
+
+    /* Custom tokens for dark mode */
+    --geometric-bg: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 10%) 100%);
+    --geometric-accent: linear-gradient(135deg, hsl(0 0% 85%) 0%, hsl(0 0% 75%) 100%);
+    --text-glow: 0 0 20px hsl(0 0% 85% / 0.3);
+    --shadow-dramatic: 0 10px 30px -5px hsl(0 0% 0% / 0.3);
   }
 }
 
@@ -107,8 +121,8 @@ All colors MUST be HSL.
     right: 0;
     bottom: 0;
     background-image: 
-      linear-gradient(45deg, transparent 40%, hsl(215 15% 88% / 0.3) 41%, hsl(215 15% 88% / 0.3) 43%, transparent 44%),
-      linear-gradient(-45deg, transparent 40%, hsl(215 15% 88% / 0.3) 41%, hsl(215 15% 88% / 0.3) 43%, transparent 44%);
+      linear-gradient(45deg, transparent 40%, hsl(0 0% 88% / 0.3) 41%, hsl(0 0% 88% / 0.3) 43%, transparent 44%),
+      linear-gradient(-45deg, transparent 40%, hsl(0 0% 88% / 0.3) 41%, hsl(0 0% 88% / 0.3) 43%, transparent 44%);
     background-size: 120px 120px;
     pointer-events: none;
     z-index: -1;

@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X } from "lucide-react";
+import { useState } from "react";
 
 const experiences = [
   {
@@ -85,6 +86,19 @@ const education = [
 const timelineItems = [...experiences, ...education].sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
 export const TimelineSection = () => {
+  const [selectedItem, setSelectedItem] = useState<any>(null);
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+
+  const handleItemClick = (item: any) => {
+    setSelectedItem(item);
+    setIsDetailsVisible(true);
+  };
+
+  const closeDetails = () => {
+    setIsDetailsVisible(false);
+    setTimeout(() => setSelectedItem(null), 300);
+  };
+
   return (
     <section className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -110,57 +124,31 @@ export const TimelineSection = () => {
             
             <div className="space-y-6">
               {experiences.map((exp, index) => (
-                <Card key={index} className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
-                  <Accordion type="single" collapsible>
-                    <AccordionItem value={`exp-${index}`} className="border-0">
-                      <AccordionTrigger className="px-6 pt-6 pb-4 hover:no-underline">
-                        <div className="flex items-start gap-4 w-full text-left">
-                          <div className="p-2 rounded-lg bg-primary/10">
-                            <Briefcase className="w-5 h-5 text-primary" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 text-primary mb-1">
-                              <Calendar className="w-4 h-4" />
-                              <span className="text-sm font-mono">{exp.period}</span>
-                            </div>
-                            <h4 className="text-lg font-bold leading-tight">{exp.title}</h4>
-                            <div className="text-muted-foreground font-medium flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              {exp.company}
-                            </div>
-                          </div>
+                <Card 
+                  key={index} 
+                  className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                  onClick={() => handleItemClick(exp)}
+                >
+                  <div className="p-6">
+                    <div className="flex items-start gap-4 w-full">
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <Briefcase className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 text-primary mb-1">
+                          <Calendar className="w-4 h-4" />
+                          <span className="text-sm font-mono">{exp.period}</span>
                         </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-6">
-                        <div className="space-y-4 pt-4">
-                          <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
-                          
-                          <div>
-                            <h5 className="font-semibold mb-2 text-foreground flex items-center gap-2">
-                              <Award className="w-4 h-4 text-primary" />
-                              Key Achievements
-                            </h5>
-                            <ul className="space-y-1 text-muted-foreground">
-                              {exp.achievements.map((achievement, i) => (
-                                <li key={i} className="flex items-start">
-                                  <span className="text-primary mr-2 mt-1 text-xs">▸</span>
-                                  {achievement}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-2">
-                            {exp.technologies.map((tech, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
+                        <h4 className="text-lg font-bold leading-tight">{exp.title}</h4>
+                        <div className="text-muted-foreground font-medium flex items-center gap-1">
+                          <MapPin className="w-4 h-4" />
+                          {exp.company}
                         </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{exp.description}</p>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
@@ -177,61 +165,117 @@ export const TimelineSection = () => {
             
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <Card key={index} className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
-                  <Accordion type="single" collapsible>
-                    <AccordionItem value={`edu-${index}`} className="border-0">
-                      <AccordionTrigger className="px-6 pt-6 pb-4 hover:no-underline">
-                        <div className="flex items-start gap-4 w-full text-left">
-                          <div className="p-2 rounded-lg bg-primary/10">
-                            <GraduationCap className="w-5 h-5 text-primary" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 text-primary mb-1">
-                              <Calendar className="w-4 h-4" />
-                              <span className="text-sm font-mono">{edu.period}</span>
-                            </div>
-                            <h4 className="text-lg font-bold leading-tight">{edu.degree}</h4>
-                            <div className="text-muted-foreground font-medium flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              {edu.institution}
-                            </div>
-                            <div className="text-sm text-primary font-semibold mt-1">GPA: {edu.gpa}</div>
-                          </div>
+                <Card 
+                  key={index} 
+                  className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                  onClick={() => handleItemClick(edu)}
+                >
+                  <div className="p-6">
+                    <div className="flex items-start gap-4 w-full">
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <GraduationCap className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 text-primary mb-1">
+                          <Calendar className="w-4 h-4" />
+                          <span className="text-sm font-mono">{edu.period}</span>
                         </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-6">
-                        <div className="space-y-4 pt-4">
-                          <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
-                          
-                          <div>
-                            <h5 className="font-semibold mb-2 text-foreground flex items-center gap-2">
-                              <Award className="w-4 h-4 text-primary" />
-                              Achievements
-                            </h5>
-                            <ul className="space-y-1 text-muted-foreground">
-                              {edu.achievements.map((achievement, i) => (
-                                <li key={i} className="flex items-start">
-                                  <span className="text-primary mr-2 mt-1 text-xs">▸</span>
-                                  {achievement}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-2">
-                            {edu.subjects.map((subject, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                                {subject}
-                              </Badge>
-                            ))}
-                          </div>
+                        <h4 className="text-lg font-bold leading-tight">{edu.degree}</h4>
+                        <div className="text-muted-foreground font-medium flex items-center gap-1">
+                          <MapPin className="w-4 h-4" />
+                          {edu.institution}
                         </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                        {'gpa' in edu && (
+                          <div className="text-sm text-primary font-semibold mt-1">GPA: {edu.gpa}</div>
+                        )}
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{edu.description}</p>
+                      </div>
+                      <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Details Slide Panel */}
+        <div className={`fixed inset-0 z-50 transition-all duration-500 ${isDetailsVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={closeDetails}
+          />
+          
+          {/* Slide Panel */}
+          <div className={`absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l shadow-2xl transform transition-transform duration-500 ${isDetailsVisible ? 'translate-x-0' : 'translate-x-full'}`}>
+            {selectedItem && (
+              <div className="h-full overflow-y-auto">
+                {/* Header */}
+                <div className="sticky top-0 bg-card/95 backdrop-blur-sm border-b p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      {selectedItem.type === 'experience' ? (
+                        <Briefcase className="w-6 h-6 text-primary" />
+                      ) : (
+                        <GraduationCap className="w-6 h-6 text-primary" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">{selectedItem.title || selectedItem.degree}</h3>
+                      <p className="text-muted-foreground">{selectedItem.company || selectedItem.institution}</p>
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={closeDetails}>
+                    <X className="w-5 h-5" />
+                  </Button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-6">
+                  <div className="flex items-center gap-2 text-primary">
+                    <Calendar className="w-4 h-4" />
+                    <span className="font-mono">{selectedItem.period}</span>
+                  </div>
+
+                  {'gpa' in selectedItem && (
+                    <div className="text-primary font-semibold">
+                      GPA: {selectedItem.gpa}
+                    </div>
+                  )}
+
+                  <p className="text-muted-foreground leading-relaxed text-lg">{selectedItem.description}</p>
+                  
+                  <div>
+                    <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      {selectedItem.type === 'experience' ? 'Key Achievements' : 'Achievements'}
+                    </h4>
+                    <ul className="space-y-3 text-muted-foreground">
+                      {selectedItem.achievements.map((achievement: string, i: number) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="text-primary mt-1.5 text-sm">▸</span>
+                          <span className="leading-relaxed">{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold mb-3 text-foreground">
+                      {selectedItem.type === 'experience' ? 'Technologies & Skills' : 'Key Subjects'}
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {(selectedItem.technologies || selectedItem.subjects).map((item: string, i: number) => (
+                        <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
+                          {item}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
