@@ -39,14 +39,6 @@ const skillCategories = [
   }
 ];
 
-const technicalProficiencies = [
-  { category: "Programming", skills: ["Python", "JavaScript", "TypeScript", "Java", "Go"] },
-  { category: "Cloud Platforms", skills: ["AWS", "Azure", "Google Cloud", "Kubernetes", "Docker"] },
-  { category: "Data & AI", skills: ["TensorFlow", "PyTorch", "Pandas", "Apache Spark", "Tableau"] },
-  { category: "DevOps", skills: ["CI/CD", "Terraform", "Jenkins", "GitLab", "Monitoring"] },
-  { category: "Frameworks", skills: ["React", "Node.js", "Django", "Spring Boot", "FastAPI"] },
-  { category: "Databases", skills: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Neo4j"] }
-];
 
 const softSkills = [
   { skill: "Leadership", icon: Users },
@@ -102,29 +94,6 @@ export const SkillsSection = () => {
             );
           })}
         </div>
-        
-        {/* Technical Proficiencies */}
-        <Card className="p-8 bg-card/50 backdrop-blur-sm border-border shadow-dramatic mb-16 animate-fade-in">
-          <h3 className="text-2xl font-bold mb-6 text-center">Technical Proficiencies</h3>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {technicalProficiencies.map((tech, index) => (
-              <div key={index} className="space-y-3">
-                <h4 className="font-semibold text-primary text-sm">{tech.category}</h4>
-                <div className="space-y-2">
-                  {tech.skills.map((skill, i) => (
-                    <Badge 
-                      key={i} 
-                      variant="secondary" 
-                      className="w-full justify-center bg-muted/30 text-muted-foreground border-border/50 hover:bg-primary/10 hover:text-primary transition-colors text-xs py-1"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
         
         {/* Soft Skills */}
         <Card className="p-8 bg-card/50 backdrop-blur-sm border-border shadow-dramatic animate-fade-in">
