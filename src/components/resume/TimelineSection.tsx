@@ -3,93 +3,17 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
-
-const experiences = [
-  {
-    type: "experience",
-    title: "Senior Digital Business Value Engineer",
-    company: "Tech Innovation Corp",
-    period: "2022 - Present",
-    year: "2022",
-    description: "Leading digital transformation initiatives and driving business value through strategic technology implementation.",
-    achievements: [
-      "Increased operational efficiency by 40% through process automation",
-      "Led cross-functional teams of 15+ members",
-      "Implemented AI-driven solutions reducing costs by €2M annually"
-    ],
-    technologies: ["AI/ML", "Cloud Architecture", "Process Automation", "Data Analytics"]
-  },
-  {
-    type: "experience",
-    title: "Digital Solutions Architect",
-    company: "Enterprise Solutions Ltd",
-    period: "2020 - 2022",
-    year: "2020",
-    description: "Designed and implemented scalable digital solutions for enterprise clients across various industries.",
-    achievements: [
-      "Architected cloud-native solutions for 50+ clients",
-      "Reduced system downtime by 85%",
-      "Mentored junior developers and engineers"
-    ],
-    technologies: ["Cloud Computing", "Microservices", "DevOps", "System Integration"]
-  },
-  {
-    type: "experience",
-    title: "Business Technology Consultant",
-    company: "Strategic Tech Partners",
-    period: "2018 - 2020",
-    year: "2018",
-    description: "Provided strategic consulting for digital transformation and technology adoption.",
-    achievements: [
-      "Consulted for Fortune 500 companies",
-      "Developed technology roadmaps for digital transformation",
-      "Achieved 95% client satisfaction rate"
-    ],
-    technologies: ["Strategy", "Digital Transformation", "Project Management", "Stakeholder Management"]
-  }
-];
-
-const education = [
-  {
-    type: "education",
-    degree: "Master of Science in Digital Business Engineering",
-    institution: "Technical University of Munich",
-    period: "2016 - 2018",
-    year: "2016",
-    gpa: "1.3 (Magna Cum Laude)",
-    description: "Specialized in digital transformation, business process optimization, and technology strategy.",
-    achievements: [
-      "Thesis: 'AI-Driven Business Process Automation'",
-      "Dean's List for Academic Excellence",
-      "Graduate Research Assistant"
-    ],
-    subjects: ["Digital Strategy", "AI & Machine Learning", "Business Analytics", "Innovation Management"]
-  },
-  {
-    type: "education",
-    degree: "Bachelor of Science in Computer Science",
-    institution: "University of Stuttgart",
-    period: "2012 - 2016",
-    year: "2012",
-    gpa: "1.5 (Cum Laude)",
-    description: "Foundation in computer science with focus on software engineering and system architecture.",
-    achievements: [
-      "Outstanding Student Award 2015",
-      "Programming Competition Winner",
-      "Student Representative"
-    ],
-    subjects: ["Software Engineering", "Database Systems", "System Architecture", "Project Management"]
-  }
-];
-
-// Combine and sort by year (most recent first)
-const timelineItems = [...experiences, ...education].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+import { useYamlData } from "@/hooks/useYamlData";
+import { Experience, Education } from "@/types/data";
 
 export const TimelineSection = () => {
-  const [selectedItem, setSelectedItem] = useState<any>(null);
+  const { data: experiences, loading: expLoading } = useYamlData<Experience[]>('/data/experience.yaml');
+  const { data: education, loading: eduLoading } = useYamlData<Education[]>('/data/education.yaml');
+  
+  const [selectedItem, setSelectedItem] = useState<Experience | Education | null>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: Experience | Education) => {
     setSelectedItem(item);
     setIsDetailsVisible(true);
   };
@@ -98,6 +22,10 @@ export const TimelineSection = () => {
     setIsDetailsVisible(false);
     setTimeout(() => setSelectedItem(null), 300);
   };
+
+  if (expLoading || eduLoading || !experiences || !education) {
+    return <div className="py-24 text-center">Loading...</div>;
+  }
 
   return (
     <section className="py-24 relative">
@@ -215,15 +143,15 @@ export const TimelineSection = () => {
                 <div className="sticky top-0 bg-card/95 backdrop-blur-sm border-b p-6 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10">
-                      {selectedItem.type === 'experience' ? (
+                      {'company' in selectedItem ? (
                         <Briefcase className="w-6 h-6 text-primary" />
                       ) : (
                         <GraduationCap className="w-6 h-6 text-primary" />
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">{selectedItem.title || selectedItem.degree}</h3>
-                      <p className="text-muted-foreground">{selectedItem.company || selectedItem.institution}</p>
+                      <h3 className="text-xl font-bold">{'title' in selectedItem ? selectedItem.title : selectedItem.degree}</h3>
+                      <p className="text-muted-foreground">{'company' in selectedItem ? selectedItem.company : selectedItem.institution}</p>
                     </div>
                   </div>
                   <Button variant="ghost" size="sm" onClick={closeDetails}>
@@ -249,7 +177,7 @@ export const TimelineSection = () => {
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
                       <Award className="w-5 h-5 text-primary" />
-                      {selectedItem.type === 'experience' ? 'Key Achievements' : 'Achievements'}
+                      {'company' in selectedItem ? 'Key Achievements' : 'Achievements'}
                     </h4>
                     <ul className="space-y-3 text-muted-foreground">
                       {selectedItem.achievements.map((achievement: string, i: number) => (
@@ -263,10 +191,10 @@ export const TimelineSection = () => {
                   
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground">
-                      {selectedItem.type === 'experience' ? 'Technologies & Skills' : 'Key Subjects'}
+                      {'company' in selectedItem ? 'Technologies & Skills' : 'Key Subjects'}
                     </h4>
                     <div className="flex flex-wrap gap-3">
-                      {(selectedItem.technologies || selectedItem.subjects).map((item: string, i: number) => (
+                      {('technologies' in selectedItem ? selectedItem.technologies : selectedItem.subjects).map((item: string, i: number) => (
                         <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
                           {item}
                         </Badge>

@@ -1,0 +1,44 @@
+- title: "Senior Digital Business Value Engineer"
+  company: "Tech Innovation Corp"
+  period: "2022 - Present"
+  year: "2022"
+  description: "Leading digital transformation initiatives and driving business value through strategic technology implementation."
+  achievements:
+    - "Increased operational efficiency by 40% through process automation"
+    - "Led cross-functional teams of 15+ members"
+    - "Implemented AI-driven solutions reducing costs by €2M annually"
+  technologies:
+    - "AI/ML"
+    - "Cloud Architecture"
+    - "Process Automation"
+    - "Data Analytics"
+
+- title: "Digital Solutions Architect"
+  company: "Enterprise Solutions Ltd"
+  period: "2020 - 2022"
+  year: "2020"
+  description: "Designed and implemented scalable digital solutions for enterprise clients across various industries."
+  achievements:
+    - "Architected cloud-native solutions for 50+ clients"
+    - "Reduced system downtime by 85%"
+    - "Mentored junior developers and engineers"
+  technologies:
+    - "Cloud Computing"
+    - "Microservices"
+    - "DevOps"
+    - "System Integration"
+
+- title: "Business Technology Consultant"
+  company: "Strategic Tech Partners"
+  period: "2018 - 2020"
+  year: "2018"
+  description: "Provided strategic consulting for digital transformation and technology adoption."
+  achievements:
+    - "Consulted for Fortune 500 companies"
+    - "Developed technology roadmaps for digital transformation"
+    - "Achieved 95% client satisfaction rate"
+  technologies:
+    - "Strategy"
+    - "Digital Transformation"
+    - "Project Management"
+    - "Stakeholder Management"

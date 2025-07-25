@@ -1,0 +1,16 @@
+name:
+  first: "Jakob"
+  last: "Gabriel"
+
+title: "Digital Business Value Engineer"
+
+bio: "Transforming digital landscapes through strategic engineering and innovative solutions. Bridging the gap between technology and business value."
+
+contact:
+  email: "jakob.gabriel5@googlemail.com"
+  linkedin: "https://www.linkedin.com/in/jakob-gabriel"
+  github: "https://github.com/jakobgabriel"
+
+image:
+  src: "/src/assets/jakob-portrait.jpeg"
+  alt: "Jakob Gabriel Portrait"

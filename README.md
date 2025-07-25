@@ -1,73 +1,131 @@
-# Welcome to your Lovable project
+# Digital Resume - Jakob Gabriel
 
-## Project info
+A modern, responsive digital resume built with React, TypeScript, and Tailwind CSS. Content is managed through YAML files for easy updates and deployment to GitHub Pages.
 
-**URL**: https://lovable.dev/projects/a35cea0f-cc01-404e-a621-761e96cbfffa
+## 🚀 Features
 
-## How can I edit this code?
+- **YAML-based Content Management**: All personal information, experience, education, and skills are stored in YAML files
+- **Modern Design**: Clean, professional design with dark/light mode support
+- **Responsive**: Optimized for all device sizes
+- **Interactive Timeline**: Slide-in detail panels for experience and education
+- **GitHub Pages Ready**: Configured for automatic deployment
 
-There are several ways of editing your application.
+## 📁 Content Management
 
-**Use Lovable**
+All content is stored in YAML files in the `public/data/` directory:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a35cea0f-cc01-404e-a621-761e96cbfffa) and start prompting.
+- `personal.yaml` - Personal information, contact details, and bio
+- `experience.yaml` - Professional experience entries
+- `education.yaml` - Educational background
+- `skills.yaml` - Core competencies and leadership skills
 
-Changes made via Lovable will be committed automatically to this repo.
+### Editing Content
 
-**Use your preferred IDE**
+1. Navigate to the `public/data/` folder
+2. Edit the relevant YAML file
+3. Commit and push changes
+4. GitHub Actions will automatically rebuild and deploy
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### YAML Structure Examples
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+#### Personal Information (`personal.yaml`)
+```yaml
+name:
+  first: "Your First Name"
+  last: "Your Last Name"
+title: "Your Professional Title"
+bio: "Your professional bio..."
+contact:
+  email: "your.email@example.com"
+  linkedin: "https://linkedin.com/in/yourprofile"
+  github: "https://github.com/yourusername"
+```
 
-Follow these steps:
+#### Experience (`experience.yaml`)
+```yaml
+- title: "Job Title"
+  company: "Company Name"
+  period: "2020 - Present"
+  year: "2020"
+  description: "Job description..."
+  achievements:
+    - "Achievement 1"
+    - "Achievement 2"
+  technologies:
+    - "Technology 1"
+    - "Technology 2"
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠 Development
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Deployment to GitHub Pages
 
-**Use GitHub Codespaces**
+### Automatic Deployment
+This project is configured with GitHub Actions for automatic deployment:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Push changes to the `main` branch
+2. GitHub Actions will automatically build and deploy to GitHub Pages
+3. Your site will be available at `https://yourusername.github.io/your-repo-name/`
 
-## What technologies are used for this project?
+### Manual Setup
+1. Enable GitHub Pages in your repository settings
+2. Set source to "GitHub Actions"
+3. Update the `base` URL in `vite.config.ts` to match your repository name
+4. Push changes to trigger deployment
 
-This project is built with:
+### Custom Domain
+To use a custom domain:
+1. Add your domain to the `cname` field in `.github/workflows/deploy.yml`
+2. Configure your domain's DNS to point to GitHub Pages
+3. Enable custom domain in GitHub Pages settings
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🎨 Customization
 
-## How can I deploy this project?
+### Colors and Theme
+The design system is defined in `src/index.css`. Update CSS variables to change:
+- Colors (light and dark mode)
+- Gradients and effects
+- Typography and spacing
 
-Simply open [Lovable](https://lovable.dev/projects/a35cea0f-cc01-404e-a621-761e96cbfffa) and click on Share -> Publish.
+### Adding New Sections
+1. Create a new YAML file in `public/data/`
+2. Define TypeScript interfaces in `src/types/data.ts`
+3. Create a new component using the `useYamlData` hook
+4. Add the component to your page layout
 
-## Can I connect a custom domain to my Lovable project?
+## 📝 License
 
-Yes, you can!
+MIT License - feel free to use this template for your own resume!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🤝 Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+---
+
+Built with ❤️ using React, TypeScript, and Tailwind CSS

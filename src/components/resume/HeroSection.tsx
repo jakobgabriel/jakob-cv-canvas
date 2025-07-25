@@ -1,8 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, FileText } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
+import { useYamlData } from "@/hooks/useYamlData";
+import { PersonalInfo } from "@/types/data";
 
 export const HeroSection = () => {
+  const { data: personalInfo, loading } = useYamlData<PersonalInfo>('/data/personal.yaml');
+
+  if (loading || !personalInfo) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Diagonal geometric shapes */}
@@ -20,7 +28,7 @@ export const HeroSection = () => {
               <div className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
                 <img 
                   src={jakobPortrait} 
-                  alt="Jakob Gabriel" 
+                  alt={personalInfo.image.alt} 
                   className="w-full h-full object-cover transition-smooth hover:scale-110"
                 />
               </div>
@@ -31,17 +39,16 @@ export const HeroSection = () => {
           <div className="space-y-8 max-w-4xl">
             <div className="space-y-4">
               <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-                Jakob{" "}
-                <span className="text-gradient">Gabriel</span>
+                {personalInfo.name.first}{" "}
+                <span className="text-gradient">{personalInfo.name.last}</span>
               </h1>
               <h2 className="text-2xl lg:text-3xl font-light text-muted-foreground">
-                Digital Business Value Engineer
+                {personalInfo.title}
               </h2>
             </div>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Transforming digital landscapes through strategic engineering and innovative solutions. 
-              Bridging the gap between technology and business value.
+              {personalInfo.bio}
             </p>
             
             {/* Social Links */}
@@ -53,7 +60,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href="https://www.linkedin.com/in/jakob-gabriel" 
+                  href={personalInfo.contact.linkedin}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -70,7 +77,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href="https://github.com/jakobgabriel" 
+                  href={personalInfo.contact.github}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -87,7 +94,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href="mailto:jakob.gabriel5@googlemail.com"
+                  href={`mailto:${personalInfo.contact.email}`}
                   className="flex items-center gap-2"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-smooth" />

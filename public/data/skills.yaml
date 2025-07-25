@@ -1,0 +1,39 @@
+core_competencies:
+  - name: "Digital Strategy & Transformation"
+    level: 95
+    description: "Leading organizational digital transformation initiatives"
+
+  - name: "Business Process Engineering"
+    level: 90
+    description: "Optimizing and automating complex business workflows"
+
+  - name: "Solution Architecture"
+    level: 88
+    description: "Designing scalable enterprise software architectures"
+
+  - name: "Project Leadership"
+    level: 92
+    description: "Managing cross-functional teams and complex projects"
+
+  - name: "Data Analytics & AI"
+    level: 85
+    description: "Implementing data-driven solutions and AI technologies"
+
+leadership_skills:
+  - name: "Strategic Thinking"
+    icon: "Target"
+
+  - name: "Cross-functional Leadership"
+    icon: "Users"
+
+  - name: "Innovation Management"
+    icon: "Lightbulb"
+
+  - name: "Stakeholder Engagement"
+    icon: "MessageSquare"
+
+  - name: "Change Management"
+    icon: "TrendingUp"
+
+  - name: "Communication"
+    icon: "Mic"
