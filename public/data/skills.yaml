@@ -1,39 +1,231 @@
-core_competencies:
-  - name: "Digital Strategy & Transformation"
-    level: 95
-    description: "Leading organizational digital transformation initiatives"
+en:
+  core_competencies:
+    - name: "Digital Strategy & Transformation"
+      level: 95
+      description: "Leading organizational digital transformation initiatives and strategic technology planning"
 
-  - name: "Business Process Engineering"
-    level: 90
-    description: "Optimizing and automating complex business workflows"
+    - name: "Business Process Engineering"
+      level: 90
+      description: "Optimizing and automating complex business workflows using lean methodologies"
 
-  - name: "Solution Architecture"
-    level: 88
-    description: "Designing scalable enterprise software architectures"
+    - name: "Solution Architecture"
+      level: 88
+      description: "Designing scalable enterprise software architectures and cloud-native solutions"
 
-  - name: "Project Leadership"
-    level: 92
-    description: "Managing cross-functional teams and complex projects"
+    - name: "Project Leadership"
+      level: 92
+      description: "Managing cross-functional teams and complex multi-million dollar projects"
 
-  - name: "Data Analytics & AI"
-    level: 85
-    description: "Implementing data-driven solutions and AI technologies"
+    - name: "Data Analytics & AI"
+      level: 85
+      description: "Implementing data-driven solutions and AI/ML technologies for business value"
 
-leadership_skills:
-  - name: "Strategic Thinking"
-    icon: "Target"
+    - name: "Cloud Technologies"
+      level: 87
+      description: "Expert in AWS, Azure, and GCP with focus on scalable cloud architectures"
 
-  - name: "Cross-functional Leadership"
-    icon: "Users"
+  technical_skills:
+    programming:
+      - "Python"
+      - "JavaScript/TypeScript"
+      - "Java"
+      - "C#"
+      - "SQL"
+      - "R"
+    
+    frameworks:
+      - "React"
+      - "Node.js"
+      - "Django"
+      - "Spring Boot"
+      - ".NET Core"
+      - "TensorFlow"
+    
+    cloud_platforms:
+      - "AWS"
+      - "Microsoft Azure"
+      - "Google Cloud Platform"
+      - "Docker"
+      - "Kubernetes"
+      - "Terraform"
+    
+    tools:
+      - "Git"
+      - "Jenkins"
+      - "Jira"
+      - "Confluence"
+      - "Tableau"
+      - "Power BI"
 
-  - name: "Innovation Management"
-    icon: "Lightbulb"
+  leadership_skills:
+    - name: "Strategic Thinking"
+      icon: "Target"
 
-  - name: "Stakeholder Engagement"
-    icon: "MessageSquare"
+    - name: "Cross-functional Leadership"
+      icon: "Users"
 
-  - name: "Change Management"
-    icon: "TrendingUp"
+    - name: "Innovation Management"
+      icon: "Lightbulb"
 
-  - name: "Communication"
-    icon: "Mic"
+    - name: "Stakeholder Engagement"
+      icon: "MessageSquare"
+
+    - name: "Change Management"
+      icon: "TrendingUp"
+
+    - name: "Communication"
+      icon: "Mic"
+
+  certifications:
+    - name: "AWS Certified Solutions Architect"
+      issuer: "Amazon Web Services"
+      date: "2023"
+      credential_id: "AWS-SA-2023-001"
+
+    - name: "Microsoft Certified: Azure Solutions Architect Expert"
+      issuer: "Microsoft"
+      date: "2022"
+      credential_id: "MS-AZ-2022-002"
+
+    - name: "Certified Scrum Master (CSM)"
+      issuer: "Scrum Alliance"
+      date: "2021"
+      credential_id: "CSM-2021-003"
+
+    - name: "Google Cloud Professional Cloud Architect"
+      issuer: "Google Cloud"
+      date: "2023"
+      credential_id: "GCP-PCA-2023-004"
+
+  languages:
+    - name: "German"
+      level: "Native"
+      proficiency: 100
+
+    - name: "English"
+      level: "Fluent"
+      proficiency: 95
+
+    - name: "Spanish"
+      level: "Intermediate"
+      proficiency: 70
+
+    - name: "French"
+      level: "Basic"
+      proficiency: 40
+
+de:
+  core_competencies:
+    - name: "Digitale Strategie & Transformation"
+      level: 95
+      description: "Leitung organisatorischer digitaler Transformationsinitiativen und strategischer Technologieplanung"
+
+    - name: "Geschäftsprozess-Engineering"
+      level: 90
+      description: "Optimierung und Automatisierung komplexer Geschäftsabläufe mit Lean-Methoden"
+
+    - name: "Lösungsarchitektur"
+      level: 88
+      description: "Entwurf skalierbarer Enterprise-Software-Architekturen und Cloud-nativer Lösungen"
+
+    - name: "Projektleitung"
+      level: 92
+      description: "Management funktionsübergreifender Teams und komplexer Millionen-Euro-Projekte"
+
+    - name: "Datenanalyse & KI"
+      level: 85
+      description: "Implementierung datengetriebener Lösungen und KI/ML-Technologien für Geschäftswert"
+
+    - name: "Cloud-Technologien"
+      level: 87
+      description: "Experte in AWS, Azure und GCP mit Fokus auf skalierbare Cloud-Architekturen"
+
+  technical_skills:
+    programming:
+      - "Python"
+      - "JavaScript/TypeScript"
+      - "Java"
+      - "C#"
+      - "SQL"
+      - "R"
+    
+    frameworks:
+      - "React"
+      - "Node.js"
+      - "Django"
+      - "Spring Boot"
+      - ".NET Core"
+      - "TensorFlow"
+    
+    cloud_platforms:
+      - "AWS"
+      - "Microsoft Azure"
+      - "Google Cloud Platform"
+      - "Docker"
+      - "Kubernetes"
+      - "Terraform"
+    
+    tools:
+      - "Git"
+      - "Jenkins"
+      - "Jira"
+      - "Confluence"
+      - "Tableau"
+      - "Power BI"
+
+  leadership_skills:
+    - name: "Strategisches Denken"
+      icon: "Target"
+
+    - name: "Funktionsübergreifende Führung"
+      icon: "Users"
+
+    - name: "Innovationsmanagement"
+      icon: "Lightbulb"
+
+    - name: "Stakeholder-Engagement"
+      icon: "MessageSquare"
+
+    - name: "Change Management"
+      icon: "TrendingUp"
+
+    - name: "Kommunikation"
+      icon: "Mic"
+
+  certifications:
+    - name: "AWS Certified Solutions Architect"
+      issuer: "Amazon Web Services"
+      date: "2023"
+      credential_id: "AWS-SA-2023-001"
+
+    - name: "Microsoft Certified: Azure Solutions Architect Expert"
+      issuer: "Microsoft"
+      date: "2022"
+      credential_id: "MS-AZ-2022-002"
+
+    - name: "Certified Scrum Master (CSM)"
+      issuer: "Scrum Alliance"
+      date: "2021"
+      credential_id: "CSM-2021-003"
+
+    - name: "Google Cloud Professional Cloud Architect"
+      issuer: "Google Cloud"
+      date: "2023"
+      credential_id: "GCP-PCA-2023-004"
+
+  languages:
+    - name: "Deutsch"
+      level: "Muttersprache"
+      proficiency: 100
+
+    - name: "Englisch"
+      level: "Fließend"
+      proficiency: 95
+
+    - name: "Spanisch"
+      level: "Mittelstufe"
+      proficiency: 70
+
+    - name: "Französisch"
+      level: "Grundkenntnisse"
+      proficiency: 40

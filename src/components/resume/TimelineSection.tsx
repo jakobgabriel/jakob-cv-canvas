@@ -4,11 +4,14 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import { useYamlData } from "@/hooks/useYamlData";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 import { Experience, Education } from "@/types/data";
 
 export const TimelineSection = () => {
   const { data: experiences, loading: expLoading } = useYamlData<Experience[]>('/data/experience.yaml');
   const { data: education, loading: eduLoading } = useYamlData<Education[]>('/data/education.yaml');
+  const { t } = useLanguage();
   
   const [selectedItem, setSelectedItem] = useState<Experience | Education | null>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
@@ -24,7 +27,7 @@ export const TimelineSection = () => {
   };
 
   if (expLoading || eduLoading || !experiences || !education) {
-    return <div className="py-24 text-center">Loading...</div>;
+    return <div className="py-24 text-center">{t('loading')}</div>;
   }
 
   return (
@@ -32,11 +35,11 @@ export const TimelineSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-4">
-            Professional{" "}
-            <span className="text-gradient">Journey</span>
+            {t('timeline.professionalJourney').split(' ')[0]}{" "}
+            <span className="text-gradient">{t('timeline.professionalJourney').split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A timeline of career milestones and educational achievements
+            {t('timeline.journeyDescription')}
           </p>
         </div>
         
@@ -46,7 +49,7 @@ export const TimelineSection = () => {
             <div className="text-center lg:text-left">
               <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
                 <Briefcase className="w-8 h-8 text-primary" />
-                Professional Experience
+                {t('timeline.experience')}
               </h3>
             </div>
             
@@ -87,7 +90,7 @@ export const TimelineSection = () => {
             <div className="text-center lg:text-left">
               <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
                 <GraduationCap className="w-8 h-8 text-primary" />
-                Education
+                {t('timeline.education')}
               </h3>
             </div>
             
@@ -177,7 +180,7 @@ export const TimelineSection = () => {
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
                       <Award className="w-5 h-5 text-primary" />
-                      {'company' in selectedItem ? 'Key Achievements' : 'Achievements'}
+                      {t('timeline.achievements')}
                     </h4>
                     <ul className="space-y-3 text-muted-foreground">
                       {selectedItem.achievements.map((achievement: string, i: number) => (
@@ -191,7 +194,7 @@ export const TimelineSection = () => {
                   
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground">
-                      {'company' in selectedItem ? 'Technologies & Skills' : 'Key Subjects'}
+                      {'company' in selectedItem ? t('timeline.technologies') : t('timeline.subjects')}
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {('technologies' in selectedItem ? selectedItem.technologies : selectedItem.subjects).map((item: string, i: number) => (

@@ -2,10 +2,12 @@ import { HeroSection } from "@/components/resume/HeroSection";
 import { TimelineSection } from "@/components/resume/TimelineSection";
 import { SkillsSection } from "@/components/resume/SkillsSection";
 import { ContactSection } from "@/components/resume/ContactSection";
+import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <ThemeLanguageToggle />
       <HeroSection />
       <TimelineSection />
       <SkillsSection />

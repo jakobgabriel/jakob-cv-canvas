@@ -1,16 +1,33 @@
-name:
-  first: "Jakob"
-  last: "Gabriel"
+en:
+  name:
+    first: "Jakob"
+    last: "Gabriel"
+  title: "Digital Business Value Engineer"
+  bio: "Transforming digital landscapes through strategic engineering and innovative solutions. Bridging the gap between technology and business value through data-driven approaches and cutting-edge technologies."
+  contact:
+    email: "jakob.gabriel5@googlemail.com"
+    linkedin: "https://www.linkedin.com/in/jakob-gabriel"
+    github: "https://github.com/jakobgabriel"
+  image:
+    src: "/src/assets/jakob-portrait.jpeg"
+    alt: "Jakob Gabriel Portrait"
+  location: "Munich, Germany"
+  phone: "+49 123 456 789"
+  website: "https://jakobgabriel.dev"
 
-title: "Digital Business Value Engineer"
-
-bio: "Transforming digital landscapes through strategic engineering and innovative solutions. Bridging the gap between technology and business value."
-
-contact:
-  email: "jakob.gabriel5@googlemail.com"
-  linkedin: "https://www.linkedin.com/in/jakob-gabriel"
-  github: "https://github.com/jakobgabriel"
-
-image:
-  src: "/src/assets/jakob-portrait.jpeg"
-  alt: "Jakob Gabriel Portrait"
+de:
+  name:
+    first: "Jakob"
+    last: "Gabriel"
+  title: "Digital Business Value Engineer"
+  bio: "Transformation digitaler Landschaften durch strategisches Engineering und innovative Lösungen. Verbindung von Technologie und Geschäftswert durch datengetriebene Ansätze und modernste Technologien."
+  contact:
+    email: "jakob.gabriel5@googlemail.com"
+    linkedin: "https://www.linkedin.com/in/jakob-gabriel"
+    github: "https://github.com/jakobgabriel"
+  image:
+    src: "/src/assets/jakob-portrait.jpeg"
+    alt: "Jakob Gabriel Portrait"
+  location: "München, Deutschland"
+  phone: "+49 123 456 789"
+  website: "https://jakobgabriel.dev"

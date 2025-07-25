@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { useYamlData } from "@/hooks/useYamlData";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { PersonalInfo } from "@/types/data";
 
 export const HeroSection = () => {
   const { data: personalInfo, loading } = useYamlData<PersonalInfo>('/data/personal.yaml');
+  const { t } = useLanguage();
 
   if (loading || !personalInfo) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center">{t('loading')}</div>;
   }
 
   return (
@@ -50,6 +52,22 @@ export const HeroSection = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               {personalInfo.bio}
             </p>
+
+            {/* Contact Info */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                {personalInfo.location}
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                {personalInfo.phone}
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4" />
+                {personalInfo.website}
+              </div>
+            </div>
             
             {/* Social Links */}
             <div className="flex flex-wrap gap-4 justify-center">
@@ -105,7 +123,7 @@ export const HeroSection = () => {
             
             <Button size="lg" className="group text-lg px-8 py-6">
               <FileText className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-              Download Resume
+              {t('hero.downloadResume')}
             </Button>
           </div>
         </div>
