@@ -1,12 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { HeroSection } from "@/components/resume/HeroSection";
+import { ExperienceSection } from "@/components/resume/ExperienceSection";
+import { SkillsSection } from "@/components/resume/SkillsSection";
+import { ContactSection } from "@/components/resume/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <HeroSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ContactSection />
+      
+      {/* Footer */}
+      <footer className="py-8 border-t border-border bg-card/30 backdrop-blur-sm">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-muted-foreground">
+            © 2024 Jakob Gabriel. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
