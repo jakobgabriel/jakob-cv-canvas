@@ -61,27 +61,6 @@ export const ContactSection = () => {
               </div>
             </Card>
             
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic">
-              <h3 className="text-xl font-bold mb-4">Professional Focus</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-start">
-                  <span className="text-primary mr-2 mt-1">▸</span>
-                  Digital Transformation Strategy
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2 mt-1">▸</span>
-                  Business Value Engineering
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2 mt-1">▸</span>
-                  Technology Leadership
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2 mt-1">▸</span>
-                  Process Optimization
-                </li>
-              </ul>
-            </Card>
           </div>
           
           {/* Contact Form */}
