@@ -18,51 +18,7 @@ export const ContactSection = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic">
-              <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Email</div>
-                    <a 
-                      href="mailto:jakob.gabriel5@googlemail.com" 
-                      className="text-primary hover:underline"
-                    >
-                      jakob.gabriel5@googlemail.com
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Phone</div>
-                    <span className="text-muted-foreground">Available upon request</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Location</div>
-                    <span className="text-muted-foreground">Germany</span>
-                  </div>
-                </div>
-              </div>
-            </Card>
-            
-          </div>
-          
+        <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
           <Card className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic">
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
