@@ -24,147 +24,138 @@ export const SkillsSection = () => {
   }
 
   return (
-    <section className="py-24 relative">
+    <section className="py-12 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-2">
             {t('skills.coreCompetencies').split(' ')[0]}{" "}
             <span className="text-gradient">{t('skills.coreCompetencies').split(' ').slice(1).join(' ')}</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('skills.competenciesDescription')}
           </p>
         </div>
         
-        <div className="max-w-6xl mx-auto space-y-16">
-          {/* Core Competencies */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold text-center lg:text-left">{t('skills.technicalExcellence')}</h3>
-              <div className="grid gap-6">
-                {skills.core_competencies.map((skill, index) => (
-                  <Card key={index} className="p-6 bg-card backdrop-blur-sm border-border shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">{skill.name}</h4>
-                        <span className="text-sm font-mono text-primary">{skill.level}%</span>
-                      </div>
-                      <Progress value={skill.level} className="h-2" />
-                      <p className="text-sm text-muted-foreground">{skill.description}</p>
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Compact Skills Overview */}
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-6">
+            {/* Core Competencies */}
+            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <Target className="w-4 h-4 text-primary" />
+                <h3 className="text-lg font-bold">{t('skills.technicalExcellence')}</h3>
+              </div>
+              <div className="space-y-3">
+                {skills.core_competencies.slice(0, 4).map((skill, index) => (
+                  <div key={index} className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="text-xs text-primary font-mono">{skill.level}%</span>
                     </div>
-                  </Card>
+                    <Progress value={skill.level} className="h-1.5" />
+                  </div>
                 ))}
               </div>
-            </div>
-            
-            {/* Leadership & Technical Skills */}
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold text-center lg:text-left">{t('skills.leadershipSoft')}</h3>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {skills.leadership_skills.map((skill, index) => {
+            </Card>
+
+            {/* Leadership Skills */}
+            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <Users className="w-4 h-4 text-primary" />
+                <h3 className="text-lg font-bold">{t('skills.leadershipSoft')}</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {skills.leadership_skills.slice(0, 6).map((skill, index) => {
                   const IconComponent = iconMap[skill.icon as keyof typeof iconMap];
                   return (
-                    <Card key={index} className="p-4 text-center hover:shadow-lg transition-all duration-300 bg-card backdrop-blur-sm border-border hover:scale-105">
-                      <div className="space-y-3">
-                        <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                          <IconComponent className="w-6 h-6 text-primary" />
-                        </div>
-                        <h4 className="font-semibold text-sm">{skill.name}</h4>
-                      </div>
-                    </Card>
+                    <div key={index} className="flex items-center gap-1 p-2 rounded bg-muted/30">
+                      <IconComponent className="w-3 h-3 text-primary" />
+                      <span className="text-xs">{skill.name}</span>
+                    </div>
                   );
                 })}
               </div>
-
-              {/* Technical Skills */}
-              <Card className="p-6 bg-card backdrop-blur-sm border-border shadow-lg">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Code className="w-5 h-5 text-primary" />
-                    <h4 className="text-lg font-bold">{t('skills.technicalSkills')}</h4>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <h5 className="text-sm font-semibold mb-2 text-muted-foreground">Programming</h5>
-                      <div className="flex flex-wrap gap-2">
-                        {skills.technical_skills.programming.map((tech, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h5 className="text-sm font-semibold mb-2 text-muted-foreground">Frameworks</h5>
-                      <div className="flex flex-wrap gap-2">
-                        {skills.technical_skills.frameworks.map((tech, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h5 className="text-sm font-semibold mb-2 text-muted-foreground">Cloud Platforms</h5>
-                      <div className="flex flex-wrap gap-2">
-                        {skills.technical_skills.cloud_platforms.map((tech, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-
-          {/* Certifications and Languages */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Certifications */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Award className="w-6 h-6 text-primary" />
-                <h3 className="text-2xl font-bold">{t('skills.certifications')}</h3>
-              </div>
-              <div className="grid gap-4">
-                {skills.certifications.map((cert, index) => (
-                  <Card key={index} className="p-4 bg-card backdrop-blur-sm border-border shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className="space-y-2">
-                      <h4 className="font-semibold">{cert.name}</h4>
-                      <p className="text-sm text-muted-foreground">{cert.issuer} • {cert.date}</p>
-                      <p className="text-xs text-muted-foreground font-mono">ID: {cert.credential_id}</p>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            </Card>
 
             {/* Languages */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Globe className="w-6 h-6 text-primary" />
-                <h3 className="text-2xl font-bold">{t('skills.languages')}</h3>
+            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <Globe className="w-4 h-4 text-primary" />
+                <h3 className="text-lg font-bold">{t('skills.languages')}</h3>
               </div>
-              <div className="grid gap-4">
+              <div className="space-y-3">
                 {skills.languages.map((lang, index) => (
-                  <Card key={index} className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-semibold">{lang.name}</h4>
-                        <span className="text-sm text-muted-foreground">{lang.level}</span>
-                      </div>
-                      <Progress value={lang.proficiency} className="h-2" />
+                  <div key={index} className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{lang.name}</span>
+                      <span className="text-xs text-muted-foreground">{lang.level}</span>
                     </div>
-                  </Card>
+                    <Progress value={lang.proficiency} className="h-1.5" />
+                  </div>
                 ))}
               </div>
-            </div>
+            </Card>
+
+            {/* Certifications */}
+            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <Award className="w-4 h-4 text-primary" />
+                <h3 className="text-lg font-bold">{t('skills.certifications')}</h3>
+              </div>
+              <div className="space-y-3">
+                {skills.certifications.slice(0, 3).map((cert, index) => (
+                  <div key={index} className="space-y-1">
+                    <h4 className="text-sm font-medium">{cert.name}</h4>
+                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                    <p className="text-xs text-muted-foreground">{cert.date}</p>
+                  </div>
+                ))}
+              </div>
+            </Card>
           </div>
+
+          {/* Technical Skills - Compact */}
+          <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
+            <div className="flex items-center gap-2 mb-4">
+              <Code className="w-4 h-4 text-primary" />
+              <h3 className="text-lg font-bold">{t('skills.technicalSkills')}</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Programming</h4>
+                <div className="flex flex-wrap gap-1">
+                  {skills.technical_skills.programming.map((tech, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Frameworks</h4>
+                <div className="flex flex-wrap gap-1">
+                  {skills.technical_skills.frameworks.map((tech, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Cloud Platforms</h4>
+                <div className="flex flex-wrap gap-1">
+                  {skills.technical_skills.cloud_platforms.map((tech, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
