@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { useYamlData } from "@/hooks/useYamlData";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -191,6 +192,28 @@ export const TimelineSection = () => {
                       ))}
                     </ul>
                   </div>
+
+                  {selectedItem.responsibilities && selectedItem.responsibilities.length > 0 && (
+                    <Collapsible>
+                      <CollapsibleTrigger className="flex items-center justify-between w-full group">
+                        <h4 className="font-semibold text-foreground flex items-center gap-2">
+                          <CheckCircle className="w-5 h-5 text-primary" />
+                          {t('timeline.responsibilities')}
+                        </h4>
+                        <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="mt-3">
+                        <ul className="space-y-2 text-muted-foreground">
+                          {selectedItem.responsibilities.map((responsibility: string, i: number) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="text-primary mt-1.5 text-sm">•</span>
+                              <span className="leading-relaxed">{responsibility}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  )}
                   
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground">

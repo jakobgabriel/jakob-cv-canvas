@@ -28,6 +28,7 @@ export interface Experience {
   type: string;
   description: string;
   achievements: string[];
+  responsibilities: string[];
   technologies: string[];
 }
 
@@ -40,6 +41,7 @@ export interface Education {
   gpa: string;
   description: string;
   achievements: string[];
+  responsibilities: string[];
   subjects: string[];
 }
 

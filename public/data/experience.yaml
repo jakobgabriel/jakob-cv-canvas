@@ -12,6 +12,12 @@ en:
       - "Implemented AI-driven solutions reducing operational costs by €2M annually"
       - "Developed strategic technology roadmaps for Fortune 500 clients"
       - "Established center of excellence for digital transformation practices"
+    responsibilities:
+      - "Design and implement digital transformation strategies for enterprise clients"
+      - "Lead stakeholder workshops and requirements gathering sessions"
+      - "Develop technical specifications and architectural documentation"
+      - "Oversee project delivery and quality assurance processes"
+      - "Mentor junior team members and provide technical guidance"
     technologies:
       - "AI/ML"
       - "Cloud Architecture"
@@ -34,6 +40,12 @@ en:
       - "Mentored junior developers and engineers in best practices"
       - "Led migration of legacy systems to modern cloud platforms"
       - "Established DevOps practices reducing deployment time by 70%"
+    responsibilities:
+      - "Architect scalable solutions for enterprise-level applications"
+      - "Collaborate with product teams to define technical requirements"
+      - "Conduct code reviews and ensure development best practices"
+      - "Design system integrations and API specifications"
+      - "Provide technical leadership and solution recommendations"
     technologies:
       - "Cloud Computing"
       - "Microservices"
@@ -56,6 +68,12 @@ en:
       - "Achieved 95% client satisfaction rate with measurable business outcomes"
       - "Reduced client operational costs by average of 30% through process optimization"
       - "Established long-term strategic partnerships with key technology vendors"
+    responsibilities:
+      - "Bridge the gap between business requirements and technical solutions"
+      - "Facilitate workshops with business stakeholders and technical teams"
+      - "Develop project timelines and resource allocation plans"
+      - "Coordinate with multiple vendors and external partners"
+      - "Ensure compliance with industry standards and regulations"
     technologies:
       - "Strategy"
       - "Digital Transformation"
@@ -79,6 +97,12 @@ de:
       - "Implementierung KI-gestützter Lösungen zur Reduzierung der Betriebskosten um 2 Mio. € jährlich"
       - "Entwicklung strategischer Technologie-Roadmaps für Fortune 500 Kunden"
       - "Aufbau eines Kompetenzzentrums für digitale Transformationspraktiken"
+    responsibilities:
+      - "Konzeption und Umsetzung digitaler Transformationsstrategien für Unternehmenskunden"
+      - "Leitung von Stakeholder-Workshops und Anforderungserhebungssitzungen"
+      - "Entwicklung technischer Spezifikationen und Architekturdokumentation"
+      - "Überwachung der Projektabwicklung und Qualitätssicherungsprozesse"
+      - "Mentoring von Junior-Teammitgliedern und technische Führung"
     technologies:
       - "KI/ML"
       - "Cloud-Architektur"
@@ -101,6 +125,12 @@ de:
       - "Mentoring von Junior-Entwicklern und -Ingenieuren in Best Practices"
       - "Leitung der Migration von Legacy-Systemen zu modernen Cloud-Plattformen"
       - "Etablierung von DevOps-Praktiken zur Reduzierung der Deployment-Zeit um 70%"
+    responsibilities:
+      - "Architektur skalierbarer Lösungen für Unternehmensanwendungen"
+      - "Zusammenarbeit mit Produktteams zur Definition technischer Anforderungen"
+      - "Durchführung von Code-Reviews und Sicherstellung von Entwicklungsstandards"
+      - "Design von Systemintegrationen und API-Spezifikationen"
+      - "Technische Führung und Lösungsempfehlungen"
     technologies:
       - "Cloud Computing"
       - "Microservices"
@@ -123,6 +153,12 @@ de:
       - "Erreichen einer 95%igen Kundenzufriedenheitsrate mit messbaren Geschäftsergebnissen"
       - "Reduzierung der Kundenoperationskosten um durchschnittlich 30% durch Prozessoptimierung"
       - "Aufbau langfristiger strategischer Partnerschaften mit wichtigen Technologieanbietern"
+    responsibilities:
+      - "Brückenschlag zwischen Geschäftsanforderungen und technischen Lösungen"
+      - "Facilitation von Workshops mit Geschäfts-Stakeholdern und technischen Teams"
+      - "Entwicklung von Projektzeitplänen und Ressourcenzuteilungsplänen"
+      - "Koordination mit mehreren Anbietern und externen Partnern"
+      - "Sicherstellung der Einhaltung von Industriestandards und Vorschriften"
     technologies:
       - "Strategie"
       - "Digitale Transformation"

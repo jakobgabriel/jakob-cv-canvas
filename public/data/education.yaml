@@ -12,6 +12,11 @@ en:
       - "Graduate Research Assistant in Digital Innovation Lab"
       - "Published 3 research papers in international conferences"
       - "Winner of University Innovation Challenge 2017"
+    responsibilities:
+      - "Led graduate research projects in digital innovation"
+      - "Assisted in teaching undergraduate computer science courses"
+      - "Coordinated international student exchange programs"
+      - "Organized academic conferences and workshops"
     subjects:
       - "Digital Strategy"
       - "AI & Machine Learning"
@@ -33,6 +38,11 @@ en:
       - "Student Representative in Computer Science Faculty Council"
       - "Completed 6-month industry internship at SAP"
       - "Bachelor's Thesis rated as 'Excellent' (1.0)"
+    responsibilities:
+      - "Represented student interests in faculty meetings"
+      - "Organized study groups and peer tutoring sessions"
+      - "Coordinated student events and networking activities"
+      - "Mentored first-year computer science students"
     subjects:
       - "Software Engineering"
       - "Database Systems"
@@ -55,6 +65,11 @@ de:
       - "Graduierter Forschungsassistent im Digital Innovation Lab"
       - "Veröffentlichung von 3 Forschungsarbeiten auf internationalen Konferenzen"
       - "Gewinner der University Innovation Challenge 2017"
+    responsibilities:
+      - "Leitung von Graduiertenforschungsprojekten in digitaler Innovation"
+      - "Unterstützung beim Unterrichten von Informatik-Grundkursen"
+      - "Koordination internationaler Studentenaustauschprogramme"
+      - "Organisation akademischer Konferenzen und Workshops"
     subjects:
       - "Digitale Strategie"
       - "KI & Machine Learning"
@@ -76,6 +91,11 @@ de:
       - "Studentenvertreter im Fakultätsrat Informatik"
       - "6-monatiges Industriepraktikum bei SAP absolviert"
       - "Bachelorarbeit mit 'Ausgezeichnet' (1,0) bewertet"
+    responsibilities:
+      - "Vertretung der Studenteninteressen in Fakultätssitzungen"
+      - "Organisation von Lerngruppen und Peer-Tutoring-Sitzungen"
+      - "Koordination von Studentenveranstaltungen und Networking-Aktivitäten"
+      - "Mentoring von Erstsemester-Informatikstudenten"
     subjects:
       - "Software Engineering"
       - "Datenbanksysteme"
