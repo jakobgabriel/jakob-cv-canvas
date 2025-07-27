@@ -2,18 +2,18 @@
   "en": {
     "basics": {
       "name": "Jakob Gabriel",
-      "label": "Senior Digital Business Value Engineer",
+      "label": "Digital Business Value Engineer",
       "image": "",
-      "email": "jakob.gabriel@example.com",
-      "phone": "+49 123 456 789",
+      "email": "jakob.gabriel5@googlemail.com",
+      "phone": "",
       "url": "https://jakobgabriel.dev",
-      "summary": "Leading digital transformation initiatives and driving business value through strategic technology implementation. Specialized in enterprise-wide technology strategy and cross-functional team leadership.",
+      "summary": "...",
       "location": {
         "address": "",
         "postalCode": "",
-        "city": "Munich",
+        "city": "Erfurt",
         "countryCode": "DE",
-        "region": "Bavaria"
+        "region": "Thuringia"
       },
       "profiles": [
         {
@@ -30,11 +30,11 @@
     },
     "work": [
       {
-        "name": "Tech Innovation Corp",
-        "position": "Senior Digital Business Value Engineer",
-        "location": "Munich, Germany",
-        "url": "https://techinnovation.corp",
-        "startDate": "2022-03-15",
+        "name": "Continental AG",
+        "position": "Digital Business Value Engineer",
+        "location": "Karben, Germany",
+        "url": "",
+        "startDate": "2022-01-01",
         "summary": "Leading digital transformation initiatives and driving business value through strategic technology implementation. Responsible for enterprise-wide technology strategy and cross-functional team leadership.",
         "highlights": [
           "Increased operational efficiency by 40% through process automation initiatives",
@@ -46,7 +46,7 @@
         "keywords": ["AI/ML", "Cloud Architecture", "Process Automation", "Data Analytics", "Python", "AWS", "Kubernetes"]
       },
       {
-        "name": "Enterprise Solutions Ltd",
+        "name": "Continental AG",
         "position": "Digital Solutions Architect",
         "location": "Stuttgart, Germany",
         "url": "https://enterprisesolutions.ltd",
@@ -144,34 +144,19 @@
         "keywords": ["Lean Methodologies", "Workflow Optimization", "Business Analysis", "Process Mapping"]
       },
       {
-        "name": "Solution Architecture",
-        "level": "Expert",
-        "keywords": ["Enterprise Architecture", "Cloud-Native Solutions", "Microservices", "System Design"]
-      },
-      {
-        "name": "Project Leadership",
-        "level": "Expert",
-        "keywords": ["Cross-functional Teams", "Stakeholder Management", "Agile", "Scrum"]
-      },
-      {
         "name": "Data Analytics & AI",
         "level": "Advanced",
-        "keywords": ["Python", "TensorFlow", "Machine Learning", "Business Intelligence", "Data Science"]
+        "keywords": ["Business Intelligence"]
       },
       {
         "name": "Cloud Technologies",
         "level": "Advanced",
-        "keywords": ["AWS", "Azure", "GCP", "Kubernetes", "Docker", "Terraform"]
+        "keywords": ["Azure", "Docker"]
       },
       {
         "name": "Programming",
         "level": "Advanced",
-        "keywords": ["Python", "JavaScript/TypeScript", "Java", "C#", "SQL", "R"]
-      },
-      {
-        "name": "Frameworks & Tools",
-        "level": "Advanced",
-        "keywords": ["React", "Node.js", "Django", "Spring Boot", ".NET Core", "Git", "Jenkins"]
+        "keywords": ["Python", "SQL"]
       }
     ],
     "languages": [
@@ -182,29 +167,9 @@
       {
         "language": "English", 
         "fluency": "Fluent"
-      },
-      {
-        "language": "Spanish",
-        "fluency": "Intermediate"
-      },
-      {
-        "language": "French",
-        "fluency": "Basic"
       }
     ],
     "certificates": [
-      {
-        "name": "AWS Certified Solutions Architect",
-        "date": "2023-06-15",
-        "issuer": "Amazon Web Services",
-        "url": "https://aws.amazon.com/certification/"
-      },
-      {
-        "name": "Microsoft Certified: Azure Solutions Architect Expert",
-        "date": "2022-03-20",
-        "issuer": "Microsoft",
-        "url": "https://docs.microsoft.com/en-us/learn/certifications/"
-      },
       {
         "name": "Certified Scrum Master (CSM)",
         "date": "2021-08-15",
@@ -232,7 +197,7 @@
   "de": {
     "basics": {
       "name": "Jakob Gabriel",
-      "label": "Senior Digital Business Value Engineer",
+      "label": "Digital Business Value Engineer",
       "image": "",
       "email": "jakob.gabriel@example.com",
       "phone": "+49 123 456 789",
