@@ -23,6 +23,10 @@ export class CookieManager {
   // Track user interactions
   static trackInteraction(action: string, data?: Record<string, any>): void {
     if (!this.hasConsent()) return;
+    
+    // Check if analytics is enabled in preferences
+    const preferences = this.getPreferences();
+    if (!preferences.analytics) return;
 
     const interaction = {
       action,

@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { X, Cookie, Shield, BarChart3 } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { X, Cookie, Shield, BarChart3, Settings } from 'lucide-react';
 import { CookieManager } from '@/lib/cookieManager';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CookieConsentProps {
   onAccept?: () => void;
@@ -13,6 +15,8 @@ interface CookieConsentProps {
 export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Show consent banner if user hasn't made a choice
@@ -23,17 +27,46 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
 
   const handleAccept = () => {
     CookieManager.setConsent(true);
+    CookieManager.setPreferences({ 
+      essential: true, 
+      analytics: analyticsEnabled 
+    });
     setIsVisible(false);
     onAccept?.();
     
     // Track the consent action
-    CookieManager.trackInteraction('cookie_consent_accepted');
+    if (analyticsEnabled) {
+      CookieManager.trackInteraction('cookie_consent_accepted', { 
+        analytics: analyticsEnabled 
+      });
+    }
   };
 
   const handleDecline = () => {
+    CookieManager.setConsent(false);
+    CookieManager.setPreferences({ 
+      essential: true, 
+      analytics: false 
+    });
     localStorage.setItem('cookie-choice', 'declined');
     setIsVisible(false);
     onDecline?.();
+  };
+
+  const handleCustomize = () => {
+    CookieManager.setConsent(true);
+    CookieManager.setPreferences({ 
+      essential: true, 
+      analytics: analyticsEnabled 
+    });
+    setIsVisible(false);
+    onAccept?.();
+    
+    if (analyticsEnabled) {
+      CookieManager.trackInteraction('cookie_consent_customized', { 
+        analytics: analyticsEnabled 
+      });
+    }
   };
 
   const handleClose = () => {
@@ -48,7 +81,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             <Cookie className="w-5 h-5 text-primary" />
-            <h3 className="font-medium text-sm">Cookie Preferences</h3>
+            <h3 className="font-medium text-sm">{t('cookies.title')}</h3>
           </div>
           <Button
             variant="ghost"
@@ -61,13 +94,13 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
         </div>
 
         <p className="text-sm text-muted-foreground mb-4">
-          We use cookies to enhance your experience and analyze site usage. 
+          {t('cookies.description')}
           {!showDetails && (
             <button 
               onClick={() => setShowDetails(!showDetails)}
               className="text-primary hover:underline ml-1"
             >
-              Learn more
+              {t('cookies.learnMore')}
             </button>
           )}
         </p>
@@ -76,31 +109,38 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
           <div className="mb-4 space-y-3 text-sm">
             <div className="flex items-start gap-2">
               <Shield className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-medium">Essential Cookies</div>
+              <div className="flex-1">
+                <div className="font-medium">{t('cookies.essential.title')}</div>
                 <div className="text-muted-foreground text-xs">
-                  Required for basic site functionality and user preferences.
+                  {t('cookies.essential.description')}
                 </div>
               </div>
-              <Badge variant="secondary" className="text-xs">Required</Badge>
+              <Badge variant="secondary" className="text-xs">{t('cookies.required')}</Badge>
             </div>
             
             <div className="flex items-start gap-2">
               <BarChart3 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-              <div>
-                <div className="font-medium">Analytics Cookies</div>
+              <div className="flex-1">
+                <div className="font-medium">{t('cookies.analytics.title')}</div>
                 <div className="text-muted-foreground text-xs">
-                  Help us understand how you interact with our site.
+                  {t('cookies.analytics.description')}
                 </div>
               </div>
-              <Badge variant="outline" className="text-xs">Optional</Badge>
+              <div className="flex items-center gap-2">
+                <Switch 
+                  checked={analyticsEnabled}
+                  onCheckedChange={setAnalyticsEnabled}
+                  className="scale-75"
+                />
+                <Badge variant="outline" className="text-xs">{t('cookies.optional')}</Badge>
+              </div>
             </div>
 
             <button 
               onClick={() => setShowDetails(false)}
               className="text-primary hover:underline text-xs"
             >
-              Show less
+              {t('cookies.showLess')}
             </button>
           </div>
         )}
@@ -111,15 +151,26 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
             size="sm"
             className="flex-1 h-8"
           >
-            Accept All
+            {t('cookies.acceptAll')}
           </Button>
+          {showDetails && (
+            <Button
+              onClick={handleCustomize}
+              variant="outline"
+              size="sm"
+              className="flex-1 h-8"
+            >
+              <Settings className="w-3 h-3 mr-1" />
+              Save
+            </Button>
+          )}
           <Button
             onClick={handleDecline}
             variant="outline"
             size="sm"
             className="flex-1 h-8"
           >
-            Decline
+            {t('cookies.decline')}
           </Button>
         </div>
       </Card>
