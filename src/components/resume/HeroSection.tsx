@@ -4,11 +4,13 @@ import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { useJsonResume } from "@/hooks/useJsonResume";
 import { useConfig } from "@/hooks/useConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const HeroSection = () => {
   const { data: resumeData, loading: resumeLoading } = useJsonResume();
   const { config, loading: configLoading } = useConfig();
   const { t } = useLanguage();
+  const { trackSocialClick, trackDownload } = useAnalytics();
 
   if (resumeLoading || configLoading || !resumeData || !config) {
     return <div className="min-h-screen flex items-center justify-center">{t('loading')}</div>;
@@ -87,6 +89,7 @@ export const HeroSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
+                    onClick={() => trackSocialClick('LinkedIn', linkedinProfile.url)}
                   >
                     <LinkedinIcon className="w-4 h-4" />
                     LinkedIn
@@ -106,6 +109,7 @@ export const HeroSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
+                    onClick={() => trackSocialClick('GitHub', githubProfile.url)}
                   >
                     <Github className="w-4 h-4" />
                     GitHub
@@ -125,6 +129,7 @@ export const HeroSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
+                    onClick={() => trackSocialClick('X', xProfile.url)}
                   >
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -146,6 +151,7 @@ export const HeroSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
+                    onClick={() => trackSocialClick('Xing', xingProfile.url)}
                   >
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.284.552 4.727 8.58 4.727 8.58.186.335.517.66.927.66h3.905c.74 0 .927-.558.927-.558 0-.182-.239-.517-.239-.517l-4.683-8.326s7.647-13.567 7.647-13.567c.018-.036.018-.073.018-.11C22.789.29 22.506 0 22.506 0h-4.318zm-14.1 6.429c-.741 0-.927.558-.927.558 0 .181.239.517.239.517l2.623 4.797s-2.987 5.51-2.987 5.51c-.018.036-.018.073-.018.11 0 .558.284.848.284.848h4.318c.517 0 .741-.325.927-.66 0 0 3.041-5.619 3.041-5.619l-2.623-4.797s-.239-.517-.239-.517c-.186-.335-.517-.66-.927-.66H4.088z"/>
@@ -175,6 +181,7 @@ export const HeroSection = () => {
               <Button 
                 size="lg" 
                 className="px-8 py-3 shadow-professional transition-smooth hover:shadow-dramatic"
+                onClick={() => trackDownload('resume.pdf', 'pdf')}
               >
                 <FileText className="w-4 h-4 mr-2" />
                 {t('hero.downloadResume')}

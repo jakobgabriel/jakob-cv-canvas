@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,18 @@ import {
 export const ThemeLanguageToggle = () => {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
+  const { trackThemeChange, trackLanguageChange } = useAnalytics();
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    trackThemeChange(newTheme);
+  };
+
+  const handleLanguageChange = (newLanguage: 'en' | 'de') => {
+    trackLanguageChange(language, newLanguage);
+    setLanguage(newLanguage);
+  };
 
   return (
     <div className="fixed top-6 right-6 z-50 flex gap-2">
@@ -24,10 +37,10 @@ export const ThemeLanguageToggle = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="bg-card/95 backdrop-blur-sm border-border/50">
-          <DropdownMenuItem onClick={() => setLanguage('en')}>
+          <DropdownMenuItem onClick={() => handleLanguageChange('en')}>
             🇺🇸 English
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setLanguage('de')}>
+          <DropdownMenuItem onClick={() => handleLanguageChange('de')}>
             🇩🇪 Deutsch
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -37,7 +50,7 @@ export const ThemeLanguageToggle = () => {
       <Button
         variant="outline"
         size="sm"
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        onClick={toggleTheme}
         className="bg-background/80 backdrop-blur-sm border-border/50 shadow-minimal transition-smooth hover:shadow-professional"
       >
         <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

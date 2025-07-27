@@ -52,38 +52,38 @@
   }
 
   .dark {
-    --background: 222 25% 8%;
+    --background: 0 0% 8%;
     --foreground: 210 6% 95%;
     
-    --card: 222 25% 10%;
+    --card: 0 0% 10%;
     --card-foreground: 210 6% 95%;
     
-    --popover: 222 25% 10%;
+    --popover: 0 0% 10%;
     --popover-foreground: 210 6% 95%;
     
-    --primary: 210 6% 95%;
-    --primary-foreground: 222 25% 12%;
+    --primary: 210 6% 85%;
+    --primary-foreground: 0 0% 12%;
     
-    --secondary: 222 25% 12%;
+    --secondary: 0 0% 12%;
     --secondary-foreground: 210 6% 95%;
     
-    --muted: 222 25% 12%;
+    --muted: 0 0% 12%;
     --muted-foreground: 215 16% 60%;
     
-    --accent: 222 25% 14%;
+    --accent: 0 0% 14%;
     --accent-foreground: 210 6% 95%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 20% 98%;
     
-    --border: 222 25% 15%;
-    --input: 222 25% 15%;
-    --ring: 210 6% 95%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 210 6% 85%;
     
-    /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210, 6%, 95%), hsl(210, 6%, 85%));
-    --gradient-subtle: linear-gradient(180deg, hsl(222, 25%, 8%), hsl(222, 25%, 10%));
-    --gradient-accent: linear-gradient(45deg, hsl(222, 25%, 12%), hsl(222, 25%, 15%));
+    /* Dark mode gradients - professional grey/black */
+    --gradient-primary: linear-gradient(135deg, hsl(0, 0%, 85%), hsl(0, 0%, 75%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 8%), hsl(0, 0%, 10%));
+    --gradient-accent: linear-gradient(45deg, hsl(0, 0%, 12%), hsl(0, 0%, 15%));
   }
 }
 
