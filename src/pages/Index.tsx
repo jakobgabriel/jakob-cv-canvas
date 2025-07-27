@@ -3,6 +3,7 @@ import { TimelineSection } from "@/components/resume/TimelineSection";
 import { SkillsSection } from "@/components/resume/SkillsSection";
 import { ContactSection } from "@/components/resume/ContactSection";
 import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
           </p>
         </div>
       </footer>
+      <Toaster />
     </div>
   );
 };

@@ -1,0 +1,16 @@
+{
+  "features": {
+    "downloadResume": {
+      "enabled": false,
+      "url": "/resume.pdf"
+    },
+    "contactForm": {
+      "enabled": true,
+      "formspreeEndpoint": "https://formspree.io/f/YOUR_FORM_ID"
+    }
+  },
+  "theme": {
+    "primaryColor": "#3b82f6",
+    "darkMode": true
+  }
+}

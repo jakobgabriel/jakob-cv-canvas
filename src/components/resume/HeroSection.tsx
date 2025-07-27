@@ -1,17 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
-import { useYamlData } from "@/hooks/useYamlData";
+import { useJsonResume } from "@/hooks/useJsonResume";
+import { useConfig } from "@/hooks/useConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { PersonalInfo } from "@/types/data";
 
 export const HeroSection = () => {
-  const { data: personalInfo, loading } = useYamlData<PersonalInfo>('/data/personal.yaml');
+  const { data: resumeData, loading: resumeLoading } = useJsonResume();
+  const { config, loading: configLoading } = useConfig();
   const { t } = useLanguage();
 
-  if (loading || !personalInfo) {
+  if (resumeLoading || configLoading || !resumeData || !config) {
     return <div className="min-h-screen flex items-center justify-center">{t('loading')}</div>;
   }
+
+  const { basics } = resumeData;
+  const linkedinProfile = basics.profiles.find(p => p.network === 'LinkedIn');
+  const githubProfile = basics.profiles.find(p => p.network === 'GitHub');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -30,7 +35,7 @@ export const HeroSection = () => {
               <div className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
                 <img 
                   src={jakobPortrait} 
-                  alt={personalInfo.image.alt} 
+                  alt={basics.name} 
                   className="w-full h-full object-cover transition-smooth hover:scale-110"
                 />
               </div>
@@ -41,27 +46,27 @@ export const HeroSection = () => {
           <div className="space-y-8 max-w-4xl">
             <div className="space-y-4">
               <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-                {personalInfo.name.first}{" "}
-                <span className="text-gradient">{personalInfo.name.last}</span>
+                {basics.name.split(' ')[0]}{" "}
+                <span className="text-gradient">{basics.name.split(' ').slice(1).join(' ')}</span>
               </h1>
               <h2 className="text-2xl lg:text-3xl font-light text-muted-foreground">
-                {personalInfo.title}
+                {basics.label}
               </h2>
             </div>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              {personalInfo.bio}
+              {basics.summary}
             </p>
 
             {/* Contact Info */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                {personalInfo.location}
+                {basics.location.city}, {basics.location.region}
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4" />
-                {personalInfo.website}
+                {basics.url}
               </div>
             </div>
             
@@ -74,7 +79,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href={personalInfo.contact.linkedin}
+                  href={linkedinProfile?.url}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -91,7 +96,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href={personalInfo.contact.github}
+                  href={githubProfile?.url}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -108,7 +113,7 @@ export const HeroSection = () => {
                 asChild
               >
                 <a 
-                  href={`mailto:${personalInfo.contact.email}`}
+                  href={`mailto:${basics.email}`}
                   className="flex items-center gap-2"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-smooth" />
@@ -117,10 +122,12 @@ export const HeroSection = () => {
               </Button>
             </div>
             
-            <Button size="lg" className="group text-lg px-8 py-6">
-              <FileText className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
-              {t('hero.downloadResume')}
-            </Button>
+            {config.features.downloadResume.enabled && (
+              <Button size="lg" className="group text-lg px-8 py-6">
+                <FileText className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+                {t('hero.downloadResume')}
+              </Button>
+            )}
           </div>
         </div>
       </div>
