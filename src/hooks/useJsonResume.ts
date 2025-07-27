@@ -10,7 +10,8 @@ export const useJsonResume = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/data/resume.json');
+        const basePath = import.meta.env.PROD ? '/jakob-cv-canvas' : '';
+        const response = await fetch(`${basePath}/data/resume.json`);
         const allData = await response.json();
         setData(allData[language] || allData.en);
       } catch (error) {
