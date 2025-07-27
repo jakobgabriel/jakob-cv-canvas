@@ -29,8 +29,8 @@ export const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle">
       {/* Minimal geometric accent */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-px h-40 bg-gradient-to-b from-primary/20 to-transparent"></div>
-        <div className="absolute bottom-20 left-20 w-40 h-px bg-gradient-to-r from-primary/20 to-transparent"></div>
+        <div className="absolute top-20 right-20 w-0.5 h-40 bg-gradient-to-b from-primary/30 to-transparent"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-0.5 bg-gradient-to-r from-primary/30 to-transparent"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
