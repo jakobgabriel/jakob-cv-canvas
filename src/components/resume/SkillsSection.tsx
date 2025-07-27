@@ -25,35 +25,34 @@ export const SkillsSection = () => {
   const { skills, languages, certificates } = resumeData;
 
   return (
-    <section className="py-12 relative">
+    <section className="py-20 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2">
-            {t('skills.coreCompetencies').split(' ')[0]}{" "}
-            <span className="text-gradient">{t('skills.coreCompetencies').split(' ').slice(1).join(' ')}</span>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
+            Skills & Expertise
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('skills.competenciesDescription')}
+            Core competencies and technical skills across business and technology domains.
           </p>
         </div>
         
-        <div className="max-w-7xl mx-auto space-y-8">
-          {/* Compact Skills Overview */}
-          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-6">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Core Skills Grid */}
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
             {/* Core Competencies */}
-            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <Target className="w-4 h-4 text-primary" />
-                <h3 className="text-lg font-bold">{t('skills.technicalExcellence')}</h3>
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
+              <div className="flex items-center gap-3 mb-6">
+                <Target className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-medium">Core Competencies</h3>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {skills.slice(0, 4).map((skill, index) => (
-                  <div key={index} className="space-y-1">
+                  <div key={index} className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{skill.name}</span>
                       <span className="text-xs text-primary font-mono">{skill.level}</span>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-1.5">
+                    <div className="w-full bg-secondary/50 rounded-full h-1.5">
                       <div 
                         className="bg-primary h-1.5 rounded-full transition-all duration-1000" 
                         style={{ width: skill.level === 'Expert' ? '95%' : skill.level === 'Advanced' ? '80%' : '60%' }}
@@ -64,38 +63,20 @@ export const SkillsSection = () => {
               </div>
             </Card>
 
-            {/* Leadership Skills */}
-            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <Users className="w-4 h-4 text-primary" />
-                <h3 className="text-lg font-bold">{t('skills.leadershipSoft')}</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                {skills.slice(4, 8).map((skill, index) => {
-                  return (
-                    <div key={index} className="flex items-center gap-1 p-2 rounded bg-muted/30">
-                      <Users className="w-3 h-3 text-primary" />
-                      <span className="text-xs">{skill.name}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </Card>
-
             {/* Languages */}
-            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <Globe className="w-4 h-4 text-primary" />
-                <h3 className="text-lg font-bold">{t('skills.languages')}</h3>
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
+              <div className="flex items-center gap-3 mb-6">
+                <Globe className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-medium">Languages</h3>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {languages.map((lang, index) => (
-                  <div key={index} className="space-y-1">
+                  <div key={index} className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{lang.language}</span>
                       <span className="text-xs text-muted-foreground">{lang.fluency}</span>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-1.5">
+                    <div className="w-full bg-secondary/50 rounded-full h-1.5">
                       <div 
                         className="bg-primary h-1.5 rounded-full transition-all duration-1000" 
                         style={{ 
@@ -111,37 +92,37 @@ export const SkillsSection = () => {
             </Card>
 
             {/* Certifications */}
-            <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <Award className="w-4 h-4 text-primary" />
-                <h3 className="text-lg font-bold">{t('skills.certifications')}</h3>
+            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
+              <div className="flex items-center gap-3 mb-6">
+                <Award className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-medium">Certifications</h3>
               </div>
-              <div className="space-y-3">
-                {certificates.slice(0, 3).map((cert, index) => (
+              <div className="space-y-4">
+                {certificates.slice(0, 4).map((cert, index) => (
                   <div key={index} className="space-y-1">
-                    <h4 className="text-sm font-medium">{cert.name}</h4>
+                    <h4 className="text-sm font-medium leading-tight">{cert.name}</h4>
                     <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                    <p className="text-xs text-muted-foreground">{cert.date}</p>
+                    <p className="text-xs text-primary font-mono">{cert.date}</p>
                   </div>
                 ))}
               </div>
             </Card>
           </div>
 
-          {/* Technical Skills - Compact */}
-          <Card className="p-4 bg-card backdrop-blur-sm border-border shadow-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Code className="w-4 h-4 text-primary" />
-              <h3 className="text-lg font-bold">{t('skills.technicalSkills')}</h3>
+          {/* Technical Skills - Clean Grid */}
+          <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
+            <div className="flex items-center gap-3 mb-6">
+              <Code className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-medium">Technical Skills</h3>
             </div>
             
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {skills.map((skill, index) => (
-                <div key={index}>
-                  <h4 className="text-sm font-semibold mb-2 text-muted-foreground">{skill.name}</h4>
-                  <div className="flex flex-wrap gap-1">
+                <div key={index} className="space-y-3">
+                  <h4 className="text-sm font-medium text-foreground border-b border-border/50 pb-2">{skill.name}</h4>
+                  <div className="flex flex-wrap gap-2">
                     {skill.keywords.map((keyword, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                      <Badge key={i} variant="secondary" className="text-xs px-2 py-1 bg-secondary/50 hover:bg-secondary transition-smooth">
                         {keyword}
                       </Badge>
                     ))}

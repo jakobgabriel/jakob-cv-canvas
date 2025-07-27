@@ -18,12 +18,12 @@ export const ThemeLanguageToggle = () => {
       {/* Language Toggle */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm">
+          <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm border-border/50 shadow-minimal transition-smooth hover:shadow-professional">
             <Globe className="h-4 w-4" />
-            <span className="ml-2 uppercase">{language}</span>
+            <span className="ml-2 uppercase font-mono text-xs">{language}</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="bg-card/95 backdrop-blur-sm border-border/50">
           <DropdownMenuItem onClick={() => setLanguage('en')}>
             🇺🇸 English
           </DropdownMenuItem>
@@ -38,7 +38,7 @@ export const ThemeLanguageToggle = () => {
         variant="outline"
         size="sm"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        className="bg-background/80 backdrop-blur-sm"
+        className="bg-background/80 backdrop-blur-sm border-border/50 shadow-minimal transition-smooth hover:shadow-professional"
       >
         <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

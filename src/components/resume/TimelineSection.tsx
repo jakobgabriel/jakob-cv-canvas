@@ -32,15 +32,14 @@ export const TimelineSection = () => {
   const { work: experiences, education } = resumeData;
 
   return (
-    <section className="py-24 relative">
+    <section className="py-20 relative bg-gradient-subtle">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4">
-            {t('timeline.professionalJourney').split(' ')[0]}{" "}
-            <span className="text-gradient">{t('timeline.professionalJourney').split(' ').slice(1).join(' ')}</span>
+          <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
+            Professional Journey
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('timeline.journeyDescription')}
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Experience and education that shaped my career in digital transformation.
           </p>
         </div>
         
@@ -48,37 +47,36 @@ export const TimelineSection = () => {
           {/* Experience Section */}
           <div className="space-y-8">
             <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
-                <Briefcase className="w-8 h-8 text-primary" />
-                {t('timeline.experience')}
+              <h3 className="text-2xl font-display font-medium mb-6 flex items-center gap-3 justify-center lg:justify-start">
+                <Briefcase className="w-6 h-6 text-primary" />
+                Experience
               </h3>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               {experiences.map((exp, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-smooth cursor-pointer group"
                   onClick={() => handleItemClick(exp)}
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Briefcase className="w-5 h-5 text-primary" />
+                      <div className="p-2 rounded bg-secondary/50">
+                        <Briefcase className="w-4 h-4 text-primary" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 text-primary mb-1">
-                          <Calendar className="w-4 h-4" />
-                          <span className="text-sm font-mono">{exp.startDate} - {exp.endDate || 'Present'}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 text-primary mb-2">
+                          <Calendar className="w-3 h-3" />
+                          <span className="text-xs font-mono uppercase tracking-wider">{exp.startDate} - {exp.endDate || 'Present'}</span>
                         </div>
-                        <h4 className="text-lg font-bold leading-tight">{exp.position}</h4>
-                        <div className="text-muted-foreground font-medium flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          {exp.name}
+                        <h4 className="text-lg font-medium leading-tight mb-1">{exp.position}</h4>
+                        <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
+                          <span>{exp.name}</span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{exp.summary}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{exp.summary}</p>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth" />
                     </div>
                   </div>
                 </Card>
@@ -89,40 +87,39 @@ export const TimelineSection = () => {
           {/* Education Section */}
           <div className="space-y-8">
             <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold mb-4 flex items-center gap-3 justify-center lg:justify-start">
-                <GraduationCap className="w-8 h-8 text-primary" />
-                {t('timeline.education')}
+              <h3 className="text-2xl font-display font-medium mb-6 flex items-center gap-3 justify-center lg:justify-start">
+                <GraduationCap className="w-6 h-6 text-primary" />
+                Education
               </h3>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               {education.map((edu, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card backdrop-blur-sm border-border shadow-dramatic animate-fade-in cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-smooth cursor-pointer group"
                   onClick={() => handleItemClick(edu)}
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <GraduationCap className="w-5 h-5 text-primary" />
+                      <div className="p-2 rounded bg-secondary/50">
+                        <GraduationCap className="w-4 h-4 text-primary" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 text-primary mb-1">
-                          <Calendar className="w-4 h-4" />
-                          <span className="text-sm font-mono">{edu.startDate} - {edu.endDate}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 text-primary mb-2">
+                          <Calendar className="w-3 h-3" />
+                          <span className="text-xs font-mono uppercase tracking-wider">{edu.startDate} - {edu.endDate}</span>
                         </div>
-                        <h4 className="text-lg font-bold leading-tight">{edu.studyType} in {edu.area}</h4>
-                        <div className="text-muted-foreground font-medium flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          {edu.institution}
+                        <h4 className="text-lg font-medium leading-tight mb-1">{edu.studyType} in {edu.area}</h4>
+                        <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
+                          <span>{edu.institution}</span>
                         </div>
                         {'score' in edu && edu.score && (
-                          <div className="text-sm text-primary font-semibold mt-1">Score: {edu.score}</div>
+                          <div className="text-sm text-primary font-medium mb-2">Score: {edu.score}</div>
                         )}
-                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{edu.summary}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{edu.summary}</p>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-muted-foreground" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth" />
                     </div>
                   </div>
                 </Card>
@@ -131,30 +128,30 @@ export const TimelineSection = () => {
           </div>
         </div>
 
-        {/* Details Slide Panel */}
-        <div className={`fixed inset-0 z-50 transition-all duration-500 ${isDetailsVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {/* Details Modal - Clean and Minimal */}
+        <div className={`fixed inset-0 z-50 transition-all duration-300 ${isDetailsVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={closeDetails}
           />
           
-          {/* Slide Panel */}
-          <div className={`absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l shadow-2xl transform transition-transform duration-500 ${isDetailsVisible ? 'translate-x-0' : 'translate-x-full'}`}>
+          {/* Modal Panel */}
+          <div className={`absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l shadow-dramatic transform transition-transform duration-300 ${isDetailsVisible ? 'translate-x-0' : 'translate-x-full'}`}>
             {selectedItem && (
               <div className="h-full overflow-y-auto">
                 {/* Header */}
                 <div className="sticky top-0 bg-card/95 backdrop-blur-sm border-b p-6 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10">
+                  <div className="flex items-center gap-4">
+                    <div className="p-2 rounded bg-secondary/50">
                       {'position' in selectedItem ? (
-                        <Briefcase className="w-6 h-6 text-primary" />
+                        <Briefcase className="w-5 h-5 text-primary" />
                       ) : (
-                        <GraduationCap className="w-6 h-6 text-primary" />
+                        <GraduationCap className="w-5 h-5 text-primary" />
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-xl font-medium">
                         {'position' in selectedItem ? selectedItem.position : `${selectedItem.studyType} in ${selectedItem.area}`}
                       </h3>
                       <p className="text-muted-foreground">
@@ -163,7 +160,7 @@ export const TimelineSection = () => {
                     </div>
                   </div>
                   <Button variant="ghost" size="sm" onClick={closeDetails}>
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4" />
                   </Button>
                 </div>
 
@@ -172,7 +169,7 @@ export const TimelineSection = () => {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-primary">
                       <Calendar className="w-4 h-4" />
-                      <span className="font-mono">{selectedItem.startDate} - {selectedItem.endDate || 'Present'}</span>
+                      <span className="font-mono text-sm">{selectedItem.startDate} - {selectedItem.endDate || 'Present'}</span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Clock className="w-4 h-4" />
@@ -186,23 +183,23 @@ export const TimelineSection = () => {
                   </div>
 
                   {'score' in selectedItem && selectedItem.score && (
-                    <div className="text-primary font-semibold">
+                    <div className="text-primary font-medium">
                       Score: {selectedItem.score}
                     </div>
                   )}
 
-                  <p className="text-muted-foreground leading-relaxed text-lg">{selectedItem.summary}</p>
+                  <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
                   
                   <div>
-                    <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
-                      <Award className="w-5 h-5 text-primary" />
-                      {t('timeline.achievements')}
+                    <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                      <Award className="w-4 h-4 text-primary" />
+                      Key Achievements
                     </h4>
-                    <ul className="space-y-3 text-muted-foreground">
+                    <ul className="space-y-2 text-muted-foreground">
                       {selectedItem.highlights?.map((highlight: string, i: number) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="text-primary mt-1.5 text-sm">▸</span>
-                          <span className="leading-relaxed">{highlight}</span>
+                          <span className="text-primary mt-1 text-xs">•</span>
+                          <span className="leading-relaxed text-sm">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -210,13 +207,13 @@ export const TimelineSection = () => {
 
                   {'courses' in selectedItem && selectedItem.courses && selectedItem.courses.length > 0 && (
                     <div>
-                      <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-primary" />
-                        {t('timeline.subjects')}
+                      <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        Coursework
                       </h4>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2">
                         {selectedItem.courses.map((course: string, i: number) => (
-                          <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
+                          <Badge key={i} variant="secondary" className="text-xs px-2 py-1">
                             {course}
                           </Badge>
                         ))}
@@ -226,13 +223,13 @@ export const TimelineSection = () => {
 
                   {'keywords' in selectedItem && selectedItem.keywords && selectedItem.keywords.length > 0 && (
                     <div>
-                      <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-primary" />
-                        {t('timeline.technologies')}
+                      <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        Technologies
                       </h4>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2">
                         {selectedItem.keywords.map((keyword: string, i: number) => (
-                          <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
+                          <Badge key={i} variant="secondary" className="text-xs px-2 py-1">
                             {keyword}
                           </Badge>
                         ))}

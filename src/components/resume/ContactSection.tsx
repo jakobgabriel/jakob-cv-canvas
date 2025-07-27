@@ -78,91 +78,88 @@ export const ContactSection = () => {
   }
 
   return (
-    <section className="py-24 relative">
+    <section className="py-20 relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4">
-            Let's{" "}
-            <span className="text-gradient">Connect</span>
+          <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
+            Get In Touch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to discuss your next digital transformation project?
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Interested in discussing digital transformation opportunities?
           </p>
         </div>
         
-        <div className="max-w-2xl mx-auto">
-          {/* Contact Form */}
-          <Card className="p-6 bg-card/50 backdrop-blur-sm border-border shadow-dramatic">
-            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+        <div className="max-w-xl mx-auto">
+          <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50 shadow-professional">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Name</label>
+                  <label className="text-sm font-medium mb-2 block text-foreground">Name</label>
                   <Input 
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your name" 
-                    className="bg-background/50 border-border"
+                    className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Email</label>
+                  <label className="text-sm font-medium mb-2 block text-foreground">Email</label>
                   <Input 
                     name="email"
                     type="email" 
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="your.email@example.com" 
-                    className="bg-background/50 border-border"
+                    placeholder="your.email@company.com" 
+                    className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                     required
                   />
                 </div>
               </div>
               
               <div>
-                <label className="text-sm font-medium mb-2 block">Subject</label>
+                <label className="text-sm font-medium mb-2 block text-foreground">Subject</label>
                 <Input 
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  placeholder="Project discussion" 
-                  className="bg-background/50 border-border"
+                  placeholder="Partnership opportunity" 
+                  className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                   required
                 />
               </div>
               
               <div>
-                <label className="text-sm font-medium mb-2 block">Message</label>
+                <label className="text-sm font-medium mb-2 block text-foreground">Message</label>
                 <Textarea 
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Tell me about your project or how I can help..."
-                  rows={5}
-                  className="bg-background/50 border-border resize-none"
+                  placeholder="Tell me about your digital transformation needs..."
+                  rows={4}
+                  className="bg-background/50 border-border/50 resize-none transition-smooth focus:border-primary"
                   required
                 />
               </div>
               
               <Button 
                 type="submit" 
-                className="w-full group" 
+                className="w-full shadow-professional transition-smooth hover:shadow-dramatic" 
                 size="lg" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 ) : (
-                  <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-smooth" />
+                  <Send className="w-4 h-4 mr-2" />
                 )}
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
               
               {!config?.features.contactForm.enabled && (
                 <p className="text-sm text-muted-foreground text-center">
-                  Contact form is currently disabled. Please use the email link in the header.
+                  Contact form is currently disabled. Please use the email link above.
                 </p>
               )}
             </form>

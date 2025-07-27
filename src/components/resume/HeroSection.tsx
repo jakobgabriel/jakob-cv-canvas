@@ -19,37 +19,35 @@ export const HeroSection = () => {
   const githubProfile = basics.profiles.find(p => p.network === 'GitHub');
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Diagonal geometric shapes */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-br from-primary/20 to-transparent transform skew-x-12 translate-x-1/4"></div>
-        <div className="absolute bottom-0 left-0 w-1/4 h-2/3 bg-gradient-to-tr from-primary/10 to-transparent transform -skew-x-12 -translate-x-1/4"></div>
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle">
+      {/* Minimal geometric accent */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-px h-40 bg-gradient-to-b from-primary/20 to-transparent"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-px bg-gradient-to-r from-primary/20 to-transparent"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center space-y-12">
-          {/* Portrait */}
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          {/* Portrait - Minimal and Professional */}
           <div className="flex justify-center">
             <div className="relative">
-              <div className="absolute -inset-4 bg-geometric-accent rounded-full blur-lg opacity-20"></div>
-              <div className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-dramatic border-4 border-primary">
+              <div className="w-32 h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-professional border border-border/50">
                 <img 
                   src={jakobPortrait} 
                   alt={basics.name} 
-                  className="w-full h-full object-cover transition-smooth hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
           </div>
           
-          {/* Content */}
-          <div className="space-y-8 max-w-4xl">
+          {/* Content - Clean Typography */}
+          <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-                {basics.name.split(' ')[0]}{" "}
-                <span className="text-gradient">{basics.name.split(' ').slice(1).join(' ')}</span>
+              <h1 className="text-4xl lg:text-5xl font-display font-medium tracking-tight">
+                {basics.name}
               </h1>
-              <h2 className="text-2xl lg:text-3xl font-light text-muted-foreground">
+              <h2 className="text-xl lg:text-2xl text-muted-foreground font-light">
                 {basics.label}
               </h2>
             </div>
@@ -58,8 +56,8 @@ export const HeroSection = () => {
               {basics.summary}
             </p>
 
-            {/* Contact Info */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+            {/* Contact Info - Minimal */}
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 {basics.location.city}, {basics.location.region}
@@ -70,12 +68,12 @@ export const HeroSection = () => {
               </div>
             </div>
             
-            {/* Social Links */}
+            {/* Social Links - Professional Style */}
             <div className="flex flex-wrap gap-4 justify-center">
               <Button 
-                variant="social" 
-                size="lg"
-                className="group"
+                variant="outline" 
+                size="sm"
+                className="border-border/50 hover:border-primary transition-smooth"
                 asChild
               >
                 <a 
@@ -84,15 +82,15 @@ export const HeroSection = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <LinkedinIcon className="w-5 h-5 group-hover:scale-110 transition-smooth" />
+                  <LinkedinIcon className="w-4 h-4" />
                   LinkedIn
                 </a>
               </Button>
               
               <Button 
-                variant="social" 
-                size="lg"
-                className="group"
+                variant="outline" 
+                size="sm"
+                className="border-border/50 hover:border-primary transition-smooth"
                 asChild
               >
                 <a 
@@ -101,30 +99,33 @@ export const HeroSection = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <Github className="w-5 h-5 group-hover:scale-110 transition-smooth" />
+                  <Github className="w-4 h-4" />
                   GitHub
                 </a>
               </Button>
               
               <Button 
-                variant="social" 
-                size="lg"
-                className="group"
+                variant="outline" 
+                size="sm"
+                className="border-border/50 hover:border-primary transition-smooth"
                 asChild
               >
                 <a 
                   href={`mailto:${basics.email}`}
                   className="flex items-center gap-2"
                 >
-                  <Mail className="w-5 h-5 group-hover:scale-110 transition-smooth" />
+                  <Mail className="w-4 h-4" />
                   Email
                 </a>
               </Button>
             </div>
             
             {config.features.downloadResume.enabled && (
-              <Button size="lg" className="group text-lg px-8 py-6">
-                <FileText className="w-5 h-5 mr-2 group-hover:scale-110 transition-smooth" />
+              <Button 
+                size="lg" 
+                className="px-8 py-3 shadow-professional transition-smooth hover:shadow-dramatic"
+              >
+                <FileText className="w-4 h-4 mr-2" />
                 {t('hero.downloadResume')}
               </Button>
             )}
