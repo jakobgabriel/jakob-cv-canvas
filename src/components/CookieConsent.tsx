@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { X, Cookie, Shield, BarChart3, Settings } from 'lucide-react';
 import { CookieManager } from '@/lib/cookieManager';
+import { GoogleAnalytics } from '@/lib/googleAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CookieConsentProps {
@@ -31,15 +32,14 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       essential: true, 
       analytics: analyticsEnabled 
     });
+    
+    // Enable Google Analytics if analytics is enabled
+    if (analyticsEnabled) {
+      GoogleAnalytics.enable();
+    }
+    
     setIsVisible(false);
     onAccept?.();
-    
-    // Track the consent action
-    if (analyticsEnabled) {
-      CookieManager.trackInteraction('cookie_consent_accepted', { 
-        analytics: analyticsEnabled 
-      });
-    }
   };
 
   const handleDecline = () => {
@@ -48,6 +48,10 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       essential: true, 
       analytics: false 
     });
+    
+    // Disable Google Analytics
+    GoogleAnalytics.disable();
+    
     localStorage.setItem('cookie-choice', 'declined');
     setIsVisible(false);
     onDecline?.();
@@ -59,14 +63,16 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       essential: true, 
       analytics: analyticsEnabled 
     });
+    
+    // Enable/disable Google Analytics based on user choice
+    if (analyticsEnabled) {
+      GoogleAnalytics.enable();
+    } else {
+      GoogleAnalytics.disable();
+    }
+    
     setIsVisible(false);
     onAccept?.();
-    
-    if (analyticsEnabled) {
-      CookieManager.trackInteraction('cookie_consent_customized', { 
-        analytics: analyticsEnabled 
-      });
-    }
   };
 
   const handleClose = () => {
