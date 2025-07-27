@@ -60,10 +60,6 @@ export const HeroSection = () => {
                 {personalInfo.location}
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                {personalInfo.phone}
-              </div>
-              <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4" />
                 {personalInfo.website}
               </div>
