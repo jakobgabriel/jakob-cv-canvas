@@ -4,21 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock } from "lucide-react";
 import { useState } from "react";
-import { useYamlData } from "@/hooks/useYamlData";
+import { useJsonResume } from "@/hooks/useJsonResume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
 
-import { Experience, Education } from "@/types/data";
-
 export const TimelineSection = () => {
-  const { data: experiences, loading: expLoading } = useYamlData<Experience[]>('/data/experience.yaml');
-  const { data: education, loading: eduLoading } = useYamlData<Education[]>('/data/education.yaml');
+  const { data: resumeData, loading } = useJsonResume();
   const { t } = useLanguage();
   
-  const [selectedItem, setSelectedItem] = useState<Experience | Education | null>(null);
+  const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
-  const handleItemClick = (item: Experience | Education) => {
+  const handleItemClick = (item: any) => {
     setSelectedItem(item);
     setIsDetailsVisible(true);
   };
@@ -28,9 +25,11 @@ export const TimelineSection = () => {
     setTimeout(() => setSelectedItem(null), 300);
   };
 
-  if (expLoading || eduLoading || !experiences || !education) {
+  if (loading || !resumeData) {
     return <div className="py-24 text-center">{t('loading')}</div>;
   }
+
+  const { work: experiences, education } = resumeData;
 
   return (
     <section className="py-24 relative">
@@ -70,14 +69,14 @@ export const TimelineSection = () => {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 text-primary mb-1">
                           <Calendar className="w-4 h-4" />
-                          <span className="text-sm font-mono">{exp.period}</span>
+                          <span className="text-sm font-mono">{exp.startDate} - {exp.endDate || 'Present'}</span>
                         </div>
-                        <h4 className="text-lg font-bold leading-tight">{exp.title}</h4>
+                        <h4 className="text-lg font-bold leading-tight">{exp.position}</h4>
                         <div className="text-muted-foreground font-medium flex items-center gap-1">
                           <MapPin className="w-4 h-4" />
-                          {exp.company}
+                          {exp.name}
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{exp.description}</p>
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{exp.summary}</p>
                       </div>
                       <ArrowRight className="w-5 h-5 text-muted-foreground" />
                     </div>
@@ -111,17 +110,17 @@ export const TimelineSection = () => {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 text-primary mb-1">
                           <Calendar className="w-4 h-4" />
-                          <span className="text-sm font-mono">{edu.period}</span>
+                          <span className="text-sm font-mono">{edu.startDate} - {edu.endDate}</span>
                         </div>
-                        <h4 className="text-lg font-bold leading-tight">{edu.degree}</h4>
+                        <h4 className="text-lg font-bold leading-tight">{edu.studyType} in {edu.area}</h4>
                         <div className="text-muted-foreground font-medium flex items-center gap-1">
                           <MapPin className="w-4 h-4" />
                           {edu.institution}
                         </div>
-                        {'gpa' in edu && (
-                          <div className="text-sm text-primary font-semibold mt-1">GPA: {edu.gpa}</div>
+                        {'score' in edu && edu.score && (
+                          <div className="text-sm text-primary font-semibold mt-1">Score: {edu.score}</div>
                         )}
-                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{edu.description}</p>
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{edu.summary}</p>
                       </div>
                       <ArrowRight className="w-5 h-5 text-muted-foreground" />
                     </div>
@@ -148,15 +147,19 @@ export const TimelineSection = () => {
                 <div className="sticky top-0 bg-card/95 backdrop-blur-sm border-b p-6 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10">
-                      {'company' in selectedItem ? (
+                      {'position' in selectedItem ? (
                         <Briefcase className="w-6 h-6 text-primary" />
                       ) : (
                         <GraduationCap className="w-6 h-6 text-primary" />
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">{'title' in selectedItem ? selectedItem.title : selectedItem.degree}</h3>
-                      <p className="text-muted-foreground">{'company' in selectedItem ? selectedItem.company : selectedItem.institution}</p>
+                      <h3 className="text-xl font-bold">
+                        {'position' in selectedItem ? selectedItem.position : `${selectedItem.studyType} in ${selectedItem.area}`}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {'position' in selectedItem ? selectedItem.name : selectedItem.institution}
+                      </p>
                     </div>
                   </div>
                   <Button variant="ghost" size="sm" onClick={closeDetails}>
@@ -169,26 +172,26 @@ export const TimelineSection = () => {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-primary">
                       <Calendar className="w-4 h-4" />
-                      <span className="font-mono">{selectedItem.period}</span>
+                      <span className="font-mono">{selectedItem.startDate} - {selectedItem.endDate || 'Present'}</span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Clock className="w-4 h-4" />
                       <span className="text-sm">
                         {t('language') === 'de' 
-                          ? calculateDurationGerman(selectedItem.startDate, selectedItem.endDate)
-                          : calculateDuration(selectedItem.startDate, selectedItem.endDate)
+                          ? calculateDurationGerman(selectedItem.startDate, selectedItem.endDate || 'present')
+                          : calculateDuration(selectedItem.startDate, selectedItem.endDate || 'present')
                         }
                       </span>
                     </div>
                   </div>
 
-                  {'gpa' in selectedItem && (
+                  {'score' in selectedItem && selectedItem.score && (
                     <div className="text-primary font-semibold">
-                      GPA: {selectedItem.gpa}
+                      Score: {selectedItem.score}
                     </div>
                   )}
 
-                  <p className="text-muted-foreground leading-relaxed text-lg">{selectedItem.description}</p>
+                  <p className="text-muted-foreground leading-relaxed text-lg">{selectedItem.summary}</p>
                   
                   <div>
                     <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
@@ -196,49 +199,46 @@ export const TimelineSection = () => {
                       {t('timeline.achievements')}
                     </h4>
                     <ul className="space-y-3 text-muted-foreground">
-                      {selectedItem.achievements.map((achievement: string, i: number) => (
+                      {selectedItem.highlights?.map((highlight: string, i: number) => (
                         <li key={i} className="flex items-start gap-3">
                           <span className="text-primary mt-1.5 text-sm">▸</span>
-                          <span className="leading-relaxed">{achievement}</span>
+                          <span className="leading-relaxed">{highlight}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {selectedItem.responsibilities && selectedItem.responsibilities.length > 0 && (
-                    <Collapsible>
-                      <CollapsibleTrigger className="flex items-center justify-between w-full group">
-                        <h4 className="font-semibold text-foreground flex items-center gap-2">
-                          <CheckCircle className="w-5 h-5 text-primary" />
-                          {t('timeline.responsibilities')}
-                        </h4>
-                        <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="mt-3">
-                        <ul className="space-y-2 text-muted-foreground">
-                          {selectedItem.responsibilities.map((responsibility: string, i: number) => (
-                            <li key={i} className="flex items-start gap-3">
-                              <span className="text-primary mt-1.5 text-sm">•</span>
-                              <span className="leading-relaxed">{responsibility}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  )}
-                  
-                  <div>
-                    <h4 className="font-semibold mb-3 text-foreground">
-                      {'company' in selectedItem ? t('timeline.technologies') : t('timeline.subjects')}
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {('technologies' in selectedItem ? selectedItem.technologies : selectedItem.subjects).map((item: string, i: number) => (
-                        <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
-                          {item}
-                        </Badge>
-                      ))}
+                  {'courses' in selectedItem && selectedItem.courses && selectedItem.courses.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-primary" />
+                        {t('timeline.subjects')}
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {selectedItem.courses.map((course: string, i: number) => (
+                          <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
+                            {course}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {'keywords' in selectedItem && selectedItem.keywords && selectedItem.keywords.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-3 text-foreground flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-primary" />
+                        {t('timeline.technologies')}
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {selectedItem.keywords.map((keyword: string, i: number) => (
+                          <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
+                            {keyword}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

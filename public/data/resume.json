@@ -3,7 +3,7 @@
     "basics": {
       "name": "Jakob Gabriel",
       "label": "Senior Digital Business Value Engineer",
-      "image": "/assets/jakob-portrait.jpeg",
+      "image": "",
       "email": "jakob.gabriel@example.com",
       "phone": "+49 123 456 789",
       "url": "https://jakobgabriel.dev",
@@ -32,6 +32,7 @@
       {
         "name": "Tech Innovation Corp",
         "position": "Senior Digital Business Value Engineer",
+        "location": "Munich, Germany",
         "url": "https://techinnovation.corp",
         "startDate": "2022-03-15",
         "summary": "Leading digital transformation initiatives and driving business value through strategic technology implementation. Responsible for enterprise-wide technology strategy and cross-functional team leadership.",
@@ -41,11 +42,13 @@
           "Implemented AI-driven solutions reducing operational costs by €2M annually",
           "Developed strategic technology roadmaps for Fortune 500 clients",
           "Established center of excellence for digital transformation practices"
-        ]
+        ],
+        "keywords": ["AI/ML", "Cloud Architecture", "Process Automation", "Data Analytics", "Python", "AWS", "Kubernetes"]
       },
       {
         "name": "Enterprise Solutions Ltd",
         "position": "Digital Solutions Architect",
+        "location": "Stuttgart, Germany",
         "url": "https://enterprisesolutions.ltd",
         "startDate": "2020-06-01",
         "endDate": "2022-02-28",
@@ -56,11 +59,13 @@
           "Mentored junior developers and engineers in best practices",
           "Led migration of legacy systems to modern cloud platforms",
           "Established DevOps practices reducing deployment time by 70%"
-        ]
+        ],
+        "keywords": ["Cloud Computing", "Microservices", "DevOps", "System Integration", "Docker", "Azure", "React"]
       },
       {
         "name": "Strategic Tech Partners",
         "position": "Business Technology Consultant",
+        "location": "Berlin, Germany",
         "url": "https://strategictech.partners",
         "startDate": "2018-09-01",
         "endDate": "2020-05-31",
@@ -71,7 +76,8 @@
           "Achieved 95% client satisfaction rate with measurable business outcomes",
           "Reduced client operational costs by average of 30% through process optimization",
           "Established long-term strategic partnerships with key technology vendors"
-        ]
+        ],
+        "keywords": ["Strategy", "Digital Transformation", "Project Management", "Stakeholder Management", "Business Analysis", "Agile", "Scrum"]
       }
     ],
     "education": [
@@ -83,6 +89,7 @@
         "startDate": "2016-10-01",
         "endDate": "2018-09-30",
         "score": "1.3 (Magna Cum Laude)",
+        "summary": "Specialized in digital transformation, business process optimization, and technology strategy. Focus on intersection of business and technology with emphasis on data-driven decision making.",
         "courses": [
           "Digital Strategy",
           "AI & Machine Learning", 
@@ -90,6 +97,13 @@
           "Innovation Management",
           "Enterprise Architecture",
           "Data Science"
+        ],
+        "highlights": [
+          "Master's Thesis: 'AI-Driven Business Process Automation in Enterprise Environments'",
+          "Dean's List for Academic Excellence (4 consecutive semesters)",
+          "Graduate Research Assistant in Digital Innovation Lab",
+          "Published 3 research papers in international conferences",
+          "Winner of University Innovation Challenge 2017"
         ]
       },
       {
@@ -100,6 +114,7 @@
         "startDate": "2012-10-01",
         "endDate": "2016-07-31",
         "score": "1.5 (Cum Laude)",
+        "summary": "Foundation in computer science with focus on software engineering and system architecture. Strong emphasis on practical application and industry collaboration.",
         "courses": [
           "Software Engineering",
           "Database Systems",
@@ -107,29 +122,56 @@
           "Project Management",
           "Algorithms & Data Structures",
           "Web Technologies"
+        ],
+        "highlights": [
+          "Outstanding Student Award 2015 for academic excellence",
+          "Winner of Regional Programming Competition 2014",
+          "Student Representative in Computer Science Faculty Council",
+          "Completed 6-month industry internship at SAP",
+          "Bachelor's Thesis rated as 'Excellent' (1.0)"
         ]
       }
     ],
     "skills": [
       {
-        "name": "AI & Machine Learning",
+        "name": "Digital Strategy & Transformation",
         "level": "Expert",
-        "keywords": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Neural Networks"]
+        "keywords": ["Strategy", "Change Management", "Process Automation", "Innovation Management"]
       },
       {
-        "name": "Cloud Architecture",
+        "name": "Business Process Engineering",
         "level": "Expert", 
-        "keywords": ["AWS", "Azure", "Kubernetes", "Docker", "Microservices"]
+        "keywords": ["Lean Methodologies", "Workflow Optimization", "Business Analysis", "Process Mapping"]
       },
       {
-        "name": "Digital Transformation",
+        "name": "Solution Architecture",
         "level": "Expert",
-        "keywords": ["Strategy", "Process Automation", "Change Management", "Stakeholder Management"]
+        "keywords": ["Enterprise Architecture", "Cloud-Native Solutions", "Microservices", "System Design"]
       },
       {
-        "name": "Data Analytics",
+        "name": "Project Leadership",
+        "level": "Expert",
+        "keywords": ["Cross-functional Teams", "Stakeholder Management", "Agile", "Scrum"]
+      },
+      {
+        "name": "Data Analytics & AI",
         "level": "Advanced",
-        "keywords": ["SQL", "NoSQL", "Data Visualization", "Business Intelligence", "Tableau"]
+        "keywords": ["Python", "TensorFlow", "Machine Learning", "Business Intelligence", "Data Science"]
+      },
+      {
+        "name": "Cloud Technologies",
+        "level": "Advanced",
+        "keywords": ["AWS", "Azure", "GCP", "Kubernetes", "Docker", "Terraform"]
+      },
+      {
+        "name": "Programming",
+        "level": "Advanced",
+        "keywords": ["Python", "JavaScript/TypeScript", "Java", "C#", "SQL", "R"]
+      },
+      {
+        "name": "Frameworks & Tools",
+        "level": "Advanced",
+        "keywords": ["React", "Node.js", "Django", "Spring Boot", ".NET Core", "Git", "Jenkins"]
       }
     ],
     "languages": [
@@ -142,8 +184,12 @@
         "fluency": "Fluent"
       },
       {
+        "language": "Spanish",
+        "fluency": "Intermediate"
+      },
+      {
         "language": "French",
-        "fluency": "Conversational"
+        "fluency": "Basic"
       }
     ],
     "certificates": [
@@ -154,10 +200,32 @@
         "url": "https://aws.amazon.com/certification/"
       },
       {
-        "name": "Certified Kubernetes Administrator",
-        "date": "2023-03-20",
-        "issuer": "Cloud Native Computing Foundation", 
-        "url": "https://cncf.io"
+        "name": "Microsoft Certified: Azure Solutions Architect Expert",
+        "date": "2022-03-20",
+        "issuer": "Microsoft",
+        "url": "https://docs.microsoft.com/en-us/learn/certifications/"
+      },
+      {
+        "name": "Certified Scrum Master (CSM)",
+        "date": "2021-08-15",
+        "issuer": "Scrum Alliance",
+        "url": "https://scrumalliance.org"
+      },
+      {
+        "name": "Google Cloud Professional Cloud Architect",
+        "date": "2023-09-10",
+        "issuer": "Google Cloud",
+        "url": "https://cloud.google.com/certification"
+      }
+    ],
+    "interests": [
+      {
+        "name": "Technology Innovation",
+        "keywords": ["AI/ML", "Emerging Technologies", "Digital Transformation"]
+      },
+      {
+        "name": "Leadership Development",
+        "keywords": ["Team Building", "Mentoring", "Strategic Planning"]
       }
     ]
   },
@@ -165,7 +233,7 @@
     "basics": {
       "name": "Jakob Gabriel",
       "label": "Senior Digital Business Value Engineer",
-      "image": "/assets/jakob-portrait.jpeg",
+      "image": "",
       "email": "jakob.gabriel@example.com",
       "phone": "+49 123 456 789",
       "url": "https://jakobgabriel.dev",
@@ -194,6 +262,7 @@
       {
         "name": "Tech Innovation Corp",
         "position": "Senior Digital Business Value Engineer",
+        "location": "München, Deutschland",
         "url": "https://techinnovation.corp",
         "startDate": "2022-03-15",
         "summary": "Leitung digitaler Transformationsinitiativen und Generierung von Geschäftswert durch strategische Technologieimplementierung. Verantwortlich für unternehmensweite Technologiestrategie und funktionsübergreifende Teamführung.",
@@ -203,7 +272,42 @@
           "Implementierung KI-gestützter Lösungen zur Reduzierung der Betriebskosten um 2 Mio. € jährlich",
           "Entwicklung strategischer Technologie-Roadmaps für Fortune 500 Kunden",
           "Aufbau eines Kompetenzzentrums für digitale Transformationspraktiken"
-        ]
+        ],
+        "keywords": ["KI/ML", "Cloud-Architektur", "Prozessautomatisierung", "Datenanalyse", "Python", "AWS", "Kubernetes"]
+      },
+      {
+        "name": "Enterprise Solutions Ltd",
+        "position": "Digital Solutions Architect",
+        "location": "Stuttgart, Deutschland",
+        "url": "https://enterprisesolutions.ltd",
+        "startDate": "2020-06-01",
+        "endDate": "2022-02-28",
+        "summary": "Entwurf und Implementierung skalierbarer digitaler Lösungen für Unternehmenskunden verschiedener Branchen. Spezialisierung auf Cloud-native Architekturen und Microservices-Designpattern.",
+        "highlights": [
+          "Architektur von Cloud-nativen Lösungen für 50+ Unternehmenskunden",
+          "Reduzierung der Systemausfallzeiten um 85% durch verbessertes Architekturdesign",
+          "Mentoring von Junior-Entwicklern und -Ingenieuren in Best Practices",
+          "Leitung der Migration von Legacy-Systemen zu modernen Cloud-Plattformen",
+          "Etablierung von DevOps-Praktiken zur Reduzierung der Deployment-Zeit um 70%"
+        ],
+        "keywords": ["Cloud Computing", "Microservices", "DevOps", "Systemintegration", "Docker", "Azure", "React"]
+      },
+      {
+        "name": "Strategic Tech Partners",
+        "position": "Business Technology Consultant",
+        "location": "Berlin, Deutschland",
+        "url": "https://strategictech.partners",
+        "startDate": "2018-09-01",
+        "endDate": "2020-05-31",
+        "summary": "Strategische Beratung für digitale Transformation und Technologieadoption für mittelständische und Unternehmenskunden. Fokus auf Geschäftsprozessoptimierung und Technologiestrategie-Alignment.",
+        "highlights": [
+          "Beratung von 20+ Fortune 500 Unternehmen zur digitalen Transformation",
+          "Entwicklung umfassender Technologie-Roadmaps für digitale Transformation",
+          "Erreichen einer 95%igen Kundenzufriedenheitsrate mit messbaren Geschäftsergebnissen",
+          "Reduzierung der Kundenoperationskosten um durchschnittlich 30% durch Prozessoptimierung",
+          "Aufbau langfristiger strategischer Partnerschaften mit wichtigen Technologieanbietern"
+        ],
+        "keywords": ["Strategie", "Digitale Transformation", "Projektmanagement", "Stakeholder Management", "Geschäftsanalyse", "Agile", "Scrum"]
       }
     ],
     "education": [
@@ -214,14 +318,80 @@
         "studyType": "Master of Science",
         "startDate": "2016-10-01",
         "endDate": "2018-09-30",
-        "score": "1,3 (Magna Cum Laude)"
+        "score": "1,3 (Magna Cum Laude)",
+        "summary": "Spezialisierung auf digitale Transformation, Geschäftsprozessoptimierung und Technologiestrategie. Fokus auf die Schnittstelle zwischen Business und Technologie mit Schwerpunkt auf datengetriebene Entscheidungsfindung.",
+        "courses": [
+          "Digitale Strategie",
+          "KI & Machine Learning",
+          "Business Analytics",
+          "Innovationsmanagement",
+          "Enterprise-Architektur",
+          "Data Science"
+        ],
+        "highlights": [
+          "Masterarbeit: 'KI-gesteuerte Geschäftsprozessautomatisierung in Unternehmensumgebungen'",
+          "Dean's List für akademische Exzellenz (4 aufeinanderfolgende Semester)",
+          "Graduierter Forschungsassistent im Digital Innovation Lab",
+          "Veröffentlichung von 3 Forschungsarbeiten auf internationalen Konferenzen",
+          "Gewinner der University Innovation Challenge 2017"
+        ]
+      },
+      {
+        "institution": "Universität Stuttgart",
+        "url": "https://uni-stuttgart.de",
+        "area": "Informatik",
+        "studyType": "Bachelor of Science",
+        "startDate": "2012-10-01",
+        "endDate": "2016-07-31",
+        "score": "1,5 (Cum Laude)",
+        "summary": "Grundlagen der Informatik mit Schwerpunkt auf Software Engineering und Systemarchitektur. Starker Fokus auf praktische Anwendung und Industriekooperationen.",
+        "courses": [
+          "Software Engineering",
+          "Datenbanksysteme",
+          "Systemarchitektur",
+          "Projektmanagement",
+          "Algorithmen & Datenstrukturen",
+          "Web-Technologien"
+        ],
+        "highlights": [
+          "Outstanding Student Award 2015 für akademische Exzellenz",
+          "Gewinner der Regionalen Programmier-Wettbewerb 2014",
+          "Studentenvertreter im Fakultätsrat Informatik",
+          "6-monatiges Industriepraktikum bei SAP absolviert",
+          "Bachelorarbeit mit 'Ausgezeichnet' (1,0) bewertet"
+        ]
       }
     ],
     "skills": [
       {
-        "name": "KI & Machine Learning",
+        "name": "Digitale Strategie & Transformation",
         "level": "Experte",
-        "keywords": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Neuronale Netzwerke"]
+        "keywords": ["Strategie", "Change Management", "Prozessautomatisierung", "Innovationsmanagement"]
+      },
+      {
+        "name": "Geschäftsprozess-Engineering",
+        "level": "Experte",
+        "keywords": ["Lean-Methoden", "Workflow-Optimierung", "Geschäftsanalyse", "Prozess-Mapping"]
+      },
+      {
+        "name": "Lösungsarchitektur",
+        "level": "Experte",
+        "keywords": ["Enterprise-Architektur", "Cloud-Native Lösungen", "Microservices", "Systemdesign"]
+      },
+      {
+        "name": "Projektleitung",
+        "level": "Experte",
+        "keywords": ["Funktionsübergreifende Teams", "Stakeholder Management", "Agile", "Scrum"]
+      },
+      {
+        "name": "Datenanalyse & KI",
+        "level": "Fortgeschritten",
+        "keywords": ["Python", "TensorFlow", "Machine Learning", "Business Intelligence", "Data Science"]
+      },
+      {
+        "name": "Cloud-Technologien",
+        "level": "Fortgeschritten",
+        "keywords": ["AWS", "Azure", "GCP", "Kubernetes", "Docker", "Terraform"]
       }
     ],
     "languages": [
@@ -232,6 +402,14 @@
       {
         "language": "Englisch",
         "fluency": "Fließend"
+      },
+      {
+        "language": "Spanisch",
+        "fluency": "Mittelstufe"
+      },
+      {
+        "language": "Französisch",
+        "fluency": "Grundkenntnisse"
       }
     ],
     "certificates": [
@@ -240,6 +418,34 @@
         "date": "2023-06-15",
         "issuer": "Amazon Web Services",
         "url": "https://aws.amazon.com/certification/"
+      },
+      {
+        "name": "Microsoft Certified: Azure Solutions Architect Expert",
+        "date": "2022-03-20",
+        "issuer": "Microsoft",
+        "url": "https://docs.microsoft.com/en-us/learn/certifications/"
+      },
+      {
+        "name": "Certified Scrum Master (CSM)",
+        "date": "2021-08-15",
+        "issuer": "Scrum Alliance",
+        "url": "https://scrumalliance.org"
+      },
+      {
+        "name": "Google Cloud Professional Cloud Architect",
+        "date": "2023-09-10",
+        "issuer": "Google Cloud",
+        "url": "https://cloud.google.com/certification"
+      }
+    ],
+    "interests": [
+      {
+        "name": "Technologie-Innovation",
+        "keywords": ["KI/ML", "Emerging Technologies", "Digitale Transformation"]
+      },
+      {
+        "name": "Führungskräfteentwicklung",
+        "keywords": ["Team Building", "Mentoring", "Strategische Planung"]
       }
     ]
   }

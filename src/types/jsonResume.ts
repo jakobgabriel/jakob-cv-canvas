@@ -24,11 +24,13 @@ export interface JsonResumeBasics {
 export interface JsonResumeWork {
   name: string;
   position: string;
+  location?: string;
   url?: string;
   startDate: string;
   endDate?: string;
   summary: string;
   highlights: string[];
+  keywords?: string[];
 }
 
 export interface JsonResumeEducation {
@@ -39,7 +41,9 @@ export interface JsonResumeEducation {
   startDate: string;
   endDate?: string;
   score?: string;
+  summary?: string;
   courses?: string[];
+  highlights?: string[];
 }
 
 export interface JsonResumeSkill {
@@ -69,6 +73,11 @@ export interface JsonResumeProject {
   url?: string;
 }
 
+export interface JsonResumeInterest {
+  name: string;
+  keywords: string[];
+}
+
 export interface JsonResume {
   basics: JsonResumeBasics;
   work: JsonResumeWork[];
@@ -77,4 +86,5 @@ export interface JsonResume {
   languages: JsonResumeLanguage[];
   certificates: JsonResumeCertificate[];
   projects?: JsonResumeProject[];
+  interests?: JsonResumeInterest[];
 }

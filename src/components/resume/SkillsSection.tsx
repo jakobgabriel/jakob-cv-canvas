@@ -2,9 +2,8 @@ import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target, Users, Lightbulb, MessageSquare, TrendingUp, Mic, Award, Code, Globe } from "lucide-react";
-import { useYamlData } from "@/hooks/useYamlData";
+import { useJsonResume } from "@/hooks/useJsonResume";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Skills } from "@/types/data";
 
 const iconMap = {
   Target,
@@ -16,12 +15,14 @@ const iconMap = {
 };
 
 export const SkillsSection = () => {
-  const { data: skills, loading } = useYamlData<Skills>('/data/skills.yaml');
+  const { data: resumeData, loading } = useJsonResume();
   const { t } = useLanguage();
 
-  if (loading || !skills) {
+  if (loading || !resumeData) {
     return <div className="py-24 text-center">{t('loading')}</div>;
   }
+
+  const { skills, languages, certificates } = resumeData;
 
   return (
     <section className="py-12 relative">
@@ -46,13 +47,18 @@ export const SkillsSection = () => {
                 <h3 className="text-lg font-bold">{t('skills.technicalExcellence')}</h3>
               </div>
               <div className="space-y-3">
-                {skills.core_competencies.slice(0, 4).map((skill, index) => (
+                {skills.slice(0, 4).map((skill, index) => (
                   <div key={index} className="space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-xs text-primary font-mono">{skill.level}%</span>
+                      <span className="text-xs text-primary font-mono">{skill.level}</span>
                     </div>
-                    <Progress value={skill.level} className="h-1.5" />
+                    <div className="w-full bg-muted rounded-full h-1.5">
+                      <div 
+                        className="bg-primary h-1.5 rounded-full transition-all duration-1000" 
+                        style={{ width: skill.level === 'Expert' ? '95%' : skill.level === 'Advanced' ? '80%' : '60%' }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -65,11 +71,10 @@ export const SkillsSection = () => {
                 <h3 className="text-lg font-bold">{t('skills.leadershipSoft')}</h3>
               </div>
               <div className="grid grid-cols-2 gap-2">
-                {skills.leadership_skills.slice(0, 6).map((skill, index) => {
-                  const IconComponent = iconMap[skill.icon as keyof typeof iconMap];
+                {skills.slice(4, 8).map((skill, index) => {
                   return (
                     <div key={index} className="flex items-center gap-1 p-2 rounded bg-muted/30">
-                      <IconComponent className="w-3 h-3 text-primary" />
+                      <Users className="w-3 h-3 text-primary" />
                       <span className="text-xs">{skill.name}</span>
                     </div>
                   );
@@ -84,13 +89,22 @@ export const SkillsSection = () => {
                 <h3 className="text-lg font-bold">{t('skills.languages')}</h3>
               </div>
               <div className="space-y-3">
-                {skills.languages.map((lang, index) => (
+                {languages.map((lang, index) => (
                   <div key={index} className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">{lang.name}</span>
-                      <span className="text-xs text-muted-foreground">{lang.level}</span>
+                      <span className="text-sm font-medium">{lang.language}</span>
+                      <span className="text-xs text-muted-foreground">{lang.fluency}</span>
                     </div>
-                    <Progress value={lang.proficiency} className="h-1.5" />
+                    <div className="w-full bg-muted rounded-full h-1.5">
+                      <div 
+                        className="bg-primary h-1.5 rounded-full transition-all duration-1000" 
+                        style={{ 
+                          width: lang.fluency === 'Native speaker' || lang.fluency === 'Muttersprache' ? '100%' : 
+                                 lang.fluency === 'Fluent' || lang.fluency === 'Fließend' ? '95%' : 
+                                 lang.fluency === 'Intermediate' || lang.fluency === 'Mittelstufe' ? '70%' : '40%' 
+                        }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -103,7 +117,7 @@ export const SkillsSection = () => {
                 <h3 className="text-lg font-bold">{t('skills.certifications')}</h3>
               </div>
               <div className="space-y-3">
-                {skills.certifications.slice(0, 3).map((cert, index) => (
+                {certificates.slice(0, 3).map((cert, index) => (
                   <div key={index} className="space-y-1">
                     <h4 className="text-sm font-medium">{cert.name}</h4>
                     <p className="text-xs text-muted-foreground">{cert.issuer}</p>
@@ -121,39 +135,19 @@ export const SkillsSection = () => {
               <h3 className="text-lg font-bold">{t('skills.technicalSkills')}</h3>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Programming</h4>
-                <div className="flex flex-wrap gap-1">
-                  {skills.technical_skills.programming.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
-                      {tech}
-                    </Badge>
-                  ))}
+            <div className="grid md:grid-cols-4 gap-6">
+              {skills.map((skill, index) => (
+                <div key={index}>
+                  <h4 className="text-sm font-semibold mb-2 text-muted-foreground">{skill.name}</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {skill.keywords.map((keyword, i) => (
+                      <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                        {keyword}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              
-              <div>
-                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Frameworks</h4>
-                <div className="flex flex-wrap gap-1">
-                  {skills.technical_skills.frameworks.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">Cloud Platforms</h4>
-                <div className="flex flex-wrap gap-1">
-                  {skills.technical_skills.cloud_platforms.map((tech, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </Card>
         </div>
