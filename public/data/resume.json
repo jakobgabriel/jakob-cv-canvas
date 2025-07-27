@@ -3,165 +3,210 @@
     "basics": {
       "name": "Jakob Gabriel",
       "label": "Digital Business Value Engineer",
-      "image": "",
+      "image": "assets/img/logo.jpeg",
       "email": "jakob.gabriel5@googlemail.com",
       "phone": "",
       "url": "https://jakobgabriel.dev",
-      "summary": "...",
+      "summary": "Digital Business Value Engineer with expertise in driving digital transformation initiatives, process optimization, and advanced analytics in manufacturing environments. Specialized in developing data-driven solutions for operational excellence and business value creation.",
       "location": {
         "address": "",
         "postalCode": "",
-        "city": "Erfurt",
+        "city": "Karben",
         "countryCode": "DE",
-        "region": "Thuringia"
+        "region": "Hesse"
       },
       "profiles": [
         {
-          "network": "LinkedIn",
-          "username": "jakobgabriel",
-          "url": "https://www.linkedin.com/in/jakob-gabriel/"
-        },
-        {
-          "network": "Xing",
-          "username": "jakobgabriel",
-          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
-        },
-        {
           "network": "GitHub",
-          "username": "jakobgabriel",
+          "username": "Jakob Gabriel",
           "url": "https://github.com/jakobgabriel"
+        },
+        {
+          "network": "LinkedIn",
+          "username": "Jakob Gabriel",
+          "url": "https://www.linkedin.com/in/jakob-gabriel"
+        },
+        {
+          "network": "XING",
+          "username": "Jakob Gabriel",
+          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
         }
       ]
     },
     "work": [
       {
-        "name": "Continental AG",
+        "name": "ContiTech Techno-Chemie GmbH",
         "position": "Digital Business Value Engineer",
         "location": "Karben, Germany",
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2024-01-01",
-        "summary": "Leading digital transformation initiatives and driving business value through strategic technology implementation. Responsible for enterprise-wide technology strategy and cross-functional team leadership.",
+        "summary": "Drive concept development by enhancing operations through increased process maturity and the development of holistic process concepts in collaboration with Electrical Engineering and machine vendors. Employ statistical metrics to enable statistical methods for comprehensive process diagnostics and leverage digital tools to create robust process standards.",
         "highlights": [
-          "Increased operational efficiency by 40% through process automation initiatives",
-          "Led cross-functional teams of 15+ members across multiple departments",
-          "Implemented AI-driven solutions reducing operational costs by €2M annually",
-          "Developed strategic technology roadmaps for Fortune 500 clients",
-          "Established center of excellence for digital transformation practices"
+          "Operations Digitalization: Identify & implement digitalization use cases with stakeholders",
+          "Advanced Analytics & Data Science: Develop analytical workflows for manufacturing process optimization",
+          "Robotic Process Automation: Automate manufacturing business workflows and document scalability potential",
+          "Project Management: Execute agile projects and contribute to strategic business targets",
+          "Training & Coaching: Provide documentation and grow knowledge networks within organization",
+          "Process Standardization: Enrich existing standards with analytics insights and feedback"
         ],
-        "keywords": ["AI/ML", "Cloud Architecture", "Process Automation", "Data Analytics", "Python", "AWS", "Kubernetes"]
+        "keywords": ["Digital Transformation", "Process Automation", "Advanced Analytics", "Data Science", "RPA", "Agile Project Management"]
       },
       {
-        "name": "Continental AG",
+        "name": "ContiTech Techno-Chemie GmbH",
         "position": "Analytics and Data Engineer",
-        "location": "Stuttgart, Germany",
-        "url": "https://enterprisesolutions.ltd",
-        "startDate": "2020-06-01",
-        "endDate": "2022-02-28",
-        "summary": "Designed and implemented scalable digital solutions for enterprise clients across various industries. Specialized in cloud-native architectures and microservices design patterns.",
+        "location": "Karben, Germany",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2022-01-01",
+        "endDate": "2023-12-31",
+        "summary": "Developed and defined analytics use cases and projects based on production process problems in Mobile Fluid Systems. Executed continuous improvement processes by applying analytical methods in data-driven problem-solving with focus on global scaling potentials.",
         "highlights": [
-          "Architected cloud-native solutions for 50+ enterprise clients",
-          "Reduced system downtime by 85% through improved architecture design",
-          "Mentored junior developers and engineers in best practices",
-          "Led migration of legacy systems to modern cloud platforms",
-          "Established DevOps practices reducing deployment time by 70%"
+          "Industry 4.0 Management: Coordinated data-driven process improvements in manufacturing",
+          "Financial Management: Prepared budgets and forecasts for analytics projects",
+          "Manufacturing Intelligence: Implemented advanced analytics workflows for root cause analysis",
+          "Digitalization Standards: Developed MFS-wide standards for methods, processes and technologies",
+          "Training & Knowledge Sharing: Provided documentation and shared project insights across organization",
+          "Standardization: Developed central manufacturing engineering standards for Shopfloor IT/OT"
         ],
-        "keywords": ["Cloud Computing", "Microservices", "DevOps", "System Integration", "Docker", "Azure", "React"]
+        "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Budget Management", "Standards Development"]
       },
       {
-        "name": "Strategic Tech Partners",
-        "position": "Business Technology Consultant",
-        "location": "Berlin, Germany",
-        "url": "https://strategictech.partners",
-        "startDate": "2018-09-01",
-        "endDate": "2020-05-31",
-        "summary": "Provided strategic consulting for digital transformation and technology adoption for mid-market and enterprise clients. Focused on business process optimization and technology strategy alignment.",
+        "name": "ContiTech MGW GmbH",
+        "position": "Quality Engineer",
+        "location": "Waltershausen, Germany",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2018-10-01",
+        "endDate": "2021-12-31",
+        "summary": "Monitored processing of corrective measures including transfer of root causes and measures from complaints to product and process FMEA. Coordinated customer appointments and introduced continuous improvement actions aimed at reducing quality costs.",
         "highlights": [
-          "Consulted for 20+ Fortune 500 companies on digital transformation",
-          "Developed comprehensive technology roadmaps for digital transformation",
-          "Achieved 95% client satisfaction rate with measurable business outcomes",
-          "Reduced client operational costs by average of 30% through process optimization",
-          "Established long-term strategic partnerships with key technology vendors"
+          "Quality Management: Carried out sampling, reclamations and initial sample inspection reports",
+          "FMEA Coordination: Moderated FMEA meetings and conducted risk analysis",
+          "Inspection Planning: Developed gauge concepts for blow molding parts inspection",
+          "Customer Relations: Coordinated customer appointments and acceptance tests",
+          "Process Capability: Supervised capability studies and ensured process standards",
+          "Continuous Improvement: Introduced improvement actions to reduce quality costs"
         ],
-        "keywords": ["Strategy", "Digital Transformation", "Project Management", "Stakeholder Management", "Business Analysis", "Agile", "Scrum"]
+        "keywords": ["Quality Management", "FMEA", "Process Capability", "Customer Relations", "Continuous Improvement", "Risk Analysis"]
+      },
+      {
+        "name": "ContiTech MGW GmbH",
+        "position": "Working Student",
+        "location": "Waltershausen, Germany",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2015-10-01",
+        "endDate": "2018-09-30",
+        "summary": "Analyzed problems and developed solutions in product and process industrialization while completing academic projects.",
+        "highlights": [
+          "Problem Analysis: Analyzed manufacturing problems and developed innovative solutions",
+          "Process Industrialization: Contributed to product and process development initiatives",
+          "Academic Documentation: Documented analysis within project and seminar papers"
+        ],
+        "keywords": ["Problem Analysis", "Process Development", "Academic Research", "Solution Development"]
+      },
+      {
+        "name": "ContiTech MGW GmbH",
+        "position": "Trainee",
+        "location": "Waltershausen, Germany",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2015-08-01",
+        "endDate": "2015-09-30",
+        "summary": "Completed initial industrial training program at ContiTech MGW GmbH.",
+        "highlights": [
+          "Industrial Training: Completed comprehensive introduction to manufacturing processes",
+          "Process Understanding: Gained foundational knowledge of polymer manufacturing"
+        ],
+        "keywords": ["Industrial Training", "Manufacturing Processes", "Polymer Technology"]
       }
     ],
     "education": [
       {
-        "institution": "Technical University of Munich",
-        "url": "https://tum.de",
-        "area": "Digital Business Engineering",
-        "studyType": "Master of Science",
-        "startDate": "2016-10-01",
-        "endDate": "2018-09-30",
-        "score": "1.3 (Magna Cum Laude)",
-        "summary": "Specialized in digital transformation, business process optimization, and technology strategy. Focus on intersection of business and technology with emphasis on data-driven decision making.",
+        "institution": "University of Applied Sciences Schmalkalden",
+        "url": "https://www.hsm-fernstudium.de/masterstudiengaenge/angewandte-kunststofftechnik-meng",
+        "area": "Applied Polymer Engineering",
+        "studyType": "Master of Engineering",
+        "startDate": "2019-04-01",
+        "endDate": "2024-12-31",
+        "score": "2.0 (3.0 US GPA)",
+        "summary": "Advanced study in polymer engineering with focus on applied research and industrial applications. Specialized in process optimization and data-driven manufacturing improvements.",
         "courses": [
-          "Digital Strategy",
-          "AI & Machine Learning", 
-          "Business Analytics",
-          "Innovation Management",
-          "Enterprise Architecture",
-          "Data Science"
+          "Advanced Polymer Processing",
+          "Process Optimization",
+          "Materials Science",
+          "Manufacturing Engineering",
+          "Quality Management",
+          "Research Methodology"
         ],
         "highlights": [
-          "Master's Thesis: 'AI-Driven Business Process Automation in Enterprise Environments'",
-          "Dean's List for Academic Excellence (4 consecutive semesters)",
-          "Graduate Research Assistant in Digital Innovation Lab",
-          "Published 3 research papers in international conferences",
-          "Winner of University Innovation Challenge 2017"
+          "Master Thesis: 'Process Mining in Manufacturing: Potential Analysis Based on a Case Study'",
+          "Project Work: 'Analysis for Predicting Pull-Off Forces Based on Process Data and Infrared Images in the Hot Plate Welding Process'",
+          "Focus on data-driven manufacturing optimization",
+          "Advanced research in process mining applications"
         ]
       },
       {
-        "institution": "University of Stuttgart",
-        "url": "https://uni-stuttgart.de",
-        "area": "Computer Science",
-        "studyType": "Bachelor of Science",
-        "startDate": "2012-10-01",
-        "endDate": "2016-07-31",
-        "score": "1.5 (Cum Laude)",
-        "summary": "Foundation in computer science with focus on software engineering and system architecture. Strong emphasis on practical application and industry collaboration.",
+        "institution": "Duale Hochschule Gera Eisenach",
+        "url": "https://www.dhge.de/DHGE/Studieninteressierte/Studieng-nge/Detail~Technik~Kunststofftechnik-Bachelor-of-Engineering~.html",
+        "area": "Polymer Engineering",
+        "studyType": "Bachelor of Engineering",
+        "startDate": "2015-10-01",
+        "endDate": "2018-09-30",
+        "score": "1.6 (3.3 US GPA)",
+        "summary": "Dual study program combining theoretical knowledge with practical industrial experience. Foundation in polymer engineering with strong emphasis on manufacturing processes and automation.",
         "courses": [
-          "Software Engineering",
-          "Database Systems",
-          "System Architecture",
-          "Project Management",
-          "Algorithms & Data Structures",
-          "Web Technologies"
+          "Polymer Science",
+          "Manufacturing Processes", 
+          "Automation Technology",
+          "Quality Engineering",
+          "Materials Testing",
+          "Industrial Engineering"
         ],
         "highlights": [
-          "Outstanding Student Award 2015 for academic excellence",
-          "Winner of Regional Programming Competition 2014",
-          "Student Representative in Computer Science Faculty Council",
-          "Completed 6-month industry internship at SAP",
-          "Bachelor's Thesis rated as 'Excellent' (1.0)"
+          "Bachelor Thesis: 'Investigation of the Automation of Testing Activities and Packaging Processes Using Robotics and Camera Technologies Within an existing Assembly Process'",
+          "Dual education with practical industrial experience",
+          "Focus on automation and robotics in manufacturing",
+          "Strong foundation in polymer processing technology"
         ]
       }
     ],
     "skills": [
       {
-        "name": "Digital Strategy & Transformation",
+        "name": "Project Management",
+        "level": "Advanced",
+        "keywords": ["MS Project", "MS Planner", "Gitlab/Github", "Agile", "Scrum"]
+      },
+      {
+        "name": "Quality Management",
         "level": "Expert",
-        "keywords": ["Strategy", "Change Management", "Process Automation", "Innovation Management"]
+        "keywords": ["FMEA Moderation", "Product Audits", "APQP", "Process Capability"]
       },
       {
-        "name": "Business Process Engineering",
-        "level": "Expert", 
-        "keywords": ["Lean Methodologies", "Workflow Optimization", "Business Analysis", "Process Mapping"]
-      },
-      {
-        "name": "Data Analytics & AI",
+        "name": "Statistics & Analytics",
         "level": "Advanced",
-        "keywords": ["Business Intelligence"]
+        "keywords": ["Minitab", "Statistical Analysis", "Process Mining", "Data Science"]
       },
       {
-        "name": "Cloud Technologies",
+        "name": "Programming Languages",
         "level": "Advanced",
-        "keywords": ["Azure", "Docker"]
+        "keywords": ["Python", "SQL", "Data Analysis"]
       },
       {
-        "name": "Programming",
+        "name": "Analytics Tools",
         "level": "Advanced",
-        "keywords": ["Python", "SQL"]
+        "keywords": ["KNIME Analytics Platform", "JupyterLab", "Advanced Analytics"]
+      },
+      {
+        "name": "Databases",
+        "level": "Advanced",
+        "keywords": ["Postgres", "Timescale", "InfluxDB"]
+      },
+      {
+        "name": "Data Visualization",
+        "level": "Advanced",
+        "keywords": ["Grafana", "Superset", "PowerBI", "Streamlit"]
+      },
+      {
+        "name": "Digital Transformation",
+        "level": "Expert",
+        "keywords": ["Process Automation", "Industry 4.0", "IoT", "Manufacturing Intelligence"]
       }
     ],
     "languages": [
@@ -170,34 +215,34 @@
         "fluency": "Native speaker"
       },
       {
-        "language": "English", 
-        "fluency": "Fluent"
+        "language": "English",
+        "fluency": "Professional working proficiency"
       }
     ],
     "certificates": [
       {
-        "name": "Advanced Analytics Methodologies",
-        "date": "2021-10",
-        "issuer": "AdvancedAnalytics.Academy GmbH",
-        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
+        "name": "The Power MBA",
+        "date": "2024-11-08",
+        "issuer": "ThePower Business School",
+        "url": "https://www.thepowermba.com/en/thepowermba"
+      },
+      {
+        "name": "Continental Leading Self Program",
+        "date": "2023-10-10",
+        "issuer": "Continental AG",
+        "url": "https://www.continental.com/en/career/working-at-continental/your-development/leadership/"
       },
       {
         "name": "Advanced Analytics Methodologies",
-        "date": "2021-10",
-        "issuer": "AdvancedAnalytics.Academy GmbH",
-        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
-      },
-      {
-        "name": "Advanced Analytics Methodologies",
-        "date": "2021-10",
+        "date": "2021-10-11",
         "issuer": "AdvancedAnalytics.Academy GmbH",
         "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
       },
       {
         "name": "Product Auditor VDA 6.5",
-        "date": "2019-09",
+        "date": "2019-09-18",
         "issuer": "TÜV Hessen",
-        "url": "https://www.tuev-club.de/656/tuev-know-how-club-fachveranstaltungen/"
+        "url": "https://www.tuev-club.de/656/tuev-know-how-club-seminare/"
       }
     ],
     "interests": [
