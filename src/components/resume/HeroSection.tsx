@@ -15,8 +15,13 @@ export const HeroSection = () => {
   }
 
   const { basics } = resumeData;
-  const linkedinProfile = basics.profiles.find(p => p.network === 'LinkedIn');
-  const githubProfile = basics.profiles.find(p => p.network === 'GitHub');
+  
+  // Get social profiles with fallback
+  const getProfile = (network: string) => basics.profiles?.find(p => p.network === network);
+  const linkedinProfile = getProfile('LinkedIn');
+  const githubProfile = getProfile('GitHub');
+  const xProfile = getProfile('X') || getProfile('Twitter');
+  const xingProfile = getProfile('Xing');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle">
@@ -69,40 +74,86 @@ export const HeroSection = () => {
             </div>
             
             {/* Social Links - Professional Style */}
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-border/50 hover:border-primary transition-smooth"
-                asChild
-              >
-                <a 
-                  href={linkedinProfile?.url}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+            <div className="flex flex-wrap gap-3 justify-center">
+              {linkedinProfile && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth"
+                  asChild
                 >
-                  <LinkedinIcon className="w-4 h-4" />
-                  LinkedIn
-                </a>
-              </Button>
+                  <a 
+                    href={linkedinProfile.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                    LinkedIn
+                  </a>
+                </Button>
+              )}
               
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-border/50 hover:border-primary transition-smooth"
-                asChild
-              >
-                <a 
-                  href={githubProfile?.url}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+              {githubProfile && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth"
+                  asChild
                 >
-                  <Github className="w-4 h-4" />
-                  GitHub
-                </a>
-              </Button>
+                  <a 
+                    href={githubProfile.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </a>
+                </Button>
+              )}
+
+              {xProfile && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth"
+                  asChild
+                >
+                  <a 
+                    href={xProfile.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    X
+                  </a>
+                </Button>
+              )}
+
+              {xingProfile && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth"
+                  asChild
+                >
+                  <a 
+                    href={xingProfile.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.284.552 4.727 8.58 4.727 8.58.186.335.517.66.927.66h3.905c.74 0 .927-.558.927-.558 0-.182-.239-.517-.239-.517l-4.683-8.326s7.647-13.567 7.647-13.567c.018-.036.018-.073.018-.11C22.789.29 22.506 0 22.506 0h-4.318zm-14.1 6.429c-.741 0-.927.558-.927.558 0 .181.239.517.239.517l2.623 4.797s-2.987 5.51-2.987 5.51c-.018.036-.018.073-.018.11 0 .558.284.848.284.848h4.318c.517 0 .741-.325.927-.66 0 0 3.041-5.619 3.041-5.619l-2.623-4.797s-.239-.517-.239-.517c-.186-.335-.517-.66-.927-.66H4.088z"/>
+                    </svg>
+                    Xing
+                  </a>
+                </Button>
+              )}
               
               <Button 
                 variant="outline" 

@@ -1,72 +1,45 @@
-# Digital Resume - Jakob Gabriel
+# Jakob Gabriel - Digital Resume
 
-A modern, responsive digital resume built with React, TypeScript, and Tailwind CSS. Content is managed through YAML files for easy updates and deployment to GitHub Pages.
+A modern, clean, and minimal digital resume built with React, TypeScript, and Tailwind CSS. Perfect for private equity professionals and business executives. Content is managed through JSON Resume schema for industry-standard compatibility.
 
-## 🚀 Features
+## ✨ Features
 
-- **YAML-based Content Management**: All personal information, experience, education, and skills are stored in YAML files
-- **Modern Design**: Clean, professional design with dark/light mode support
-- **Responsive**: Optimized for all device sizes
-- **Interactive Timeline**: Slide-in detail panels for experience and education
+- **JSON Resume Standard**: Uses industry-standard JSON Resume schema for compatibility
+- **Multi-language Support**: English and German content with dynamic switching
+- **Modern PE-style Design**: Clean, minimal design suitable for private equity professionals
+- **Responsive**: Optimized for all devices and screen sizes
+- **Dark/Light Mode**: Professional theme switching
 - **GitHub Pages Ready**: Configured for automatic deployment
+- **Extensible Social Profiles**: Support for LinkedIn, GitHub, X (Twitter), Xing, and more
 
-## 📁 Content Management
+## 📁 Data Structure
 
-All content is stored in YAML files in the `public/data/` directory:
+All content follows the [JSON Resume schema](https://jsonresume.org/schema/) stored in `public/data/resume.json`:
 
-- `personal.yaml` - Personal information, contact details, and bio
-- `experience.yaml` - Professional experience entries
-- `education.yaml` - Educational background
-- `skills.yaml` - Core competencies and leadership skills
+### Core Sections
+- **basics**: Personal information, contact details, and social profiles
+- **work**: Professional experience with highlights and keywords
+- **education**: Academic background with achievements
+- **skills**: Core competencies organized by categories
+- **languages**: Language proficiencies
+- **certificates**: Professional certifications
+- **projects**: Notable projects (optional)
+- **interests**: Professional interests (optional)
 
-### Editing Content
+### Configuration
+- `public/data/config.json`: Feature toggles and theme settings
 
-1. Navigate to the `public/data/` folder
-2. Edit the relevant YAML file
-3. Commit and push changes
-4. GitHub Actions will automatically rebuild and deploy
-
-### YAML Structure Examples
-
-#### Personal Information (`personal.yaml`)
-```yaml
-name:
-  first: "Your First Name"
-  last: "Your Last Name"
-title: "Your Professional Title"
-bio: "Your professional bio..."
-contact:
-  email: "your.email@example.com"
-  linkedin: "https://linkedin.com/in/yourprofile"
-  github: "https://github.com/yourusername"
-```
-
-#### Experience (`experience.yaml`)
-```yaml
-- title: "Job Title"
-  company: "Company Name"
-  period: "2020 - Present"
-  year: "2020"
-  description: "Job description..."
-  achievements:
-    - "Achievement 1"
-    - "Achievement 2"
-  technologies:
-    - "Technology 1"
-    - "Technology 2"
-```
-
-## 🛠 Development
+## 🔧 Quick Start
 
 ### Prerequisites
 - Node.js 18+
-- npm or yarn
+- npm, yarn, or bun
 
-### Setup
+### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/jakobgabriel/jakob-cv-canvas.git
+cd jakob-cv-canvas
 
 # Install dependencies
 npm install
@@ -80,52 +53,117 @@ npm run dev
 npm run build
 ```
 
-## 🚀 Deployment to GitHub Pages
+## 📝 Content Management
 
-### Automatic Deployment
-This project is configured with GitHub Actions for automatic deployment:
+### Editing Your Resume
+1. Open `public/data/resume.json`
+2. Update the relevant sections (English: `en`, German: `de`)
+3. Commit and push changes
+4. GitHub Actions automatically rebuilds and deploys
 
-1. Push changes to the `main` branch
-2. GitHub Actions will automatically build and deploy to GitHub Pages
-3. Your site will be available at `https://yourusername.github.io/your-repo-name/`
+### Adding Social Profiles
+The system supports multiple social networks. Add profiles to the `basics.profiles` array:
 
-### Manual Setup
-1. Enable GitHub Pages in your repository settings
-2. Set source to "GitHub Actions"
-3. Update the `base` URL in `vite.config.ts` to match your repository name
-4. Push changes to trigger deployment
+```json
+{
+  "basics": {
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "your-username",
+        "url": "https://linkedin.com/in/your-username"
+      },
+      {
+        "network": "GitHub", 
+        "username": "your-username",
+        "url": "https://github.com/your-username"
+      },
+      {
+        "network": "X",
+        "username": "your-handle",
+        "url": "https://x.com/your-handle"
+      },
+      {
+        "network": "Xing",
+        "username": "your-username", 
+        "url": "https://xing.com/profile/your-username"
+      }
+    ]
+  }
+}
+```
+
+### Supported Social Networks
+- LinkedIn
+- GitHub
+- X (Twitter)
+- Xing
+- Instagram
+- Facebook
+- Website/Portfolio
+
+## 🚀 Deployment
+
+### GitHub Pages (Automatic)
+1. Fork this repository
+2. Update `vite.config.ts` with your repository name
+3. Enable GitHub Pages in repository settings
+4. Set source to "GitHub Actions"
+5. Push to `main` branch to trigger deployment
 
 ### Custom Domain
-To use a custom domain:
-1. Add your domain to the `cname` field in `.github/workflows/deploy.yml`
-2. Configure your domain's DNS to point to GitHub Pages
-3. Enable custom domain in GitHub Pages settings
+1. Add your domain to GitHub Pages settings
+2. Update the `cname` field in `.github/workflows/deploy.yml`
+3. Configure DNS to point to GitHub Pages
 
 ## 🎨 Customization
 
-### Colors and Theme
-The design system is defined in `src/index.css`. Update CSS variables to change:
-- Colors (light and dark mode)
-- Gradients and effects
-- Typography and spacing
+### Design System
+The professional design is defined in:
+- `src/index.css`: CSS custom properties and global styles
+- `tailwind.config.ts`: Tailwind theme configuration
 
-### Adding New Sections
-1. Create a new YAML file in `public/data/`
-2. Define TypeScript interfaces in `src/types/data.ts`
-3. Create a new component using the `useYamlData` hook
-4. Add the component to your page layout
+### Color Palette
+Current theme uses a professional charcoal and white palette suitable for private equity:
+- Primary: Professional blue
+- Background: Clean whites and subtle grays
+- Text: High contrast for readability
 
-## 📝 License
+### Adding New Features
+1. Update `public/data/config.json` to enable/disable features
+2. Modify components in `src/components/resume/`
+3. Use the `useJsonResume()` hook to access data
 
-MIT License - feel free to use this template for your own resume!
+## 🌍 Multi-language Support
+
+The resume supports multiple languages:
+- English (`en`)
+- German (`de`)
+
+Add new languages by:
+1. Adding language data to `resume.json`
+2. Updating `src/contexts/LanguageContext.tsx`
+3. Adding translation keys
+
+## 📋 JSON Resume Schema Compliance
+
+This resume follows the official [JSON Resume](https://jsonresume.org/) standard, making it:
+- Compatible with JSON Resume tools
+- Easily exportable to other formats
+- Industry-standard structured data
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License - Feel free to use this template for your own professional resume.
 
 ---
 
-Built with ❤️ using React, TypeScript, and Tailwind CSS
+**Built for professionals by professionals** | React + TypeScript + Tailwind CSS
