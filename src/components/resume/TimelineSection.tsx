@@ -2,10 +2,11 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle } from "lucide-react";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock } from "lucide-react";
 import { useState } from "react";
 import { useYamlData } from "@/hooks/useYamlData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
 
 import { Experience, Education } from "@/types/data";
 
@@ -165,9 +166,20 @@ export const TimelineSection = () => {
 
                 {/* Content */}
                 <div className="p-6 space-y-6">
-                  <div className="flex items-center gap-2 text-primary">
-                    <Calendar className="w-4 h-4" />
-                    <span className="font-mono">{selectedItem.period}</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Calendar className="w-4 h-4" />
+                      <span className="font-mono">{selectedItem.period}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Clock className="w-4 h-4" />
+                      <span className="text-sm">
+                        {t('language') === 'de' 
+                          ? calculateDurationGerman(selectedItem.startDate, selectedItem.endDate)
+                          : calculateDuration(selectedItem.startDate, selectedItem.endDate)
+                        }
+                      </span>
+                    </div>
                   </div>
 
                   {'gpa' in selectedItem && (

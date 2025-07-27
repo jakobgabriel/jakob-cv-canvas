@@ -24,6 +24,8 @@ export interface Experience {
   company: string;
   location: string;
   period: string;
+  startDate: string;
+  endDate: string;
   year: string;
   type: string;
   description: string;
@@ -37,6 +39,8 @@ export interface Education {
   institution: string;
   location: string;
   period: string;
+  startDate: string;
+  endDate: string;
   year: string;
   gpa: string;
   description: string;
