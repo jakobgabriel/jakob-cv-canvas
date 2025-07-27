@@ -36,10 +36,10 @@ export const TimelineSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
-            Professional Journey
+            {t('timeline.professionalJourney')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Experience and education that shaped my career in digital transformation.
+            {t('timeline.journeyDescription')}
           </p>
         </div>
         
@@ -49,7 +49,7 @@ export const TimelineSection = () => {
             <div className="text-center lg:text-left">
               <h3 className="text-2xl font-display font-medium mb-6 flex items-center gap-3 justify-center lg:justify-start">
                 <Briefcase className="w-6 h-6 text-primary" />
-                Experience
+                {t('timeline.experience')}
               </h3>
             </div>
             
@@ -89,7 +89,7 @@ export const TimelineSection = () => {
             <div className="text-center lg:text-left">
               <h3 className="text-2xl font-display font-medium mb-6 flex items-center gap-3 justify-center lg:justify-start">
                 <GraduationCap className="w-6 h-6 text-primary" />
-                Education
+                {t('timeline.education')}
               </h3>
             </div>
             
@@ -184,7 +184,7 @@ export const TimelineSection = () => {
 
                   {'score' in selectedItem && selectedItem.score && (
                     <div className="text-primary font-medium">
-                      Score: {selectedItem.score}
+                      {t('timeline.score')}: {selectedItem.score}
                     </div>
                   )}
 
@@ -193,7 +193,7 @@ export const TimelineSection = () => {
                   <div>
                     <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
                       <Award className="w-4 h-4 text-primary" />
-                      Key Achievements
+                      {t('timeline.keyAchievements')}
                     </h4>
                     <ul className="space-y-2 text-muted-foreground">
                       {selectedItem.highlights?.map((highlight: string, i: number) => (
@@ -209,7 +209,7 @@ export const TimelineSection = () => {
                     <div>
                       <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-primary" />
-                        Coursework
+                        {t('timeline.coursework')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {selectedItem.courses.map((course: string, i: number) => (
@@ -225,7 +225,7 @@ export const TimelineSection = () => {
                     <div>
                       <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-primary" />
-                        Technologies
+                        {t('timeline.technologies')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {selectedItem.keywords.map((keyword: string, i: number) => (

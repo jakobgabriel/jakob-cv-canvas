@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useConfig } from "@/hooks/useConfig";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 
 export const ContactSection = () => {
   const { config, loading } = useConfig();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -23,8 +25,8 @@ export const ContactSection = () => {
     
     if (!config?.features.contactForm.enabled) {
       toast({
-        title: "Contact form disabled",
-        description: "The contact form is currently disabled. Please use the email link instead.",
+        title: t('contact.form.disabledTitle'),
+        description: t('contact.form.disabledDescription'),
         variant: "destructive"
       });
       return;
@@ -48,8 +50,8 @@ export const ContactSection = () => {
 
       if (response.ok) {
         toast({
-          title: "Message sent successfully!",
-          description: "Thank you for your message. I'll get back to you soon.",
+          title: t('contact.form.successTitle'),
+          description: t('contact.form.successDescription'),
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
@@ -57,8 +59,8 @@ export const ContactSection = () => {
       }
     } catch (error) {
       toast({
-        title: "Failed to send message",
-        description: "There was an error sending your message. Please try again or contact me directly via email.",
+        title: t('contact.form.errorTitle'),
+        description: t('contact.form.errorDescription'),
         variant: "destructive"
       });
     } finally {
@@ -74,7 +76,7 @@ export const ContactSection = () => {
   };
 
   if (loading) {
-    return <div className="py-24 text-center">Loading...</div>;
+    return <div className="py-24 text-center">{t('loading')}</div>;
   }
 
   return (
@@ -82,10 +84,10 @@ export const ContactSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
-            Get In Touch
+            {t('contact.getInTouch')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Interested in discussing digital transformation opportunities?
+            {t('contact.contactDescription')}
           </p>
         </div>
         
@@ -94,24 +96,24 @@ export const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-foreground">Name</label>
+                  <label className="text-sm font-medium mb-2 block text-foreground">{t('contact.form.name')}</label>
                   <Input 
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Your name" 
+                    placeholder={t('contact.form.namePlaceholder')} 
                     className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block text-foreground">Email</label>
+                  <label className="text-sm font-medium mb-2 block text-foreground">{t('contact.form.email')}</label>
                   <Input 
                     name="email"
                     type="email" 
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="your.email@company.com" 
+                    placeholder={t('contact.form.emailPlaceholder')} 
                     className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                     required
                   />
@@ -119,24 +121,24 @@ export const ContactSection = () => {
               </div>
               
               <div>
-                <label className="text-sm font-medium mb-2 block text-foreground">Subject</label>
+                <label className="text-sm font-medium mb-2 block text-foreground">{t('contact.form.subject')}</label>
                 <Input 
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  placeholder="Partnership opportunity" 
+                  placeholder={t('contact.form.subjectPlaceholder')} 
                   className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                   required
                 />
               </div>
               
               <div>
-                <label className="text-sm font-medium mb-2 block text-foreground">Message</label>
+                <label className="text-sm font-medium mb-2 block text-foreground">{t('contact.form.message')}</label>
                 <Textarea 
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Tell me about your digital transformation needs..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   rows={4}
                   className="bg-background/50 border-border/50 resize-none transition-smooth focus:border-primary"
                   required
@@ -154,12 +156,12 @@ export const ContactSection = () => {
                 ) : (
                   <Send className="w-4 h-4 mr-2" />
                 )}
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.sendMessage')}
               </Button>
               
               {!config?.features.contactForm.enabled && (
                 <p className="text-sm text-muted-foreground text-center">
-                  Contact form is currently disabled. Please use the email link above.
+                  {t('contact.form.disabledNotice')}
                 </p>
               )}
             </form>

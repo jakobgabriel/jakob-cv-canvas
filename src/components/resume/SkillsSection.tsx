@@ -29,10 +29,10 @@ export const SkillsSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
-            Skills & Expertise
+            {t('skills.skillsAndExpertise')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Core competencies and technical skills across business and technology domains.
+            {t('skills.skillsDescription')}
           </p>
         </div>
         
@@ -43,7 +43,7 @@ export const SkillsSection = () => {
             <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
               <div className="flex items-center gap-3 mb-6">
                 <Target className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-medium">Core Competencies</h3>
+                <h3 className="text-lg font-medium">{t('skills.coreCompetencies')}</h3>
               </div>
               <div className="space-y-4">
                 {skills.slice(0, 4).map((skill, index) => (
@@ -67,7 +67,7 @@ export const SkillsSection = () => {
             <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
               <div className="flex items-center gap-3 mb-6">
                 <Globe className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-medium">Languages</h3>
+                <h3 className="text-lg font-medium">{t('skills.languages')}</h3>
               </div>
               <div className="space-y-4">
                 {languages.map((lang, index) => (
@@ -95,7 +95,7 @@ export const SkillsSection = () => {
             <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
               <div className="flex items-center gap-3 mb-6">
                 <Award className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-medium">Certifications</h3>
+                <h3 className="text-lg font-medium">{t('skills.certifications')}</h3>
               </div>
               <div className="space-y-4">
                 {certificates.slice(0, 4).map((cert, index) => (
@@ -113,7 +113,7 @@ export const SkillsSection = () => {
           <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
             <div className="flex items-center gap-3 mb-6">
               <Code className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-medium">Technical Skills</h3>
+              <h3 className="text-lg font-medium">{t('skills.technicalSkills')}</h3>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
