@@ -19,8 +19,13 @@
         {
           "network": "LinkedIn",
           "username": "jakobgabriel",
-          "url": "https://linkedin.com/in/jakobgabriel"
+          "url": "https://www.linkedin.com/in/jakob-gabriel/"
         },
+        {
+          "network": "Xing",
+          "username": "jakobgabriel",
+          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
+        }
         {
           "network": "GitHub",
           "username": "jakobgabriel",
@@ -33,8 +38,8 @@
         "name": "Continental AG",
         "position": "Digital Business Value Engineer",
         "location": "Karben, Germany",
-        "url": "",
-        "startDate": "2022-01-01",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2024-01-01",
         "summary": "Leading digital transformation initiatives and driving business value through strategic technology implementation. Responsible for enterprise-wide technology strategy and cross-functional team leadership.",
         "highlights": [
           "Increased operational efficiency by 40% through process automation initiatives",
@@ -47,7 +52,7 @@
       },
       {
         "name": "Continental AG",
-        "position": "Digital Solutions Architect",
+        "position": "Analytics and Data Engineer",
         "location": "Stuttgart, Germany",
         "url": "https://enterprisesolutions.ltd",
         "startDate": "2020-06-01",
@@ -171,16 +176,28 @@
     ],
     "certificates": [
       {
-        "name": "Certified Scrum Master (CSM)",
-        "date": "2021-08-15",
-        "issuer": "Scrum Alliance",
-        "url": "https://scrumalliance.org"
+        "name": "Advanced Analytics Methodologies",
+        "date": "2021-10",
+        "issuer": "AdvancedAnalytics.Academy GmbH",
+        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
       },
       {
-        "name": "Google Cloud Professional Cloud Architect",
-        "date": "2023-09-10",
-        "issuer": "Google Cloud",
-        "url": "https://cloud.google.com/certification"
+        "name": "Advanced Analytics Methodologies",
+        "date": "2021-10",
+        "issuer": "AdvancedAnalytics.Academy GmbH",
+        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
+      },
+      {
+        "name": "Advanced Analytics Methodologies",
+        "date": "2021-10",
+        "issuer": "AdvancedAnalytics.Academy GmbH",
+        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
+      },
+      {
+        "name": "Product Auditor VDA 6.5",
+        "date": "2019-09",
+        "issuer": "TÜV Hessen",
+        "url": "https://www.tuev-club.de/656/tuev-know-how-club-fachveranstaltungen/"
       }
     ],
     "interests": [
