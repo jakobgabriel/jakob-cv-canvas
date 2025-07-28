@@ -1,10 +1,21 @@
-import { differenceInMonths, parseISO } from 'date-fns';
+import { differenceInMonths, differenceInDays, parseISO } from 'date-fns';
 
 export const calculateDuration = (startDate: string, endDate: string): string => {
   const start = parseISO(startDate);
   const end = endDate === 'present' ? new Date() : parseISO(endDate);
   
-  const totalMonths = differenceInMonths(end, start);
+  let totalMonths = differenceInMonths(end, start);
+  
+  // Calculate remaining days after the complete months
+  const monthsDate = new Date(start);
+  monthsDate.setMonth(monthsDate.getMonth() + totalMonths);
+  const remainingDays = differenceInDays(end, monthsDate);
+  
+  // Round up if more than 15 days (half month)
+  if (remainingDays > 15) {
+    totalMonths++;
+  }
+  
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
   
@@ -23,7 +34,18 @@ export const calculateDurationGerman = (startDate: string, endDate: string): str
   const start = parseISO(startDate);
   const end = endDate === 'present' ? new Date() : parseISO(endDate);
   
-  const totalMonths = differenceInMonths(end, start);
+  let totalMonths = differenceInMonths(end, start);
+  
+  // Calculate remaining days after the complete months
+  const monthsDate = new Date(start);
+  monthsDate.setMonth(monthsDate.getMonth() + totalMonths);
+  const remainingDays = differenceInDays(end, monthsDate);
+  
+  // Round up if more than 15 days (half month)
+  if (remainingDays > 15) {
+    totalMonths++;
+  }
+  
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
   
