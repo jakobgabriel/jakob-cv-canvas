@@ -21,32 +21,25 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    console.log("Navigation useEffect triggered");
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
-      const sections = navigationItems.map(item => item.id);
-      const current = sections.find(section => {
+      // Simplified active section detection
+      const sections = ['hero', 'timeline', 'skills', 'contact'];
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
         }
-        return false;
-      });
-      
-      if (current) {
-        setActiveSection(current);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    console.log("Navigation scroll listener added");
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      console.log("Navigation scroll listener removed");
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {

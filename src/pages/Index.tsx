@@ -20,9 +20,6 @@ const Index = () => {
       <div id="timeline">
         <TimelineSection />
       </div>
-      <div id="education">
-        {/* Education is part of TimelineSection but gets its own ID */}
-      </div>
       <div id="skills">
         <SkillsSection />
       </div>

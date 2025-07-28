@@ -7,16 +7,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const HeroSection = () => {
-  console.log("HeroSection rendering...");
   const { data: resumeData, loading: resumeLoading } = useJsonResume();
   const { config, loading: configLoading } = useConfig();
   const { t } = useLanguage();
   const { trackSocialClick, trackDownload } = useAnalytics();
 
-  console.log("HeroSection data:", { resumeLoading, configLoading, hasResumeData: !!resumeData, hasConfig: !!config });
-
   if (resumeLoading || configLoading || !resumeData || !config) {
-    console.log("HeroSection still loading...");
     return <div className="min-h-screen flex items-center justify-center">{t('loading')}</div>;
   }
 
