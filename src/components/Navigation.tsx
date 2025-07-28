@@ -21,6 +21,22 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // Handle initial hash on page load
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && navigationItems.some(item => item.id === hash)) {
+        setActiveSection(hash);
+        const element = document.getElementById(hash);
+        if (element) {
+          const offsetTop = element.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
@@ -32,14 +48,26 @@ export const Navigation = ({ className }: NavigationProps) => {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
             setActiveSection(section);
+            // Update URL without triggering scroll
+            if (window.location.hash !== `#${section}`) {
+              window.history.replaceState(null, '', `#${section}`);
+            }
             break;
           }
         }
       }
     };
 
+    // Handle initial hash
+    handleHashChange();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -50,6 +78,9 @@ export const Navigation = ({ className }: NavigationProps) => {
         top: offsetTop,
         behavior: 'smooth'
       });
+      
+      // Update URL hash for copyable links
+      window.history.pushState(null, '', `#${sectionId}`);
     }
     setIsOpen(false);
   };
@@ -65,16 +96,16 @@ export const Navigation = ({ className }: NavigationProps) => {
         className
       )}>
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo/Brand */}
+          <div className="flex items-center justify-center h-16 relative">
+            {/* Logo/Brand - Positioned absolutely to the left */}
             <button 
               onClick={() => scrollToSection('hero')}
-              className="font-display font-medium text-lg hover:text-primary transition-smooth"
+              className="absolute left-0 font-display font-medium text-lg hover:text-primary transition-smooth"
             >
               Jakob Gabriel
             </button>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex items-center space-x-1">
               {navigationItems.map((item) => {
                 const Icon = item.icon;
@@ -98,11 +129,11 @@ export const Navigation = ({ className }: NavigationProps) => {
               })}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Positioned absolutely to the right */}
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden"
+              className="absolute right-0 md:hidden"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
