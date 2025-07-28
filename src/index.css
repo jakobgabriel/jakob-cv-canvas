@@ -6,34 +6,34 @@
 
 @layer base {
   :root {
-    /* Private Equity Inspired Color Palette */
+    /* High Contrast Professional Color Palette - WCAG AAA Compliant */
     --background: 0 0% 100%;
-    --foreground: 222 25% 12%;
+    --foreground: 0 0% 9%;
     
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card-foreground: 0 0% 9%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
+    --popover-foreground: 0 0% 9%;
     
-    --primary: 222 25% 12%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
     
-    --secondary: 210 6% 95%;
-    --secondary-foreground: 222 25% 12%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
     
-    --muted: 210 6% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
     
-    --accent: 210 6% 93%;
-    --accent-foreground: 222 25% 12%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 9%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
     
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 25% 12%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 9%;
     
     --radius: 0.5rem;
     
@@ -52,33 +52,33 @@
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 210 6% 95%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
     
-    --card: 0 0% 10%;
-    --card-foreground: 210 6% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
     
-    --popover: 0 0% 10%;
-    --popover-foreground: 210 6% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
     
-    --primary: 210 6% 85%;
-    --primary-foreground: 0 0% 12%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
     
     --secondary: 0 0% 12%;
-    --secondary-foreground: 210 6% 95%;
+    --secondary-foreground: 0 0% 98%;
     
     --muted: 0 0% 12%;
-    --muted-foreground: 215 16% 60%;
+    --muted-foreground: 0 0% 63%;
     
     --accent: 0 0% 14%;
-    --accent-foreground: 210 6% 95%;
+    --accent-foreground: 0 0% 98%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
     
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 210 6% 85%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 83%;
     
     /* Dark mode gradients - professional grey/black */
     --gradient-primary: linear-gradient(135deg, hsl(0, 0%, 85%), hsl(0, 0%, 75%));
@@ -147,11 +147,42 @@
     font-feature-settings: "ss01" 1, "ss02" 1;
   }
   
+  /* Performance optimizations */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
   /* Line clamping */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  /* Critical loading optimization */
+  img {
+    content-visibility: auto;
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

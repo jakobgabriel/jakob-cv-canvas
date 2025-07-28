@@ -26,11 +26,11 @@ export const HeroSection = () => {
   const xingProfile = getProfile('Xing');
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle pt-16">
       {/* Minimal geometric accent */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-0.5 h-40 bg-gradient-to-b from-primary/30 to-transparent"></div>
-        <div className="absolute bottom-20 left-20 w-40 h-0.5 bg-gradient-to-r from-primary/30 to-transparent"></div>
+      <div className="absolute inset-0 overflow-hidden will-change-transform">
+        <div className="absolute top-20 right-20 w-0.5 h-40 bg-gradient-to-b from-primary/30 to-transparent gpu-accelerated"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-0.5 bg-gradient-to-r from-primary/30 to-transparent gpu-accelerated"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -41,8 +41,12 @@ export const HeroSection = () => {
               <div className="w-32 h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-professional border border-border/50">
                 <img 
                   src={jakobPortrait} 
-                  alt={basics.name} 
-                  className="w-full h-full object-cover"
+                  alt={`${basics.name} - Professional headshot`} 
+                  className="w-full h-full object-cover gpu-accelerated"
+                  loading="eager"
+                  decoding="sync"
+                  width="144"
+                  height="144"
                 />
               </div>
             </div>
