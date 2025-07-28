@@ -40,8 +40,8 @@ export const Navigation = ({ className }: NavigationProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Simplified active section detection
-      const sections = ['hero', 'timeline', 'skills', 'contact'];
+      // Improved active section detection
+      const sections = ['hero', 'timeline', 'education', 'skills', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -105,8 +105,8 @@ export const Navigation = ({ className }: NavigationProps) => {
               Jakob Gabriel
             </button>
 
-            {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-1">
+            {/* Desktop Navigation - Centered with better spacing */}
+            <div className="hidden md:flex items-center justify-center space-x-2">
               {navigationItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -116,14 +116,14 @@ export const Navigation = ({ className }: NavigationProps) => {
                     size="sm"
                     onClick={() => scrollToSection(item.id)}
                     className={cn(
-                      "flex items-center gap-2 px-3 py-2 transition-smooth",
+                      "flex items-center gap-2 px-4 py-2 transition-smooth text-sm",
                       activeSection === item.id 
-                        ? "bg-primary/10 text-primary" 
-                        : "hover:bg-muted/50"
+                        ? "bg-primary/10 text-primary font-medium" 
+                        : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                     )}
                   >
                     <Icon className="w-4 h-4" />
-                    {item.label}
+                    <span className="whitespace-nowrap">{item.label}</span>
                   </Button>
                 );
               })}
@@ -145,7 +145,7 @@ export const Navigation = ({ className }: NavigationProps) => {
         {isOpen && (
           <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50">
             <div className="container mx-auto px-6 py-4">
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1">
                 {navigationItems.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -154,14 +154,14 @@ export const Navigation = ({ className }: NavigationProps) => {
                       variant="ghost"
                       onClick={() => scrollToSection(item.id)}
                       className={cn(
-                        "flex items-center gap-3 justify-start px-3 py-2 w-full transition-smooth",
+                        "flex items-center gap-3 justify-start px-4 py-3 w-full transition-smooth text-base",
                         activeSection === item.id 
-                          ? "bg-primary/10 text-primary" 
-                          : "hover:bg-muted/50"
+                          ? "bg-primary/10 text-primary font-medium" 
+                          : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
                       )}
                     >
-                      <Icon className="w-4 h-4" />
-                      {item.label}
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
                     </Button>
                   );
                 })}
