@@ -21,6 +21,7 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    console.log("Navigation useEffect triggered");
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
@@ -41,7 +42,11 @@ export const Navigation = ({ className }: NavigationProps) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    console.log("Navigation scroll listener added");
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      console.log("Navigation scroll listener removed");
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {

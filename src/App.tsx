@@ -11,9 +11,10 @@ const App: React.FC = () => {
   console.log("App component rendering");
   
   useEffect(() => {
-    // Initialize performance optimizations
-    preloadCriticalResources();
-    addResourceHints();
+    // Temporarily disable performance optimizations to debug loading issue
+    console.log("App useEffect - skipping performance optimizations for now");
+    // preloadCriticalResources();
+    // addResourceHints();
   }, []);
   
   return (

@@ -21,13 +21,19 @@ export const createLazyLoader = (callback: () => void) => {
 
 // Preload critical resources
 export const preloadCriticalResources = () => {
-  // Preload fonts
-  const fontLink = document.createElement('link');
-  fontLink.rel = 'preload';
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap';
-  fontLink.as = 'style';
-  fontLink.crossOrigin = 'anonymous';
-  document.head.appendChild(fontLink);
+  console.log("Preloading critical resources...");
+  try {
+    // Preload fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'preload';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap';
+    fontLink.as = 'style';
+    fontLink.crossOrigin = 'anonymous';
+    document.head.appendChild(fontLink);
+    console.log("Font preloading completed");
+  } catch (error) {
+    console.error("Error preloading resources:", error);
+  }
 };
 
 // Optimize images with modern formats
