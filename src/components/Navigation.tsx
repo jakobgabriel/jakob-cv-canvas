@@ -93,15 +93,19 @@ export const Navigation = ({ className }: NavigationProps) => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
+    const element = document.getElementById(sectionId === 'education' ? 'timeline' : sectionId);
     if (element) {
       const offsetTop = element.offsetTop - 80;
+      // For education, scroll to middle of timeline
+      const scrollTarget = sectionId === 'education' ? offsetTop + (element.offsetHeight * 0.5) : offsetTop;
+      
       window.scrollTo({
-        top: offsetTop,
+        top: scrollTarget,
         behavior: 'smooth'
       });
       
-      // Update URL hash for copyable links
+      // Immediately update active section and URL
+      setActiveSection(sectionId);
       window.history.pushState(null, '', `#${sectionId}`);
     }
     setIsOpen(false);
