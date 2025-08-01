@@ -1,8 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock } from "lucide-react";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock, Info } from "lucide-react";
 import { useState } from "react";
 import { useJsonResume } from "@/hooks/useJsonResume";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -115,7 +116,19 @@ export const TimelineSection = () => {
                           <span>{edu.institution}</span>
                         </div>
                         {'score' in edu && edu.score && (
-                          <div className="text-sm text-primary font-medium mb-2">Score: {edu.score}</div>
+                          <div className="text-sm text-primary font-medium mb-2 flex items-center gap-2">
+                            <span>Score: {edu.score}</span>
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Info className="w-3 h-3 text-muted-foreground hover:text-primary cursor-help" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="text-xs">German grading system (US equivalent)</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </div>
                         )}
                         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{edu.summary}</p>
                       </div>
@@ -183,9 +196,18 @@ export const TimelineSection = () => {
                   </div>
 
                   {'score' in selectedItem && selectedItem.score && (
-                    <div className="text-primary font-medium text-sm">
-                      <span className="block">{t('timeline.score')}: {selectedItem.score}</span>
-                      <span className="text-xs text-muted-foreground mt-1 block">German grading system (US equivalent)</span>
+                    <div className="text-primary font-medium text-sm flex items-center gap-2">
+                      <span>{t('timeline.score')}: {selectedItem.score}</span>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3 h-3 text-muted-foreground hover:text-primary cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="text-xs">German grading system (US equivalent)</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   )}
 
