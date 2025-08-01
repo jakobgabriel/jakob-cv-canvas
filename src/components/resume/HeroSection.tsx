@@ -56,7 +56,7 @@ export const HeroSection = () => {
       {/* Minimal geometric accent */}
       <div className="absolute inset-0 overflow-hidden will-change-transform">
         <div className="absolute top-20 right-20 w-0.5 h-40 bg-gradient-to-b from-primary/30 to-transparent gpu-accelerated"></div>
-        <div className="absolute bottom-20 left-20 w-40 h-0.5 bg-gradient-to-r from-primary/30 to-transparent gpu-accelerated"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-0.5 bg-gradient-to-r from-primary/40 via-primary/20 to-transparent gpu-accelerated animate-fade-in hover-scale"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
