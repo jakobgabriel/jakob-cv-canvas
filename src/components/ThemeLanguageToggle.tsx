@@ -27,7 +27,7 @@ export const ThemeLanguageToggle = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50 flex gap-2">
+    <div className="fixed top-4 right-6 z-50 flex gap-2">
       {/* Language Toggle */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
