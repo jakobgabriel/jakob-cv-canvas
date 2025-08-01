@@ -10,7 +10,6 @@ interface NavigationProps {
 const navigationItems = [
   { id: 'hero', label: 'About', icon: User },
   { id: 'timeline', label: 'Experience', icon: Briefcase },
-  { id: 'education', label: 'Education', icon: GraduationCap },
   { id: 'skills', label: 'Skills', icon: Award },
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
@@ -44,42 +43,20 @@ export const Navigation = ({ className }: NavigationProps) => {
       // Skip section detection during programmatic scrolling
       if (isScrolling) return;
       
-      // Improved active section detection with better logic
-      const sections = [
-        { id: 'hero', element: document.getElementById('hero') },
-        { id: 'timeline', element: document.getElementById('timeline') },
-        { id: 'education', element: document.getElementById('timeline') }, // Education is part of timeline
-        { id: 'skills', element: document.getElementById('skills') },
-        { id: 'contact', element: document.getElementById('contact') }
-      ];
-      
-      let currentSection = 'hero';
-      
+      // Simplified active section detection
+      const sections = ['hero', 'timeline', 'skills', 'contact'];
       for (const section of sections) {
-        if (section.element) {
-          const rect = section.element.getBoundingClientRect();
-          // Check if section is in view (top is above middle of screen)
-          if (rect.top <= window.innerHeight / 2) {
-            currentSection = section.id;
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            // Update URL without triggering scroll
+            if (window.location.hash !== `#${section}`) {
+              window.history.replaceState(null, '', `#${section}`);
+            }
+            break;
           }
-        }
-      }
-      
-      // Special handling for education - activate when in middle part of timeline
-      const timelineElement = document.getElementById('timeline');
-      if (timelineElement) {
-        const rect = timelineElement.getBoundingClientRect();
-        const timelineProgress = Math.abs(rect.top) / (timelineElement.offsetHeight - window.innerHeight);
-        if (timelineProgress > 0.4 && timelineProgress < 0.8 && rect.top <= 100 && rect.bottom >= 100) {
-          currentSection = 'education';
-        }
-      }
-      
-      if (currentSection !== activeSection) {
-        setActiveSection(currentSection);
-        // Update URL without triggering scroll
-        if (window.location.hash !== `#${currentSection}`) {
-          window.history.replaceState(null, '', `#${currentSection}`);
         }
       }
     };
@@ -100,14 +77,12 @@ export const Navigation = ({ className }: NavigationProps) => {
     setIsScrolling(true);
     setActiveSection(sectionId);
     
-    const element = document.getElementById(sectionId === 'education' ? 'timeline' : sectionId);
+    const element = document.getElementById(sectionId);
     if (element) {
       const offsetTop = element.offsetTop - 80;
-      // For education, scroll to middle of timeline
-      const scrollTarget = sectionId === 'education' ? offsetTop + (element.offsetHeight * 0.4) : offsetTop;
       
       window.scrollTo({
-        top: scrollTarget,
+        top: offsetTop,
         behavior: 'smooth'
       });
       
