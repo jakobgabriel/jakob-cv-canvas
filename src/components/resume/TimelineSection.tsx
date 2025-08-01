@@ -183,8 +183,9 @@ export const TimelineSection = () => {
                   </div>
 
                   {'score' in selectedItem && selectedItem.score && (
-                    <div className="text-primary font-medium">
-                      {t('timeline.score')}: {selectedItem.score}
+                    <div className="text-primary font-medium text-sm">
+                      <span className="block">{t('timeline.score')}: {selectedItem.score}</span>
+                      <span className="text-xs text-muted-foreground mt-1 block">German grading system (US equivalent)</span>
                     </div>
                   )}
 
