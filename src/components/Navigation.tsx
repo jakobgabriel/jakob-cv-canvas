@@ -19,6 +19,7 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     // Handle initial hash on page load
@@ -39,6 +40,9 @@ export const Navigation = ({ className }: NavigationProps) => {
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Skip section detection during programmatic scrolling
+      if (isScrolling) return;
       
       // Improved active section detection with better logic
       const sections = [
@@ -93,20 +97,27 @@ export const Navigation = ({ className }: NavigationProps) => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    setIsScrolling(true);
+    setActiveSection(sectionId);
+    
     const element = document.getElementById(sectionId === 'education' ? 'timeline' : sectionId);
     if (element) {
       const offsetTop = element.offsetTop - 80;
       // For education, scroll to middle of timeline
-      const scrollTarget = sectionId === 'education' ? offsetTop + (element.offsetHeight * 0.5) : offsetTop;
+      const scrollTarget = sectionId === 'education' ? offsetTop + (element.offsetHeight * 0.4) : offsetTop;
       
       window.scrollTo({
         top: scrollTarget,
         behavior: 'smooth'
       });
       
-      // Immediately update active section and URL
-      setActiveSection(sectionId);
+      // Update URL
       window.history.pushState(null, '', `#${sectionId}`);
+      
+      // Re-enable scroll detection after smooth scrolling completes
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
     }
     setIsOpen(false);
   };
