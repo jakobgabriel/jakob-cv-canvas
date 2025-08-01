@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { useJsonResume } from "@/hooks/useJsonResume";
 import { useConfig } from "@/hooks/useConfig";
@@ -18,12 +18,38 @@ export const HeroSection = () => {
 
   const { basics } = resumeData;
   
-  // Get social profiles with fallback
-  const getProfile = (network: string) => basics.profiles?.find(p => p.network === network);
-  const linkedinProfile = getProfile('LinkedIn');
-  const githubProfile = getProfile('GitHub');
-  const xProfile = getProfile('X') || getProfile('Twitter');
-  const xingProfile = getProfile('Xing');
+  // Define profile configurations for the 10 most common platforms
+  const profileConfigs = {
+    'LinkedIn': { icon: LinkedinIcon, color: 'text-blue-600' },
+    'GitHub': { icon: Github, color: 'text-gray-900 dark:text-gray-100' },
+    'Twitter': { icon: Twitter, color: 'text-blue-400' },
+    'X': { 
+      icon: () => (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      ), 
+      color: 'text-gray-900 dark:text-gray-100' 
+    },
+    'Instagram': { icon: Instagram, color: 'text-pink-600' },
+    'Facebook': { icon: Facebook, color: 'text-blue-600' },
+    'YouTube': { icon: Youtube, color: 'text-red-600' },
+    'Portfolio': { icon: ExternalLink, color: 'text-purple-600' },
+    'Website': { icon: Globe, color: 'text-green-600' },
+    'Xing': { 
+      icon: () => (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.284.552 4.727 8.58 4.727 8.58.186.335.517.66.927.66h3.905c.74 0 .927-.558.927-.558 0-.182-.239-.517-.239-.517l-4.683-8.326s7.647-13.567 7.647-13.567c.018-.036.018-.073.018-.11C22.789.29 22.506 0 22.506 0h-4.318zm-14.1 6.429c-.741 0-.927.558-.927.558 0 .181.239.517.239.517l2.623 4.797s-2.987 5.51-2.987 5.51c-.018.036-.018.073-.018.11 0 .558.284.848.284.848h4.318c.517 0 .741-.325.927-.66 0 0 3.041-5.619 3.041-5.619l-2.623-4.797s-.239-.517-.239-.517c-.186-.335-.517-.66-.927-.66H4.088z"/>
+        </svg>
+      ), 
+      color: 'text-teal-600' 
+    }
+  };
+
+  // Get all available profiles
+  const availableProfiles = basics.profiles?.filter(profile => 
+    profileConfigs[profile.network as keyof typeof profileConfigs]
+  ) || [];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-subtle pt-16">
@@ -79,29 +105,36 @@ export const HeroSection = () => {
               </div>
             </div>
             
-            {/* Social Links - Professional Style */}
+            {/* Social Links - Dynamic Support for 10 Most Common Platforms */}
             <div className="flex flex-wrap gap-3 justify-center">
-              {linkedinProfile && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-border/50 hover:border-primary transition-smooth"
-                  asChild
-                >
-                  <a 
-                    href={linkedinProfile.url}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                    onClick={() => trackSocialClick('LinkedIn', linkedinProfile.url)}
+              {availableProfiles.map((profile) => {
+                const config = profileConfigs[profile.network as keyof typeof profileConfigs];
+                const IconComponent = config.icon;
+                
+                return (
+                  <Button 
+                    key={profile.network}
+                    variant="outline" 
+                    size="sm"
+                    className="border-border/50 hover:border-primary transition-smooth"
+                    asChild
                   >
-                    <LinkedinIcon className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                </Button>
-              )}
+                    <a 
+                      href={profile.url}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                      onClick={() => trackSocialClick(profile.network, profile.url)}
+                    >
+                      <IconComponent className="w-4 h-4" />
+                      {profile.network}
+                    </a>
+                  </Button>
+                );
+              })}
               
-              {githubProfile && (
+              {/* Email - Always show if available */}
+              {basics.email && (
                 <Button 
                   variant="outline" 
                   size="sm"
@@ -109,76 +142,14 @@ export const HeroSection = () => {
                   asChild
                 >
                   <a 
-                    href={githubProfile.url}
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    href={`mailto:${basics.email}`}
                     className="flex items-center gap-2"
-                    onClick={() => trackSocialClick('GitHub', githubProfile.url)}
                   >
-                    <Github className="w-4 h-4" />
-                    GitHub
+                    <Mail className="w-4 h-4" />
+                    Email
                   </a>
                 </Button>
               )}
-
-              {xProfile && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-border/50 hover:border-primary transition-smooth"
-                  asChild
-                >
-                  <a 
-                    href={xProfile.url}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                    onClick={() => trackSocialClick('X', xProfile.url)}
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                    X
-                  </a>
-                </Button>
-              )}
-
-              {xingProfile && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-border/50 hover:border-primary transition-smooth"
-                  asChild
-                >
-                  <a 
-                    href={xingProfile.url}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                    onClick={() => trackSocialClick('Xing', xingProfile.url)}
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.284.552 4.727 8.58 4.727 8.58.186.335.517.66.927.66h3.905c.74 0 .927-.558.927-.558 0-.182-.239-.517-.239-.517l-4.683-8.326s7.647-13.567 7.647-13.567c.018-.036.018-.073.018-.11C22.789.29 22.506 0 22.506 0h-4.318zm-14.1 6.429c-.741 0-.927.558-.927.558 0 .181.239.517.239.517l2.623 4.797s-2.987 5.51-2.987 5.51c-.018.036-.018.073-.018.11 0 .558.284.848.284.848h4.318c.517 0 .741-.325.927-.66 0 0 3.041-5.619 3.041-5.619l-2.623-4.797s-.239-.517-.239-.517c-.186-.335-.517-.66-.927-.66H4.088z"/>
-                    </svg>
-                    Xing
-                  </a>
-                </Button>
-              )}
-              
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-border/50 hover:border-primary transition-smooth"
-                asChild
-              >
-                <a 
-                  href={`mailto:${basics.email}`}
-                  className="flex items-center gap-2"
-                >
-                  <Mail className="w-4 h-4" />
-                  Email
-                </a>
-              </Button>
             </div>
             
             {config.features.downloadResume.enabled && (
