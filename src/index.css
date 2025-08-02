@@ -185,4 +185,254 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* Professional Print Styles */
+  @media print {
+    @page {
+      margin: 0.5in;
+      size: A4;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Hide non-essential elements */
+    .fixed,
+    nav,
+    footer,
+    .no-print {
+      display: none !important;
+    }
+
+    /* Reset backgrounds and colors for print */
+    body {
+      background: white !important;
+      color: black !important;
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+
+    /* Hero section - compact for print */
+    #hero {
+      page-break-after: avoid;
+      margin-bottom: 1rem;
+      padding: 0 !important;
+      min-height: auto !important;
+      background: none !important;
+    }
+
+    #hero .container {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+
+    #hero img {
+      width: 80px !important;
+      height: 80px !important;
+      border: 2px solid #333 !important;
+    }
+
+    #hero h1 {
+      font-size: 24pt !important;
+      font-weight: bold !important;
+      margin: 0.5rem 0 !important;
+      color: black !important;
+    }
+
+    #hero h2 {
+      font-size: 14pt !important;
+      margin: 0.25rem 0 !important;
+      color: #333 !important;
+    }
+
+    #hero p {
+      font-size: 11pt !important;
+      margin: 0.5rem 0 !important;
+      color: #444 !important;
+    }
+
+    /* Contact info - inline for print */
+    #hero .flex.flex-wrap {
+      display: block !important;
+      margin: 0.5rem 0 !important;
+    }
+
+    #hero .flex.flex-wrap > div {
+      display: inline-block !important;
+      margin-right: 1rem !important;
+      font-size: 10pt !important;
+    }
+
+    /* Hide social buttons, show contact info only */
+    #hero .flex.gap-3 {
+      display: none !important;
+    }
+
+    /* Timeline section */
+    #timeline {
+      page-break-inside: avoid;
+      margin: 1rem 0;
+    }
+
+    #timeline h2 {
+      font-size: 16pt !important;
+      font-weight: bold !important;
+      border-bottom: 2px solid #333 !important;
+      padding-bottom: 0.25rem !important;
+      margin-bottom: 0.5rem !important;
+      color: black !important;
+    }
+
+    /* Experience items */
+    .experience-item,
+    .education-item {
+      page-break-inside: avoid;
+      margin-bottom: 1rem !important;
+      border-left: 3px solid #333 !important;
+      padding-left: 0.75rem !important;
+    }
+
+    .experience-item h3,
+    .education-item h3 {
+      font-size: 13pt !important;
+      font-weight: bold !important;
+      margin: 0 !important;
+      color: black !important;
+    }
+
+    .experience-item h4,
+    .education-item h4 {
+      font-size: 11pt !important;
+      font-weight: normal !important;
+      color: #333 !important;
+      margin: 0.1rem 0 !important;
+    }
+
+    .experience-item .date,
+    .education-item .date {
+      font-size: 10pt !important;
+      color: #666 !important;
+      font-style: italic !important;
+    }
+
+    .experience-item p,
+    .education-item p {
+      font-size: 10pt !important;
+      margin: 0.25rem 0 !important;
+      color: #444 !important;
+    }
+
+    .experience-item ul,
+    .education-item ul {
+      margin: 0.25rem 0 !important;
+      padding-left: 1rem !important;
+    }
+
+    .experience-item li,
+    .education-item li {
+      font-size: 10pt !important;
+      margin: 0.1rem 0 !important;
+      color: #444 !important;
+    }
+
+    /* Skills section */
+    #skills {
+      page-break-inside: avoid;
+      margin: 1rem 0;
+    }
+
+    #skills h2 {
+      font-size: 16pt !important;
+      font-weight: bold !important;
+      border-bottom: 2px solid #333 !important;
+      padding-bottom: 0.25rem !important;
+      margin-bottom: 0.5rem !important;
+      color: black !important;
+    }
+
+    .skill-category {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .skill-category h3 {
+      font-size: 12pt !important;
+      font-weight: bold !important;
+      margin: 0 0 0.25rem 0 !important;
+      color: black !important;
+    }
+
+    .skill-item {
+      display: inline-block !important;
+      margin-right: 0.5rem !important;
+      margin-bottom: 0.25rem !important;
+      padding: 0.1rem 0.3rem !important;
+      border: 1px solid #333 !important;
+      border-radius: 3px !important;
+      font-size: 9pt !important;
+      background: #f5f5f5 !important;
+      color: black !important;
+    }
+
+    /* Contact section */
+    #contact {
+      page-break-before: avoid;
+      margin: 1rem 0;
+    }
+
+    #contact h2 {
+      font-size: 16pt !important;
+      font-weight: bold !important;
+      border-bottom: 2px solid #333 !important;
+      padding-bottom: 0.25rem !important;
+      margin-bottom: 0.5rem !important;
+      color: black !important;
+    }
+
+    #contact .contact-item {
+      margin: 0.25rem 0 !important;
+      font-size: 11pt !important;
+      color: #444 !important;
+    }
+
+    /* Remove decorative elements */
+    .absolute,
+    .gradient,
+    .backdrop-blur,
+    .shadow-lg,
+    .shadow-xl,
+    .animate-pulse,
+    .animate-fade-in {
+      display: none !important;
+    }
+
+    /* Ensure proper spacing between sections */
+    section {
+      margin: 1rem 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Typography consistency */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Times New Roman', serif !important;
+      page-break-after: avoid !important;
+    }
+
+    p, li, span {
+      font-family: 'Times New Roman', serif !important;
+      orphans: 2;
+      widows: 2;
+    }
+
+    /* Prevent awkward page breaks */
+    .page-break-avoid {
+      page-break-inside: avoid;
+    }
+
+    .page-break-before {
+      page-break-before: always;
+    }
+  }
 }
