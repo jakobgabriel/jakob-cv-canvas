@@ -216,15 +216,7 @@
     footer,
     button,
     .no-print,
-    .absolute,
-    .relative > div:first-child, /* decorative elements */
-    .shadow-minimal,
-    .shadow-professional,
-    .shadow-dramatic,
-    .backdrop-blur-sm,
-    .bg-gradient-subtle,
-    .bg-gradient-primary,
-    .bg-gradient-accent {
+    .absolute {
       display: none !important;
     }
 
@@ -261,36 +253,11 @@
       margin: 0 !important;
     }
 
-    #hero > div:first-child {
-      display: none !important; /* Hide decorative elements */
-    }
-
-    #hero .max-w-4xl {
-      max-width: 100% !important;
-      margin: 0 !important;
-    }
-
-    #hero .space-y-12 {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    #hero .space-y-12 > * {
-      margin: 0.25rem 0 !important;
-    }
-
-    /* Portrait */
-    #hero .w-32, #hero .w-36 {
+    #hero img {
       width: 60px !important;
       height: 60px !important;
       margin: 0 auto 0.5rem auto !important;
       border: 1px solid #333 !important;
-    }
-
-    #hero img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
     }
 
     /* Name and title */
@@ -316,21 +283,21 @@
     }
 
     /* Contact info - inline */
-    #hero .flex.flex-wrap.justify-center.gap-8 {
+    #hero div[class*="flex"][class*="wrap"] {
       display: block !important;
       text-align: center !important;
       margin: 0.25rem 0 !important;
       font-size: 9pt !important;
     }
 
-    #hero .flex.flex-wrap.justify-center.gap-8 > div {
+    #hero div[class*="flex"][class*="wrap"] > div {
       display: inline !important;
       margin-right: 1rem !important;
     }
 
     /* Hide all buttons and social links */
-    #hero .flex.gap-3,
-    #hero .px-8 {
+    #hero div[class*="gap-3"],
+    #hero div[class*="px-8"] {
       display: none !important;
     }
 
@@ -362,18 +329,14 @@
       padding: 0 !important;
     }
 
-    #timeline .text-center.mb-16 {
+    #timeline div[class*="text-center"][class*="mb-16"] {
       display: none !important; /* Hide intro text */
     }
 
-    #timeline .grid.lg\\:grid-cols-2 {
+    #timeline div[class*="grid"] {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 1rem !important;
-      margin: 0 !important;
-    }
-
-    #timeline .space-y-8 {
       margin: 0 !important;
     }
 
@@ -385,10 +348,10 @@
       padding-bottom: 0.1rem !important;
     }
 
-    /* Experience/Education cards */
-    .Card,
-    #timeline .space-y-4 > div,
-    .bg-card\\/50 {
+    /* Experience/Education cards - target by class patterns */
+    [class*="Card"],
+    div[class*="bg-card"],
+    div[class*="shadow-"] {
       background: none !important;
       border: none !important;
       box-shadow: none !important;
@@ -399,37 +362,28 @@
       padding-left: 0.5rem !important;
     }
 
-    .Card .p-6 {
+    div[class*="p-6"] {
       padding: 0 !important;
     }
 
-    .Card .flex.items-start.gap-4 {
+    div[class*="flex"][class*="items-start"][class*="gap-4"] {
       display: block !important;
     }
 
-    .Card .p-2.rounded {
+    div[class*="p-2"][class*="rounded"] {
       display: none !important; /* Hide icons */
     }
 
-    .Card .flex-1.min-w-0 {
-      margin: 0 !important;
-    }
-
     /* Dates */
-    .Card .flex.items-center.gap-2.text-primary {
-      display: block !important;
+    div[class*="text-primary"] span[class*="font-mono"] {
+      font-family: 'Times New Roman', serif !important;
       font-size: 9pt !important;
       font-weight: bold !important;
-      margin: 0 0 0.1rem 0 !important;
-    }
-
-    .Card .text-xs.font-mono {
-      font-family: 'Times New Roman', serif !important;
       text-transform: none !important;
     }
 
     /* Position/Degree */
-    .Card h4 {
+    h4 {
       font-size: 10pt !important;
       font-weight: bold !important;
       margin: 0 0 0.1rem 0 !important;
@@ -437,22 +391,22 @@
     }
 
     /* Company/Institution */
-    .Card .text-muted-foreground.font-medium {
+    div[class*="text-muted-foreground"][class*="font-medium"] {
       font-size: 9pt !important;
       font-weight: normal !important;
       margin: 0 0 0.1rem 0 !important;
     }
 
     /* Summary */
-    .Card p {
+    p[class*="text-sm"] {
       font-size: 9pt !important;
       margin: 0.1rem 0 !important;
       line-height: 1.2 !important;
     }
 
-    /* Hide arrows */
-    .ArrowRight,
-    .w-4.h-4.text-muted-foreground {
+    /* Hide arrows and icons */
+    svg,
+    [class*="w-4"][class*="h-4"] {
       display: none !important;
     }
 
@@ -462,99 +416,59 @@
       padding: 0 !important;
     }
 
-    #skills .text-center.mb-16 {
+    #skills div[class*="text-center"][class*="mb-16"] {
       display: none !important; /* Hide intro text */
     }
 
-    #skills .max-w-6xl {
+    #skills div[class*="max-w-6xl"] {
       max-width: 100% !important;
       margin: 0 !important;
     }
 
-    #skills .space-y-12 {
-      margin: 0 !important;
-    }
-
     /* Skills grid - make horizontal */
-    #skills .grid.lg\\:grid-cols-3 {
+    #skills div[class*="grid"] {
       display: grid !important;
       grid-template-columns: 1fr 1fr 1fr !important;
       gap: 0.5rem !important;
       margin: 0 0 0.5rem 0 !important;
     }
 
-    #skills .Card {
+    #skills div[class*="Card"] {
       background: none !important;
       border: 1px solid #333 !important;
       margin: 0 !important;
       padding: 0.25rem !important;
     }
 
-    #skills .Card .p-6 {
-      padding: 0.25rem !important;
-    }
-
-    #skills .Card h3 {
+    #skills h3 {
       font-size: 9pt !important;
       font-weight: bold !important;
       margin: 0 0 0.25rem 0 !important;
     }
 
-    #skills .Card .flex.items-center.gap-3 {
-      display: block !important;
-      margin: 0 0 0.25rem 0 !important;
-    }
-
-    #skills .Card .w-5.h-5 {
-      display: none !important; /* Hide icons */
-    }
-
     /* Skill items */
-    #skills .space-y-4 > div,
-    #skills .space-y-2 {
-      margin: 0.1rem 0 !important;
-    }
-
-    #skills .text-sm.font-medium,
-    #skills .text-xs.text-primary {
+    span[class*="text-sm"],
+    span[class*="text-xs"] {
       font-size: 8pt !important;
       margin: 0 !important;
     }
 
-    /* Progress bars - replace with text */
-    #skills .w-full.bg-secondary\\/50,
-    #skills .bg-primary.h-1\\.5 {
+    /* Progress bars - hide */
+    div[class*="bg-secondary"],
+    div[class*="bg-primary"][class*="h-"] {
       display: none !important;
     }
 
     /* Technical skills section */
-    #skills .Card:last-child {
+    #skills div[class*="Card"]:last-child {
       grid-column: 1 / -1 !important;
       border: 1px solid #333 !important;
       padding: 0.25rem !important;
     }
 
-    #skills .grid.md\\:grid-cols-2 {
-      display: grid !important;
-      grid-template-columns: repeat(4, 1fr) !important;
-      gap: 0.5rem !important;
-    }
-
-    #skills .space-y-3 {
-      margin: 0 !important;
-    }
-
-    #skills .space-y-3 h4 {
-      font-size: 8pt !important;
-      font-weight: bold !important;
-      margin: 0 0 0.1rem 0 !important;
-      border-bottom: 0.5px solid #666 !important;
-      padding-bottom: 0.05rem !important;
-    }
-
     /* Skills badges */
-    .Badge,
-    #skills .flex.flex-wrap.gap-2 > span {
+    span[class*="Badge"],
+    span[class*="badge"] {
       display: inline !important;
       background: none !important;
       border: 0.5px solid #333 !important;
@@ -575,17 +489,15 @@
     }
 
     /* Hide modal/overlay elements */
-    .fixed.inset-0,
-    .z-50 {
+    div[class*="fixed"][class*="inset-0"],
+    div[class*="z-50"] {
       display: none !important;
     }
 
     /* General cleanup */
-    .transition-smooth,
-    .hover\\:shadow-professional,
-    .hover\\:shadow-dramatic,
-    .animate-fade-in,
-    .hover-scale {
+    [class*="transition"],
+    [class*="hover"],
+    [class*="animate"] {
       transition: none !important;
       animation: none !important;
     }
