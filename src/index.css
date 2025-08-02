@@ -186,7 +186,7 @@
     }
   }
 
-  /* Professional Print Styles */
+  /* Professional Print Styles - Traditional Resume Layout */
   @media print {
     @page {
       margin: 0.5in;
@@ -199,240 +199,415 @@
       print-color-adjust: exact !important;
     }
 
-    /* Hide non-essential elements */
+    /* Force white background and black text always */
+    *,
+    *::before,
+    *::after {
+      background: white !important;
+      color: black !important;
+      border-color: #333 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    /* Hide all webpage structure elements */
     .fixed,
     nav,
     footer,
-    .no-print {
+    button,
+    .no-print,
+    .absolute,
+    .relative > div:first-child, /* decorative elements */
+    .shadow-minimal,
+    .shadow-professional,
+    .shadow-dramatic,
+    .backdrop-blur-sm,
+    .bg-gradient-subtle,
+    .bg-gradient-primary,
+    .bg-gradient-accent {
       display: none !important;
     }
 
-    /* Reset backgrounds and colors for print */
-    body {
+    /* Reset body and html */
+    html, body {
+      height: auto !important;
       background: white !important;
       color: black !important;
-      font-size: 12pt;
-      line-height: 1.4;
+      font-family: 'Times New Roman', serif !important;
+      font-size: 11pt !important;
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    /* Hero section - compact for print */
-    #hero {
-      page-break-after: avoid;
-      margin-bottom: 1rem;
-      padding: 0 !important;
+    /* Create traditional resume layout */
+    .min-h-screen {
       min-height: auto !important;
+      display: block !important;
+    }
+
+    /* Header Section - Compact */
+    #hero {
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 0 0.5rem 0 !important;
       background: none !important;
+      text-align: center !important;
     }
 
     #hero .container {
       max-width: 100% !important;
       padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    #hero > div:first-child {
+      display: none !important; /* Hide decorative elements */
+    }
+
+    #hero .max-w-4xl {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+
+    #hero .space-y-12 {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #hero .space-y-12 > * {
+      margin: 0.25rem 0 !important;
+    }
+
+    /* Portrait */
+    #hero .w-32, #hero .w-36 {
+      width: 60px !important;
+      height: 60px !important;
+      margin: 0 auto 0.5rem auto !important;
+      border: 1px solid #333 !important;
     }
 
     #hero img {
-      width: 80px !important;
-      height: 80px !important;
-      border: 2px solid #333 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
     }
 
+    /* Name and title */
     #hero h1 {
-      font-size: 24pt !important;
+      font-size: 18pt !important;
       font-weight: bold !important;
-      margin: 0.5rem 0 !important;
-      color: black !important;
+      margin: 0.25rem 0 !important;
+      text-align: center !important;
     }
 
     #hero h2 {
-      font-size: 14pt !important;
+      font-size: 12pt !important;
       margin: 0.25rem 0 !important;
-      color: #333 !important;
+      text-align: center !important;
+      font-weight: normal !important;
     }
 
     #hero p {
-      font-size: 11pt !important;
-      margin: 0.5rem 0 !important;
-      color: #444 !important;
-    }
-
-    /* Contact info - inline for print */
-    #hero .flex.flex-wrap {
-      display: block !important;
-      margin: 0.5rem 0 !important;
-    }
-
-    #hero .flex.flex-wrap > div {
-      display: inline-block !important;
-      margin-right: 1rem !important;
       font-size: 10pt !important;
+      margin: 0.25rem 0 !important;
+      text-align: center !important;
+      line-height: 1.2 !important;
     }
 
-    /* Hide social buttons, show contact info only */
-    #hero .flex.gap-3 {
+    /* Contact info - inline */
+    #hero .flex.flex-wrap.justify-center.gap-8 {
+      display: block !important;
+      text-align: center !important;
+      margin: 0.25rem 0 !important;
+      font-size: 9pt !important;
+    }
+
+    #hero .flex.flex-wrap.justify-center.gap-8 > div {
+      display: inline !important;
+      margin-right: 1rem !important;
+    }
+
+    /* Hide all buttons and social links */
+    #hero .flex.gap-3,
+    #hero .px-8 {
       display: none !important;
     }
 
-    /* Timeline section */
-    #timeline {
+    /* Main content sections */
+    #timeline,
+    #skills,
+    #contact {
       page-break-inside: avoid;
-      margin: 1rem 0;
+      margin: 0.75rem 0 !important;
+      padding: 0 !important;
     }
 
-    #timeline h2 {
-      font-size: 16pt !important;
-      font-weight: bold !important;
-      border-bottom: 2px solid #333 !important;
-      padding-bottom: 0.25rem !important;
-      margin-bottom: 0.5rem !important;
-      color: black !important;
-    }
-
-    /* Experience items */
-    .experience-item,
-    .education-item {
-      page-break-inside: avoid;
-      margin-bottom: 1rem !important;
-      border-left: 3px solid #333 !important;
-      padding-left: 0.75rem !important;
-    }
-
-    .experience-item h3,
-    .education-item h3 {
+    /* Section headers */
+    #timeline h2,
+    #skills h2,
+    #contact h2 {
       font-size: 13pt !important;
       font-weight: bold !important;
+      text-transform: uppercase !important;
+      border-bottom: 1px solid #333 !important;
+      padding-bottom: 0.1rem !important;
+      margin: 0 0 0.5rem 0 !important;
+      text-align: left !important;
+    }
+
+    /* Timeline section - two columns */
+    #timeline .container {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+
+    #timeline .text-center.mb-16 {
+      display: none !important; /* Hide intro text */
+    }
+
+    #timeline .grid.lg\\:grid-cols-2 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1rem !important;
       margin: 0 !important;
-      color: black !important;
     }
 
-    .experience-item h4,
-    .education-item h4 {
+    #timeline .space-y-8 {
+      margin: 0 !important;
+    }
+
+    #timeline h3 {
       font-size: 11pt !important;
-      font-weight: normal !important;
-      color: #333 !important;
-      margin: 0.1rem 0 !important;
-    }
-
-    .experience-item .date,
-    .education-item .date {
-      font-size: 10pt !important;
-      color: #666 !important;
-      font-style: italic !important;
-    }
-
-    .experience-item p,
-    .education-item p {
-      font-size: 10pt !important;
-      margin: 0.25rem 0 !important;
-      color: #444 !important;
-    }
-
-    .experience-item ul,
-    .education-item ul {
-      margin: 0.25rem 0 !important;
-      padding-left: 1rem !important;
-    }
-
-    .experience-item li,
-    .education-item li {
-      font-size: 10pt !important;
-      margin: 0.1rem 0 !important;
-      color: #444 !important;
-    }
-
-    /* Skills section */
-    #skills {
-      page-break-inside: avoid;
-      margin: 1rem 0;
-    }
-
-    #skills h2 {
-      font-size: 16pt !important;
-      font-weight: bold !important;
-      border-bottom: 2px solid #333 !important;
-      padding-bottom: 0.25rem !important;
-      margin-bottom: 0.5rem !important;
-      color: black !important;
-    }
-
-    .skill-category {
-      margin-bottom: 0.75rem !important;
-    }
-
-    .skill-category h3 {
-      font-size: 12pt !important;
       font-weight: bold !important;
       margin: 0 0 0.25rem 0 !important;
-      color: black !important;
+      border-bottom: 0.5px solid #666 !important;
+      padding-bottom: 0.1rem !important;
     }
 
-    .skill-item {
-      display: inline-block !important;
-      margin-right: 0.5rem !important;
-      margin-bottom: 0.25rem !important;
-      padding: 0.1rem 0.3rem !important;
-      border: 1px solid #333 !important;
-      border-radius: 3px !important;
+    /* Experience/Education cards */
+    .Card,
+    #timeline .space-y-4 > div,
+    .bg-card\\/50 {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin: 0 0 0.5rem 0 !important;
+      padding: 0 !important;
+      cursor: default !important;
+      border-left: 2px solid #333 !important;
+      padding-left: 0.5rem !important;
+    }
+
+    .Card .p-6 {
+      padding: 0 !important;
+    }
+
+    .Card .flex.items-start.gap-4 {
+      display: block !important;
+    }
+
+    .Card .p-2.rounded {
+      display: none !important; /* Hide icons */
+    }
+
+    .Card .flex-1.min-w-0 {
+      margin: 0 !important;
+    }
+
+    /* Dates */
+    .Card .flex.items-center.gap-2.text-primary {
+      display: block !important;
       font-size: 9pt !important;
-      background: #f5f5f5 !important;
-      color: black !important;
+      font-weight: bold !important;
+      margin: 0 0 0.1rem 0 !important;
+    }
+
+    .Card .text-xs.font-mono {
+      font-family: 'Times New Roman', serif !important;
+      text-transform: none !important;
+    }
+
+    /* Position/Degree */
+    .Card h4 {
+      font-size: 10pt !important;
+      font-weight: bold !important;
+      margin: 0 0 0.1rem 0 !important;
+      line-height: 1.2 !important;
+    }
+
+    /* Company/Institution */
+    .Card .text-muted-foreground.font-medium {
+      font-size: 9pt !important;
+      font-weight: normal !important;
+      margin: 0 0 0.1rem 0 !important;
+    }
+
+    /* Summary */
+    .Card p {
+      font-size: 9pt !important;
+      margin: 0.1rem 0 !important;
+      line-height: 1.2 !important;
+    }
+
+    /* Hide arrows */
+    .ArrowRight,
+    .w-4.h-4.text-muted-foreground {
+      display: none !important;
+    }
+
+    /* Skills section - compact grid */
+    #skills .container {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+
+    #skills .text-center.mb-16 {
+      display: none !important; /* Hide intro text */
+    }
+
+    #skills .max-w-6xl {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+
+    #skills .space-y-12 {
+      margin: 0 !important;
+    }
+
+    /* Skills grid - make horizontal */
+    #skills .grid.lg\\:grid-cols-3 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 0.5rem !important;
+      margin: 0 0 0.5rem 0 !important;
+    }
+
+    #skills .Card {
+      background: none !important;
+      border: 1px solid #333 !important;
+      margin: 0 !important;
+      padding: 0.25rem !important;
+    }
+
+    #skills .Card .p-6 {
+      padding: 0.25rem !important;
+    }
+
+    #skills .Card h3 {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      margin: 0 0 0.25rem 0 !important;
+    }
+
+    #skills .Card .flex.items-center.gap-3 {
+      display: block !important;
+      margin: 0 0 0.25rem 0 !important;
+    }
+
+    #skills .Card .w-5.h-5 {
+      display: none !important; /* Hide icons */
+    }
+
+    /* Skill items */
+    #skills .space-y-4 > div,
+    #skills .space-y-2 {
+      margin: 0.1rem 0 !important;
+    }
+
+    #skills .text-sm.font-medium,
+    #skills .text-xs.text-primary {
+      font-size: 8pt !important;
+      margin: 0 !important;
+    }
+
+    /* Progress bars - replace with text */
+    #skills .w-full.bg-secondary\\/50,
+    #skills .bg-primary.h-1\\.5 {
+      display: none !important;
+    }
+
+    /* Technical skills section */
+    #skills .Card:last-child {
+      grid-column: 1 / -1 !important;
+      border: 1px solid #333 !important;
+      padding: 0.25rem !important;
+    }
+
+    #skills .grid.md\\:grid-cols-2 {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 0.5rem !important;
+    }
+
+    #skills .space-y-3 {
+      margin: 0 !important;
+    }
+
+    #skills .space-y-3 h4 {
+      font-size: 8pt !important;
+      font-weight: bold !important;
+      margin: 0 0 0.1rem 0 !important;
+      border-bottom: 0.5px solid #666 !important;
+      padding-bottom: 0.05rem !important;
+    }
+
+    /* Skills badges */
+    .Badge,
+    #skills .flex.flex-wrap.gap-2 > span {
+      display: inline !important;
+      background: none !important;
+      border: 0.5px solid #333 !important;
+      padding: 0.05rem 0.2rem !important;
+      margin: 0.05rem !important;
+      font-size: 7pt !important;
+      border-radius: 2px !important;
     }
 
     /* Contact section */
     #contact {
-      page-break-before: avoid;
-      margin: 1rem 0;
+      margin: 0.5rem 0 0 0 !important;
     }
 
-    #contact h2 {
-      font-size: 16pt !important;
-      font-weight: bold !important;
-      border-bottom: 2px solid #333 !important;
-      padding-bottom: 0.25rem !important;
-      margin-bottom: 0.5rem !important;
-      color: black !important;
-    }
-
-    #contact .contact-item {
-      margin: 0.25rem 0 !important;
-      font-size: 11pt !important;
-      color: #444 !important;
-    }
-
-    /* Remove decorative elements */
-    .absolute,
-    .gradient,
-    .backdrop-blur,
-    .shadow-lg,
-    .shadow-xl,
-    .animate-pulse,
-    .animate-fade-in {
-      display: none !important;
-    }
-
-    /* Ensure proper spacing between sections */
-    section {
-      margin: 1rem 0 !important;
+    #contact .container {
+      max-width: 100% !important;
       padding: 0 !important;
     }
 
-    /* Typography consistency */
+    /* Hide modal/overlay elements */
+    .fixed.inset-0,
+    .z-50 {
+      display: none !important;
+    }
+
+    /* General cleanup */
+    .transition-smooth,
+    .hover\\:shadow-professional,
+    .hover\\:shadow-dramatic,
+    .animate-fade-in,
+    .hover-scale {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    /* Ensure proper page breaks */
+    .page-break-avoid {
+      page-break-inside: avoid !important;
+    }
+
+    /* Compact spacing for single page fit */
+    * {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
     h1, h2, h3, h4, h5, h6 {
-      font-family: 'Times New Roman', serif !important;
       page-break-after: avoid !important;
     }
 
-    p, li, span {
-      font-family: 'Times New Roman', serif !important;
+    p, li {
       orphans: 2;
       widows: 2;
-    }
-
-    /* Prevent awkward page breaks */
-    .page-break-avoid {
-      page-break-inside: avoid;
-    }
-
-    .page-break-before {
-      page-break-before: always;
     }
   }
 }
