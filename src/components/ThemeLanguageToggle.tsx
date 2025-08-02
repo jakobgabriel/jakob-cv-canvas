@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Globe, Printer } from "lucide-react";
+import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -26,23 +26,8 @@ export const ThemeLanguageToggle = () => {
     setLanguage(newLanguage);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
     <div className="fixed top-0 right-6 z-50 flex gap-2 h-16 items-center">
-      {/* Print Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handlePrint}
-        className="bg-background/80 backdrop-blur-sm border-border/50 shadow-minimal transition-smooth hover:shadow-professional"
-      >
-        <Printer className="h-4 w-4" />
-        <span className="sr-only">Print resume</span>
-      </Button>
-
       {/* Language Toggle */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
