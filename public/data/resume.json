@@ -6,21 +6,16 @@
       "image": "assets/img/logo.jpeg",
       "email": "jakob.gabriel5@googlemail.com",
       "phone": "",
-      "url": "https://jakobgabriel.dev",
-      "summary": "Digital Business Value Engineer with expertise in driving digital transformation initiatives, process optimization, and advanced analytics in manufacturing environments. Specialized in developing data-driven solutions for operational excellence and business value creation.",
-      "location": {
+      "url": "",
+      "summary": "",
+        "location": {
         "address": "",
         "postalCode": "",
-        "city": "Karben",
+        "city": "Erfurt",
         "countryCode": "DE",
-        "region": "Hesse"
+        "region": "Thuringia"
       },
       "profiles": [
-        {
-          "network": "GitHub",
-          "username": "Jakob Gabriel",
-          "url": "https://github.com/jakobgabriel"
-        },
         {
           "network": "LinkedIn",
           "username": "Jakob Gabriel",
@@ -114,7 +109,7 @@
           "Industrial Training: Completed comprehensive introduction to manufacturing processes",
           "Process Understanding: Gained foundational knowledge of polymer manufacturing"
         ],
-        "keywords": ["Industrial Training", "Manufacturing Processes", "Polymer Technology"]
+        "keywords": []
       }
     ],
     "education": [
@@ -137,9 +132,7 @@
         ],
         "highlights": [
           "Master Thesis: 'Process Mining in Manufacturing: Potential Analysis Based on a Case Study'",
-          "Project Work: 'Analysis for Predicting Pull-Off Forces Based on Process Data and Infrared Images in the Hot Plate Welding Process'",
-          "Focus on data-driven manufacturing optimization",
-          "Advanced research in process mining applications"
+          "Project Work: 'Analysis for Predicting Pull-Off Forces Based on Process Data and Infrared Images in the Hot Plate Welding Process'"
         ]
       },
       {
@@ -160,10 +153,7 @@
           "Industrial Engineering"
         ],
         "highlights": [
-          "Bachelor Thesis: 'Investigation of the Automation of Testing Activities and Packaging Processes Using Robotics and Camera Technologies Within an existing Assembly Process'",
-          "Dual education with practical industrial experience",
-          "Focus on automation and robotics in manufacturing",
-          "Strong foundation in polymer processing technology"
+          "Bachelor Thesis: 'Investigation of the Automation of Testing Activities and Packaging Processes Using Robotics and Camera Technologies within an existing Assembly Process'"
         ]
       }
     ],
@@ -260,64 +250,54 @@
     "basics": {
       "name": "Jakob Gabriel",
       "label": "Digital Business Value Engineer",
-      "image": "",
+      "image": "assets/img/logo.jpeg",
       "email": "jakob.gabriel@example.com",
-      "phone": "+49 123 456 789",
-      "url": "https://jakobgabriel.dev",
-      "summary": "Leitung digitaler Transformationsinitiativen und Generierung von Geschäftswert durch strategische Technologieimplementierung. Spezialisiert auf unternehmensweite Technologiestrategie und funktionsübergreifende Teamführung.",
-      "location": {
+      "phone": "",
+      "url": "",
+      "summary": "",
+        "location": {
         "address": "",
         "postalCode": "",
-        "city": "München",
+        "city": "Erfurt",
         "countryCode": "DE",
-        "region": "Bayern"
+        "region": "Thüringen"
       },
       "profiles": [
         {
           "network": "LinkedIn",
-          "username": "jakobgabriel",
-          "url": "https://linkedin.com/in/jakobgabriel"
+          "username": "Jakob Gabriel",
+          "url": "https://www.linkedin.com/in/jakob-gabriel"
         },
         {
-          "network": "GitHub",
-          "username": "jakobgabriel",
-          "url": "https://github.com/jakobgabriel"
+          "network": "XING",
+          "username": "Jakob Gabriel",
+          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
         }
       ]
     },
     "work": [
       {
-        "name": "Tech Innovation Corp",
-        "position": "Senior Digital Business Value Engineer",
-        "location": "München, Deutschland",
-        "url": "https://techinnovation.corp",
-        "startDate": "2022-03-15",
-        "summary": "Leitung digitaler Transformationsinitiativen und Generierung von Geschäftswert durch strategische Technologieimplementierung. Verantwortlich für unternehmensweite Technologiestrategie und funktionsübergreifende Teamführung.",
+        "name": "",
+        "position": "",
+        "location": "",
+        "url": "",
+        "startDate": "",
+        "summary": "",
         "highlights": [
-          "Steigerung der operativen Effizienz um 40% durch Prozessautomatisierungsinitiativen",
-          "Führung funktionsübergreifender Teams mit 15+ Mitgliedern aus mehreren Abteilungen",
-          "Implementierung KI-gestützter Lösungen zur Reduzierung der Betriebskosten um 2 Mio. € jährlich",
-          "Entwicklung strategischer Technologie-Roadmaps für Fortune 500 Kunden",
-          "Aufbau eines Kompetenzzentrums für digitale Transformationspraktiken"
         ],
-        "keywords": ["KI/ML", "Cloud-Architektur", "Prozessautomatisierung", "Datenanalyse", "Python", "AWS", "Kubernetes"]
+        "keywords": []
       },
       {
-        "name": "Enterprise Solutions Ltd",
-        "position": "Digital Solutions Architect",
-        "location": "Stuttgart, Deutschland",
-        "url": "https://enterprisesolutions.ltd",
-        "startDate": "2020-06-01",
-        "endDate": "2022-02-28",
-        "summary": "Entwurf und Implementierung skalierbarer digitaler Lösungen für Unternehmenskunden verschiedener Branchen. Spezialisierung auf Cloud-native Architekturen und Microservices-Designpattern.",
+        "name": "",
+        "position": "",
+        "location": "",
+        "url": "",
+        "startDate": "",
+        "endDate": "",
+        "summary": "",
         "highlights": [
-          "Architektur von Cloud-nativen Lösungen für 50+ Unternehmenskunden",
-          "Reduzierung der Systemausfallzeiten um 85% durch verbessertes Architekturdesign",
-          "Mentoring von Junior-Entwicklern und -Ingenieuren in Best Practices",
-          "Leitung der Migration von Legacy-Systemen zu modernen Cloud-Plattformen",
-          "Etablierung von DevOps-Praktiken zur Reduzierung der Deployment-Zeit um 70%"
         ],
-        "keywords": ["Cloud Computing", "Microservices", "DevOps", "Systemintegration", "Docker", "Azure", "React"]
+        "keywords": []
       },
       {
         "name": "Strategic Tech Partners",
@@ -339,86 +319,64 @@
     ],
     "education": [
       {
-        "institution": "Technische Universität München",
-        "url": "https://tum.de",
-        "area": "Digital Business Engineering",
-        "studyType": "Master of Science",
-        "startDate": "2016-10-01",
-        "endDate": "2018-09-30",
-        "score": "1,3 (Magna Cum Laude)",
-        "summary": "Spezialisierung auf digitale Transformation, Geschäftsprozessoptimierung und Technologiestrategie. Fokus auf die Schnittstelle zwischen Business und Technologie mit Schwerpunkt auf datengetriebene Entscheidungsfindung.",
+        "institution": "",
+        "url": "",
+        "area": "",
+        "studyType": "",
+        "startDate": "",
+        "endDate": "",
+        "score": "",
+        "summary": "",
         "courses": [
-          "Digitale Strategie",
-          "KI & Machine Learning",
-          "Business Analytics",
-          "Innovationsmanagement",
-          "Enterprise-Architektur",
-          "Data Science"
         ],
         "highlights": [
-          "Masterarbeit: 'KI-gesteuerte Geschäftsprozessautomatisierung in Unternehmensumgebungen'",
-          "Dean's List für akademische Exzellenz (4 aufeinanderfolgende Semester)",
-          "Graduierter Forschungsassistent im Digital Innovation Lab",
-          "Veröffentlichung von 3 Forschungsarbeiten auf internationalen Konferenzen",
-          "Gewinner der University Innovation Challenge 2017"
         ]
       },
       {
-        "institution": "Universität Stuttgart",
-        "url": "https://uni-stuttgart.de",
-        "area": "Informatik",
-        "studyType": "Bachelor of Science",
-        "startDate": "2012-10-01",
-        "endDate": "2016-07-31",
-        "score": "1,5 (Cum Laude)",
-        "summary": "Grundlagen der Informatik mit Schwerpunkt auf Software Engineering und Systemarchitektur. Starker Fokus auf praktische Anwendung und Industriekooperationen.",
+        "institution": "",
+        "url": "",
+        "area": "",
+        "studyType": "",
+        "startDate": "",
+        "endDate": "",
+        "score": "",
+        "summary": "",
         "courses": [
-          "Software Engineering",
-          "Datenbanksysteme",
-          "Systemarchitektur",
-          "Projektmanagement",
-          "Algorithmen & Datenstrukturen",
-          "Web-Technologien"
         ],
         "highlights": [
-          "Outstanding Student Award 2015 für akademische Exzellenz",
-          "Gewinner der Regionalen Programmier-Wettbewerb 2014",
-          "Studentenvertreter im Fakultätsrat Informatik",
-          "6-monatiges Industriepraktikum bei SAP absolviert",
-          "Bachelorarbeit mit 'Ausgezeichnet' (1,0) bewertet"
         ]
       }
     ],
     "skills": [
       {
-        "name": "Digitale Strategie & Transformation",
-        "level": "Experte",
-        "keywords": ["Strategie", "Change Management", "Prozessautomatisierung", "Innovationsmanagement"]
+        "name": "",
+        "level": "",
+        "keywords": [""]
       },
       {
-        "name": "Geschäftsprozess-Engineering",
-        "level": "Experte",
-        "keywords": ["Lean-Methoden", "Workflow-Optimierung", "Geschäftsanalyse", "Prozess-Mapping"]
+        "name": "",
+        "level": "",
+        "keywords": [""]
       },
       {
-        "name": "Lösungsarchitektur",
-        "level": "Experte",
-        "keywords": ["Enterprise-Architektur", "Cloud-Native Lösungen", "Microservices", "Systemdesign"]
+        "name": "",
+        "level": "",
+        "keywords": [""]
       },
       {
-        "name": "Projektleitung",
-        "level": "Experte",
-        "keywords": ["Funktionsübergreifende Teams", "Stakeholder Management", "Agile", "Scrum"]
+        "name": "",
+        "level": "",
+        "keywords": [""]
       },
       {
-        "name": "Datenanalyse & KI",
-        "level": "Fortgeschritten",
-        "keywords": ["Python", "TensorFlow", "Machine Learning", "Business Intelligence", "Data Science"]
+        "name": "",
+        "level": "",
+        "keywords": [""]
       },
       {
-        "name": "Cloud-Technologien",
-        "level": "Fortgeschritten",
-        "keywords": ["AWS", "Azure", "GCP", "Kubernetes", "Docker", "Terraform"]
+        "name": "",
+        "level": "",
+        "keywords": []
       }
     ],
     "languages": [
@@ -429,50 +387,18 @@
       {
         "language": "Englisch",
         "fluency": "Fließend"
-      },
-      {
-        "language": "Spanisch",
-        "fluency": "Mittelstufe"
-      },
-      {
-        "language": "Französisch",
-        "fluency": "Grundkenntnisse"
       }
     ],
     "certificates": [
-      {
-        "name": "AWS Certified Solutions Architect",
-        "date": "2023-06-15",
-        "issuer": "Amazon Web Services",
-        "url": "https://aws.amazon.com/certification/"
-      },
-      {
-        "name": "Microsoft Certified: Azure Solutions Architect Expert",
-        "date": "2022-03-20",
-        "issuer": "Microsoft",
-        "url": "https://docs.microsoft.com/en-us/learn/certifications/"
-      },
-      {
-        "name": "Certified Scrum Master (CSM)",
-        "date": "2021-08-15",
-        "issuer": "Scrum Alliance",
-        "url": "https://scrumalliance.org"
-      },
-      {
-        "name": "Google Cloud Professional Cloud Architect",
-        "date": "2023-09-10",
-        "issuer": "Google Cloud",
-        "url": "https://cloud.google.com/certification"
-      }
     ],
     "interests": [
       {
-        "name": "Technologie-Innovation",
-        "keywords": ["KI/ML", "Emerging Technologies", "Digitale Transformation"]
+        "name": "",
+        "keywords": []
       },
       {
-        "name": "Führungskräfteentwicklung",
-        "keywords": ["Team Building", "Mentoring", "Strategische Planung"]
+        "name": "",
+        "keywords": []
       }
     ]
   }
