@@ -7,9 +7,12 @@ import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Toaster } from "@/components/ui/toaster";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useConfig } from "@/hooks/useConfig";
 
 const Index = () => {
   const { trackEvent } = useAnalytics();
+  const { config } = useConfig();
+  
   return (
     <div className="min-h-screen scroll-smooth">
       <Navigation />
@@ -23,9 +26,11 @@ const Index = () => {
       <div id="skills">
         <SkillsSection />
       </div>
-      <div id="contact">
-        <ContactSection />
-      </div>
+      {config?.features.contactForm.enabled !== false && (
+        <div id="contact">
+          <ContactSection />
+        </div>
+      )}
       
       {/* Footer */}
       <footer className="py-12 border-t border-border/50 bg-card/30 backdrop-blur-sm">

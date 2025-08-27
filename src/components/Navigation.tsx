@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Briefcase, GraduationCap, Award, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useConfig } from "@/hooks/useConfig";
 
 interface NavigationProps {
   className?: string;
 }
 
-const navigationItems = [
+const baseNavigationItems = [
   { id: 'hero', label: 'About', icon: User },
   { id: 'timeline', label: 'Experience', icon: Briefcase },
   { id: 'skills', label: 'Skills', icon: Award },
@@ -15,10 +16,19 @@ const navigationItems = [
 ];
 
 export const Navigation = ({ className }: NavigationProps) => {
+  const { config, loading } = useConfig();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+
+  // Filter navigation items based on config
+  const navigationItems = baseNavigationItems.filter(item => {
+    if (item.id === 'contact') {
+      return config?.features.contactForm.enabled !== false;
+    }
+    return true;
+  });
 
   useEffect(() => {
     // Handle initial hash on page load
