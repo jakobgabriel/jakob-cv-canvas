@@ -99,10 +99,24 @@ export const HeroSection = () => {
                 <MapPin className="w-4 h-4" />
                 {basics.location.city}, {basics.location.region}
               </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4" />
-                {basics.url}
-              </div>
+              {basics.url && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth h-auto py-1 px-3"
+                  asChild
+                >
+                  <a 
+                    href={basics.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm"
+                  >
+                    <Globe className="w-4 h-4" />
+                    jakobgabriel.github.io
+                  </a>
+                </Button>
+              )}
             </div>
             
             {/* Social Links - Dynamic Support for 10 Most Common Platforms */}
