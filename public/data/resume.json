@@ -35,7 +35,7 @@
         "location": "Karben, Germany",
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2024-01-01",
-        "summary": "Drive concept development by enhancing operations through increased process maturity and the development of holistic process concepts in collaboration with Electrical Engineering and machine vendors. Employ statistical metrics to enable statistical methods for comprehensive process diagnostics and leverage digital tools to create robust process standards.",
+        "summary": "",
         "highlights": [
           "Operations Digitalization: Identify & implement digitalization use cases with stakeholders",
           "Advanced Analytics & Data Science: Develop analytical workflows for manufacturing process optimization",
@@ -44,7 +44,7 @@
           "Training & Coaching: Provide documentation and grow knowledge networks within organization",
           "Process Standardization: Enrich existing standards with analytics insights and feedback"
         ],
-        "keywords": ["Digital Transformation", "Process Automation", "Advanced Analytics", "Data Science", "Agile Project Management", "System Rollout"]
+        "keywords": ["Use Case Delivery", "System Rollout", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"]
       },
       {
         "name": "ContiTech Techno-Chemie GmbH",
@@ -71,7 +71,7 @@
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2018-10-01",
         "endDate": "2021-12-31",
-        "summary": "Monitored processing of corrective measures including transfer of root causes and measures from complaints to product and process FMEA. Coordinated customer appointments and introduced continuous improvement actions aimed at reducing quality costs.",
+        "summary": "",
         "highlights": [
           "Quality Management: Carried out sampling, reclamations and initial sample inspection reports",
           "FMEA Coordination: Moderated FMEA meetings and conducted risk analysis",
@@ -91,9 +91,6 @@
         "endDate": "2018-09-30",
         "summary": "Analyzed problems and developed solutions in product and process industrialization while completing academic projects.",
         "highlights": [
-          "Problem Analysis: Analyzed manufacturing problems and developed innovative solutions",
-          "Process Industrialization: Contributed to product and process development initiatives",
-          "Academic Documentation: Documented analysis within project and seminar papers"
         ],
         "keywords": ["Problem Analysis", "Process Development", "Academic Research", "Solution Development"]
       }
@@ -145,41 +142,6 @@
     ],
     "skills": [
       {
-        "name": "Project Management",
-        "level": "Advanced",
-        "keywords": ["MS Project", "MS Planner", "Gitlab/Github", "Agile", "Scrum"]
-      },
-      {
-        "name": "Quality Management",
-        "level": "Expert",
-        "keywords": ["FMEA Moderation", "Product Audits", "APQP", "Process Capability"]
-      },
-      {
-        "name": "Statistics & Analytics",
-        "level": "Advanced",
-        "keywords": ["Minitab", "Statistical Analysis", "Process Mining", "Data Science"]
-      },
-      {
-        "name": "Programming Languages",
-        "level": "Advanced",
-        "keywords": ["Python", "SQL", "Data Analysis"]
-      },
-      {
-        "name": "Analytics Tools",
-        "level": "Advanced",
-        "keywords": ["KNIME Analytics Platform", "JupyterLab", "Advanced Analytics"]
-      },
-      {
-        "name": "Databases",
-        "level": "Advanced",
-        "keywords": ["Postgres", "Timescale", "InfluxDB"]
-      },
-      {
-        "name": "Data Visualization",
-        "level": "Advanced",
-        "keywords": ["Grafana", "Superset", "PowerBI", "Streamlit"]
-      },
-      {
         "name": "Digital Transformation",
         "level": "Expert",
         "keywords": ["Process Automation", "Industry 4.0", "IoT", "Manufacturing Intelligence"]
@@ -223,12 +185,8 @@
     ],
     "interests": [
       {
-        "name": "Technology Innovation",
+        "name": "Innovation",
         "keywords": ["AI/ML", "Emerging Technologies", "Digital Transformation"]
-      },
-      {
-        "name": "Leadership Development",
-        "keywords": ["Team Building", "Mentoring", "Strategic Planning"]
       }
     ]
   },
