@@ -10,7 +10,7 @@
       "summary": "",
         "location": {
         "address": "",
-        "postalCode": "",
+        "postalCode": "99086",
         "city": "Erfurt",
         "countryCode": "DE",
         "region": "Thuringia"
@@ -44,7 +44,7 @@
           "Training & Coaching: Provide documentation and grow knowledge networks within organization",
           "Process Standardization: Enrich existing standards with analytics insights and feedback"
         ],
-        "keywords": ["Digital Transformation", "Process Automation", "Advanced Analytics", "Data Science", "RPA", "Agile Project Management"]
+        "keywords": ["Digital Transformation", "Process Automation", "Advanced Analytics", "Data Science", "Agile Project Management", "System Rollout"]
       },
       {
         "name": "ContiTech Techno-Chemie GmbH",
@@ -96,20 +96,6 @@
           "Academic Documentation: Documented analysis within project and seminar papers"
         ],
         "keywords": ["Problem Analysis", "Process Development", "Academic Research", "Solution Development"]
-      },
-      {
-        "name": "ContiTech MGW GmbH",
-        "position": "Trainee",
-        "location": "Waltershausen, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2015-08-01",
-        "endDate": "2015-09-30",
-        "summary": "Completed initial industrial training program at ContiTech MGW GmbH.",
-        "highlights": [
-          "Industrial Training: Completed comprehensive introduction to manufacturing processes",
-          "Process Understanding: Gained foundational knowledge of polymer manufacturing"
-        ],
-        "keywords": []
       }
     ],
     "education": [
@@ -257,7 +243,7 @@
       "summary": "",
         "location": {
         "address": "",
-        "postalCode": "",
+        "postalCode": "99086",
         "city": "Erfurt",
         "countryCode": "DE",
         "region": "Thüringen"
