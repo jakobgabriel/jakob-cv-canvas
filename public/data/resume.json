@@ -145,6 +145,26 @@
         "name": "Digital Transformation",
         "level": "Expert",
         "keywords": ["Process Automation", "Industry 4.0", "IoT", "Manufacturing Intelligence"]
+      },
+      {
+        "name": "Data Analytics",
+        "level": "Expert", 
+        "keywords": ["Python", "SQL", "Power BI", "Advanced Analytics", "Statistical Analysis"]
+      },
+      {
+        "name": "Process Engineering",
+        "level": "Advanced",
+        "keywords": ["FMEA", "Process Optimization", "Quality Management", "Lean Manufacturing"]
+      },
+      {
+        "name": "Project Management",
+        "level": "Advanced",
+        "keywords": ["Agile", "Scrum", "Budget Management", "Stakeholder Management"]
+      },
+      {
+        "name": "Programming",
+        "level": "Intermediate",
+        "keywords": ["Python", "R", "SQL", "VBA", "Process Mining"]
       }
     ],
     "languages": [
