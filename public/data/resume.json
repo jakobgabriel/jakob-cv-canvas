@@ -35,7 +35,7 @@
         "location": "Karben, Germany",
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2024-01-01",
-        "summary": "Digitalization and advanced analytics professional with a proven track record in scaling smart factory use cases, optimizing manufacturing processes, and delivering measurable value. Experienced in driving innovation, leading agile projects, and building organizational capabilities through training, knowledge networks, and process standardization across global operations.",
+        "summary": "Digitalisierungs- und Advanced-Analytics-Experte mit nachweislicher Erfolgsbilanz in der Skalierung von Smart-Factory-Use-Cases, der Optimierung von Fertigungsprozessen und der Realisierung messbarer Mehrwerte. Erfahren in der Förderung von Innovationen, der Leitung agiler Projekte sowie im Aufbau organisatorischer Fähigkeiten durch Trainings, Wissensnetzwerke und Prozessstandardisierung in globalen Operations.",
         "highlights": [
           "Use Case Scaling: Identified, implemented, and scaled 50+ digitalization use cases, generating >€1M annual cost savings across global production sites.",
           "Advanced Analytics & Data Science: Developed analytical workflows with focus on energy efficiency and process efficiency",
@@ -240,13 +240,18 @@
     },
     "work": [
       {
-        "name": "",
-        "position": "",
-        "location": "",
-        "url": "",
-        "startDate": "",
+        "name": "ContiTech Techno-Chemie GmbH",
+        "position": "Digital Business Value Engineer",
+        "location": "Karben, Germany",
+        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+        "startDate": "2024-01-01",
         "summary": "",
         "highlights": [
+          "Use Case Skalierung: Identifiziert, implementiert und skaliert 50+ Digitalisierungs-Use-Cases, die jährliche Kosteneinsparungen von >1 Mio. € an globalen Produktionsstandorten generierten.",
+          "Advanced Analytics & Data Science: Entwicklung analytischer Workflows mit Fokus auf Energieeffizienz und Prozesseffizienz.",
+          "Innovation: Jährlich >15 Innovationsinitiativen vorangetrieben; mehrere POCs wurden in den Vollbetrieb überführt und trugen zur Prozesseffizienz bei.",
+          "Training & Coaching: Konzipiert und durchgeführt 20+ Schulungen, wodurch das Smart-Factory-Wissensnetzwerk auf 100+ aktive Mitglieder ausgebaut wurde, mit durchgängig hohen Feedback-Bewertungen.",
+          "Prozessstandardisierung: Überarbeitung und Harmonisierung von 3+ Kernprozessen; Nutzung analytischer Erkenntnisse zur Reduzierung der Durchlaufzeiten um >10%."
         ],
         "keywords": []
       },
@@ -261,23 +266,6 @@
         "highlights": [
         ],
         "keywords": []
-      },
-      {
-        "name": "Strategic Tech Partners",
-        "position": "Business Technology Consultant",
-        "location": "Berlin, Deutschland",
-        "url": "https://strategictech.partners",
-        "startDate": "2018-09-01",
-        "endDate": "2020-05-31",
-        "summary": "Strategische Beratung für digitale Transformation und Technologieadoption für mittelständische und Unternehmenskunden. Fokus auf Geschäftsprozessoptimierung und Technologiestrategie-Alignment.",
-        "highlights": [
-          "Beratung von 20+ Fortune 500 Unternehmen zur digitalen Transformation",
-          "Entwicklung umfassender Technologie-Roadmaps für digitale Transformation",
-          "Erreichen einer 95%igen Kundenzufriedenheitsrate mit messbaren Geschäftsergebnissen",
-          "Reduzierung der Kundenoperationskosten um durchschnittlich 30% durch Prozessoptimierung",
-          "Aufbau langfristiger strategischer Partnerschaften mit wichtigen Technologieanbietern"
-        ],
-        "keywords": ["Strategie", "Digitale Transformation", "Projektmanagement", "Stakeholder Management", "Geschäftsanalyse", "Agile", "Scrum"]
       }
     ],
     "education": [
