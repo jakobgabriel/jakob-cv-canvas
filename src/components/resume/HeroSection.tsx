@@ -13,7 +13,11 @@ export const HeroSection = () => {
   const { trackSocialClick, trackDownload } = useAnalytics();
 
   if (resumeLoading || configLoading || !resumeData || !config) {
-    return <div className="min-h-screen flex items-center justify-center">{t('loading')}</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-16">
+        <div className="text-lg text-muted-foreground">{t('loading')}</div>
+      </div>
+    );
   }
 
   const { basics } = resumeData;
