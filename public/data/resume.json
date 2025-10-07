@@ -36,11 +36,11 @@
       "startDate": "2024-01-01",
       "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.",
       "highlights": [
-        "Scaled over 50 digitalization use cases globally, achieving more than €1M in annual cost savings by applying analytics-driven optimization.",
+        "Scaled more than 150 digitalization use cases globally, achieving more than €1M in annual cost savings by applying data-driven optimization.",
         "Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.",
-        "Championed more than 15 innovation projects annually, guiding proof-of-concepts into fully operational digital products.",
-        "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network to 100+ active members worldwide.",
-        "Redesigned three major core processes to reduce lead times by more than 10%, leveraging advanced analytics insights."
+        "Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization",
+        "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
+        "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
       ],
       "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"]
     },
@@ -57,8 +57,7 @@
         "Orchestrated cross-functional teams to develop predictive analytics models that prevented production bottlenecks and reduced waste.",
         "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across plants.",
         "Built intuitive dashboards that empowered operators and engineers to make faster, evidence-based decisions.",
-        "Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide.",
-        "Secured budget approvals and ensured long-term alignment between analytics projects and strategic business objectives."
+        "Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide."
       ],
       "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"]
     },
@@ -71,9 +70,9 @@
       "endDate": "2021-12-31",
       "summary": "Ensured product quality during ramp up through risk management, process optimization, and customer-focused quality control and improvement initiatives.",
       "highlights": [
-        "Championed continuous improvement by identifying and eliminating root causes of quality issues, leading to a significant reduction in defect rates.",
+        "Continuous improvement by identifying and eliminating root causes of quality issues, leading to a significant reduction in defect rates.",
         "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements.",
-        "Designed and implemented inspection concepts for precision blow-molded components, enhancing product reliability and traceability.",
+        "Designed and implemented inspection concepts for products, enhancing product reliability and traceability.",
         "Built trusted relationships with customers through transparent communication, acceptance tests, and successful audit results.",
         "Introduced quality dashboards that visualized real-time KPIs, improving decision-making speed on the shop floor."
       ],
@@ -104,10 +103,10 @@
       "startDate": "2015-10-01",
       "endDate": "2018-09-30",
       "score": "1.6 (3.3 US GPA)",
-      "summary": "Dual degree combining academic theory with hands-on industrial insights in polymer engineering and automated production systems.",
+      "summary": "Dual degree combining academic theory with hands-on industrial applications in polymer engineering.",
       "courses": [],
       "highlights": [
-        "Bachelor Thesis: Automation of Testing and Packaging Using Robotics and Vision Systems in an Assembly Line."
+        "Bachelor Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line."
       ]
     }
   ],
