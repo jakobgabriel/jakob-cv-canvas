@@ -1,14 +1,13 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Language = 'en' | 'de';
-
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (language: Language) => void;
+  language: string;
+  setLanguage: (language: string) => void;
+  availableLanguages: string[];
   t: (key: string) => string;
 }
 
-const translations = {
+const translations: Record<string, Record<string, string>> = {
   en: {
     'nav.experience': 'Experience',
     'nav.education': 'Education',
@@ -141,29 +140,44 @@ export const useLanguage = () => {
 
 interface LanguageProviderProps {
   children: ReactNode;
+  availableLanguages?: string[];
+  defaultLanguage?: string;
 }
 
-export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<Language>('en');
+export const LanguageProvider = ({ 
+  children, 
+  availableLanguages = ['en'], 
+  defaultLanguage = 'en' 
+}: LanguageProviderProps) => {
+  const [language, setLanguage] = useState<string>(defaultLanguage);
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'de')) {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage && availableLanguages.includes(savedLanguage)) {
       setLanguage(savedLanguage);
+    } else if (!availableLanguages.includes(language)) {
+      setLanguage(defaultLanguage);
     }
-  }, []);
+  }, [availableLanguages, defaultLanguage, language]);
 
-  const handleSetLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
+  const handleSetLanguage = (newLanguage: string) => {
+    if (availableLanguages.includes(newLanguage)) {
+      setLanguage(newLanguage);
+      localStorage.setItem('language', newLanguage);
+    }
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+    return translations[language]?.[key] || translations[defaultLanguage]?.[key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage: handleSetLanguage, 
+      availableLanguages,
+      t 
+    }}>
       {children}
     </LanguageContext.Provider>
   );
