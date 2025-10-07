@@ -7,17 +7,22 @@ declare global {
 }
 
 export class GoogleAnalytics {
-  private static readonly GA_TRACKING_ID = 'G-XXXXXXXXXX'; // TODO: Replace with your actual Google Analytics 4 tracking ID
+  private static trackingId: string | null = null;
   private static isInitialized = false;
+
+  // Set the tracking ID from config
+  static setTrackingId(id: string): void {
+    this.trackingId = id;
+  }
 
   // Initialize Google Analytics
   static init(): void {
-    if (this.isInitialized || typeof window === 'undefined') return;
+    if (this.isInitialized || typeof window === 'undefined' || !this.trackingId) return;
 
     // Load Google Analytics script
     const script1 = document.createElement('script');
     script1.async = true;
-    script1.src = `https://www.googletagmanager.com/gtag/js?id=${this.GA_TRACKING_ID}`;
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${this.trackingId}`;
     document.head.appendChild(script1);
 
     // Initialize gtag
@@ -27,7 +32,7 @@ export class GoogleAnalytics {
     };
 
     window.gtag('js', new Date());
-    window.gtag('config', this.GA_TRACKING_ID, {
+    window.gtag('config', this.trackingId, {
       page_title: document.title,
       page_location: window.location.href,
       send_page_view: false, // We'll send it manually after consent

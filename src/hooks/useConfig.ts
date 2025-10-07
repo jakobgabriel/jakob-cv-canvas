@@ -10,6 +10,13 @@ interface Config {
       enabled: boolean;
       formspreeEndpoint: string;
     };
+    multiLanguage: {
+      enabled: boolean;
+      defaultLanguage: string;
+    };
+  };
+  analytics: {
+    googleAnalyticsId: string;
   };
   theme: {
     primaryColor: string;

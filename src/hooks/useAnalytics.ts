@@ -1,24 +1,30 @@
 import { useEffect } from 'react';
 import { CookieManager } from '@/lib/cookieManager';
 import { GoogleAnalytics } from '@/lib/googleAnalytics';
+import { useConfig } from './useConfig';
 
 // Hook to track user interactions with Google Analytics
 export const useAnalytics = () => {
-  useEffect(() => {
-    // Initialize Google Analytics
-    GoogleAnalytics.init();
-    
-    // Check if user has given analytics consent
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.enable();
-    }
+  const { config } = useConfig();
 
-    // Track page view on component mount (if consent given)
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackPageView();
+  useEffect(() => {
+    // Only initialize if tracking ID is provided in config
+    if (config?.analytics?.googleAnalyticsId) {
+      GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
+      GoogleAnalytics.init();
+      
+      // Check if user has given analytics consent
+      const preferences = CookieManager.getPreferences();
+      if (CookieManager.hasConsent() && preferences.analytics) {
+        GoogleAnalytics.enable();
+      }
+
+      // Track page view on component mount (if consent given)
+      if (CookieManager.hasConsent() && preferences.analytics) {
+        GoogleAnalytics.trackPageView();
+      }
     }
-  }, []);
+  }, [config]);
 
   const trackEvent = (action: string, category?: string, label?: string, value?: number) => {
     // Still track locally for basic functionality
