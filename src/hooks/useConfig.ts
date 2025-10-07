@@ -31,7 +31,8 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const url = new URL('data/config.json', import.meta.env.BASE_URL).toString();
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const url = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}data/config.json`;
         const response = await fetch(url);
         const data = await response.json();
         setConfig(data);

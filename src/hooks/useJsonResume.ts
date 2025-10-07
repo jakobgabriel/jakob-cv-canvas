@@ -12,7 +12,8 @@ export const useJsonResume = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = new URL('data/resume.json', import.meta.env.BASE_URL).toString();
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const url = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}data/resume.json`;
         const response = await fetch(url);
         const allData = await response.json();
         
