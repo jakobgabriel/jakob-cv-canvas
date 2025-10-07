@@ -5,14 +5,14 @@
     "image": "assets/img/logo.jpeg",
     "email": "jakob.gabriel5@googlemail.com",
     "phone": "",
-    "url": "https://jakobgabriel.github.io/jakob-cv-canvas/",
-    "summary": "Digital transformation and advanced analytics expert with a proven record in scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Passionate about enabling innovation, driving agile projects, and empowering teams through data-driven culture and capability building.",
+    "url": "",
+    "summary": "Digital transformation and advanced analytics expert with a record in scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Passionate about enabling innovation, driving agile projects, and empowering teams.",
     "location": {
       "address": "",
       "postalCode": "99086",
-      "city": "Erfurt",
+      "city": "Erfurt - Passau",
       "countryCode": "DE",
-      "region": "Thuringia"
+      "region": ""
     },
     "profiles": [
       {
@@ -92,8 +92,8 @@
       "summary": "Advanced academic foundation in polymer engineering with a strong focus on industrial applications, process optimization, and manufacturing.",
       "courses": [],
       "highlights": [
-        "**Master Thesis:** 'Process Mining in Manufacturing – A Case Study on Data-Driven Potential Analysis.'",
-        "**Project:** Developed a predictive model for weld strength using infrared imaging and process data analytics."
+        "Master Thesis: Process Mining in Manufacturing - A Case Study on Data-Driven Potential Analysis.",
+        "Project: Developed a predictive model for weld strength using infrared imaging and process data analytics."
       ]
     },
     {
@@ -107,7 +107,7 @@
       "summary": "Dual degree combining academic theory with hands-on industrial insights in polymer engineering and automated production systems.",
       "courses": [],
       "highlights": [
-        "**Bachelor Thesis:** 'Automation of Testing and Packaging Using Robotics and Vision Systems in an Assembly Line.'"
+        "Bachelor Thesis: Automation of Testing and Packaging Using Robotics and Vision Systems in an Assembly Line."
       ]
     }
   ],
@@ -120,7 +120,7 @@
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
+      "keywords": ["MS Fabric", "Python", "SQL", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
     },
     {
       "name": "Visualization & Communication",
@@ -131,11 +131,6 @@
       "name": "Process & Quality Engineering",
       "level": "Advanced",
       "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis"]
-    },
-    {
-      "name": "Programming & Tools",
-      "level": "Advanced",
-      "keywords": ["Python", "SQL"]
     }
   ],
   "languages": [
