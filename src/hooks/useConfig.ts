@@ -24,8 +24,8 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const basePath = import.meta.env.PROD ? '/jakob-cv-canvas' : '';
-        const response = await fetch(`${basePath}/data/config.json`);
+        const url = new URL('data/config.json', import.meta.env.BASE_URL).toString();
+        const response = await fetch(url);
         const data = await response.json();
         setConfig(data);
       } catch (error) {
