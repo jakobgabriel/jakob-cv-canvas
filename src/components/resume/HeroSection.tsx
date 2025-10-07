@@ -101,7 +101,7 @@ export const HeroSection = () => {
             <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                {basics.location.city}, {basics.location.region}
+                {basics.location.city} {basics.location.region}
               </div>
               {basics.url && (
                 <Button 
