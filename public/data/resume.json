@@ -7,8 +7,8 @@
       "email": "jakob.gabriel5@googlemail.com",
       "phone": "",
       "url": "https://jakobgabriel.github.io/jakob-cv-canvas/",
-      "summary": "",
-        "location": {
+      "summary": "Digital transformation and advanced analytics expert with a proven record in scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Passionate about enabling innovation, driving agile projects, and empowering teams through data-driven culture and capability building.",
+      "location": {
         "address": "",
         "postalCode": "99086",
         "city": "Erfurt",
@@ -35,15 +35,15 @@
         "location": "Karben, Germany",
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2024-01-01",
-        "summary": "Digitalisierungs- und Advanced-Analytics-Experte mit nachweislicher Erfolgsbilanz in der Skalierung von Smart-Factory-Use-Cases, der Optimierung von Fertigungsprozessen und der Realisierung messbarer Mehrwerte. Erfahren in der Förderung von Innovationen, der Leitung agiler Projekte sowie im Aufbau organisatorischer Fähigkeiten durch Trainings, Wissensnetzwerke und Prozessstandardisierung in globalen Operations.",
+        "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.",
         "highlights": [
-          "Use Case Scaling: Identified, implemented, and scaled 50+ digitalization use cases, generating >€1M annual cost savings across global production sites.",
-          "Advanced Analytics & Data Science: Developed analytical workflows with focus on energy efficiency and process efficiency",
-          "Innovation: Drove >15 innovation initiatives per year, with several POCs scaled to full operations, contributing to process efficiency.",
-          "Training & Coaching: Designed and delivered 20+ trainings, expanding the smart factory knowledge network to 100+ active members with consistently high feedback scores.",
-          "Process Standardization: Reworked and harmonized 3+ core processes, leveraging analytics insights to cut lead times by >10%."
+          "Scaled over 50 digitalization use cases globally, achieving more than €1M in annual cost savings by applying analytics-driven optimization.",
+          "Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.",
+          "Championed more than 15 innovation projects annually, guiding proof-of-concepts into fully operational digital products.",
+          "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network to 100+ active members worldwide.",
+          "Redesigned three major core processes to reduce lead times by more than 10%, leveraging advanced analytics insights."
         ],
-        "keywords": ["Use Case Delivery", "Use Case Scaling", "Smart Factory", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"]
+        "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"]
       },
       {
         "name": "ContiTech Techno-Chemie GmbH",
@@ -52,16 +52,16 @@
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2022-01-01",
         "endDate": "2023-12-31",
-        "summary": "Developed and defined analytics use cases and projects based on production process problems in Mobile Fluid Systems. Executed continuous improvement processes by applying analytical methods in data-driven problem-solving with focus on global scaling potentials.",
+        "summary": "Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.",
         "highlights": [
-          "Industry 4.0 Management: Coordinated data-driven process improvements in manufacturing",
-          "Financial Management: Prepared budgets and forecasts for analytics projects",
-          "Manufacturing Intelligence: Implemented advanced analytics workflows for root cause analysis",
-          "Digitalization Standards: Developed MFS-wide standards for methods, processes and technologies",
-          "Training & Knowledge Sharing: Provided documentation and shared project insights across organization",
-          "Standardization: Developed central manufacturing engineering standards for Shopfloor IT/OT"
+          "Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness.",
+          "Orchestrated cross-functional teams to develop predictive analytics models that prevented production bottlenecks and reduced waste.",
+          "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across plants.",
+          "Built intuitive dashboards that empowered operators and engineers to make faster, evidence-based decisions.",
+          "Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide.",
+          "Secured budget approvals and ensured long-term alignment between analytics projects and strategic business objectives."
         ],
-        "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Budget Management", "Standards Development"]
+        "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"]
       },
       {
         "name": "ContiTech MGW GmbH",
@@ -70,28 +70,15 @@
         "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
         "startDate": "2018-10-01",
         "endDate": "2021-12-31",
-        "summary": "",
+        "summary": "Ensured product quality during ramp up through risk management, process optimization, and customer-focused quality control and improvement initiatives.",
         "highlights": [
-          "Quality Management: Carried out sampling, reclamations and initial sample inspection reports",
-          "FMEA Coordination: Moderated FMEA meetings and conducted risk analysis",
-          "Inspection Planning: Developed gauge concepts for blow molding parts inspection",
-          "Customer Relations: Coordinated customer appointments and acceptance tests",
-          "Process Capability: Supervised capability studies and ensured process standards",
-          "Continuous Improvement: Introduced improvement actions to reduce quality costs"
+          "Championed continuous improvement by identifying and eliminating root causes of quality issues, leading to a significant reduction in defect rates.",
+          "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements.",
+          "Designed and implemented inspection concepts for precision blow-molded components, enhancing product reliability and traceability.",
+          "Built trusted relationships with customers through transparent communication, acceptance tests, and successful audit results.",
+          "Introduced quality dashboards that visualized real-time KPIs, improving decision-making speed on the shop floor."
         ],
-        "keywords": ["Quality Management", "FMEA", "Process Capability", "Customer Relations", "Continuous Improvement", "Risk Analysis"]
-      },
-      {
-        "name": "ContiTech MGW GmbH",
-        "position": "Working Student",
-        "location": "Waltershausen, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2015-10-01",
-        "endDate": "2018-09-30",
-        "summary": "Analyzed problems and developed solutions in product and process industrialization while completing academic projects.",
-        "highlights": [
-        ],
-        "keywords": ["Problem Analysis", "Process Development", "Academic Research", "Solution Development"]
+        "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"]
       }
     ],
     "education": [
@@ -103,18 +90,11 @@
         "startDate": "2019-04-01",
         "endDate": "2024-12-31",
         "score": "2.0 (3.0 US GPA)",
-        "summary": "Advanced study in polymer engineering with focus on applied research and industrial applications. Specialized in process optimization and data-driven manufacturing improvements.",
-        "courses": [
-          "Advanced Polymer Processing",
-          "Process Optimization",
-          "Materials Science",
-          "Manufacturing Engineering",
-          "Quality Management",
-          "Research Methodology"
-        ],
+        "summary": "Advanced academic foundation in polymer engineering with a strong focus on industrial applications, process optimization, and manufacturing.",
+        "courses": [],
         "highlights": [
-          "Master Thesis: 'Process Mining in Manufacturing: Potential Analysis Based on a Case Study'",
-          "Project Work: 'Analysis for Predicting Pull-Off Forces Based on Process Data and Infrared Images in the Hot Plate Welding Process'"
+          "**Master Thesis:** 'Process Mining in Manufacturing – A Case Study on Data-Driven Potential Analysis.'",
+          "**Project:** Developed a predictive model for weld strength using infrared imaging and process data analytics."
         ]
       },
       {
@@ -125,17 +105,10 @@
         "startDate": "2015-10-01",
         "endDate": "2018-09-30",
         "score": "1.6 (3.3 US GPA)",
-        "summary": "Dual study program combining theoretical knowledge with practical industrial experience. Foundation in polymer engineering with strong emphasis on manufacturing processes and automation.",
-        "courses": [
-          "Polymer Science",
-          "Manufacturing Processes", 
-          "Automation Technology",
-          "Quality Engineering",
-          "Materials Testing",
-          "Industrial Engineering"
-        ],
+        "summary": "Dual degree combining academic theory with hands-on industrial insights in polymer engineering and automated production systems.",
+        "courses": [],
         "highlights": [
-          "Bachelor Thesis: 'Investigation of the Automation of Testing Activities and Packaging Processes Using Robotics and Camera Technologies within an existing Assembly Process'"
+          "**Bachelor Thesis:** 'Automation of Testing and Packaging Using Robotics and Vision Systems in an Assembly Line.'"
         ]
       }
     ],
@@ -143,27 +116,27 @@
       {
         "name": "Digital Transformation",
         "level": "Expert",
-        "keywords": ["Process Automation", "Industry 4.0", "IoT", "Manufacturing Intelligence"]
+        "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management"]
       },
       {
-        "name": "Data Analytics",
-        "level": "Expert", 
-        "keywords": ["Python", "SQL", "Power BI", "Advanced Analytics", "Statistical Analysis"]
+        "name": "Data Engineering, Analytics & AI",
+        "level": "Expert",
+        "keywords": ["MS Fabric", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
       },
       {
-        "name": "Process Engineering",
+        "name": "Visualization & Communication",
         "level": "Advanced",
-        "keywords": ["FMEA", "Process Optimization", "Quality Management", "Lean Manufacturing"]
+        "keywords": ["Grafana", "Power BI", "Streamlit", "Data Storytelling"]
       },
       {
-        "name": "Project Management",
+        "name": "Process & Quality Engineering",
         "level": "Advanced",
-        "keywords": ["Agile", "Scrum", "Budget Management", "Stakeholder Management"]
+        "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis"]
       },
       {
-        "name": "Programming",
-        "level": "Intermediate",
-        "keywords": ["Python", "R", "SQL", "VBA", "Process Mining"]
+        "name": "Programming & Tools",
+        "level": "Advanced",
+        "keywords": ["Python", "SQL"]
       }
     ],
     "languages": [
@@ -204,152 +177,8 @@
     ],
     "interests": [
       {
-        "name": "Innovation",
-        "keywords": ["AI/ML", "Emerging Technologies", "Digital Transformation"]
-      }
-    ]
-  },
-  "de": {
-    "basics": {
-      "name": "Jakob Gabriel",
-      "label": "Digital Business Value Engineer",
-      "image": "assets/img/logo.jpeg",
-      "email": "jakob.gabriel@example.com",
-      "phone": "",
-      "url": "https://jakobgabriel.github.io/jakob-cv-canvas/",
-      "summary": "",
-        "location": {
-        "address": "",
-        "postalCode": "99086",
-        "city": "Erfurt",
-        "countryCode": "DE",
-        "region": "Thüringen"
-      },
-      "profiles": [
-        {
-          "network": "LinkedIn",
-          "username": "Jakob Gabriel",
-          "url": "https://www.linkedin.com/in/jakob-gabriel"
-        },
-        {
-          "network": "XING",
-          "username": "Jakob Gabriel",
-          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
-        }
-      ]
-    },
-    "work": [
-      {
-        "name": "ContiTech Techno-Chemie GmbH",
-        "position": "Digital Business Value Engineer",
-        "location": "Karben, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2024-01-01",
-        "summary": "",
-        "highlights": [
-          "Use Case Skalierung: Identifiziert, implementiert und skaliert 50+ Digitalisierungs-Use-Cases, die jährliche Kosteneinsparungen von >1 Mio. € an globalen Produktionsstandorten generierten.",
-          "Advanced Analytics & Data Science: Entwicklung analytischer Workflows mit Fokus auf Energieeffizienz und Prozesseffizienz.",
-          "Innovation: Jährlich >15 Innovationsinitiativen vorangetrieben; mehrere POCs wurden in den Vollbetrieb überführt und trugen zur Prozesseffizienz bei.",
-          "Training & Coaching: Konzipiert und durchgeführt 20+ Schulungen, wodurch das Smart-Factory-Wissensnetzwerk auf 100+ aktive Mitglieder ausgebaut wurde, mit durchgängig hohen Feedback-Bewertungen.",
-          "Prozessstandardisierung: Überarbeitung und Harmonisierung von 3+ Kernprozessen; Nutzung analytischer Erkenntnisse zur Reduzierung der Durchlaufzeiten um >10%."
-        ],
-        "keywords": []
-      },
-      {
-        "name": "",
-        "position": "",
-        "location": "",
-        "url": "",
-        "startDate": "",
-        "endDate": "",
-        "summary": "",
-        "highlights": [
-        ],
-        "keywords": []
-      }
-    ],
-    "education": [
-      {
-        "institution": "",
-        "url": "",
-        "area": "",
-        "studyType": "",
-        "startDate": "",
-        "endDate": "",
-        "score": "",
-        "summary": "",
-        "courses": [
-        ],
-        "highlights": [
-        ]
-      },
-      {
-        "institution": "",
-        "url": "",
-        "area": "",
-        "studyType": "",
-        "startDate": "",
-        "endDate": "",
-        "score": "",
-        "summary": "",
-        "courses": [
-        ],
-        "highlights": [
-        ]
-      }
-    ],
-    "skills": [
-      {
-        "name": "",
-        "level": "",
-        "keywords": [""]
-      },
-      {
-        "name": "",
-        "level": "",
-        "keywords": [""]
-      },
-      {
-        "name": "",
-        "level": "",
-        "keywords": [""]
-      },
-      {
-        "name": "",
-        "level": "",
-        "keywords": [""]
-      },
-      {
-        "name": "",
-        "level": "",
-        "keywords": [""]
-      },
-      {
-        "name": "",
-        "level": "",
-        "keywords": []
-      }
-    ],
-    "languages": [
-      {
-        "language": "Deutsch",
-        "fluency": "Muttersprache"
-      },
-      {
-        "language": "Englisch",
-        "fluency": "Fließend"
-      }
-    ],
-    "certificates": [
-    ],
-    "interests": [
-      {
-        "name": "",
-        "keywords": []
-      },
-      {
-        "name": "",
-        "keywords": []
+        "name": "Innovation & Emerging Tech",
+        "keywords": ["AI/ML", "Process Intelligence", "Sustainability in Manufacturing"]
       }
     ]
   }
