@@ -2,7 +2,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target, Users, Lightbulb, MessageSquare, TrendingUp, Mic, Award, Code, Globe } from "lucide-react";
-import { useJsonResume } from "@/hooks/useJsonResume";
+import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconMap = {
@@ -15,10 +15,10 @@ const iconMap = {
 };
 
 export const SkillsSection = () => {
-  const { data: resumeData, loading } = useJsonResume();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const resumeData = getResumeData(language);
 
-  if (loading || !resumeData) {
+  if (!resumeData) {
     return <div className="py-24 text-center">{t('loading')}</div>;
   }
 

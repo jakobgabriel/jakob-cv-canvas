@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Briefcase, GraduationCap, Award, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useConfig } from "@/hooks/useConfig";
+import { config } from "@/data/config";
 
 interface NavigationProps {
   className?: string;
@@ -16,7 +16,6 @@ const baseNavigationItems = [
 ];
 
 export const Navigation = ({ className }: NavigationProps) => {
-  const { config, loading } = useConfig();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);

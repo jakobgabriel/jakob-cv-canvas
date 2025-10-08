@@ -3,13 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { useConfig } from "@/hooks/useConfig";
+import { config } from "@/data/config";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 
 export const ContactSection = () => {
-  const { config, loading } = useConfig();
   const { toast } = useToast();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,10 +73,6 @@ export const ContactSection = () => {
       [e.target.name]: e.target.value
     }));
   };
-
-  if (loading) {
-    return <div className="py-24 text-center">{t('loading')}</div>;
-  }
 
   return (
     <section className="py-20 relative">

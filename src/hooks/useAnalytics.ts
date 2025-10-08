@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { CookieManager } from '@/lib/cookieManager';
 import { GoogleAnalytics } from '@/lib/googleAnalytics';
-import { useConfig } from './useConfig';
+import { config } from '@/data/config';
 
 // Hook to track user interactions with Google Analytics
 export const useAnalytics = () => {
-  const { config } = useConfig();
-
   useEffect(() => {
     // Only initialize if tracking ID is provided in config
     if (config?.analytics?.googleAnalyticsId) {
@@ -24,7 +22,7 @@ export const useAnalytics = () => {
         GoogleAnalytics.trackPageView();
       }
     }
-  }, [config]);
+  }, []);
 
   const trackEvent = (action: string, category?: string, label?: string, value?: number) => {
     // Still track locally for basic functionality

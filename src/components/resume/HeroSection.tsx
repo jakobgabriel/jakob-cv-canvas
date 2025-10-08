@@ -1,18 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
-import { useJsonResume } from "@/hooks/useJsonResume";
-import { useConfig } from "@/hooks/useConfig";
+import { config } from "@/data/config";
+import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const HeroSection = () => {
-  const { data: resumeData, loading: resumeLoading } = useJsonResume();
-  const { config, loading: configLoading } = useConfig();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload } = useAnalytics();
+  const resumeData = getResumeData(language);
 
-  if (resumeLoading || configLoading || !resumeData || !config) {
+  if (!resumeData || !config) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-16">
         <div className="text-lg text-muted-foreground">{t('loading')}</div>

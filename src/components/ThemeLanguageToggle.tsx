@@ -3,7 +3,7 @@ import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useConfig } from "@/hooks/useConfig";
+import { config } from "@/data/config";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +30,6 @@ const languageConfig: Record<string, { name: string; flag: string }> = {
 export const ThemeLanguageToggle = () => {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, availableLanguages } = useLanguage();
-  const { config } = useConfig();
   const { trackThemeChange, trackLanguageChange } = useAnalytics();
 
   const toggleTheme = () => {

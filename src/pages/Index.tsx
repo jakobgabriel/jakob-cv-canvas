@@ -7,11 +7,10 @@ import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Toaster } from "@/components/ui/toaster";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useConfig } from "@/hooks/useConfig";
+import { config } from "@/data/config";
 
 const Index = () => {
   const { trackEvent } = useAnalytics();
-  const { config } = useConfig();
   
   return (
     <div className="min-h-screen scroll-smooth">

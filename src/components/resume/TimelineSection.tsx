@@ -5,13 +5,13 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock, Info } from "lucide-react";
 import { useState } from "react";
-import { useJsonResume } from "@/hooks/useJsonResume";
+import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
 
 export const TimelineSection = () => {
-  const { data: resumeData, loading } = useJsonResume();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const resumeData = getResumeData(language);
   
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
@@ -26,7 +26,7 @@ export const TimelineSection = () => {
     setTimeout(() => setSelectedItem(null), 300);
   };
 
-  if (loading || !resumeData) {
+  if (!resumeData) {
     return <div className="py-24 text-center">{t('loading')}</div>;
   }
 
