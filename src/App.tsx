@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { LanguageDetector } from "@/components/LanguageDetector";
+import { CookieConsent } from "@/components/CookieConsent";
 import Index from "./pages/Index";
 
 const App: React.FC = () => {
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <LanguageDetector>
         <TooltipProvider>
           <Index />
+          <CookieConsent />
           <Toaster />
           <Sonner />
         </TooltipProvider>
