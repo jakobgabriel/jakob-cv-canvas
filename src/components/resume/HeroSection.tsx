@@ -56,12 +56,10 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 overflow-hidden">
-      {/* Enhanced geometric accents with animations */}
-      <div className="absolute inset-0 overflow-hidden will-change-transform">
-        <div className="absolute top-20 right-20 w-1 h-40 bg-gradient-to-b from-primary/40 via-primary/20 to-transparent animate-pulse-slow"></div>
-        <div className="absolute bottom-20 left-20 w-40 h-1 bg-gradient-to-r from-primary/50 via-primary-glow/30 to-transparent animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-20 w-48 h-48 bg-primary-glow/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      {/* Subtle decorative accents with animations */}
+      <div className="absolute inset-0 overflow-hidden will-change-transform pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 right-20 w-40 h-40 bg-primary-glow/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -86,10 +84,10 @@ export const HeroSection = () => {
           {/* Content - Enhanced Typography with Animations */}
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-display font-bold tracking-tight text-gradient animate-scale-in">
+              <h1 className="text-5xl lg:text-6xl font-display font-bold tracking-tight animate-scale-in">
                 {basics.name}
               </h1>
-              <h2 className="text-xl lg:text-3xl text-muted-foreground font-light animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <h2 className="text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 {basics.label}
               </h2>
             </div>
@@ -174,7 +172,7 @@ export const HeroSection = () => {
             {config.features.downloadResume.enabled && (
               <Button 
                 size="lg" 
-                className="px-8 py-6 text-lg shadow-professional hover:shadow-glow transition-all duration-300 hover:-translate-y-1 hover:scale-105 bg-primary hover:bg-primary-glow animate-bounce-in"
+                className="px-8 py-6 text-base shadow-professional hover:shadow-dramatic transition-all duration-300 hover:-translate-y-0.5 bg-primary hover:bg-primary-glow animate-fade-in"
                 style={{ animationDelay: '0.4s' }}
                 onClick={() => trackDownload('resume.pdf', 'pdf')}
               >

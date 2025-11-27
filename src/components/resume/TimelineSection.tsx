@@ -54,19 +54,13 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="relative space-y-4">
-              {/* Connecting line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent -z-10" />
-              
+            <div className="space-y-4">
               {experiences.map((exp, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/50 relative"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30"
                   onClick={() => handleItemClick(exp)}
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[13px] top-8 w-6 h-6 rounded-full bg-primary/20 border-2 border-primary group-hover:scale-125 transition-transform duration-300" />
-                  
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
                       <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
@@ -100,19 +94,13 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="relative space-y-4">
-              {/* Connecting line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent -z-10" />
-              
+            <div className="space-y-4">
               {education.map((edu, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/50 relative"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30"
                   onClick={() => handleItemClick(edu)}
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[13px] top-8 w-6 h-6 rounded-full bg-primary/20 border-2 border-primary group-hover:scale-125 transition-transform duration-300" />
-                  
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
                       <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
