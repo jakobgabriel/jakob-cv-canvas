@@ -54,16 +54,22 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4">
+            <div className="relative space-y-4">
+              {/* Connecting line */}
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent -z-10" />
+              
               {experiences.map((exp, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-smooth cursor-pointer group"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/50 relative"
                   onClick={() => handleItemClick(exp)}
                 >
+                  {/* Timeline dot */}
+                  <div className="absolute -left-[13px] top-8 w-6 h-6 rounded-full bg-primary/20 border-2 border-primary group-hover:scale-125 transition-transform duration-300" />
+                  
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded bg-secondary/50">
+                      <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
                         <Briefcase className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -71,13 +77,13 @@ export const TimelineSection = () => {
                           <Calendar className="w-3 h-3" />
                           <span className="text-xs font-mono uppercase tracking-wider">{exp.startDate} - {exp.endDate || 'Present'}</span>
                         </div>
-                        <h4 className="text-lg font-medium leading-tight mb-1">{exp.position}</h4>
+                        <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{exp.position}</h4>
                         <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
                           <span>{exp.name}</span>
                         </div>
                         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{exp.summary}</p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                     </div>
                   </div>
                 </Card>
@@ -94,16 +100,22 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4">
+            <div className="relative space-y-4">
+              {/* Connecting line */}
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent -z-10" />
+              
               {education.map((edu, index) => (
                 <Card 
                   key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-smooth cursor-pointer group"
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/50 relative"
                   onClick={() => handleItemClick(edu)}
                 >
+                  {/* Timeline dot */}
+                  <div className="absolute -left-[13px] top-8 w-6 h-6 rounded-full bg-primary/20 border-2 border-primary group-hover:scale-125 transition-transform duration-300" />
+                  
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded bg-secondary/50">
+                      <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
                         <GraduationCap className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -111,7 +123,7 @@ export const TimelineSection = () => {
                           <Calendar className="w-3 h-3" />
                           <span className="text-xs font-mono uppercase tracking-wider">{edu.startDate} - {edu.endDate}</span>
                         </div>
-                        <h4 className="text-lg font-medium leading-tight mb-1">{edu.studyType} in {edu.area}</h4>
+                        <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{edu.studyType} in {edu.area}</h4>
                         <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
                           <span>{edu.institution}</span>
                         </div>
@@ -132,7 +144,7 @@ export const TimelineSection = () => {
                         )}
                         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{edu.summary}</p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                     </div>
                   </div>
                 </Card>
