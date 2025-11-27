@@ -109,20 +109,54 @@ export const SkillsSection = () => {
             </Card>
           </div>
 
-          {/* Technical Skills - Clean Grid */}
-          <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal">
-            <div className="flex items-center gap-3 mb-6">
-              <Code className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-medium">{t('skills.technicalSkills')}</h3>
+          {/* Technical Skills - Enhanced Grid */}
+          <Card className="p-8 bg-gradient-subtle backdrop-blur-sm border-border/50 shadow-professional overflow-hidden relative">
+            {/* Decorative accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
+            
+            <div className="flex items-center gap-3 mb-8 relative z-10">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Code className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-xl font-medium">{t('skills.technicalSkills')}</h3>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
               {skills.map((skill, index) => (
-                <div key={index} className="space-y-3">
-                  <h4 className="text-sm font-medium text-foreground border-b border-border/50 pb-2">{skill.name}</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div 
+                  key={index} 
+                  className="group space-y-4 p-4 rounded-lg bg-card/50 border border-border/50 hover:border-border hover:shadow-minimal transition-all duration-300 hover:-translate-y-1"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {/* Skill header with level indicator */}
+                  <div className="flex items-start justify-between gap-2">
+                    <h4 className="text-sm font-medium text-foreground flex-1 group-hover:text-primary transition-smooth">
+                      {skill.name}
+                    </h4>
+                    <div className="flex gap-1 mt-0.5">
+                      {[...Array(3)].map((_, i) => (
+                        <div 
+                          key={i}
+                          className={`w-1 h-3 rounded-full transition-all duration-500 ${
+                            i < (skill.level === 'Expert' ? 3 : skill.level === 'Advanced' ? 2 : 1)
+                              ? 'bg-primary' 
+                              : 'bg-border'
+                          }`}
+                          style={{ transitionDelay: `${i * 100}ms` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Keywords with staggered animation */}
+                  <div className="flex flex-wrap gap-1.5">
                     {skill.keywords.map((keyword, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs px-2 py-1 bg-secondary/50 hover:bg-secondary transition-smooth">
+                      <Badge 
+                        key={i} 
+                        variant="secondary" 
+                        className="text-xs px-2.5 py-0.5 bg-secondary/70 hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default border border-transparent hover:border-primary/20 font-medium"
+                        style={{ animationDelay: `${i * 50}ms` }}
+                      >
                         {keyword}
                       </Badge>
                     ))}
