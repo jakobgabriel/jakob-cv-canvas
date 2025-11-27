@@ -20,8 +20,12 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    // Show consent banner if user hasn't made a choice
-    if (!CookieManager.hasConsent() && localStorage.getItem('cookie-choice') !== 'declined') {
+    // Show consent banner if user hasn't made a choice yet
+    const hasExistingConsent = CookieManager.hasConsent();
+    const preferences = CookieManager.getPreferences();
+    
+    // Only show if no consent decision has been made
+    if (!hasExistingConsent && !preferences.analytics && !preferences.essential) {
       setIsVisible(true);
     }
   }, []);
@@ -52,7 +56,6 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
     // Disable Google Analytics
     GoogleAnalytics.disable();
     
-    localStorage.setItem('cookie-choice', 'declined');
     setIsVisible(false);
     onDecline?.();
   };
