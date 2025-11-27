@@ -20,7 +20,7 @@ export class CookieManager {
     });
   }
 
-  // Track user interactions
+  // Track user interactions (integrates with Google Analytics)
   static trackInteraction(action: string, data?: Record<string, any>): void {
     if (!this.hasConsent()) return;
     
@@ -28,24 +28,10 @@ export class CookieManager {
     const preferences = this.getPreferences();
     if (!preferences.analytics) return;
 
-    const interaction = {
-      action,
-      timestamp: new Date().toISOString(),
-      data: data || {},
-      sessionId: this.getSessionId(),
-    };
-
-    // Store in local storage for now (could be sent to analytics service)
-    const existingData = localStorage.getItem('user-interactions') || '[]';
-    const interactions = JSON.parse(existingData);
-    interactions.push(interaction);
-    
-    // Keep only last 100 interactions
-    if (interactions.length > 100) {
-      interactions.splice(0, interactions.length - 100);
+    // Track to Google Analytics if available
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', action, data);
     }
-    
-    localStorage.setItem('user-interactions', JSON.stringify(interactions));
   }
 
   // Get or create session ID
@@ -82,13 +68,5 @@ export class CookieManager {
     Cookies.remove(this.CONSENT_COOKIE);
     Cookies.remove(this.TRACKING_COOKIE);
     Cookies.remove(this.PREFERENCES_COOKIE);
-    localStorage.removeItem('user-interactions');
-  }
-
-  // Get analytics data
-  static getAnalyticsData(): any[] {
-    if (!this.hasConsent()) return [];
-    const data = localStorage.getItem('user-interactions');
-    return data ? JSON.parse(data) : [];
   }
 }
