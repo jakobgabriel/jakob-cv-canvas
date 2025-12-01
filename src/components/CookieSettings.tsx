@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,12 @@ export const CookieSettings = () => {
   const preferences = CookieManager.getPreferences();
   const [analyticsEnabled, setAnalyticsEnabled] = useState(preferences.analytics || false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
+
+  // Only show the floating icon after user has made a consent decision
+  useEffect(() => {
+    setShowIcon(CookieManager.hasConsentDecision());
+  }, []);
 
   const handleSave = () => {
     trackConsentAction('customize');
@@ -36,12 +42,18 @@ export const CookieSettings = () => {
     setIsOpen(false);
   };
 
+  if (!showIcon) return null;
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-          <Cookie className="w-4 h-4 mr-2" />
-          {t('cookies.settings') || 'Cookie Settings'}
+        <Button 
+          variant="outline" 
+          size="icon"
+          className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full shadow-elegant opacity-50 hover:opacity-100 transition-all duration-300 hover:scale-110 border-border/50 hover:border-primary bg-background/80 backdrop-blur-sm"
+          aria-label={t('cookies.settings') || 'Cookie Settings'}
+        >
+          <Cookie className="w-5 h-5" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">

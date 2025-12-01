@@ -89,6 +89,7 @@ const Index = () => {
       <ScrollProgress />
       <Navigation />
       <ThemeLanguageToggle />
+      <CookieSettings />
       <div id="hero">
         <HeroSection />
       </div>
@@ -162,12 +163,9 @@ const Index = () => {
                 )}
               </div>
               
-              <div className="flex flex-col items-center gap-3">
-                <p className="text-muted-foreground text-sm">
-                  © {new Date().getFullYear()} Jakob Gabriel. All rights reserved.
-                </p>
-                <CookieSettings />
-              </div>
+              <p className="text-muted-foreground text-sm">
+                © {new Date().getFullYear()} Jakob Gabriel. All rights reserved.
+              </p>
             </div>
           </div>
         </div>
