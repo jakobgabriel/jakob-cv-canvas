@@ -75,15 +75,6 @@ export const TimelineSection = () => {
                         <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
                           <span>{exp.name}</span>
                         </div>
-                        {'industries' in exp && Array.isArray(exp.industries) && exp.industries.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5 mb-2">
-                            {exp.industries.map((industry: string, i: number) => (
-                              <Badge key={i} variant="outline" className="text-xs px-2 py-0.5 border-primary/30 text-primary">
-                                {industry}
-                              </Badge>
-                            ))}
-                          </div>
-                        )}
                         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{exp.summary}</p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
