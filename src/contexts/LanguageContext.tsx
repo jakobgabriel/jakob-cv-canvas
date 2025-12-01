@@ -64,6 +64,9 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.analytics.description': 'Help us understand how you interact with our site.',
     'cookies.required': 'Required',
     'cookies.optional': 'Optional',
+    'cookies.savePreferences': 'Save Preferences',
+    'cookies.settings': 'Cookie Settings',
+    'common.cancel': 'Cancel',
     'loading': 'Loading...',
     'close': 'Close'
   },
@@ -123,6 +126,9 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.analytics.description': 'Helfen uns zu verstehen, wie Sie mit unserer Website interagieren.',
     'cookies.required': 'Erforderlich',
     'cookies.optional': 'Optional',
+    'cookies.savePreferences': 'Einstellungen speichern',
+    'cookies.settings': 'Cookie-Einstellungen',
+    'common.cancel': 'Abbrechen',
     'loading': 'Lädt...',
     'close': 'Schließen'
   }
