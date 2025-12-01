@@ -119,12 +119,7 @@
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "Python", "SQL", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
-    },
-    {
-      "name": "Visualization & Communication",
-      "level": "Advanced",
-      "keywords": ["Grafana", "Power BI", "Streamlit", "Data Storytelling"]
+      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
     },
     {
       "name": "Process & Quality Engineering",
