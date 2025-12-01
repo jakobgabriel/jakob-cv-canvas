@@ -39,12 +39,6 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             {/* Footer content */}
             <div className="text-center space-y-6">
-              <div className="flex justify-center items-center gap-2 text-muted-foreground">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-primary fill-primary animate-pulse-slow" />
-                <span>by Jakob Gabriel</span>
-              </div>
-              
               {/* Social links */}
               <div className="flex justify-center gap-4">
                 <a 
