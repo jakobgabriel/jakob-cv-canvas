@@ -91,9 +91,24 @@ export const HeroSection = () => {
                 {basics.label}
               </h2>
               <div className="flex justify-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                  <Briefcase className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">7+ Years Experience</span>
+                <div className="flex flex-wrap gap-2 justify-center items-center max-w-2xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <Briefcase className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-medium text-primary">7+ Years</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <MapPin className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-medium text-primary">Germany • EU Work Auth</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Automotive</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Manufacturing</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Industry 4.0</span>
+                  </div>
                 </div>
               </div>
             </div>
