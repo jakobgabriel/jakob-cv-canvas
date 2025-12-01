@@ -42,7 +42,8 @@
         "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
         "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
       ],
-      "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"]
+      "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
+      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
     },
     {
       "name": "ContiTech Techno-Chemie GmbH",
@@ -59,7 +60,8 @@
         "Built intuitive dashboards that empowered operators and engineers to make faster, evidence-based decisions.",
         "Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide."
       ],
-      "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"]
+      "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"],
+      "industries": ["Automotive", "Manufacturing", "Data Science"]
     },
     {
       "name": "ContiTech MGW GmbH",
@@ -76,7 +78,8 @@
         "Built trusted relationships with customers through transparent communication, acceptance tests, and successful audit results.",
         "Introduced quality dashboards that visualized real-time KPIs, improving decision-making speed on the shop floor."
       ],
-      "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"]
+      "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"],
+      "industries": ["Automotive", "Manufacturing", "Quality Assurance"]
     }
   ],
   "education": [
