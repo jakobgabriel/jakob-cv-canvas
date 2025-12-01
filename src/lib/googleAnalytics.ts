@@ -28,8 +28,8 @@ export class GoogleAnalytics {
 
     // Initialize dataLayer and gtag
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
     };
 
     // Set default consent to denied (GDPR compliant)
@@ -73,7 +73,7 @@ export class GoogleAnalytics {
       'allow_ad_personalization_signals': false, // Disable ad personalization
       'cookie_flags': 'SameSite=None;Secure', // Secure cookies
       'cookie_expires': 63072000, // 2 years (max allowed)
-      'send_page_view': false // Manual page view tracking
+      'send_page_view': true // Enable automatic page view tracking
     });
 
     this.isEnabled = true;
