@@ -34,8 +34,8 @@ export class CookieManager {
     }
   }
 
-  // Get or create session ID
-  private static getSessionId(): string {
+  // Initialize tracking session (only call after consent)
+  static initializeSession(): string {
     let sessionId = Cookies.get(this.TRACKING_COOKIE);
     if (!sessionId) {
       sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -46,6 +46,11 @@ export class CookieManager {
       });
     }
     return sessionId;
+  }
+
+  // Check if user has made any consent decision (accept/decline)
+  static hasConsentDecision(): boolean {
+    return Cookies.get(this.CONSENT_COOKIE) !== undefined;
   }
 
   // Set user preferences
