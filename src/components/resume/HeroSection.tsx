@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
@@ -90,6 +90,12 @@ export const HeroSection = () => {
               <h2 className="text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 {basics.label}
               </h2>
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <Briefcase className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">7+ Years Experience</span>
+                </div>
+              </div>
             </div>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
