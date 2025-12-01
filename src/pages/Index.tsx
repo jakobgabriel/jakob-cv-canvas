@@ -5,6 +5,7 @@ import { ContactSection } from "@/components/resume/ContactSection";
 import { Navigation } from "@/components/Navigation";
 import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { CookieSettings } from "@/components/CookieSettings";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -161,9 +162,12 @@ const Index = () => {
                 )}
               </div>
               
-              <p className="text-muted-foreground text-sm">
-                © {new Date().getFullYear()} Jakob Gabriel. All rights reserved.
-              </p>
+              <div className="flex flex-col items-center gap-3">
+                <p className="text-muted-foreground text-sm">
+                  © {new Date().getFullYear()} Jakob Gabriel. All rights reserved.
+                </p>
+                <CookieSettings />
+              </div>
             </div>
           </div>
         </div>

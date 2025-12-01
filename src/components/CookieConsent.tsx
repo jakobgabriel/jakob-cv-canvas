@@ -22,12 +22,8 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const { trackConsentAction } = useAnalytics();
 
   useEffect(() => {
-    // Show consent banner if user hasn't made a choice yet
-    const hasExistingConsent = CookieManager.hasConsent();
-    const preferences = CookieManager.getPreferences();
-    
-    // Only show if no consent decision has been made
-    if (!hasExistingConsent && !preferences.analytics && !preferences.essential) {
+    // Show consent banner if user hasn't made ANY decision yet
+    if (!CookieManager.hasConsentDecision()) {
       setIsVisible(true);
     }
   }, []);
@@ -40,9 +36,10 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       analytics: analyticsEnabled 
     });
     
-    // Enable Google Analytics if analytics is enabled
+    // Enable Google Analytics and initialize session if analytics is enabled
     if (analyticsEnabled) {
       GoogleAnalytics.enable();
+      CookieManager.initializeSession();
     }
     
     setIsVisible(false);
@@ -72,9 +69,10 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       analytics: analyticsEnabled 
     });
     
-    // Enable/disable Google Analytics based on user choice
+    // Enable/disable Google Analytics and session based on user choice
     if (analyticsEnabled) {
       GoogleAnalytics.enable();
+      CookieManager.initializeSession();
     } else {
       GoogleAnalytics.disable();
     }
@@ -84,7 +82,8 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   };
 
   const handleClose = () => {
-    setIsVisible(false);
+    // Close button acts as decline (GDPR best practice)
+    handleDecline();
   };
 
   if (!isVisible) return null;
