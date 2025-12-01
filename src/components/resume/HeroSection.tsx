@@ -55,7 +55,7 @@ export const HeroSection = () => {
   ) || [];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-32 overflow-hidden">
       {/* Subtle decorative accents with animations */}
       <div className="absolute inset-0 overflow-hidden will-change-transform pointer-events-none">
         <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
