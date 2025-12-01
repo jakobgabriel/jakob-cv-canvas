@@ -55,7 +55,7 @@ export const HeroSection = () => {
   ) || [];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-32 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
       {/* Subtle decorative accents with animations */}
       <div className="absolute inset-0 overflow-hidden will-change-transform pointer-events-none">
         <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
@@ -63,7 +63,7 @@ export const HeroSection = () => {
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
           {/* Portrait - Minimal and Professional */}
           <div className="flex justify-center">
             <div className="relative">
@@ -82,8 +82,8 @@ export const HeroSection = () => {
           </div>
           
           {/* Content - Enhanced Typography with Animations */}
-          <div className="space-y-8 animate-fade-in">
-            <div className="space-y-4">
+          <div className="space-y-5 animate-fade-in">
+            <div className="space-y-3">
               <h1 className="text-5xl lg:text-6xl font-display font-bold tracking-tight animate-scale-in">
                 {basics.name}
               </h1>
@@ -117,7 +117,7 @@ export const HeroSection = () => {
             </p>
 
             {/* Contact Info - Minimal */}
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 {basics.location.city} {basics.location.region}
