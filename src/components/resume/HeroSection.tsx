@@ -142,53 +142,6 @@ export const HeroSection = () => {
               )}
             </div>
             
-            {/* Social Links - Dynamic Support for 10 Most Common Platforms */}
-            <div className="flex flex-wrap gap-3 justify-center">
-              {availableProfiles.map((profile) => {
-                const config = profileConfigs[profile.network as keyof typeof profileConfigs];
-                const IconComponent = config.icon;
-                
-                return (
-                  <Button 
-                    key={profile.network}
-                    variant="outline" 
-                    size="sm"
-                    className="border-border/50 hover:border-primary transition-smooth"
-                    asChild
-                  >
-                    <a 
-                      href={profile.url}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                      onClick={() => trackSocialClick(profile.network, profile.url)}
-                    >
-                      <IconComponent className="w-4 h-4" />
-                      {profile.network}
-                    </a>
-                  </Button>
-                );
-              })}
-              
-              {/* Email - Always show if available */}
-              {basics.email && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="border-border/50 hover:border-primary transition-smooth"
-                  asChild
-                >
-                  <a 
-                    href={`mailto:${basics.email}`}
-                    className="flex items-center gap-2"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Email
-                  </a>
-                </Button>
-              )}
-            </div>
-            
             {config.features.downloadResume.enabled && (
               <Button 
                 size="lg" 
