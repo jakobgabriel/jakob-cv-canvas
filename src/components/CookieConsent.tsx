@@ -164,7 +164,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
             size="sm"
             className="flex-1 h-8"
           >
-            {t('cookies.acceptAll')}
+            {t('cookies.acceptAll') || 'Accept All'}
           </Button>
           {showDetails && (
             <Button
@@ -174,7 +174,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
               className="flex-1 h-8"
             >
               <Settings className="w-3 h-3 mr-1" />
-              Save
+              {t('cookies.savePreferences') || 'Save Choices'}
             </Button>
           )}
           <Button
@@ -183,7 +183,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
             size="sm"
             className="flex-1 h-8"
           >
-            {t('cookies.decline')}
+            {t('cookies.decline') || 'Essential Only'}
           </Button>
         </div>
       </Card>
