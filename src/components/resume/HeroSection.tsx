@@ -5,13 +5,11 @@ import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload } = useAnalytics();
   const resumeData = getResumeData(language);
-  const [currentBadgeIndex, setCurrentBadgeIndex] = useState(0);
 
   if (!resumeData || !config) {
     return (
@@ -22,24 +20,6 @@ export const HeroSection = () => {
   }
 
   const { basics } = resumeData;
-
-  // Define rotating badges
-  const badges = [
-    { icon: Briefcase, text: "7+ Years Experience" },
-    { icon: MapPin, text: "Germany • EU Work Auth" },
-    { icon: null, text: "Automotive Industry" },
-    { icon: null, text: "Manufacturing Expert" },
-    { icon: null, text: "Industry 4.0 Leader" },
-    { icon: null, text: "Digital Transformation" },
-  ];
-
-  // Rotate badges every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBadgeIndex((prev) => (prev + 1) % badges.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [badges.length]);
   
   // Define profile configurations for the 10 most common platforms
   const profileConfigs = {
@@ -110,26 +90,24 @@ export const HeroSection = () => {
               <h2 className="text-xl lg:text-2xl text-muted-foreground font-normal animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 {basics.label}
               </h2>
-              <div className="flex justify-center min-h-[32px]">
-                <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                  {badges.map((badge, index) => {
-                    const IconComponent = badge.icon;
-                    return (
-                      <div
-                        key={index}
-                        className={`absolute inset-0 flex items-center justify-center gap-2 px-4 transition-opacity duration-500 ${
-                          index === currentBadgeIndex ? 'opacity-100' : 'opacity-0'
-                        }`}
-                      >
-                        {IconComponent && <IconComponent className="w-4 h-4 text-primary" />}
-                        <span className="text-sm font-medium text-primary whitespace-nowrap">{badge.text}</span>
-                      </div>
-                    );
-                  })}
-                  {/* Invisible placeholder to maintain width */}
-                  <span className="invisible text-sm font-medium whitespace-nowrap">
-                    Digital Transformation
-                  </span>
+              <div className="flex justify-center">
+                <div className="flex flex-wrap gap-2 justify-center items-center max-w-2xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <Briefcase className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-medium text-primary">7+ Years</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Automotive</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Manufacturing</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Industry 4.0</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span className="text-xs font-medium text-primary">Digital Transformation</span>
+                  </div>
                 </div>
               </div>
             </div>
