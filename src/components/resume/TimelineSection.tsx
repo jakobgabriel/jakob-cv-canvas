@@ -8,10 +8,12 @@ import { useState } from "react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const TimelineSection = () => {
   const { language, t } = useLanguage();
   const resumeData = getResumeData(language);
+  const { trackDetailView } = useAnalytics();
   
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
@@ -19,6 +21,13 @@ export const TimelineSection = () => {
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
     setIsDetailsVisible(true);
+    
+    // Track detail view
+    if ('position' in item) {
+      trackDetailView('experience', item.position);
+    } else {
+      trackDetailView('education', `${item.studyType} in ${item.area}`);
+    }
   };
 
   const closeDetails = () => {

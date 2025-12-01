@@ -7,10 +7,12 @@ import { config } from "@/data/config";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
+  const { trackFormInteraction } = useAnalytics();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +23,8 @@ export const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    trackFormInteraction('submit', 'contact');
     
     if (!config?.features.contactForm.enabled) {
       toast({
@@ -48,6 +52,7 @@ export const ContactSection = () => {
       });
 
       if (response.ok) {
+        trackFormInteraction('success', 'contact');
         toast({
           title: t('contact.form.successTitle'),
           description: t('contact.form.successDescription'),
@@ -57,6 +62,7 @@ export const ContactSection = () => {
         throw new Error('Failed to send message');
       }
     } catch (error) {
+      trackFormInteraction('error', 'contact');
       toast({
         title: t('contact.form.errorTitle'),
         description: t('contact.form.errorDescription'),
@@ -65,6 +71,10 @@ export const ContactSection = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleFieldFocus = () => {
+    trackFormInteraction('focus', 'contact');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -96,6 +106,7 @@ export const ContactSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
+                    onFocus={handleFieldFocus}
                     placeholder={t('contact.form.namePlaceholder')} 
                     className="bg-background/50 border-border/50 transition-smooth focus:border-primary"
                     required

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, User, Briefcase, GraduationCap, Award, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { config } from "@/data/config";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface NavigationProps {
   className?: string;
@@ -20,6 +21,7 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const { trackNavigation } = useAnalytics();
 
   // Filter navigation items based on config
   const navigationItems = baseNavigationItems.filter(item => {
@@ -83,6 +85,9 @@ export const Navigation = ({ className }: NavigationProps) => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    // Track navigation
+    trackNavigation(activeSection, sectionId);
+    
     setIsScrolling(true);
     setActiveSection(sectionId);
     

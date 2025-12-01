@@ -9,14 +9,46 @@ import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useSectionTracking } from "@/hooks/useSectionTracking";
+import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink } from "lucide-react";
+import { useEffect } from "react";
 
 const Index = () => {
   const { language } = useLanguage();
-  const { trackSocialClick } = useAnalytics();
+  const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
   const resumeData = getResumeData(language);
   const basics = resumeData?.basics;
+
+  // Track section views
+  useSectionTracking(['hero', 'timeline', 'skills', 'contact'], {
+    onSectionView: trackSectionView,
+  });
+
+  // Track scroll depth
+  useScrollDepthTracking({
+    onScrollDepth: trackScrollDepth,
+  });
+
+  // Track session duration on page unload
+  useEffect(() => {
+    const sessionStart = Date.now();
+    
+    const handleBeforeUnload = () => {
+      const duration = Math.round((Date.now() - sessionStart) / 1000);
+      navigator.sendBeacon('/api/analytics', JSON.stringify({ 
+        event: 'session_duration', 
+        duration 
+      }));
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   // Define profile configurations for the 10 most common platforms
   const profileConfigs = {
@@ -120,6 +152,7 @@ const Index = () => {
                     <a 
                       href={`mailto:${basics.email}`}
                       className="flex items-center gap-2"
+                      onClick={() => trackSocialClick('email', basics.email)}
                     >
                       <Mail className="w-4 h-4" />
                       Email

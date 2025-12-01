@@ -163,6 +163,92 @@ export class GoogleAnalytics {
     });
   }
 
+  // Track scroll depth (only if enabled)
+  static trackScrollDepth(percentage: number): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'scroll_depth', {
+      event_category: 'engagement',
+      scroll_percentage: percentage,
+    });
+  }
+
+  // Track section views (only if enabled)
+  static trackSectionView(sectionId: string): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'section_view', {
+      event_category: 'engagement',
+      section_name: sectionId,
+    });
+  }
+
+  // Track navigation clicks (only if enabled)
+  static trackNavigationClick(from: string, to: string): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'navigation_click', {
+      event_category: 'navigation',
+      from_section: from,
+      to_section: to,
+    });
+  }
+
+  // Track form events (only if enabled)
+  static trackFormEvent(action: string, formName: string, success?: boolean): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'form_interaction', {
+      event_category: 'forms',
+      form_name: formName,
+      action: action,
+      success: success,
+    });
+  }
+
+  // Track outbound links (only if enabled)
+  static trackOutboundLink(url: string, label: string): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'outbound_click', {
+      event_category: 'outbound_links',
+      link_url: url,
+      link_label: label,
+    });
+  }
+
+  // Track user engagement (only if enabled)
+  static trackUserEngagement(type: string, details?: Record<string, any>): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'user_engagement', {
+      event_category: 'engagement',
+      engagement_type: type,
+      ...details,
+    });
+  }
+
+  // Track detail views (only if enabled)
+  static trackDetailView(type: string, title: string): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'detail_view', {
+      event_category: 'content_interaction',
+      content_type: type,
+      content_title: title,
+    });
+  }
+
+  // Track session duration (only if enabled)
+  static trackSessionDuration(duration: number): void {
+    if (!this.isEnabled || !this.isInitialized) return;
+
+    window.gtag('event', 'session_duration', {
+      event_category: 'engagement',
+      duration_seconds: duration,
+    });
+  }
+
   // Check if analytics is enabled
   static isAnalyticsEnabled(): boolean {
     return this.isEnabled && this.isInitialized;

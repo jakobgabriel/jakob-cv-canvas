@@ -75,6 +75,69 @@ export const useAnalytics = () => {
     }
   };
 
+  const trackSectionView = (sectionId: string) => {
+    trackEvent('section_view', 'engagement', sectionId);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackSectionView(sectionId);
+    }
+  };
+
+  const trackScrollDepth = (percentage: number) => {
+    trackEvent('scroll_depth', 'engagement', `${percentage}%`, percentage);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackScrollDepth(percentage);
+    }
+  };
+
+  const trackNavigation = (from: string, to: string) => {
+    trackEvent('navigation', 'navigation', `${from} to ${to}`);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackNavigationClick(from, to);
+    }
+  };
+
+  const trackDetailView = (type: 'experience' | 'education', title: string) => {
+    trackEvent('detail_view', 'content', `${type}: ${title}`);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackDetailView(type, title);
+    }
+  };
+
+  const trackFormInteraction = (action: 'focus' | 'submit' | 'success' | 'error', formName: string) => {
+    trackEvent('form_interaction', 'forms', `${formName}: ${action}`);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackFormEvent(action, formName, action === 'success');
+    }
+  };
+
+  const trackExternalLink = (url: string, label: string) => {
+    trackEvent('external_link', 'outbound', label);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackOutboundLink(url, label);
+    }
+  };
+
+  const trackConsentAction = (action: 'accept' | 'decline' | 'customize') => {
+    trackEvent('consent_action', 'privacy', action);
+    
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.trackUserEngagement('cookie_consent', { action });
+    }
+  };
+
   return {
     trackEvent,
     trackClick,
@@ -82,5 +145,12 @@ export const useAnalytics = () => {
     trackSocialClick,
     trackLanguageChange,
     trackThemeChange,
+    trackSectionView,
+    trackScrollDepth,
+    trackNavigation,
+    trackDetailView,
+    trackFormInteraction,
+    trackExternalLink,
+    trackConsentAction,
   };
 };
