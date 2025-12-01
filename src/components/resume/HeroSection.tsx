@@ -8,7 +8,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
-  const { trackSocialClick, trackDownload } = useAnalytics();
+  const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
   const resumeData = getResumeData(language);
 
   if (!resumeData || !config) {
@@ -134,6 +134,7 @@ export const HeroSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm"
+                    onClick={() => trackExternalLink(basics.url, 'website')}
                   >
                     <Globe className="w-4 h-4" />
                     jakobgabriel.github.io

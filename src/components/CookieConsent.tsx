@@ -7,6 +7,7 @@ import { X, Cookie, Shield, BarChart3, Settings } from 'lucide-react';
 import { CookieManager } from '@/lib/cookieManager';
 import { GoogleAnalytics } from '@/lib/googleAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface CookieConsentProps {
   onAccept?: () => void;
@@ -18,6 +19,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const [showDetails, setShowDetails] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
   const { t } = useLanguage();
+  const { trackConsentAction } = useAnalytics();
 
   useEffect(() => {
     // Show consent banner if user hasn't made a choice yet
@@ -31,6 +33,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   }, []);
 
   const handleAccept = () => {
+    trackConsentAction('accept');
     CookieManager.setConsent(true);
     CookieManager.setPreferences({ 
       essential: true, 
@@ -47,6 +50,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   };
 
   const handleDecline = () => {
+    trackConsentAction('decline');
     CookieManager.setConsent(false);
     CookieManager.setPreferences({ 
       essential: true, 
@@ -61,6 +65,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   };
 
   const handleCustomize = () => {
+    trackConsentAction('customize');
     CookieManager.setConsent(true);
     CookieManager.setPreferences({ 
       essential: true, 
