@@ -1,7 +1,7 @@
 {
   "features": {
     "downloadResume": {
-      "enabled": true,
+      "enabled": false,
       "url": "/resume.pdf"
     },
     "contactForm": {

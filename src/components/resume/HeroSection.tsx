@@ -1,27 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase, Loader2 } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { usePDFDownload } from "@/hooks/usePDFDownload";
-import { toast } from "@/hooks/use-toast";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
   const resumeData = getResumeData(language);
-  const { generatePDF, isGenerating } = usePDFDownload({ language });
-
-  const handleDownload = async () => {
-    trackDownload('resume.pdf', 'pdf');
-    await generatePDF();
-    toast({
-      title: t('hero.downloadSuccess') || 'Download Started',
-      description: t('hero.downloadDescription') || 'Your resume PDF is being generated.',
-    });
-  };
 
   if (!resumeData || !config) {
     return (
@@ -160,15 +148,10 @@ export const HeroSection = () => {
                 size="lg" 
                 className="px-8 py-6 text-base shadow-professional hover:shadow-dramatic transition-all duration-300 hover:-translate-y-0.5 bg-primary hover:bg-primary-glow animate-fade-in"
                 style={{ animationDelay: '0.4s' }}
-                onClick={handleDownload}
-                disabled={isGenerating}
+                onClick={() => trackDownload('resume.pdf', 'pdf')}
               >
-                {isGenerating ? (
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                ) : (
-                  <FileText className="w-5 h-5 mr-2" />
-                )}
-                {isGenerating ? (t('hero.generating') || 'Generating...') : t('hero.downloadResume')}
+                <FileText className="w-5 h-5 mr-2" />
+                {t('hero.downloadResume')}
               </Button>
             )}
           </div>
