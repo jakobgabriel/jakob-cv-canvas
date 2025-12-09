@@ -6,14 +6,13 @@ import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { usePDFDownload } from "@/hooks/usePDFDownload";
-import { PrintableResume } from "./PrintableResume";
 import { toast } from "@/hooks/use-toast";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
   const resumeData = getResumeData(language);
-  const { printableRef, generatePDF, isGenerating } = usePDFDownload({ language });
+  const { generatePDF, isGenerating } = usePDFDownload({ language });
 
   const handleDownload = async () => {
     trackDownload('resume.pdf', 'pdf');
@@ -175,9 +174,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Hidden printable resume for PDF generation */}
-      <PrintableResume ref={printableRef} language={language} />
     </section>
   );
 };
