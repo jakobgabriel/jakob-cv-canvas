@@ -1,16 +1,41 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase, ChevronDown } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { LazyImage } from "@/components/LazyImage";
+import { useEffect, useState, useRef } from "react";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
   const resumeData = getResumeData(language);
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Parallax effect for background blobs
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        if (rect.bottom > 0) {
+          setScrollY(window.scrollY);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTimeline = () => {
+    const timelineSection = document.getElementById('timeline');
+    if (timelineSection) {
+      timelineSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   if (!resumeData || !config) {
     return (
@@ -56,11 +81,21 @@ export const HeroSection = () => {
   ) || [];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
-      {/* Subtle decorative accents with animations */}
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
+      {/* Subtle decorative accents with parallax effect */}
       <div className="absolute inset-0 overflow-hidden will-change-transform pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-20 w-40 h-40 bg-primary-glow/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float parallax-blob"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-20 w-40 h-40 bg-primary-glow/5 rounded-full blur-3xl animate-float parallax-blob"
+          style={{ animationDelay: '2s', transform: `translateY(${scrollY * -0.05}px)` }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-1/3 w-24 h-24 bg-primary/3 rounded-full blur-2xl parallax-blob"
+          style={{ transform: `translateY(${scrollY * 0.08}px) translateX(${scrollY * 0.02}px)` }}
+        ></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -158,6 +193,18 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Scroll down indicator */}
+      <button
+        onClick={scrollToTimeline}
+        className="absolute bottom-8 left-1/2 scroll-indicator cursor-pointer group"
+        aria-label="Scroll to experience section"
+      >
+        <div className="flex flex-col items-center gap-2 text-muted-foreground group-hover:text-primary transition-colors">
+          <span className="text-xs font-medium tracking-wider uppercase opacity-70">Scroll</span>
+          <ChevronDown className="w-5 h-5" />
+        </div>
+      </button>
     </section>
   );
 };
