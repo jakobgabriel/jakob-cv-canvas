@@ -37,20 +37,23 @@ const Index = () => {
     onScrollDepth: trackScrollDepth,
   });
 
-  // Track session duration on page unload
+  // Track session duration on page unload via Google Analytics
   useEffect(() => {
     const sessionStart = Date.now();
-    
+
     const handleBeforeUnload = () => {
       const duration = Math.round((Date.now() - sessionStart) / 1000);
-      navigator.sendBeacon('/api/analytics', JSON.stringify({ 
-        event: 'session_duration', 
-        duration 
-      }));
+      // Use Google Analytics to track session duration instead of non-existent API
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'session_duration', {
+          event_category: 'engagement',
+          duration_seconds: duration,
+        });
+      }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };

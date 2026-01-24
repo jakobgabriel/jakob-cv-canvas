@@ -22,7 +22,6 @@ export class GoogleAnalytics {
 
     // Check for Do Not Track
     if (navigator.doNotTrack === '1' || (window as any).doNotTrack === '1') {
-      console.log('Do Not Track is enabled - Analytics disabled');
       return;
     }
 

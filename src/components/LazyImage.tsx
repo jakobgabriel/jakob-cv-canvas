@@ -59,32 +59,24 @@ export const LazyImage = ({
     onLoad?.();
   };
 
-  // Generate WebP source path (assumes .webp version exists alongside original)
-  const webpSrc = src.replace(/\.(jpe?g|png)$/i, '.webp');
-
   return (
     <div ref={imgRef} className={`relative ${className}`}>
       {!isLoaded && (
         <div className="absolute inset-0 bg-muted/50 animate-pulse rounded-inherit" />
       )}
       {isInView && (
-        <picture>
-          {/* WebP source for modern browsers */}
-          <source srcSet={webpSrc} type="image/webp" />
-          {/* Fallback to original format */}
-          <img
-            src={src}
-            alt={alt}
-            className={`${className} transition-opacity duration-300 ${
-              isLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            width={width}
-            height={height}
-            loading={loading}
-            decoding={decoding}
-            onLoad={handleLoad}
-          />
-        </picture>
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          width={width}
+          height={height}
+          loading={loading}
+          decoding={decoding}
+          onLoad={handleLoad}
+        />
       )}
     </div>
   );
