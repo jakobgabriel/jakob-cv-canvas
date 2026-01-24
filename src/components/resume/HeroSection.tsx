@@ -5,6 +5,7 @@ import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { LazyImage } from "@/components/LazyImage";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
@@ -68,10 +69,10 @@ export const HeroSection = () => {
           <div className="flex justify-center">
             <div className="relative">
               <div className="w-32 h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-professional border border-border/50">
-                <img 
-                  src={jakobPortrait} 
-                  alt={`${basics.name} - Professional headshot`} 
-                  className="w-full h-full object-cover gpu-accelerated"
+                <LazyImage
+                  src={jakobPortrait}
+                  alt={`${basics.name} - Professional headshot`}
+                  className="w-full h-full object-cover gpu-accelerated rounded-full"
                   loading="eager"
                   decoding="sync"
                   width="144"

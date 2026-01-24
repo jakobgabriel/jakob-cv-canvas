@@ -1,7 +1,4 @@
 import { HeroSection } from "@/components/resume/HeroSection";
-import { TimelineSection } from "@/components/resume/TimelineSection";
-import { SkillsSection } from "@/components/resume/SkillsSection";
-import { ContactSection } from "@/components/resume/ContactSection";
 import { Navigation } from "@/components/Navigation";
 import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 import { ScrollProgress } from "@/components/ScrollProgress";
@@ -14,7 +11,15 @@ import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
+import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
+import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
+import { ContactSkeleton } from "@/components/skeletons/ContactSkeleton";
+
+// Lazy load below-fold sections for better performance
+const TimelineSection = lazy(() => import("@/components/resume/TimelineSection").then(module => ({ default: module.TimelineSection })));
+const SkillsSection = lazy(() => import("@/components/resume/SkillsSection").then(module => ({ default: module.SkillsSection })));
+const ContactSection = lazy(() => import("@/components/resume/ContactSection").then(module => ({ default: module.ContactSection })));
 
 const Index = () => {
   const { language } = useLanguage();
@@ -94,14 +99,20 @@ const Index = () => {
         <HeroSection />
       </div>
       <div id="timeline">
-        <TimelineSection />
+        <Suspense fallback={<TimelineSkeleton />}>
+          <TimelineSection />
+        </Suspense>
       </div>
       <div id="skills">
-        <SkillsSection />
+        <Suspense fallback={<SkillsSkeleton />}>
+          <SkillsSection />
+        </Suspense>
       </div>
       {config?.features.contactForm.enabled !== false && (
         <div id="contact">
-          <ContactSection />
+          <Suspense fallback={<ContactSkeleton />}>
+            <ContactSection />
+          </Suspense>
         </div>
       )}
       
