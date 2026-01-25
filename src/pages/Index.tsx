@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CookieSettings } from "@/components/CookieSettings";
+import { BackToTop } from "@/components/BackToTop";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -98,6 +99,7 @@ const Index = () => {
       <Navigation />
       <ThemeLanguageToggle />
       <CookieSettings />
+      <BackToTop />
       <div id="hero">
         <HeroSection />
       </div>

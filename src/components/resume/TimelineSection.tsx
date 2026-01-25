@@ -63,11 +63,12 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-4 timeline-connector">
               {experiences.map((exp, index) => (
-                <Card 
-                  key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30"
+                <Card
+                  key={index}
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => handleItemClick(exp)}
                 >
                   <div className="p-6">
@@ -103,11 +104,12 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-4 timeline-connector">
               {education.map((edu, index) => (
-                <Card 
-                  key={index} 
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30"
+                <Card
+                  key={index}
+                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => handleItemClick(edu)}
                 >
                   <div className="p-6">
