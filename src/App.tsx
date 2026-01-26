@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,7 @@ import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { CookieManager } from "@/lib/cookieManager";
 import { config } from "@/data/config";
 import Index from "./pages/Index";
+import Contact from "./pages/Contact";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -16,7 +18,7 @@ const App: React.FC = () => {
     if (config?.analytics?.googleAnalyticsId) {
       GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
       GoogleAnalytics.init();
-      
+
       // If user has already consented, enable analytics
       const preferences = CookieManager.getPreferences();
       if (CookieManager.hasConsent() && preferences.analytics) {
@@ -24,18 +26,23 @@ const App: React.FC = () => {
       }
     }
   }, []);
-  
+
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <LanguageDetector>
-        <TooltipProvider>
-          <Index />
-          <CookieConsent />
-          <Toaster />
-          <Sonner />
-        </TooltipProvider>
-      </LanguageDetector>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <LanguageDetector>
+          <TooltipProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+            <CookieConsent />
+            <Toaster />
+            <Sonner />
+          </TooltipProvider>
+        </LanguageDetector>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
 
