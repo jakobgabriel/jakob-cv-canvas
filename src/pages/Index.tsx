@@ -11,7 +11,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink } from "lucide-react";
+import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays } from "lucide-react";
 import { useEffect, lazy, Suspense } from "react";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
@@ -161,13 +161,13 @@ const Index = () => {
                 
                 {/* Email - Always show if available */}
                 {basics?.email && (
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="border-border/50 hover:border-primary transition-smooth"
                     asChild
                   >
-                    <a 
+                    <a
                       href={`mailto:${basics.email}`}
                       className="flex items-center gap-2"
                       onClick={() => trackSocialClick('email', basics.email)}
@@ -177,6 +177,25 @@ const Index = () => {
                     </a>
                   </Button>
                 )}
+
+                {/* Calendly - Book a call */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-border/50 hover:border-blue-500 hover:text-blue-500 transition-smooth"
+                  asChild
+                >
+                  <a
+                    href="https://calendly.com/jakob-gabriel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                    onClick={() => trackSocialClick('calendly', 'https://calendly.com/jakob-gabriel')}
+                  >
+                    <CalendarDays className="w-4 h-4" />
+                    Calendly
+                  </a>
+                </Button>
               </div>
               
               <p className="text-muted-foreground text-sm">
