@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useCalendly } from "@/hooks/useCalendly";
 import { getResumeData } from "@/data/resume";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -20,6 +21,7 @@ const Contact = () => {
   const { toast } = useToast();
   const { t, language } = useLanguage();
   const { trackFormInteraction } = useAnalytics();
+  const { openCalendly } = useCalendly();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -160,21 +162,24 @@ const Contact = () => {
       label: 'Email',
       value: resumeData.basics?.email || 'Contact via email',
       href: `mailto:${resumeData.basics?.email}`,
-      color: 'text-blue-500'
+      color: 'text-blue-500',
+      onClick: undefined as (() => void) | undefined
     },
     {
       icon: Calendar,
       label: language === 'de' ? 'Termin buchen' : 'Schedule a Call',
       value: 'Calendly',
-      href: 'https://calendly.com/jakob-gabriel',
-      color: 'text-emerald-500'
+      href: undefined as string | undefined,
+      color: 'text-emerald-500',
+      onClick: openCalendly
     },
     ...(linkedinProfile ? [{
       icon: Linkedin,
       label: 'LinkedIn',
       value: 'Connect',
       href: linkedinProfile.url,
-      color: 'text-sky-500'
+      color: 'text-sky-500',
+      onClick: undefined as (() => void) | undefined
     }] : [])
   ];
 
@@ -238,22 +243,38 @@ const Contact = () => {
               <div className={`space-y-4 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <h3 className="text-lg font-medium mb-4">{t('contact.otherWays')}</h3>
 
-                {contactMethods.map((method, index) => (
-                  <a
-                    key={method.label}
-                    href={method.href}
-                    target={method.href.startsWith('http') ? '_blank' : undefined}
-                    rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:shadow-professional transition-all duration-300 group"
-                  >
-                    <div className={`p-2.5 rounded-lg bg-background/80 ${method.color} group-hover:scale-110 transition-transform duration-300`}>
-                      <method.icon className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-muted-foreground">{method.label}</p>
-                      <p className="font-medium text-sm truncate">{method.value}</p>
-                    </div>
-                  </a>
+                {contactMethods.map((method) => (
+                  method.onClick ? (
+                    <button
+                      key={method.label}
+                      onClick={method.onClick}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:shadow-professional transition-all duration-300 group cursor-pointer text-left w-full"
+                    >
+                      <div className={`p-2.5 rounded-lg bg-background/80 ${method.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <method.icon className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-muted-foreground">{method.label}</p>
+                        <p className="font-medium text-sm truncate">{method.value}</p>
+                      </div>
+                    </button>
+                  ) : (
+                    <a
+                      key={method.label}
+                      href={method.href}
+                      target={method.href?.startsWith('http') ? '_blank' : undefined}
+                      rel={method.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:shadow-professional transition-all duration-300 group"
+                    >
+                      <div className={`p-2.5 rounded-lg bg-background/80 ${method.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <method.icon className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-muted-foreground">{method.label}</p>
+                        <p className="font-medium text-sm truncate">{method.value}</p>
+                      </div>
+                    </a>
+                  )
                 ))}
 
                 {/* Response time */}

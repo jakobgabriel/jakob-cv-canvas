@@ -6,12 +6,14 @@ import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useCalendly } from "@/hooks/useCalendly";
 import { LazyImage } from "@/components/LazyImage";
 import { useEffect, useState, useRef } from "react";
 
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
+  const { openCalendly } = useCalendly();
   const resumeData = getResumeData(language);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,9 +78,6 @@ export const HeroSection = () => {
     },
     'Calendly': { icon: CalendarDays, color: 'text-blue-500' }
   };
-
-  // Calendly link
-  const calendlyUrl = 'https://calendly.com/jakob-gabriel';
 
   // Get all available profiles
   const availableProfiles = basics.profiles?.filter(profile => 
@@ -186,18 +185,13 @@ export const HeroSection = () => {
                 variant="outline"
                 size="sm"
                 className="border-border/50 hover:border-blue-500 hover:text-blue-500 transition-smooth h-auto py-1 px-3"
-                asChild
+                onClick={() => {
+                  openCalendly();
+                  trackExternalLink('calendly', 'calendly_popup');
+                }}
               >
-                <a
-                  href={calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm"
-                  onClick={() => trackExternalLink(calendlyUrl, 'calendly')}
-                >
-                  <CalendarDays className="w-4 h-4" />
-                  {language === 'de' ? 'Termin buchen' : 'Book a Call'}
-                </a>
+                <CalendarDays className="w-4 h-4 mr-2" />
+                {language === 'de' ? 'Termin buchen' : 'Book a Call'}
               </Button>
               <Button
                 variant="outline"

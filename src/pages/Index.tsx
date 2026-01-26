@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
 import { useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+import { useCalendly } from "@/hooks/useCalendly";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
 import { ContactSkeleton } from "@/components/skeletons/ContactSkeleton";
@@ -26,6 +27,7 @@ const ContactSection = lazy(() => import("@/components/resume/ContactSection").t
 const Index = () => {
   const { language } = useLanguage();
   const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
+  const { openCalendly } = useCalendly();
   const resumeData = getResumeData(language);
   const basics = resumeData?.basics;
 
@@ -184,18 +186,13 @@ const Index = () => {
                   variant="outline"
                   size="sm"
                   className="border-border/50 hover:border-blue-500 hover:text-blue-500 transition-smooth"
-                  asChild
+                  onClick={() => {
+                    openCalendly();
+                    trackSocialClick('calendly', 'calendly_popup');
+                  }}
                 >
-                  <a
-                    href="https://calendly.com/jakob-gabriel"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                    onClick={() => trackSocialClick('calendly', 'https://calendly.com/jakob-gabriel')}
-                  >
-                    <CalendarDays className="w-4 h-4" />
-                    Calendly
-                  </a>
+                  <CalendarDays className="w-4 h-4 mr-2" />
+                  Calendly
                 </Button>
 
                 {/* Contact form */}
