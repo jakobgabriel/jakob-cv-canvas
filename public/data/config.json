@@ -5,7 +5,7 @@
       "url": "/resume.pdf"
     },
     "contactForm": {
-      "enabled": false,
+      "enabled": true,
       "formspreeEndpoint": "https://formspree.io/f/YOUR_FORM_ID"
     },
     "multiLanguage": {
