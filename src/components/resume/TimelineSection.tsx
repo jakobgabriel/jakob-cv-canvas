@@ -118,22 +118,22 @@ export const TimelineSection = () => {
                     </div>
                   </Card>
                 ) : (
-                  /* Compact View */
+                  /* Compact View - Mobile Optimized */
                   <div
                     key={index}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary"
+                    className="flex items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary active:bg-secondary/70"
                     style={{ animationDelay: `${index * 0.05}s` }}
                     onClick={() => handleItemClick(exp)}
                   >
-                    <div className="w-20 flex-shrink-0 text-xs font-mono text-muted-foreground">
+                    <div className="w-12 sm:w-16 flex-shrink-0 text-xs font-mono text-muted-foreground pt-0.5 sm:pt-0">
                       {exp.startDate.split('-')[0]}
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-1.5 sm:mt-0" />
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors truncate">{exp.position}</h4>
-                      <p className="text-xs text-muted-foreground truncate">{exp.name}</p>
+                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors line-clamp-2 sm:truncate">{exp.position}</h4>
+                      <p className="text-xs text-muted-foreground line-clamp-1">{exp.name}</p>
                     </div>
-                    <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0 sm:opacity-0 group-hover:opacity-100 transition-opacity mt-0.5 sm:mt-0" />
                   </div>
                 )
               ))}
@@ -194,22 +194,22 @@ export const TimelineSection = () => {
                     </div>
                   </Card>
                 ) : (
-                  /* Compact View */
+                  /* Compact View - Mobile Optimized */
                   <div
                     key={index}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary"
+                    className="flex items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary active:bg-secondary/70"
                     style={{ animationDelay: `${index * 0.05}s` }}
                     onClick={() => handleItemClick(edu)}
                   >
-                    <div className="w-20 flex-shrink-0 text-xs font-mono text-muted-foreground">
+                    <div className="w-12 sm:w-16 flex-shrink-0 text-xs font-mono text-muted-foreground pt-0.5 sm:pt-0">
                       {edu.startDate.split('-')[0]}
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-1.5 sm:mt-0" />
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors truncate">{edu.studyType} in {edu.area}</h4>
-                      <p className="text-xs text-muted-foreground truncate">{edu.institution}</p>
+                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors line-clamp-2 sm:truncate">{edu.studyType} in {edu.area}</h4>
+                      <p className="text-xs text-muted-foreground line-clamp-1">{edu.institution}</p>
                     </div>
-                    <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0 sm:opacity-0 group-hover:opacity-100 transition-opacity mt-0.5 sm:mt-0" />
                   </div>
                 )
               ))}

@@ -5,8 +5,8 @@
       "url": "/resume.pdf"
     },
     "contactForm": {
-      "enabled": false,
-      "formspreeEndpoint": "https://formspree.io/f/YOUR_FORM_ID"
+      "enabled": true,
+      "recipientEmail": "jakob.gabriel5@googlemail.com"
     },
     "multiLanguage": {
       "enabled": false,
