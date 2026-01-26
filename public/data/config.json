@@ -6,7 +6,7 @@
     },
     "contactForm": {
       "enabled": true,
-      "formspreeEndpoint": "https://formspree.io/f/YOUR_FORM_ID"
+      "recipientEmail": "jakob.gabriel5@googlemail.com"
     },
     "multiLanguage": {
       "enabled": false,

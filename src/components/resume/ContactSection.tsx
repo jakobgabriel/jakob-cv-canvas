@@ -23,10 +23,10 @@ export const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     trackFormInteraction('submit', 'contact');
-    
-    if (!config?.features.contactForm.enabled) {
+
+    if (!config?.features.contactForm.enabled || !config?.features.contactForm.recipientEmail) {
       toast({
         title: t('contact.form.disabledTitle'),
         description: t('contact.form.disabledDescription'),
@@ -38,20 +38,26 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(config.features.contactForm.formspreeEndpoint, {
+      // Using FormSubmit.co - free, no signup required
+      // Just put your email in config and it works!
+      const response = await fetch(`https://formsubmit.co/ajax/${config.features.contactForm.recipientEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
+          _subject: formData.subject || 'New contact form submission',
           message: formData.message,
+          _template: 'table'
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         trackFormInteraction('success', 'contact');
         toast({
           title: t('contact.form.successTitle'),
