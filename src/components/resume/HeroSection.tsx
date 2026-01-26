@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase, ChevronDown, CalendarDays } from "lucide-react";
+import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase, ChevronDown, CalendarDays, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
@@ -197,6 +198,17 @@ export const HeroSection = () => {
                   <CalendarDays className="w-4 h-4" />
                   {language === 'de' ? 'Termin buchen' : 'Book a Call'}
                 </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-border/50 hover:border-primary hover:text-primary transition-smooth h-auto py-1 px-3"
+                asChild
+              >
+                <Link to="/contact" className="flex items-center gap-2 text-sm">
+                  <MessageSquare className="w-4 h-4" />
+                  {language === 'de' ? 'Kontakt' : 'Contact'}
+                </Link>
               </Button>
             </div>
             

@@ -11,8 +11,9 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays } from "lucide-react";
+import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
 import { useEffect, lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
 import { ContactSkeleton } from "@/components/skeletons/ContactSkeleton";
@@ -195,6 +196,19 @@ const Index = () => {
                     <CalendarDays className="w-4 h-4" />
                     Calendly
                   </a>
+                </Button>
+
+                {/* Contact form */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-border/50 hover:border-primary transition-smooth"
+                  asChild
+                >
+                  <Link to="/contact" className="flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Contact
+                  </Link>
                 </Button>
               </div>
               
