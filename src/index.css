@@ -359,3 +359,132 @@
     }
   }
 }
+
+/* Print-friendly styles */
+@media print {
+  /* Reset colors for print */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 20%;
+    --muted-foreground: 0 0% 40%;
+  }
+
+  /* Hide non-essential elements */
+  .back-to-top,
+  .scroll-indicator,
+  nav,
+  footer,
+  .parallax-blob,
+  button[aria-label="Scroll to experience section"],
+  [class*="cookie"],
+  [class*="Cookie"] {
+    display: none !important;
+  }
+
+  /* Reset backgrounds */
+  body,
+  .bg-gradient-hero,
+  .bg-gradient-subtle,
+  .bg-gradient-accent {
+    background: white !important;
+  }
+
+  /* Typography adjustments */
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+    color: black !important;
+  }
+
+  h1 { font-size: 24pt; }
+  h2 { font-size: 18pt; }
+  h3 { font-size: 14pt; }
+  h4 { font-size: 12pt; }
+
+  /* Remove shadows and borders for cleaner print */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Card styling for print */
+  .card-accent {
+    border-left: 2px solid #333 !important;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Timeline connector - simpler for print */
+  .timeline-connector::before {
+    display: none;
+  }
+
+  /* Ensure all text is visible */
+  .line-clamp-2 {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* Links - show URL */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* Hide decorative elements */
+  .blur-3xl,
+  .blur-2xl,
+  .animate-float,
+  .animate-bounce-gentle {
+    display: none !important;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-before: auto;
+    page-break-after: auto;
+    page-break-inside: avoid;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Progress rings - show as text instead */
+  .progress-ring {
+    display: none;
+  }
+
+  /* Badges */
+  .badge {
+    border: 1px solid #999;
+    background: transparent !important;
+  }
+
+  /* Hero section adjustments */
+  #hero {
+    min-height: auto !important;
+    padding: 2rem 0 !important;
+  }
+
+  /* Image adjustments */
+  img {
+    max-width: 100px !important;
+    height: auto !important;
+  }
+
+  /* Grid to single column for better print layout */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  /* Ensure content fits on page */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}

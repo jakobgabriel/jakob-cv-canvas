@@ -3,20 +3,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock, Info } from "lucide-react";
+import { GraduationCap, Award, Briefcase, Calendar, MapPin, ArrowRight, X, ChevronDown, CheckCircle, Clock, Info, LayoutGrid, List } from "lucide-react";
 import { useState } from "react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
+type ViewMode = 'card' | 'compact';
+
 export const TimelineSection = () => {
   const { language, t } = useLanguage();
   const resumeData = getResumeData(language);
   const { trackDetailView } = useAnalytics();
-  
+
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('card');
 
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
@@ -48,9 +51,31 @@ export const TimelineSection = () => {
           <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
             {t('timeline.professionalJourney')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             {t('timeline.journeyDescription')}
           </p>
+
+          {/* View Toggle */}
+          <div className="inline-flex items-center gap-1 p-1 bg-secondary/50 rounded-lg border border-border/50">
+            <Button
+              variant={viewMode === 'card' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('card')}
+              className="gap-2"
+            >
+              <LayoutGrid className="w-4 h-4" />
+              <span className="hidden sm:inline">{language === 'de' ? 'Karten' : 'Cards'}</span>
+            </Button>
+            <Button
+              variant={viewMode === 'compact' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('compact')}
+              className="gap-2"
+            >
+              <List className="w-4 h-4" />
+              <span className="hidden sm:inline">{language === 'de' ? 'Kompakt' : 'Compact'}</span>
+            </Button>
+          </div>
         </div>
         
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -63,34 +88,54 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4 timeline-connector">
+            <div className={`space-y-4 ${viewMode === 'card' ? 'timeline-connector' : ''}`}>
               {experiences.map((exp, index) => (
-                <Card
-                  key={index}
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => handleItemClick(exp)}
-                >
-                  <div className="p-6">
-                    <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
-                        <Briefcase className="w-4 h-4 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 text-primary mb-2">
-                          <Calendar className="w-3 h-3" />
-                          <span className="text-xs font-mono uppercase tracking-wider">{exp.startDate} - {exp.endDate || 'Present'}</span>
+                viewMode === 'card' ? (
+                  <Card
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => handleItemClick(exp)}
+                  >
+                    <div className="p-6">
+                      <div className="flex items-start gap-4 w-full">
+                        <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
+                          <Briefcase className="w-4 h-4 text-primary" />
                         </div>
-                        <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{exp.position}</h4>
-                        <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
-                          <span>{exp.name}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 text-primary mb-2">
+                            <Calendar className="w-3 h-3" />
+                            <span className="text-xs font-mono uppercase tracking-wider">{exp.startDate} - {exp.endDate || 'Present'}</span>
+                          </div>
+                          <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{exp.position}</h4>
+                          <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
+                            <span>{exp.name}</span>
+                          </div>
+                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{exp.summary}</p>
                         </div>
-                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{exp.summary}</p>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                       </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                     </div>
+                  </Card>
+                ) : (
+                  /* Compact View */
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                    onClick={() => handleItemClick(exp)}
+                  >
+                    <div className="w-20 flex-shrink-0 text-xs font-mono text-muted-foreground">
+                      {exp.startDate.split('-')[0]}
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors truncate">{exp.position}</h4>
+                      <p className="text-xs text-muted-foreground truncate">{exp.name}</p>
+                    </div>
+                    <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                </Card>
+                )
               ))}
             </div>
           </div>
@@ -104,49 +149,69 @@ export const TimelineSection = () => {
               </h3>
             </div>
             
-            <div className="space-y-4 timeline-connector">
+            <div className={`space-y-4 ${viewMode === 'card' ? 'timeline-connector' : ''}`}>
               {education.map((edu, index) => (
-                <Card
-                  key={index}
-                  className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => handleItemClick(edu)}
-                >
-                  <div className="p-6">
-                    <div className="flex items-start gap-4 w-full">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
-                        <GraduationCap className="w-4 h-4 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 text-primary mb-2">
-                          <Calendar className="w-3 h-3" />
-                          <span className="text-xs font-mono uppercase tracking-wider">{edu.startDate} - {edu.endDate}</span>
+                viewMode === 'card' ? (
+                  <Card
+                    key={index}
+                    className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => handleItemClick(edu)}
+                  >
+                    <div className="p-6">
+                      <div className="flex items-start gap-4 w-full">
+                        <div className="p-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary-glow/10 group-hover:from-primary/20 group-hover:to-primary-glow/20 transition-all duration-300">
+                          <GraduationCap className="w-4 h-4 text-primary" />
                         </div>
-                        <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{edu.studyType} in {edu.area}</h4>
-                        <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
-                          <span>{edu.institution}</span>
-                        </div>
-                        {'score' in edu && edu.score && (
-                          <div className="text-sm text-primary font-medium mb-2 flex items-center gap-2">
-                            <span>Score: {edu.score}</span>
-                            <TooltipProvider>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Info className="w-3 h-3 text-muted-foreground hover:text-primary cursor-help" />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-xs">German grading system (US equivalent)</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 text-primary mb-2">
+                            <Calendar className="w-3 h-3" />
+                            <span className="text-xs font-mono uppercase tracking-wider">{edu.startDate} - {edu.endDate}</span>
                           </div>
-                        )}
-                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{edu.summary}</p>
+                          <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-smooth">{edu.studyType} in {edu.area}</h4>
+                          <div className="text-muted-foreground font-medium flex items-center gap-1 mb-2">
+                            <span>{edu.institution}</span>
+                          </div>
+                          {'score' in edu && edu.score && (
+                            <div className="text-sm text-primary font-medium mb-2 flex items-center gap-2">
+                              <span>Score: {edu.score}</span>
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Info className="w-3 h-3 text-muted-foreground hover:text-primary cursor-help" />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p className="text-xs">German grading system (US equivalent)</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </div>
+                          )}
+                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{edu.summary}</p>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                       </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                     </div>
+                  </Card>
+                ) : (
+                  /* Compact View */
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 cursor-pointer group transition-all duration-200 stagger-item border-l-2 border-transparent hover:border-primary"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                    onClick={() => handleItemClick(edu)}
+                  >
+                    <div className="w-20 flex-shrink-0 text-xs font-mono text-muted-foreground">
+                      {edu.startDate.split('-')[0]}
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-medium group-hover:text-primary transition-colors truncate">{edu.studyType} in {edu.area}</h4>
+                      <p className="text-xs text-muted-foreground truncate">{edu.institution}</p>
+                    </div>
+                    <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                </Card>
+                )
               ))}
             </div>
           </div>
