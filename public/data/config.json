@@ -9,7 +9,7 @@
       "formspreeEndpoint": "https://formspree.io/f/YOUR_FORM_ID"
     },
     "multiLanguage": {
-      "enabled": true,
+      "enabled": false,
       "defaultLanguage": "en"
     }
   },
