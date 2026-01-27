@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import { CookieManager } from "@/lib/cookieManager";
 import { config } from "@/data/config";
 import { ContactFormModal } from "@/components/ContactFormModal";
 import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -30,7 +32,12 @@ const App: React.FC = () => {
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <LanguageDetector>
         <TooltipProvider>
-          <Index />
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </HashRouter>
           <ContactFormModal />
           <CookieConsent />
           <Toaster />

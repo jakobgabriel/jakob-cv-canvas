@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://jakobgabriel.github.io/jakob-cv-canvas/sitemap.xml
