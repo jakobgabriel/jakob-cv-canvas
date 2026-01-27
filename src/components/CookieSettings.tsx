@@ -69,7 +69,7 @@ export const CookieSettings = () => {
         
         <div className="space-y-4 py-4">
           <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-            <Shield className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+            <Shield className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <div className="font-medium text-sm">{t('cookies.essential.title')}</div>
               <div className="text-muted-foreground text-xs mt-1">
@@ -80,7 +80,7 @@ export const CookieSettings = () => {
           </div>
           
           <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-            <BarChart3 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <BarChart3 className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <div className="font-medium text-sm">{t('cookies.analytics.title')}</div>
               <div className="text-muted-foreground text-xs mt-1">

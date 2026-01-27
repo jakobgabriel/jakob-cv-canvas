@@ -121,7 +121,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
         {showDetails && (
           <div className="mb-4 space-y-3 text-sm">
             <div className="flex items-start gap-2">
-              <Shield className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <Shield className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
                 <div className="font-medium">{t('cookies.essential.title')}</div>
                 <div className="text-muted-foreground text-xs">
@@ -132,7 +132,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
             </div>
             
             <div className="flex items-start gap-2">
-              <BarChart3 className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <BarChart3 className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
                 <div className="font-medium">{t('cookies.analytics.title')}</div>
                 <div className="text-muted-foreground text-xs">
