@@ -11,18 +11,15 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
+import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays } from "lucide-react";
 import { useEffect, lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
 import { useCalendly } from "@/hooks/useCalendly";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
-import { ContactSkeleton } from "@/components/skeletons/ContactSkeleton";
 
 // Lazy load below-fold sections for better performance
 const TimelineSection = lazy(() => import("@/components/resume/TimelineSection").then(module => ({ default: module.TimelineSection })));
 const SkillsSection = lazy(() => import("@/components/resume/SkillsSection").then(module => ({ default: module.SkillsSection })));
-const ContactSection = lazy(() => import("@/components/resume/ContactSection").then(module => ({ default: module.ContactSection })));
 
 const Index = () => {
   const { language } = useLanguage();
@@ -32,7 +29,7 @@ const Index = () => {
   const basics = resumeData?.basics;
 
   // Track section views
-  useSectionTracking(['hero', 'timeline', 'skills', 'contact'], {
+  useSectionTracking(['hero', 'timeline', 'skills'], {
     onSectionView: trackSectionView,
   });
 
@@ -116,15 +113,7 @@ const Index = () => {
           <SkillsSection />
         </Suspense>
       </div>
-      {config?.features.contactForm.enabled !== false && (
-        <div id="contact">
-          <Suspense fallback={<ContactSkeleton />}>
-            <ContactSection />
-          </Suspense>
-        </div>
-      )}
-      
-      {/* Enhanced Footer */}
+      {/* Footer */}
       <footer className="relative py-16 border-t border-border/50 bg-gradient-accent backdrop-blur-sm overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-1/4 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
@@ -193,19 +182,6 @@ const Index = () => {
                 >
                   <CalendarDays className="w-4 h-4 mr-2" />
                   Calendly
-                </Button>
-
-                {/* Contact form */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-border/50 hover:border-primary transition-smooth"
-                  asChild
-                >
-                  <Link to="/contact" className="flex items-center gap-2">
-                    <MessageSquare className="w-4 h-4" />
-                    Contact
-                  </Link>
                 </Button>
               </div>
               
