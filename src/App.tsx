@@ -8,6 +8,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { CookieManager } from "@/lib/cookieManager";
 import { config } from "@/data/config";
+import { ContactFormModal } from "@/components/ContactFormModal";
 import Index from "./pages/Index";
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
       <LanguageDetector>
         <TooltipProvider>
           <Index />
+          <ContactFormModal />
           <CookieConsent />
           <Toaster />
           <Sonner />

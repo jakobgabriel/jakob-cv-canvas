@@ -11,7 +11,8 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays } from "lucide-react";
+import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
+import { openContactForm } from "@/components/ContactFormModal";
 import { useEffect, lazy, Suspense } from "react";
 import { useCalendly } from "@/hooks/useCalendly";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
@@ -169,6 +170,20 @@ const Index = () => {
                     </a>
                   </Button>
                 )}
+
+                {/* Contact Form */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-border/50 hover:border-primary hover:text-primary transition-smooth"
+                  onClick={() => {
+                    openContactForm();
+                    trackSocialClick('contact', 'contact_form_popup');
+                  }}
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Contact
+                </Button>
 
                 {/* Calendly - Book a call */}
                 <Button
