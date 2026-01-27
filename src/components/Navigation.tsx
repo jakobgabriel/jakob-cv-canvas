@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, Briefcase, GraduationCap, Award, Mail } from "lucide-react";
+import { Menu, X, User, Briefcase, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { config } from "@/data/config";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface NavigationProps {
   className?: string;
 }
 
-const baseNavigationItems = [
+const navigationItems = [
   { id: 'hero', label: 'About', icon: User },
   { id: 'timeline', label: 'Experience', icon: Briefcase },
   { id: 'skills', label: 'Skills', icon: Award },
-  { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
 export const Navigation = ({ className }: NavigationProps) => {
@@ -22,14 +20,6 @@ export const Navigation = ({ className }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const { trackNavigation } = useAnalytics();
-
-  // Filter navigation items based on config
-  const navigationItems = baseNavigationItems.filter(item => {
-    if (item.id === 'contact') {
-      return config?.features.contactForm.enabled !== false;
-    }
-    return true;
-  });
 
   useEffect(() => {
     // Handle initial hash on page load
@@ -55,7 +45,7 @@ export const Navigation = ({ className }: NavigationProps) => {
       if (isScrolling) return;
       
       // Simplified active section detection
-      const sections = ['hero', 'timeline', 'skills', 'contact'];
+      const sections = ['hero', 'timeline', 'skills'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
