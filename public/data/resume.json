@@ -38,7 +38,7 @@
       "highlights": [
         "Ensured seamless continuity of 150+ digitalization use cases during company carve-out and transition to new ownership.",
         "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites.",
-        "Spearheading AI-driven process optimization initiatives, designing purpose-built AI agents for manufacturing decisions, quality control, and operational efficiency.",
+        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions.",
         "Built organizational capabilities through training programs, expanding the Smart Factory network worldwide.",
         "Redesigned processes leveraging analytics insights to reduce lead times and increase operational efficiency."
       ],
@@ -140,7 +140,7 @@
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
+      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
     },
     {
       "name": "Process & Quality Engineering",
