@@ -34,10 +34,16 @@
       "location": "Karben, Germany",
       "url": "https://share.google/cP3RZEz4SlaSMr69C",
       "startDate": "2026-02-01",
-      "summary": "",
-      "highlights": [],
-      "keywords": [],
-      "industries": []
+      "summary": "Driving digital transformation, AI integration, and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and accelerating intelligent automation.",
+      "highlights": [
+        "Ensured seamless continuity of 150+ digitalization use cases during company carve-out and transition to new ownership.",
+        "Spearheading AI-driven process optimization initiatives, leveraging large language models and agentic workflows to automate complex manufacturing decisions.",
+        "Designing and deploying AI-powered predictive maintenance and quality assurance systems to reduce unplanned downtime.",
+        "Building scalable AI and machine learning pipelines for real-time production analytics and anomaly detection.",
+        "Establishing an AI Center of Excellence to drive adoption of generative AI, computer vision, and intelligent automation across plants."
+      ],
+      "keywords": ["AI/ML Integration", "Agentic Workflows", "Generative AI", "Predictive Maintenance", "Use Case Scaling", "Process Automation", "Digital Transformation", "Intelligent Automation"],
+      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
     },
     {
       "name": "Continental AG",
