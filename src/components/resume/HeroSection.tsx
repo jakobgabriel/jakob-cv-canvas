@@ -201,8 +201,9 @@ export const HeroSection = () => {
                 style={{ animationDelay: '0.4s' }}
                 onClick={() => {
                   trackDownload('resume.pdf', 'pdf');
+                  const base = import.meta.env.BASE_URL || '/';
                   const link = document.createElement('a');
-                  link.href = config.features.downloadResume.url;
+                  link.href = base + 'resume.pdf';
                   link.download = 'Jakob_Gabriel_Resume.pdf';
                   link.click();
                 }}
