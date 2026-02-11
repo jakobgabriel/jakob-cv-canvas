@@ -199,17 +199,16 @@ export const HeroSection = () => {
                 size="lg"
                 className="px-8 py-6 text-base shadow-professional hover:shadow-dramatic transition-all duration-300 hover:-translate-y-0.5 bg-primary hover:bg-primary-glow animate-fade-in"
                 style={{ animationDelay: '0.4s' }}
-                onClick={() => {
-                  trackDownload('resume.pdf', 'pdf');
-                  const base = import.meta.env.BASE_URL || '/';
-                  const link = document.createElement('a');
-                  link.href = base + 'resume.pdf';
-                  link.download = 'Jakob_Gabriel_Resume.pdf';
-                  link.click();
-                }}
+                asChild
               >
-                <FileText className="w-5 h-5 mr-2" />
-                {t('hero.downloadResume')}
+                <a
+                  href={`${import.meta.env.BASE_URL}resume.pdf`}
+                  download="Jakob_Gabriel_Resume.pdf"
+                  onClick={() => trackDownload('resume.pdf', 'pdf')}
+                >
+                  <FileText className="w-5 h-5 mr-2" />
+                  {t('hero.downloadResume')}
+                </a>
               </Button>
             )}
           </div>
