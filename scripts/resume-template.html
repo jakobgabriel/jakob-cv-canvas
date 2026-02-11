@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 20mm 18mm 20mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 14pt; }
+  .header h1 { font-size: 22pt; font-weight: 700; letter-spacing: 0.5pt; margin-bottom: 4pt; color: #111; }
+  .header .subtitle { font-size: 11pt; font-weight: 400; color: #444; margin-bottom: 6pt; }
+  .header .contact { font-size: 8.5pt; color: #555; }
+  .header .contact a { color: #2563eb; text-decoration: none; }
+  .header .contact .sep { margin: 0 5pt; color: #bbb; }
+
+  /* Section */
+  .section { margin-bottom: 12pt; }
+  .section-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #2563eb;
+    border-bottom: 1.5pt solid #2563eb;
+    padding-bottom: 3pt;
+    margin-bottom: 8pt;
+  }
+
+  /* Job */
+  .job { margin-bottom: 10pt; }
+  .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2pt; }
+  .job-title { font-size: 10pt; font-weight: 700; color: #111; }
+  .job-date { font-size: 8.5pt; color: #555; white-space: nowrap; }
+  .job-company { font-size: 9pt; color: #444; margin-bottom: 3pt; }
+  .job-summary { font-size: 9pt; color: #333; margin-bottom: 4pt; font-style: italic; }
+  .job ul { padding-left: 14pt; }
+  .job li { margin-bottom: 2pt; font-size: 9pt; }
+  .job .keywords { font-size: 8pt; color: #666; margin-top: 3pt; }
+  .job .keywords strong { color: #444; }
+
+  /* Education */
+  .edu { margin-bottom: 8pt; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1pt; }
+  .edu-degree { font-size: 10pt; font-weight: 700; color: #111; }
+  .edu-date { font-size: 8.5pt; color: #555; }
+  .edu-school { font-size: 9pt; color: #444; margin-bottom: 2pt; }
+  .edu-details { font-size: 8.5pt; color: #555; }
+  .edu li { margin-bottom: 1pt; font-size: 8.5pt; }
+  .edu ul { padding-left: 14pt; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt; }
+  .skill-group { margin-bottom: 4pt; }
+  .skill-name { font-size: 9pt; font-weight: 700; color: #111; margin-bottom: 1pt; }
+  .skill-keywords { font-size: 8.5pt; color: #444; }
+
+  /* Certs & Languages in columns */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
+  .cert { margin-bottom: 4pt; }
+  .cert-name { font-size: 9pt; font-weight: 600; color: #111; }
+  .cert-details { font-size: 8pt; color: #555; }
+
+  .lang { margin-bottom: 3pt; }
+  .lang-name { font-size: 9pt; font-weight: 600; color: #111; display: inline; }
+  .lang-level { font-size: 8.5pt; color: #555; display: inline; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Jakob Gabriel</h1>
+  <div class="subtitle">Digital Business Value Engineer</div>
+  <div class="contact">
+    Erfurt – Passau, Germany
+    <span class="sep">|</span>
+    <a href="mailto:jakob.gabriel5@googlemail.com">jakob.gabriel5@googlemail.com</a>
+    <span class="sep">|</span>
+    <a href="https://www.linkedin.com/in/jakob-gabriel">linkedin.com/in/jakob-gabriel</a>
+    <span class="sep">|</span>
+    <a href="https://jakobgabriel.github.io/jakob-cv-canvas/">Portfolio</a>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="section">
+  <div class="section-title">Professional Summary</div>
+  <p style="font-size: 9pt; color: #333;">
+    Digital transformation and advanced analytics expert with 7+ years of experience scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Proven track record of leading 150+ digitalization use cases, achieving €1M+ in annual savings, and driving AI-driven process optimization across global production sites. Passionate about enabling innovation, designing purpose-built AI agents, and empowering cross-functional teams.
+  </p>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+  <div class="section-title">Professional Experience</div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Digital Business Value Engineer</span>
+      <span class="job-date">Feb 2026 – Present</span>
+    </div>
+    <div class="job-company">OESL Automotive (A portfolio company of Regent LP) · Karben, Germany</div>
+    <div class="job-summary">Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.</div>
+    <ul>
+      <li>Ensured seamless continuity of 150+ digitalization use cases during company carve-out and transition to new ownership.</li>
+      <li>Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites.</li>
+      <li>Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions.</li>
+      <li>Built organizational capabilities through training programs, expanding the Smart Factory network worldwide.</li>
+      <li>Redesigned processes leveraging analytics insights to reduce lead times and increase operational efficiency.</li>
+    </ul>
+    <div class="keywords"><strong>Key Skills:</strong> Use Case Scaling · AI-Driven Process Optimization · Process Automation · Digital Transformation · Agile Project Management</div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Digital Business Value Engineer</span>
+      <span class="job-date">Jan 2024 – Jan 2026</span>
+    </div>
+    <div class="job-company">Continental AG · Karben, Germany</div>
+    <div class="job-summary">Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.</div>
+    <ul>
+      <li>Scaled more than 150 digitalization use cases globally, achieving more than €1M in annual cost savings by applying data-driven optimization.</li>
+      <li>Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.</li>
+      <li>Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization.</li>
+      <li>Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.</li>
+      <li>Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights.</li>
+    </ul>
+    <div class="keywords"><strong>Key Skills:</strong> Use Case Scaling · System Scaling · Process Automation · Process Standardization · Agile Project Management · Digital Transformation</div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Analytics and Data Engineer</span>
+      <span class="job-date">Jan 2022 – Dec 2023</span>
+    </div>
+    <div class="job-company">Continental AG · Karben, Germany</div>
+    <div class="job-summary">Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.</div>
+    <ul>
+      <li>Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness.</li>
+      <li>Orchestrated cross-functional teams to develop predictive analytics models that prevented production bottlenecks and reduced waste.</li>
+      <li>Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across plants.</li>
+      <li>Built intuitive dashboards that empowered operators and engineers to make faster, evidence-based decisions.</li>
+      <li>Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide.</li>
+    </ul>
+    <div class="keywords"><strong>Key Skills:</strong> Manufacturing Intelligence · Data Analytics · Industry 4.0 · Process Improvement · Predictive Analytics · Knowledge Management</div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Quality Engineer</span>
+      <span class="job-date">Oct 2018 – Dec 2021</span>
+    </div>
+    <div class="job-company">Continental AG · Waltershausen, Germany</div>
+    <div class="job-summary">Ensured product quality during ramp-up through risk management, process optimization, and customer-focused quality control and improvement initiatives.</div>
+    <ul>
+      <li>Continuous improvement by identifying and eliminating root causes of quality issues, leading to a significant reduction in defect rates.</li>
+      <li>Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements.</li>
+      <li>Designed and implemented inspection concepts for products, enhancing product reliability and traceability.</li>
+      <li>Built trusted relationships with customers through transparent communication, acceptance tests, and successful audit results.</li>
+      <li>Introduced quality dashboards that visualized real-time KPIs, improving decision-making speed on the shop floor.</li>
+    </ul>
+    <div class="keywords"><strong>Key Skills:</strong> Quality Management · FMEA · Six Sigma · Continuous Improvement · Risk Analysis</div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section">
+  <div class="section-title">Education</div>
+
+  <div class="edu">
+    <div class="edu-header">
+      <span class="edu-degree">Master of Engineering — Applied Polymer Engineering</span>
+      <span class="edu-date">Apr 2019 – Dec 2024</span>
+    </div>
+    <div class="edu-school">University of Applied Sciences Schmalkalden · Grade: 2.0 (3.0 US GPA)</div>
+    <ul>
+      <li>Master Thesis: Process Mining in Manufacturing — A Case Study on Data-Driven Potential Analysis.</li>
+      <li>Project: Developed a predictive model for weld strength using infrared imaging and process data analytics.</li>
+    </ul>
+  </div>
+
+  <div class="edu">
+    <div class="edu-header">
+      <span class="edu-degree">Bachelor of Engineering — Polymer Engineering</span>
+      <span class="edu-date">Oct 2015 – Sep 2018</span>
+    </div>
+    <div class="edu-school">Duale Hochschule Gera Eisenach · Grade: 1.6 (3.3 US GPA)</div>
+    <ul>
+      <li>Bachelor Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SKILLS & LANGUAGES + CERTS -->
+<div class="section">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-name">Digital Transformation</div>
+      <div class="skill-keywords">Industry 4.0 · IoT Systems · Process Automation · Change Management</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-name">Data Engineering, Analytics & AI</div>
+      <div class="skill-keywords">MS Fabric · Power BI · Python · SQL · n8n · AI Agent Design · Predictive Modeling · Statistical Analysis · Machine Learning</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-name">Process & Quality Engineering</div>
+      <div class="skill-keywords">FMEA · Lean Six Sigma · Process Optimization · APQP · Root Cause Analysis</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-name">Languages</div>
+      <div class="skill-keywords">German (Native) · English (Fluent)</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Certifications</div>
+  <div class="two-col">
+    <div class="cert">
+      <div class="cert-name">The Power MBA</div>
+      <div class="cert-details">ThePower Business School · Nov 2024</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">Continental Leading Self Program</div>
+      <div class="cert-details">Continental AG · Oct 2023</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">Advanced Analytics Methodologies</div>
+      <div class="cert-details">AdvancedAnalytics.Academy GmbH · Oct 2021</div>
+    </div>
+    <div class="cert">
+      <div class="cert-name">Product Auditor VDA 6.5</div>
+      <div class="cert-details">TÜV Hessen · Sep 2019</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
