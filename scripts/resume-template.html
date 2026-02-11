@@ -5,74 +5,68 @@
 <style>
   @page {
     size: A4;
-    margin: 18mm 20mm 18mm 20mm;
+    margin: 14mm 18mm 14mm 18mm;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 9.5pt;
-    line-height: 1.45;
+    font-family: 'DejaVu Sans', Arial, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.4;
     color: #1a1a1a;
   }
 
   /* Header */
-  .header { text-align: center; margin-bottom: 14pt; }
-  .header h1 { font-size: 22pt; font-weight: 700; letter-spacing: 0.5pt; margin-bottom: 4pt; color: #111; }
-  .header .subtitle { font-size: 11pt; font-weight: 400; color: #444; margin-bottom: 6pt; }
-  .header .contact { font-size: 8.5pt; color: #555; }
+  .header { text-align: center; margin-bottom: 10pt; }
+  .header h1 { font-size: 20pt; font-weight: 700; margin-bottom: 2pt; color: #111; }
+  .header .subtitle { font-size: 10pt; font-weight: 400; color: #444; margin-bottom: 4pt; }
+  .header .contact { font-size: 8pt; color: #555; }
   .header .contact a { color: #2563eb; text-decoration: none; }
-  .header .contact .sep { margin: 0 5pt; color: #bbb; }
+  .header .contact .sep { margin: 0 4pt; color: #bbb; }
 
   /* Section */
-  .section { margin-bottom: 12pt; }
+  .section { margin-bottom: 8pt; }
   .section-title {
-    font-size: 10.5pt;
+    font-size: 9.5pt;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.2pt;
     color: #2563eb;
     border-bottom: 1.5pt solid #2563eb;
-    padding-bottom: 3pt;
-    margin-bottom: 8pt;
+    padding-bottom: 2pt;
+    margin-bottom: 6pt;
   }
 
   /* Job */
-  .job { margin-bottom: 10pt; }
-  .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2pt; }
-  .job-title { font-size: 10pt; font-weight: 700; color: #111; }
-  .job-date { font-size: 8.5pt; color: #555; white-space: nowrap; }
-  .job-company { font-size: 9pt; color: #444; margin-bottom: 3pt; }
-  .job-summary { font-size: 9pt; color: #333; margin-bottom: 4pt; font-style: italic; }
-  .job ul { padding-left: 14pt; }
-  .job li { margin-bottom: 2pt; font-size: 9pt; }
-  .job .keywords { font-size: 8pt; color: #666; margin-top: 3pt; }
+  .job { margin-bottom: 7pt; }
+  .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1pt; }
+  .job-title { font-size: 9pt; font-weight: 700; color: #111; }
+  .job-date { font-size: 8pt; color: #555; white-space: nowrap; }
+  .job-company { font-size: 8.5pt; color: #444; margin-bottom: 2pt; }
+  .job-summary { font-size: 8pt; color: #333; margin-bottom: 3pt; font-style: italic; }
+  .job ul { padding-left: 13pt; }
+  .job li { margin-bottom: 1pt; font-size: 8pt; }
+  .job .keywords { font-size: 7.5pt; color: #666; margin-top: 2pt; }
   .job .keywords strong { color: #444; }
 
   /* Education */
-  .edu { margin-bottom: 8pt; }
+  .edu { margin-bottom: 5pt; }
   .edu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1pt; }
-  .edu-degree { font-size: 10pt; font-weight: 700; color: #111; }
-  .edu-date { font-size: 8.5pt; color: #555; }
-  .edu-school { font-size: 9pt; color: #444; margin-bottom: 2pt; }
-  .edu-details { font-size: 8.5pt; color: #555; }
-  .edu li { margin-bottom: 1pt; font-size: 8.5pt; }
-  .edu ul { padding-left: 14pt; }
+  .edu-degree { font-size: 9pt; font-weight: 700; color: #111; }
+  .edu-date { font-size: 8pt; color: #555; }
+  .edu-school { font-size: 8pt; color: #444; margin-bottom: 2pt; }
+  .edu li { margin-bottom: 1pt; font-size: 8pt; }
+  .edu ul { padding-left: 13pt; }
 
   /* Skills */
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt; }
-  .skill-group { margin-bottom: 4pt; }
-  .skill-name { font-size: 9pt; font-weight: 700; color: #111; margin-bottom: 1pt; }
-  .skill-keywords { font-size: 8.5pt; color: #444; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 10pt; }
+  .skill-group { margin-bottom: 2pt; }
+  .skill-name { font-size: 8.5pt; font-weight: 700; color: #111; margin-bottom: 1pt; }
+  .skill-keywords { font-size: 8pt; color: #444; }
 
-  /* Certs & Languages in columns */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
-  .cert { margin-bottom: 4pt; }
-  .cert-name { font-size: 9pt; font-weight: 600; color: #111; }
-  .cert-details { font-size: 8pt; color: #555; }
-
-  .lang { margin-bottom: 3pt; }
-  .lang-name { font-size: 9pt; font-weight: 600; color: #111; display: inline; }
-  .lang-level { font-size: 8.5pt; color: #555; display: inline; }
+  /* Certs in columns */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 10pt; }
+  .cert { margin-bottom: 2pt; }
+  .cert-name { font-size: 8.5pt; font-weight: 600; color: #111; }
+  .cert-details { font-size: 7.5pt; color: #555; }
 </style>
 </head>
 <body>
@@ -95,7 +89,7 @@
 <!-- SUMMARY -->
 <div class="section">
   <div class="section-title">Professional Summary</div>
-  <p style="font-size: 9pt; color: #333;">
+  <p style="font-size: 8.5pt; color: #333;">
     Digital transformation and advanced analytics expert with 7+ years of experience scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Proven track record of leading 150+ digitalization use cases, achieving €1M+ in annual savings, and driving AI-driven process optimization across global production sites. Passionate about enabling innovation, designing purpose-built AI agents, and empowering cross-functional teams.
   </p>
 </div>
@@ -201,7 +195,7 @@
   </div>
 </div>
 
-<!-- SKILLS & LANGUAGES + CERTS -->
+<!-- SKILLS -->
 <div class="section">
   <div class="section-title">Skills</div>
   <div class="skills-grid">
@@ -224,6 +218,7 @@
   </div>
 </div>
 
+<!-- CERTIFICATIONS -->
 <div class="section">
   <div class="section-title">Certifications</div>
   <div class="two-col">
