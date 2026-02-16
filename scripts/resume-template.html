@@ -5,71 +5,156 @@
 <style>
   @page {
     size: A4;
-    margin: 14mm 18mm 14mm 18mm;
+    margin: 0;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'DejaVu Sans', Arial, sans-serif;
     font-size: 8.5pt;
     line-height: 1.4;
-    color: #1a1a1a;
+    color: #2d2d2d;
+  }
+
+  /* Page wrapper with left accent stripe */
+  .page {
+    padding: 16mm 20mm 14mm 22mm;
+    position: relative;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6mm;
+    height: 100%;
+    background: linear-gradient(180deg, #1e40af 0%, #3b82f6 100%);
   }
 
   /* Header */
-  .header { text-align: center; margin-bottom: 10pt; }
-  .header h1 { font-size: 20pt; font-weight: 700; margin-bottom: 2pt; color: #111; }
-  .header .subtitle { font-size: 10pt; font-weight: 400; color: #444; margin-bottom: 4pt; }
-  .header .contact { font-size: 8pt; color: #555; }
-  .header .contact a { color: #2563eb; text-decoration: none; }
-  .header .contact .sep { margin: 0 4pt; color: #bbb; }
+  .header {
+    margin-bottom: 10pt;
+    padding-bottom: 10pt;
+    border-bottom: 0.5pt solid #d1d5db;
+  }
+  .header h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 1pt;
+  }
+  .header .subtitle {
+    font-size: 10.5pt;
+    font-weight: 400;
+    color: #3b82f6;
+    margin-bottom: 6pt;
+  }
+  .header .contact {
+    font-size: 8pt;
+    color: #555;
+  }
+  .header .contact a {
+    color: #1e40af;
+    text-decoration: none;
+  }
+  .header .contact .sep {
+    margin: 0 5pt;
+    color: #cbd5e1;
+  }
 
   /* Section */
   .section { margin-bottom: 8pt; }
   .section-title {
-    font-size: 9.5pt;
+    font-size: 8.5pt;
     font-weight: 700;
     text-transform: uppercase;
-    color: #2563eb;
-    border-bottom: 1.5pt solid #2563eb;
-    padding-bottom: 2pt;
+    color: #1e3a5f;
+    padding-bottom: 3pt;
     margin-bottom: 6pt;
+    border-bottom: 2pt solid #3b82f6;
+    display: inline-block;
+  }
+  .section-title-wrap {
+    margin-bottom: 6pt;
+    border-bottom: 0.5pt solid #e5e7eb;
+    padding-bottom: 0pt;
   }
 
   /* Job */
-  .job { margin-bottom: 7pt; }
+  .job { margin-bottom: 8pt; padding-left: 8pt; border-left: 2pt solid #dbeafe; }
   .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1pt; }
-  .job-title { font-size: 9pt; font-weight: 700; color: #111; }
-  .job-date { font-size: 8pt; color: #555; white-space: nowrap; }
-  .job-company { font-size: 8.5pt; color: #444; margin-bottom: 2pt; }
-  .job-summary { font-size: 8pt; color: #333; margin-bottom: 3pt; font-style: italic; }
-  .job ul { padding-left: 13pt; }
-  .job li { margin-bottom: 1pt; font-size: 8pt; }
-  .job .keywords { font-size: 7.5pt; color: #666; margin-top: 2pt; }
-  .job .keywords strong { color: #444; }
+  .job-title { font-size: 9pt; font-weight: 700; color: #1e3a5f; }
+  .job-date {
+    font-size: 7.5pt;
+    color: #1e40af;
+    white-space: nowrap;
+    background: #eff6ff;
+    padding: 1pt 5pt;
+    border-radius: 2pt;
+    font-weight: 600;
+  }
+  .job-company { font-size: 8pt; color: #6b7280; margin-bottom: 2pt; }
+  .job-summary { font-size: 8pt; color: #4b5563; margin-bottom: 3pt; font-style: italic; }
+  .job ul { padding-left: 12pt; }
+  .job li { margin-bottom: 1.5pt; font-size: 8pt; color: #374151; }
+  .job li::marker { color: #3b82f6; }
+  .job .keywords { font-size: 7pt; color: #6b7280; margin-top: 3pt; }
+  .job .keywords strong { color: #374151; font-weight: 600; }
 
   /* Education */
-  .edu { margin-bottom: 5pt; }
+  .edu { margin-bottom: 6pt; padding-left: 8pt; border-left: 2pt solid #dbeafe; }
   .edu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1pt; }
-  .edu-degree { font-size: 9pt; font-weight: 700; color: #111; }
-  .edu-date { font-size: 8pt; color: #555; }
-  .edu-school { font-size: 8pt; color: #444; margin-bottom: 2pt; }
-  .edu li { margin-bottom: 1pt; font-size: 8pt; }
-  .edu ul { padding-left: 13pt; }
+  .edu-degree { font-size: 9pt; font-weight: 700; color: #1e3a5f; }
+  .edu-date {
+    font-size: 7.5pt;
+    color: #1e40af;
+    white-space: nowrap;
+    background: #eff6ff;
+    padding: 1pt 5pt;
+    border-radius: 2pt;
+    font-weight: 600;
+  }
+  .edu-school { font-size: 8pt; color: #6b7280; margin-bottom: 2pt; }
+  .edu li { margin-bottom: 1pt; font-size: 8pt; color: #374151; }
+  .edu li::marker { color: #3b82f6; }
+  .edu ul { padding-left: 12pt; }
 
   /* Skills */
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 10pt; }
-  .skill-group { margin-bottom: 2pt; }
-  .skill-name { font-size: 8.5pt; font-weight: 700; color: #111; margin-bottom: 1pt; }
-  .skill-keywords { font-size: 8pt; color: #444; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt 14pt; }
+  .skill-group {
+    padding: 4pt 6pt;
+    background: #f8fafc;
+    border-radius: 3pt;
+    border: 0.5pt solid #e2e8f0;
+  }
+  .skill-name { font-size: 8pt; font-weight: 700; color: #1e3a5f; margin-bottom: 2pt; }
+  .skill-keywords { font-size: 7.5pt; color: #4b5563; line-height: 1.5; }
 
-  /* Certs in columns */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 10pt; }
-  .cert { margin-bottom: 2pt; }
-  .cert-name { font-size: 8.5pt; font-weight: 600; color: #111; }
-  .cert-details { font-size: 7.5pt; color: #555; }
+  /* Certs */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt 14pt; }
+  .cert {
+    padding: 3pt 6pt;
+    background: #f8fafc;
+    border-radius: 3pt;
+    border: 0.5pt solid #e2e8f0;
+  }
+  .cert-name { font-size: 8pt; font-weight: 600; color: #1e3a5f; }
+  .cert-details { font-size: 7pt; color: #6b7280; }
+
+  /* Summary box */
+  .summary-box {
+    font-size: 8.5pt;
+    color: #374151;
+    line-height: 1.5;
+    background: #f8fafc;
+    padding: 8pt 10pt;
+    border-radius: 3pt;
+    border-left: 3pt solid #3b82f6;
+  }
 </style>
 </head>
 <body>
+
+<div class="page">
 
 <!-- HEADER -->
 <div class="header">
@@ -88,15 +173,15 @@
 
 <!-- SUMMARY -->
 <div class="section">
-  <div class="section-title">Professional Summary</div>
-  <p style="font-size: 8.5pt; color: #333;">
+  <div class="section-title-wrap"><div class="section-title">Professional Summary</div></div>
+  <div class="summary-box">
     Digital transformation and advanced analytics expert with 7+ years of experience scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Proven track record of leading 150+ digitalization use cases, achieving €1M+ in annual savings, and driving AI-driven process optimization across global production sites. Passionate about enabling innovation, designing purpose-built AI agents, and empowering cross-functional teams.
-  </p>
+  </div>
 </div>
 
 <!-- EXPERIENCE -->
 <div class="section">
-  <div class="section-title">Professional Experience</div>
+  <div class="section-title-wrap"><div class="section-title">Professional Experience</div></div>
 
   <div class="job">
     <div class="job-header">
@@ -169,7 +254,7 @@
 
 <!-- EDUCATION -->
 <div class="section">
-  <div class="section-title">Education</div>
+  <div class="section-title-wrap"><div class="section-title">Education</div></div>
 
   <div class="edu">
     <div class="edu-header">
@@ -197,7 +282,7 @@
 
 <!-- SKILLS -->
 <div class="section">
-  <div class="section-title">Skills</div>
+  <div class="section-title-wrap"><div class="section-title">Skills</div></div>
   <div class="skills-grid">
     <div class="skill-group">
       <div class="skill-name">Digital Transformation</div>
@@ -220,7 +305,7 @@
 
 <!-- CERTIFICATIONS -->
 <div class="section">
-  <div class="section-title">Certifications</div>
+  <div class="section-title-wrap"><div class="section-title">Certifications</div></div>
   <div class="two-col">
     <div class="cert">
       <div class="cert-name">The Power MBA</div>
@@ -240,6 +325,8 @@
     </div>
   </div>
 </div>
+
+</div><!-- /page -->
 
 </body>
 </html>
