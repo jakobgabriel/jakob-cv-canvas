@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { GraduationCap, Award, Briefcase, Calendar, ArrowRight, X, CheckCircle, Clock, Info } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman } from "@/lib/dateUtils";
@@ -16,11 +16,14 @@ export const TimelineSection = () => {
 
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
-  const handleItemClick = (item: any) => {
+  const handleItemClick = (item: any, event: React.MouseEvent) => {
+    triggerRef.current = event.currentTarget as HTMLElement;
     setSelectedItem(item);
     setIsDetailsVisible(true);
-    
+
     // Track detail view
     if ('position' in item) {
       trackDetailView('experience', item.position);
@@ -29,10 +32,54 @@ export const TimelineSection = () => {
     }
   };
 
-  const closeDetails = () => {
+  const closeDetails = useCallback(() => {
     setIsDetailsVisible(false);
-    setTimeout(() => setSelectedItem(null), 300);
-  };
+    setTimeout(() => {
+      setSelectedItem(null);
+      triggerRef.current?.focus();
+    }, 300);
+  }, []);
+
+  // Escape key handler
+  useEffect(() => {
+    if (!isDetailsVisible) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeDetails();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isDetailsVisible, closeDetails]);
+
+  // Focus trap
+  useEffect(() => {
+    if (!isDetailsVisible || !panelRef.current) return;
+
+    const panel = panelRef.current;
+    const focusableSelector = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+
+    // Focus the panel on open
+    const firstFocusable = panel.querySelector<HTMLElement>(focusableSelector);
+    firstFocusable?.focus();
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusables = panel.querySelectorAll<HTMLElement>(focusableSelector);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleTab);
+    return () => document.removeEventListener('keydown', handleTab);
+  }, [isDetailsVisible, selectedItem]);
 
   if (!resumeData) {
     return <div className="py-24 text-center">{t('loading')}</div>;
@@ -68,7 +115,10 @@ export const TimelineSection = () => {
                   key={index}
                   className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => handleItemClick(exp)}
+                  onClick={(e) => handleItemClick(exp, e)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleItemClick(exp, e as any); } }}
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
@@ -109,7 +159,10 @@ export const TimelineSection = () => {
                   key={index}
                   className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional transition-all duration-300 cursor-pointer group hover:-translate-y-1 hover:border-primary/30 card-accent stagger-item"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => handleItemClick(edu)}
+                  onClick={(e) => handleItemClick(edu, e)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleItemClick(edu, e as any); } }}
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 w-full">
@@ -152,15 +205,25 @@ export const TimelineSection = () => {
         </div>
 
         {/* Details Modal - Clean and Minimal */}
-        <div className={`fixed inset-0 z-50 transition-all duration-300 ${isDetailsVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div
+          className={`fixed inset-0 z-50 transition-all duration-300 ${isDetailsVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="detail-panel-title"
+          aria-hidden={!isDetailsVisible}
+        >
           {/* Backdrop */}
-          <div 
+          <div
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={closeDetails}
+            aria-label="Close details"
           />
-          
+
           {/* Modal Panel */}
-          <div className={`absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l shadow-dramatic transform transition-transform duration-300 ${isDetailsVisible ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div
+            ref={panelRef}
+            className={`absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l shadow-dramatic transform transition-transform duration-300 ${isDetailsVisible ? 'translate-x-0' : 'translate-x-full'}`}
+          >
             {selectedItem && (
               <div className="h-full overflow-y-auto">
                 {/* Header */}
@@ -174,7 +237,7 @@ export const TimelineSection = () => {
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xl font-medium">
+                      <h3 id="detail-panel-title" className="text-xl font-medium">
                         {'position' in selectedItem ? selectedItem.position : `${selectedItem.studyType} in ${selectedItem.area}`}
                       </h3>
                       <p className="text-muted-foreground">
@@ -182,7 +245,7 @@ export const TimelineSection = () => {
                       </p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="sm" onClick={closeDetails}>
+                  <Button variant="ghost" size="sm" onClick={closeDetails} aria-label="Close details panel">
                     <X className="w-4 h-4" />
                   </Button>
                 </div>
