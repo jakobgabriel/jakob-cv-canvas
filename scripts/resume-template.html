@@ -3,6 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <style>
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-400.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-500.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-600.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-700.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/usr/share/fonts/truetype/JetBrainsMono-400.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/usr/share/fonts/truetype/JetBrainsMono-500.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
   @page {
     size: A4;
     margin: 0;
@@ -10,7 +71,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Segoe UI', 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 8.5pt;
     line-height: 1.45;
     color: #2d333b;
@@ -54,6 +115,7 @@
   .header-body { flex: 1; }
 
   .header h1 {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 22pt;
     font-weight: 700;
     color: #0e1319;
@@ -61,6 +123,7 @@
     line-height: 1.15;
   }
   .header .subtitle {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 10.5pt;
     font-weight: 500;
     color: #3d4f5f;
@@ -100,6 +163,7 @@
     margin-bottom: 7pt;
   }
   .section-title {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 9pt;
     font-weight: 700;
     text-transform: uppercase;
@@ -149,13 +213,15 @@
     margin-bottom: 1pt;
   }
   .job-title {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 9.5pt;
     font-weight: 700;
     color: #0e1319;
   }
   .job-date {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 7pt;
-    font-weight: 600;
+    font-weight: 500;
     color: #0e1319;
     background: #eaf0f6;
     padding: 1.5pt 6pt;
@@ -177,7 +243,7 @@
   }
   .job ul { padding-left: 12pt; }
   .job li {
-    margin-bottom: 2pt;
+    margin-bottom: 2.5pt;
     font-size: 8pt;
     color: #374151;
     line-height: 1.45;
@@ -218,10 +284,16 @@
     align-items: baseline;
     margin-bottom: 1pt;
   }
-  .edu-degree { font-size: 9pt; font-weight: 700; color: #0e1319; }
+  .edu-degree {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #0e1319;
+  }
   .edu-date {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 7pt;
-    font-weight: 600;
+    font-weight: 500;
     color: #0e1319;
     background: #eaf0f6;
     padding: 1.5pt 6pt;
@@ -240,12 +312,7 @@
     gap: 6pt 14pt;
   }
 
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 4pt;
-  }
+  .skills-grid { display: flex; flex-direction: column; gap: 4pt; }
   .skill-group {
     padding: 5pt 8pt;
     background: #f6f8fa;
@@ -253,20 +320,18 @@
     border: 0.5pt solid #e1e4e8;
   }
   .skill-name {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 8pt;
     font-weight: 700;
     color: #0e1319;
     margin-bottom: 2pt;
   }
-  .skill-keywords {
-    font-size: 7.5pt;
-    color: #4b5563;
-    line-height: 1.5;
-  }
+  .skill-keywords { font-size: 7.5pt; color: #4b5563; line-height: 1.5; }
   .skill-level {
     display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 5.5pt;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.3pt;
     color: #fff;
@@ -277,26 +342,22 @@
     vertical-align: middle;
   }
 
-  /* ── CERTIFICATIONS ── */
-  .cert-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4pt;
-  }
+  .cert-list { display: flex; flex-direction: column; gap: 4pt; }
   .cert {
     padding: 4pt 8pt;
     background: #f6f8fa;
     border-radius: 3pt;
     border: 0.5pt solid #e1e4e8;
   }
-  .cert-name { font-size: 8pt; font-weight: 600; color: #0e1319; }
+  .cert-name {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #0e1319;
+  }
   .cert-details { font-size: 7pt; color: #57606a; margin-top: 1pt; }
 
-  /* ── LANGUAGES ── */
-  .lang-row {
-    display: flex;
-    gap: 6pt;
-  }
+  .lang-row { display: flex; gap: 6pt; }
   .lang-item {
     flex: 1;
     padding: 5pt 8pt;
@@ -305,10 +366,14 @@
     border: 0.5pt solid #e1e4e8;
     text-align: center;
   }
-  .lang-name { font-size: 8pt; font-weight: 700; color: #0e1319; }
+  .lang-name {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #0e1319;
+  }
   .lang-fluency { font-size: 7pt; color: #57606a; margin-top: 1pt; }
 
-  /* ── PAGE BREAK ── */
   .page-break {
     page-break-before: always;
     padding-top: 14mm;
@@ -348,6 +413,7 @@
 <div class="section">
   <div class="section-title-wrap"><span class="section-title">Professional Experience</span></div>
 
+  <!-- Job 1 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Digital Business Value Engineer</span>
@@ -367,6 +433,7 @@
     </div>
   </div>
 
+  <!-- Job 2 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Digital Business Value Engineer</span>
@@ -386,9 +453,7 @@
     </div>
   </div>
 
-  <!-- ═══ PAGE 2 ═══ -->
-  <div class="page-break"></div>
-
+  <!-- Job 3 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Analytics and Data Engineer</span>
@@ -408,6 +473,10 @@
     </div>
   </div>
 
+  <!-- ═══ PAGE 2 ═══ -->
+  <div class="page-break"></div>
+
+  <!-- Job 4 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Quality Engineer</span>
