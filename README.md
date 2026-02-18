@@ -1,169 +1,186 @@
 # Jakob Gabriel - Digital Resume
 
-A modern, clean, and minimal digital resume built with React, TypeScript, and Tailwind CSS. Perfect for private equity professionals and business executives. Content is managed through JSON Resume schema for industry-standard compatibility.
+A modern, installable digital resume built with React, TypeScript, and Tailwind CSS. Ships as a Progressive Web App with offline support, lazy-loaded sections, and optimized vendor chunking. Content is driven by the JSON Resume schema.
 
-## ✨ Features
+## Features
 
-- **JSON Resume Standard**: Uses industry-standard JSON Resume schema for compatibility
-- **Multi-language Support**: English and German content with dynamic switching
-- **Modern PE-style Design**: Clean, minimal design suitable for private equity professionals
-- **Responsive**: Optimized for all devices and screen sizes
-- **Dark/Light Mode**: Professional theme switching
-- **GitHub Pages Ready**: Configured for automatic deployment
-- **Extensible Social Profiles**: Support for LinkedIn, GitHub, X (Twitter), Xing, and more
+- **PWA** — Installable on mobile/desktop with offline caching via Workbox service worker
+- **JSON Resume Standard** — Industry-standard schema (`public/data/resume.json`)
+- **Multi-language** — English and German with automatic browser detection
+- **Dark / Light Mode** — Theme switching via `next-themes`
+- **Lazy Loading** — Timeline and Skills sections code-split with skeleton fallbacks
+- **Optimized Bundles** — Vendor chunks (React, Radix, Lucide) split for long-term caching
+- **SEO** — JSON-LD structured data, Open Graph, and Twitter Card meta tags
+- **GitHub Pages** — Auto-deploy on push to `main` via GitHub Actions
+- **Analytics** — Optional Google Analytics with cookie-consent gate
 
-## 📁 Data Structure
+## Tech Stack
 
-All content follows the [JSON Resume schema](https://jsonresume.org/schema/) stored in `public/data/resume.json`:
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + TypeScript |
+| Build | Vite 5 (SWC) |
+| Styling | Tailwind CSS 3 + `tailwindcss-animate` |
+| UI | shadcn/ui (Radix primitives) |
+| Icons | Lucide React |
+| Routing | React Router 6 (HashRouter) |
+| PWA | vite-plugin-pwa + Workbox |
+| Deploy | GitHub Pages via GitHub Actions |
 
-### Core Sections
-- **basics**: Personal information, contact details, and social profiles
-- **work**: Professional experience with highlights and keywords
-- **education**: Academic background with achievements
-- **skills**: Core competencies organized by categories
-- **languages**: Language proficiencies
-- **certificates**: Professional certifications
-- **projects**: Notable projects (optional)
-- **interests**: Professional interests (optional)
+## Project Structure
 
-### Configuration
-- `public/data/config.json`: Feature toggles and theme settings
+```
+src/
+  main.tsx                  # Entry point
+  App.tsx                   # Theme/router shell
+  pages/
+    Index.tsx               # Main resume page (hero, timeline, skills, footer)
+    NotFound.tsx
+  components/
+    resume/                 # HeroSection, TimelineSection, SkillsSection, ...
+    skeletons/              # Loading skeletons for lazy sections
+    ui/                     # shadcn/ui components (button, dialog, toast, ...)
+    Navigation.tsx          # Sticky nav
+    ScrollProgress.tsx      # Reading progress bar
+    ...
+  contexts/
+    LanguageContext.tsx      # i18n provider
+  data/
+    resume.ts               # Data access: getResumeData(lang)
+    config.ts               # Site config loader
+  hooks/                    # useAnalytics, useCalendly, useSectionTracking, ...
+  lib/                      # googleAnalytics, cookieManager, utils
+  types/                    # TypeScript interfaces
 
-## 🔧 Quick Start
+public/
+  data/
+    resume.json             # All resume content (en + de)
+    config.json             # Feature flags, analytics ID, Calendly URL
+  pwa-192x192.png           # PWA icon
+  pwa-512x512.png           # PWA icon
+  apple-touch-icon-180x180.png
+  favicon.ico
+```
 
-### Prerequisites
-- Node.js 18+
-- npm, yarn, or bun
+## Quick Start
 
-### Development Setup
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/jakobgabriel/jakob-cv-canvas.git
 cd jakob-cv-canvas
 
-# Install dependencies
+# Install
 npm install
 
-# Start development server
+# Dev server (http://localhost:8080)
 npm run dev
 ```
 
-### Build for Production
-```bash
-npm run build
-```
+### Available Scripts
 
-## 📝 Content Management
+| Script | Purpose |
+|---|---|
+| `npm run dev` | Local dev server with HMR |
+| `npm run build` | Production build to `./dist` |
+| `npm run build:dev` | Development-mode build (for debugging) |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | ESLint check |
 
-### Editing Your Resume
-1. Open `public/data/resume.json`
-2. Update the relevant sections (English: `en`, German: `de`)
-3. Commit and push changes
-4. GitHub Actions automatically rebuilds and deploys
+## Content Management
+
+### Editing Resume Content
+
+1. Edit `public/data/resume.json` — sections follow the [JSON Resume](https://jsonresume.org/) schema
+2. Commit and push — GitHub Actions automatically rebuilds and deploys
+
+### Data Sections
+
+| Section | Description |
+|---|---|
+| `basics` | Name, title, email, location, social profiles |
+| `work` | Professional experience with highlights and keywords |
+| `education` | Academic background |
+| `skills` | Competencies organized by category |
+| `languages` | Language proficiencies |
+| `certificates` | Professional certifications |
+| `projects` | Notable projects (optional) |
+
+### Site Configuration
+
+`public/data/config.json` controls feature toggles: Google Analytics ID, Calendly URL, and other runtime settings.
 
 ### Adding Social Profiles
-The system supports multiple social networks. Add profiles to the `basics.profiles` array:
+
+Add entries to the `basics.profiles` array in `resume.json`:
 
 ```json
 {
-  "basics": {
-    "profiles": [
-      {
-        "network": "LinkedIn",
-        "username": "your-username",
-        "url": "https://linkedin.com/in/your-username"
-      },
-      {
-        "network": "GitHub", 
-        "username": "your-username",
-        "url": "https://github.com/your-username"
-      },
-      {
-        "network": "X",
-        "username": "your-handle",
-        "url": "https://x.com/your-handle"
-      },
-      {
-        "network": "Xing",
-        "username": "your-username", 
-        "url": "https://xing.com/profile/your-username"
-      }
-    ]
-  }
+  "network": "LinkedIn",
+  "username": "your-username",
+  "url": "https://linkedin.com/in/your-username"
 }
 ```
 
-### Supported Social Networks
-- LinkedIn
-- GitHub
-- X (Twitter)
-- Xing
-- Instagram
-- Facebook
-- Website/Portfolio
+Supported networks: LinkedIn, GitHub, X (Twitter), Xing, Instagram, Facebook, YouTube, Website/Portfolio.
 
-## 🚀 Deployment
+## Multi-language Support
 
-### GitHub Pages (Automatic)
+The resume ships with English (`en`) and German (`de`). The `LanguageDetector` component auto-selects the user's browser language.
+
+To add a new language:
+1. Add translated content under a new key in `resume.json`
+2. Register the locale in `src/contexts/LanguageContext.tsx`
+
+## PWA & Offline Support
+
+The site is a fully installable Progressive Web App:
+
+- **Service worker** auto-generated by Workbox (precaches all static assets)
+- **Google Fonts** cached with a CacheFirst strategy (1-year TTL)
+- **Auto-update** — new versions activate automatically on next visit
+- **Installable** on Android, iOS (Add to Home Screen), and desktop Chrome/Edge
+
+## Deployment
+
+### GitHub Pages (default)
+
 1. Fork this repository
-2. Update `vite.config.ts` with your repository name
-3. Enable GitHub Pages in repository settings
-4. Set source to "GitHub Actions"
-5. Push to `main` branch to trigger deployment
+2. Update `base` in `vite.config.ts` to match your repo name
+3. In repo Settings > Pages, set source to **GitHub Actions**
+4. Push to `main` — the workflow builds and deploys automatically
 
 ### Custom Domain
-1. Add your domain to GitHub Pages settings
-2. Update the `cname` field in `.github/workflows/deploy.yml`
-3. Configure DNS to point to GitHub Pages
 
-## 🎨 Customization
+1. Add your domain in GitHub Pages settings
+2. Update `cname` in `.github/workflows/deploy.yml`
+3. Point your DNS to GitHub Pages
+
+## Customization
 
 ### Design System
-The professional design is defined in:
-- `src/index.css`: CSS custom properties and global styles
-- `tailwind.config.ts`: Tailwind theme configuration
 
-### Color Palette
-Current theme uses a professional charcoal and white palette suitable for private equity:
-- Primary: Professional blue
-- Background: Clean whites and subtle grays
-- Text: High contrast for readability
+- `src/index.css` — CSS custom properties and global styles
+- `tailwind.config.ts` — Theme tokens, colors, fonts, animations
 
-### Adding New Features
-1. Update `public/data/config.json` to enable/disable features
-2. Modify components in `src/components/resume/`
-3. Use the `useJsonResume()` hook to access data
+### Adding Features
 
-## 🌍 Multi-language Support
+1. Toggle flags in `public/data/config.json`
+2. Add or modify components in `src/components/resume/`
+3. Access data via `src/data/resume.ts` and `src/data/config.ts`
 
-The resume supports multiple languages:
-- English (`en`)
-- German (`de`)
+## Build Output
 
-Add new languages by:
-1. Adding language data to `resume.json`
-2. Updating `src/contexts/LanguageContext.tsx`
-3. Adding translation keys
+Production build splits into optimized chunks:
 
-## 📋 JSON Resume Schema Compliance
+| Chunk | Contents |
+|---|---|
+| `react-vendor` | React, ReactDOM, React Router |
+| `radix` | All Radix UI primitives |
+| `icons` | Lucide React |
+| `index` | Application code |
 
-This resume follows the official [JSON Resume](https://jsonresume.org/) standard, making it:
-- Compatible with JSON Resume tools
-- Easily exportable to other formats
-- Industry-standard structured data
+Vendor chunks are long-term cacheable — only the app chunk re-downloads on deploys.
 
-## 🤝 Contributing
+## License
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-MIT License - Feel free to use this template for your own professional resume.
-
----
-
-**Built for professionals by professionals** | React + TypeScript + Tailwind CSS
+MIT License — free to use as a template for your own resume.
