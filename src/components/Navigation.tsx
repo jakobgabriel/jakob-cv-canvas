@@ -151,6 +151,9 @@ export const Navigation = ({ className }: NavigationProps) => {
               size="sm"
               className="absolute right-0 md:hidden"
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -159,7 +162,7 @@ export const Navigation = ({ className }: NavigationProps) => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50">
+          <div id="mobile-navigation" className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50">
             <div className="container mx-auto px-6 py-4">
               <div className="flex flex-col space-y-1">
                 {navigationItems.map((item) => {
@@ -197,11 +200,13 @@ export const Navigation = ({ className }: NavigationProps) => {
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
                   "w-3 h-3 rounded-full transition-all duration-300",
-                  activeSection === item.id 
-                    ? "bg-primary scale-125" 
+                  activeSection === item.id
+                    ? "bg-primary scale-125"
                     : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
                 )}
                 title={item.label}
+                aria-label={`Navigate to ${item.label} section`}
+                aria-current={activeSection === item.id ? 'true' : undefined}
               />
             ))}
           </div>
