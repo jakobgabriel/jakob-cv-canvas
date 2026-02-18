@@ -3,6 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <style>
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/usr/share/fonts/truetype/Inter-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-400.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-500.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-600.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('/usr/share/fonts/truetype/DMSans-700.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/usr/share/fonts/truetype/JetBrainsMono-400.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/usr/share/fonts/truetype/JetBrainsMono-500.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
   @page {
     size: A4;
     margin: 0;
@@ -10,9 +71,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Segoe UI', 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 8pt;
-    line-height: 1.35;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.45;
     color: #2d333b;
   }
 
@@ -23,88 +84,91 @@
     content: '';
     position: fixed;
     top: 0; left: 0;
-    width: 4mm;
+    width: 4.5mm;
     height: 100%;
     background: linear-gradient(180deg, #0e1319 0%, #1a2332 100%);
   }
 
   .content {
-    padding: 9mm 13mm 8mm 15mm;
+    padding: 14mm 18mm 12mm 20mm;
   }
 
   /* ── HEADER ── */
   .header {
     display: flex;
     align-items: center;
-    gap: 10pt;
-    margin-bottom: 6pt;
-    padding-bottom: 6pt;
+    gap: 14pt;
+    margin-bottom: 12pt;
+    padding-bottom: 10pt;
     border-bottom: 0.75pt solid #d0d7de;
   }
 
   .header-photo { flex-shrink: 0; }
   .header-photo img {
-    width: 22mm;
-    height: 22mm;
+    width: 28mm;
+    height: 28mm;
     border-radius: 50%;
     object-fit: cover;
-    border: 1.5pt solid #0e1319;
+    border: 2pt solid #0e1319;
   }
 
   .header-body { flex: 1; }
 
   .header h1 {
-    font-size: 18pt;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 22pt;
     font-weight: 700;
     color: #0e1319;
     letter-spacing: -0.3pt;
-    line-height: 1.1;
+    line-height: 1.15;
   }
   .header .subtitle {
-    font-size: 9pt;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 10.5pt;
     font-weight: 500;
     color: #3d4f5f;
-    margin-top: 0.5pt;
-    letter-spacing: 0.15pt;
+    margin-top: 2pt;
+    letter-spacing: 0.2pt;
   }
 
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 2pt 12pt;
-    margin-top: 4pt;
-    font-size: 7pt;
+    gap: 4pt 16pt;
+    margin-top: 7pt;
+    font-size: 7.5pt;
     color: #57606a;
   }
-  .contact-item { display: flex; align-items: center; gap: 2pt; }
+  .contact-item { display: flex; align-items: center; gap: 3pt; }
   .contact-item .icon {
     display: inline-block;
-    width: 8pt; height: 8pt;
+    width: 10pt; height: 10pt;
     background: #0e1319;
-    border-radius: 1.5pt;
+    border-radius: 2pt;
     color: #fff;
-    font-size: 5.5pt;
+    font-size: 6.5pt;
     font-weight: 700;
     text-align: center;
-    line-height: 8pt;
+    line-height: 10pt;
     flex-shrink: 0;
   }
   .contact-item a { color: #0e1319; text-decoration: none; }
 
   /* ── SECTION HEADINGS ── */
-  .section { margin-bottom: 4pt; }
+  .section { margin-bottom: 10pt; }
   .section-title-wrap {
     display: flex;
     align-items: center;
-    gap: 5pt;
-    margin-bottom: 3pt;
+    gap: 8pt;
+    margin-bottom: 7pt;
   }
   .section-title {
-    font-size: 8pt;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
     font-weight: 700;
     text-transform: uppercase;
     color: #0e1319;
-    letter-spacing: 0.5pt;
+    letter-spacing: 0.6pt;
     white-space: nowrap;
   }
   .section-title-wrap::after {
@@ -116,29 +180,29 @@
 
   /* ── SUMMARY ── */
   .summary-box {
-    font-size: 7.5pt;
+    font-size: 8.5pt;
     color: #3d4f5f;
-    line-height: 1.45;
-    padding: 4pt 7pt;
+    line-height: 1.55;
+    padding: 8pt 11pt;
     background: #f6f8fa;
-    border-radius: 2pt;
-    border-left: 2.5pt solid #0e1319;
+    border-radius: 3pt;
+    border-left: 3pt solid #0e1319;
   }
 
   /* ── JOB ENTRIES ── */
   .job {
-    margin-bottom: 4pt;
-    padding-left: 8pt;
+    margin-bottom: 9pt;
+    padding-left: 10pt;
     border-left: 1.5pt solid #d0d7de;
     position: relative;
   }
   .job::before {
     content: '';
     position: absolute;
-    left: -3pt;
-    top: 2.5pt;
-    width: 4.5pt;
-    height: 4.5pt;
+    left: -4pt;
+    top: 3pt;
+    width: 6pt;
+    height: 6pt;
     border-radius: 50%;
     background: #0e1319;
   }
@@ -146,61 +210,71 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 1pt;
   }
   .job-title {
-    font-size: 8.5pt;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 9.5pt;
     font-weight: 700;
     color: #0e1319;
   }
   .job-date {
-    font-size: 6.5pt;
-    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    font-weight: 500;
     color: #0e1319;
     background: #eaf0f6;
-    padding: 0.5pt 4pt;
+    padding: 1.5pt 6pt;
     border-radius: 2pt;
     white-space: nowrap;
-    letter-spacing: 0.15pt;
+    letter-spacing: 0.2pt;
   }
   .job-company {
-    font-size: 7pt;
+    font-size: 8pt;
     color: #57606a;
-    margin-bottom: 1pt;
+    margin-bottom: 2pt;
   }
-  .job ul { padding-left: 10pt; }
+  .job-summary {
+    font-size: 8pt;
+    color: #4b5563;
+    margin-bottom: 4pt;
+    font-style: italic;
+    line-height: 1.45;
+  }
+  .job ul { padding-left: 12pt; }
   .job li {
-    margin-bottom: 0.5pt;
-    font-size: 7pt;
+    margin-bottom: 2.5pt;
+    font-size: 8pt;
     color: #374151;
-    line-height: 1.35;
+    line-height: 1.45;
   }
   .job li::marker { color: #0e1319; }
-  .kw-row { margin-top: 1.5pt; }
+  .kw-row { margin-top: 3pt; line-height: 1.8; }
   .kw-tag {
     display: inline-block;
     background: #eaf0f6;
     color: #1a2332;
-    font-size: 6pt;
-    padding: 0.5pt 3pt;
-    border-radius: 1.5pt;
-    margin: 0 1pt 0 0;
+    font-size: 6.5pt;
+    padding: 1pt 5pt;
+    border-radius: 2pt;
+    margin: 0 2pt 0 0;
     font-weight: 500;
   }
 
   /* ── EDUCATION ── */
   .edu {
-    margin-bottom: 3pt;
-    padding-left: 8pt;
+    margin-bottom: 7pt;
+    padding-left: 10pt;
     border-left: 1.5pt solid #d0d7de;
     position: relative;
   }
   .edu::before {
     content: '';
     position: absolute;
-    left: -3pt;
-    top: 2.5pt;
-    width: 4.5pt;
-    height: 4.5pt;
+    left: -4pt;
+    top: 3pt;
+    width: 6pt;
+    height: 6pt;
     border-radius: 50%;
     background: #0e1319;
   }
@@ -208,96 +282,102 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 1pt;
   }
-  .edu-degree { font-size: 8pt; font-weight: 700; color: #0e1319; }
+  .edu-degree {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #0e1319;
+  }
   .edu-date {
-    font-size: 6.5pt;
-    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    font-weight: 500;
     color: #0e1319;
     background: #eaf0f6;
-    padding: 0.5pt 4pt;
+    padding: 1.5pt 6pt;
     border-radius: 2pt;
     white-space: nowrap;
   }
-  .edu-school { font-size: 7pt; color: #57606a; margin-bottom: 1pt; }
-  .edu li { margin-bottom: 0.5pt; font-size: 7pt; color: #374151; line-height: 1.35; }
+  .edu-school { font-size: 8pt; color: #57606a; margin-bottom: 2pt; }
+  .edu li { margin-bottom: 1.5pt; font-size: 8pt; color: #374151; line-height: 1.45; }
   .edu li::marker { color: #0e1319; }
-  .edu ul { padding-left: 10pt; }
+  .edu ul { padding-left: 12pt; }
 
   /* ── BOTTOM GRID ── */
   .bottom-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4pt 10pt;
+    gap: 6pt 14pt;
   }
 
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2pt;
-  }
+  .skills-grid { display: flex; flex-direction: column; gap: 4pt; }
   .skill-group {
-    padding: 3pt 5pt;
+    padding: 5pt 8pt;
     background: #f6f8fa;
-    border-radius: 2pt;
+    border-radius: 3pt;
     border: 0.5pt solid #e1e4e8;
   }
   .skill-name {
-    font-size: 7pt;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
     font-weight: 700;
     color: #0e1319;
-    margin-bottom: 1pt;
+    margin-bottom: 2pt;
   }
-  .skill-keywords {
-    font-size: 6.5pt;
-    color: #4b5563;
-    line-height: 1.4;
-  }
+  .skill-keywords { font-size: 7.5pt; color: #4b5563; line-height: 1.5; }
   .skill-level {
     display: inline-block;
-    font-size: 5pt;
-    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.3pt;
     color: #fff;
     background: #0e1319;
-    padding: 0.5pt 3pt;
+    padding: 0.5pt 4pt;
     border-radius: 1.5pt;
-    margin-left: 2pt;
+    margin-left: 3pt;
     vertical-align: middle;
   }
 
-  /* ── CERTIFICATIONS ── */
-  .cert-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2pt;
-  }
+  .cert-list { display: flex; flex-direction: column; gap: 4pt; }
   .cert {
-    padding: 2.5pt 5pt;
+    padding: 4pt 8pt;
     background: #f6f8fa;
-    border-radius: 2pt;
+    border-radius: 3pt;
     border: 0.5pt solid #e1e4e8;
   }
-  .cert-name { font-size: 7pt; font-weight: 600; color: #0e1319; }
-  .cert-details { font-size: 6pt; color: #57606a; }
-
-  /* ── LANGUAGES ── */
-  .lang-row {
-    display: flex;
-    gap: 4pt;
+  .cert-name {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #0e1319;
   }
+  .cert-details { font-size: 7pt; color: #57606a; margin-top: 1pt; }
+
+  .lang-row { display: flex; gap: 6pt; }
   .lang-item {
     flex: 1;
-    padding: 2.5pt 5pt;
+    padding: 5pt 8pt;
     background: #f6f8fa;
-    border-radius: 2pt;
+    border-radius: 3pt;
     border: 0.5pt solid #e1e4e8;
     text-align: center;
   }
-  .lang-name { font-size: 7pt; font-weight: 700; color: #0e1319; }
-  .lang-fluency { font-size: 6pt; color: #57606a; }
+  .lang-name {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #0e1319;
+  }
+  .lang-fluency { font-size: 7pt; color: #57606a; margin-top: 1pt; }
+
+  .page-break {
+    page-break-before: always;
+    padding-top: 14mm;
+  }
 </style>
 </head>
 <body>
@@ -333,12 +413,14 @@
 <div class="section">
   <div class="section-title-wrap"><span class="section-title">Professional Experience</span></div>
 
+  <!-- Job 1 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Digital Business Value Engineer</span>
       <span class="job-date">Feb 2026 &ndash; Present</span>
     </div>
     <div class="job-company">OESL Automotive (A portfolio company of Regent LP) &middot; Karben, Germany</div>
+    <div class="job-summary">Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.</div>
     <ul>
       <li>Ensured seamless continuity of 150+ digitalization use cases during company carve-out and transition to new ownership.</li>
       <li>Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites.</li>
@@ -351,12 +433,14 @@
     </div>
   </div>
 
+  <!-- Job 2 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Digital Business Value Engineer</span>
       <span class="job-date">Jan 2024 &ndash; Jan 2026</span>
     </div>
     <div class="job-company">Continental AG &middot; Karben, Germany</div>
+    <div class="job-summary">Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.</div>
     <ul>
       <li>Scaled more than 150 digitalization use cases globally, achieving more than &euro;1M in annual cost savings by applying data-driven optimization.</li>
       <li>Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.</li>
@@ -369,12 +453,14 @@
     </div>
   </div>
 
+  <!-- Job 3 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Analytics and Data Engineer</span>
       <span class="job-date">Jan 2022 &ndash; Dec 2023</span>
     </div>
     <div class="job-company">Continental AG &middot; Karben, Germany</div>
+    <div class="job-summary">Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.</div>
     <ul>
       <li>Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness.</li>
       <li>Orchestrated cross-functional teams to develop predictive analytics models that prevented production bottlenecks and reduced waste.</li>
@@ -387,12 +473,17 @@
     </div>
   </div>
 
+  <!-- ═══ PAGE 2 ═══ -->
+  <div class="page-break"></div>
+
+  <!-- Job 4 -->
   <div class="job">
     <div class="job-header">
       <span class="job-title">Quality Engineer</span>
       <span class="job-date">Oct 2018 &ndash; Dec 2021</span>
     </div>
     <div class="job-company">Continental AG &middot; Waltershausen, Germany</div>
+    <div class="job-summary">Ensured product quality during ramp-up through risk management, process optimization, and customer-focused quality control and improvement initiatives.</div>
     <ul>
       <li>Identified and eliminated root causes of quality issues through continuous improvement, leading to a significant reduction in defect rates.</li>
       <li>Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements.</li>
@@ -412,24 +503,24 @@
 
   <div class="edu">
     <div class="edu-header">
-      <span class="edu-degree">M.Eng. &mdash; Applied Polymer Engineering</span>
+      <span class="edu-degree">Master of Engineering &mdash; Applied Polymer Engineering</span>
       <span class="edu-date">Apr 2019 &ndash; Dec 2024</span>
     </div>
     <div class="edu-school">University of Applied Sciences Schmalkalden &middot; Grade: 2.0 (3.0 US GPA)</div>
     <ul>
-      <li>Thesis: Process Mining in Manufacturing &mdash; A Case Study on Data-Driven Potential Analysis.</li>
+      <li>Master Thesis: Process Mining in Manufacturing &mdash; A Case Study on Data-Driven Potential Analysis.</li>
       <li>Project: Developed a predictive model for weld strength using infrared imaging and process data analytics.</li>
     </ul>
   </div>
 
   <div class="edu">
     <div class="edu-header">
-      <span class="edu-degree">B.Eng. &mdash; Polymer Engineering</span>
+      <span class="edu-degree">Bachelor of Engineering &mdash; Polymer Engineering</span>
       <span class="edu-date">Oct 2015 &ndash; Sep 2018</span>
     </div>
     <div class="edu-school">Duale Hochschule Gera Eisenach &middot; Grade: 1.6 (3.3 US GPA)</div>
     <ul>
-      <li>Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line.</li>
+      <li>Bachelor Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line.</li>
     </ul>
   </div>
 </div>
@@ -439,7 +530,7 @@
 
   <!-- Left column: Skills + Languages -->
   <div>
-    <div class="section" style="margin-bottom:3pt;">
+    <div class="section" style="margin-bottom:6pt;">
       <div class="section-title-wrap"><span class="section-title">Skills</span></div>
       <div class="skills-grid">
         <div class="skill-group">
