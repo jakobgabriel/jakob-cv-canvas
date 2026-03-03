@@ -9,7 +9,7 @@
       "recipientEmail": "jakob.gabriel5@googlemail.com"
     },
     "multiLanguage": {
-      "enabled": false,
+      "enabled": true,
       "defaultLanguage": "en"
     }
   },
