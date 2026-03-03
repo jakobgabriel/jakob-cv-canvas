@@ -36,11 +36,11 @@
       "startDate": "2026-02-01",
       "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
       "highlights": [
-        "Ensured seamless continuity of 150+ digitalization use cases during company carve-out and transition to new ownership.",
-        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites.",
-        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions.",
-        "Built organizational capabilities through training programs, expanding the Smart Factory network worldwide.",
-        "Redesigned processes leveraging analytics insights to reduce lead times and increase operational efficiency."
+        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
+        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
+        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
+        "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
+        "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
       ],
       "keywords": ["Use Case Scaling", "AI-Driven Process Optimization", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
       "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
@@ -72,11 +72,11 @@
       "endDate": "2023-12-31",
       "summary": "Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.",
       "highlights": [
-        "Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness.",
-        "Orchestrated cross-functional teams to develop predictive analytics models that prevented production bottlenecks and reduced waste.",
-        "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across plants.",
-        "Built intuitive dashboards that empowered operators and engineers to make faster, evidence-based decisions.",
-        "Created knowledge-sharing platforms and internal documentation that accelerated learning and scaled analytics adoption enterprise-wide."
+        "Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness (OEE) across multiple lines.",
+        "Orchestrated cross-functional teams of 5+ members to develop predictive analytics models that prevented production bottlenecks and reduced scrap waste.",
+        "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across 8+ manufacturing plants.",
+        "Built intuitive Power BI dashboards used daily by 50+ operators and engineers for faster, evidence-based decision-making.",
+        "Created knowledge-sharing platforms and internal documentation that accelerated onboarding and scaled analytics adoption enterprise-wide."
       ],
       "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"],
       "industries": ["Automotive", "Manufacturing", "Data Science"]
@@ -90,11 +90,11 @@
       "endDate": "2021-12-31",
       "summary": "Ensured product quality during ramp up through risk management, process optimization, and customer-focused quality control and improvement initiatives.",
       "highlights": [
-        "Continuous improvement by identifying and eliminating root causes of quality issues, leading to a significant reduction in defect rates.",
-        "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements.",
-        "Designed and implemented inspection concepts for products, enhancing product reliability and traceability.",
-        "Built trusted relationships with customers through transparent communication, acceptance tests, and successful audit results.",
-        "Introduced quality dashboards that visualized real-time KPIs, improving decision-making speed on the shop floor."
+        "Drove continuous improvement by systematically identifying and eliminating root causes of quality issues using 8D and Six Sigma methods, reducing defect rates during product ramp-up.",
+        "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements across 3+ production lines.",
+        "Designed and implemented end-to-end inspection concepts for new products, enhancing product reliability and full traceability.",
+        "Built trusted customer relationships through transparent communication, on-site acceptance tests, and consistently successful audit results.",
+        "Introduced real-time quality dashboards visualizing key KPIs, improving shop-floor decision-making speed and reducing reaction time to quality events."
       ],
       "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"],
       "industries": ["Automotive", "Manufacturing", "Quality Assurance"]
@@ -135,17 +135,22 @@
     {
       "name": "Digital Transformation",
       "level": "Expert",
-      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management"]
+      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "MES Integration", "Digital Twin", "Edge Computing"]
     },
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning"]
+      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "ETL Pipelines", "Data Modeling", "Azure", "DAX", "Process Mining"]
     },
     {
       "name": "Process & Quality Engineering",
       "level": "Advanced",
-      "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis"]
+      "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis", "SPC", "8D", "Control Plans"]
+    },
+    {
+      "name": "Leadership & Methodology",
+      "level": "Advanced",
+      "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "OKRs", "Project Management"]
     }
   ],
   "languages": [
