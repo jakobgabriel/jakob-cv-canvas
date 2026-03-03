@@ -218,11 +218,11 @@ export const HeroSection = () => {
       {/* Scroll down indicator */}
       <button
         onClick={scrollToTimeline}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group animate-bounce-gentle"
         aria-label="Scroll to experience section"
       >
         <div className="p-2 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm group-hover:border-primary group-hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
-          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary animate-bounce-gentle" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
         </div>
       </button>
     </section>
