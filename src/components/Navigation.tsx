@@ -22,28 +22,29 @@ export const Navigation = ({ className }: NavigationProps) => {
   const { trackNavigation } = useAnalytics();
 
   useEffect(() => {
-    // Handle initial hash on page load
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash && navigationItems.some(item => item.id === hash)) {
-        setActiveSection(hash);
-        const element = document.getElementById(hash);
-        if (element) {
-          const offsetTop = element.offsetTop - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }
+    // Handle initial section param on page load (e.g. /#/?section=hero)
+    const handleInitialSection = () => {
+      const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
+      const section = params.get('section');
+      if (section && navigationItems.some(item => item.id === section)) {
+        setActiveSection(section);
+        // Delay scroll to ensure DOM is ready
+        setTimeout(() => {
+          const element = document.getElementById(section);
+          if (element) {
+            const offsetTop = element.offsetTop - 80;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+          }
+        }, 100);
       }
     };
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Skip section detection during programmatic scrolling
       if (isScrolling) return;
-      
+
       // Simplified active section detection
       const sections = ['hero', 'timeline', 'skills'];
       for (const section of sections) {
@@ -52,25 +53,18 @@ export const Navigation = ({ className }: NavigationProps) => {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
             setActiveSection(section);
-            // Update URL without triggering scroll
-            if (window.location.hash !== `#${section}`) {
-              window.history.replaceState(null, '', `#${section}`);
-            }
             break;
           }
         }
       }
     };
 
-    // Handle initial hash
-    handleHashChange();
-    
+    handleInitialSection();
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('hashchange', handleHashChange);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 
@@ -89,10 +83,7 @@ export const Navigation = ({ className }: NavigationProps) => {
         top: offsetTop,
         behavior: 'smooth'
       });
-      
-      // Update URL
-      window.history.pushState(null, '', `#${sectionId}`);
-      
+
       // Re-enable scroll detection after smooth scrolling completes
       setTimeout(() => {
         setIsScrolling(false);

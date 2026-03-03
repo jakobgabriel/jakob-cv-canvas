@@ -1,398 +1,198 @@
 {
-  "en": {
-    "basics": {
-      "name": "Jakob Gabriel",
-      "label": "Digital Business Value Engineer",
-      "image": "/src/assets/jakob-portrait.jpeg",
-      "email": "jakob.gabriel5@googlemail.com",
-      "phone": "",
-      "url": "",
-      "summary": "Digital transformation and advanced analytics expert with a record in scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Passionate about enabling innovation, driving agile projects, and empowering teams.",
-      "location": {
-        "address": "",
-        "postalCode": "99086",
-        "city": "Erfurt - Passau",
-        "countryCode": "DE",
-        "region": ""
-      },
-      "profiles": [
-        {
-          "network": "LinkedIn",
-          "username": "Jakob Gabriel",
-          "url": "https://www.linkedin.com/in/jakob-gabriel"
-        },
-        {
-          "network": "XING",
-          "username": "Jakob Gabriel",
-          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
-        }
-      ]
+  "basics": {
+    "name": "Jakob Gabriel",
+    "label": "Digital Business Value Engineer",
+    "image": "/src/assets/jakob-portrait.jpeg",
+    "email": "jakob.gabriel5@googlemail.com",
+    "phone": "",
+    "url": "",
+    "summary": "Digital transformation and advanced analytics expert with a record in scaling smart-factory solutions, optimizing manufacturing processes, and delivering measurable business value. Passionate about enabling innovation, driving agile projects, and empowering teams.",
+    "location": {
+      "address": "",
+      "postalCode": "99086",
+      "city": "Erfurt - Passau",
+      "countryCode": "DE",
+      "region": ""
     },
-    "work": [
+    "profiles": [
       {
-        "name": "OESL Automotive",
-        "position": "Digital Business Value Engineer",
-        "location": "Karben, Germany",
-        "url": "https://www.oesl-automotive.com",
-        "startDate": "2026-02-01",
-        "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
-        "highlights": [
-          "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
-          "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
-          "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
-          "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
-          "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
-        ],
-        "keywords": ["Use Case Scaling", "AI-Driven Process Optimization", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
-        "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
+        "network": "LinkedIn",
+        "username": "Jakob Gabriel",
+        "url": "https://www.linkedin.com/in/jakob-gabriel"
       },
       {
-        "name": "Continental AG",
-        "position": "Digital Business Value Engineer",
-        "location": "Karben, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2024-01-01",
-        "endDate": "2026-01-31",
-        "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.",
-        "highlights": [
-          "Scaled more than 150 digitalization use cases globally, achieving more than €1M in annual cost savings by applying data-driven optimization.",
-          "Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.",
-          "Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization",
-          "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
-          "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
-        ],
-        "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
-        "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
-      },
-      {
-        "name": "Continental AG",
-        "position": "Analytics and Data Engineer",
-        "location": "Karben, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2022-01-01",
-        "endDate": "2023-12-31",
-        "summary": "Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.",
-        "highlights": [
-          "Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness (OEE) across multiple lines.",
-          "Orchestrated cross-functional teams of 5+ members to develop predictive analytics models that prevented production bottlenecks and reduced scrap waste.",
-          "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across 8+ manufacturing plants.",
-          "Built intuitive Power BI dashboards used daily by 50+ operators and engineers for faster, evidence-based decision-making.",
-          "Created knowledge-sharing platforms and internal documentation that accelerated onboarding and scaled analytics adoption enterprise-wide."
-        ],
-        "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"],
-        "industries": ["Automotive", "Manufacturing", "Data Science"]
-      },
-      {
-        "name": "Continental AG",
-        "position": "Quality Engineer",
-        "location": "Waltershausen, Germany",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2018-10-01",
-        "endDate": "2021-12-31",
-        "summary": "Ensured product quality during ramp up through risk management, process optimization, and customer-focused quality control and improvement initiatives.",
-        "highlights": [
-          "Drove continuous improvement by systematically identifying and eliminating root causes of quality issues using 8D and Six Sigma methods, reducing defect rates during product ramp-up.",
-          "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements across 3+ production lines.",
-          "Designed and implemented end-to-end inspection concepts for new products, enhancing product reliability and full traceability.",
-          "Built trusted customer relationships through transparent communication, on-site acceptance tests, and consistently successful audit results.",
-          "Introduced real-time quality dashboards visualizing key KPIs, improving shop-floor decision-making speed and reducing reaction time to quality events."
-        ],
-        "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"],
-        "industries": ["Automotive", "Manufacturing", "Quality Assurance"]
-      }
-    ],
-    "education": [
-      {
-        "institution": "University of Applied Sciences Schmalkalden",
-        "url": "https://www.hsm-fernstudium.de/masterstudiengaenge/angewandte-kunststofftechnik-meng",
-        "area": "Applied Polymer Engineering",
-        "studyType": "Master of Engineering",
-        "startDate": "2019-04-01",
-        "endDate": "2024-12-31",
-        "score": "2.0 (3.0 US GPA)",
-        "summary": "Advanced academic foundation in polymer engineering with a strong focus on industrial applications, process optimization, and manufacturing.",
-        "courses": [],
-        "highlights": [
-          "Master Thesis: Process Mining in Manufacturing - A Case Study on Data-Driven Potential Analysis.",
-          "Project: Developed a predictive model for weld strength using infrared imaging and process data analytics."
-        ]
-      },
-      {
-        "institution": "Duale Hochschule Gera Eisenach",
-        "url": "https://www.dhge.de/DHGE/Studieninteressierte/Studieng-nge/Detail~Technik~Kunststofftechnik-Bachelor-of-Engineering~.html",
-        "area": "Polymer Engineering",
-        "studyType": "Bachelor of Engineering",
-        "startDate": "2015-10-01",
-        "endDate": "2018-09-30",
-        "score": "1.6 (3.3 US GPA)",
-        "summary": "Dual degree combining academic theory with hands-on industrial applications in polymer engineering.",
-        "courses": [],
-        "highlights": [
-          "Bachelor Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line."
-        ]
-      }
-    ],
-    "skills": [
-      {
-        "name": "Digital Transformation",
-        "level": "Expert",
-        "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "Digital Twin", "Edge Computing"]
-      },
-      {
-        "name": "Data Engineering, Analytics & AI",
-        "level": "Expert",
-        "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "Data Modeling", "Azure", "Process Mining"]
-      },
-      {
-        "name": "Process & Quality Engineering",
-        "level": "Advanced",
-        "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis", "SPC", "8D", "Control Plans"]
-      },
-      {
-        "name": "Leadership & Methodology",
-        "level": "Advanced",
-        "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "Project Management"]
-      }
-    ],
-    "languages": [
-      {
-        "language": "German",
-        "fluency": "Native speaker"
-      },
-      {
-        "language": "English",
-        "fluency": "Fluent"
-      }
-    ],
-    "certificates": [
-      {
-        "name": "The Power MBA",
-        "date": "2024-11-08",
-        "issuer": "ThePower Business School",
-        "url": "https://www.thepowermba.com/en/thepowermba"
-      },
-      {
-        "name": "Continental Leading Self Program",
-        "date": "2023-10-10",
-        "issuer": "Continental AG",
-        "url": "https://www.continental.com/en/career/working-at-continental/your-development/leadership/"
-      },
-      {
-        "name": "Advanced Analytics Methodologies",
-        "date": "2021-10-11",
-        "issuer": "AdvancedAnalytics.Academy GmbH",
-        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
-      },
-      {
-        "name": "Product Auditor VDA 6.5",
-        "date": "2019-09-18",
-        "issuer": "TÜV Hessen",
-        "url": "https://www.tuev-club.de/656/tuev-know-how-club-seminare/"
-      }
-    ],
-    "interests": [
-      {
-        "name": "Innovation & Emerging Tech",
-        "keywords": ["AI/ML", "Process Intelligence", "Sustainability in Manufacturing"]
+        "network": "XING",
+        "username": "Jakob Gabriel",
+        "url": "https://www.xing.com/profile/Jakob_Gabriel4"
       }
     ]
   },
-  "de": {
-    "basics": {
-      "name": "Jakob Gabriel",
-      "label": "Digital Business Value Engineer",
-      "image": "/src/assets/jakob-portrait.jpeg",
-      "email": "jakob.gabriel5@googlemail.com",
-      "phone": "",
-      "url": "",
-      "summary": "Experte für digitale Transformation und Advanced Analytics mit nachgewiesener Erfahrung in der Skalierung von Smart-Factory-Lösungen, der Optimierung von Fertigungsprozessen und der Schaffung messbaren Geschäftswerts. Leidenschaft für Innovation, agile Projektführung und die Befähigung von Teams.",
-      "location": {
-        "address": "",
-        "postalCode": "99086",
-        "city": "Erfurt - Passau",
-        "countryCode": "DE",
-        "region": ""
-      },
-      "profiles": [
-        {
-          "network": "LinkedIn",
-          "username": "Jakob Gabriel",
-          "url": "https://www.linkedin.com/in/jakob-gabriel"
-        },
-        {
-          "network": "XING",
-          "username": "Jakob Gabriel",
-          "url": "https://www.xing.com/profile/Jakob_Gabriel4"
-        }
+  "work": [
+    {
+      "name": "OESL Automotive",
+      "position": "Digital Business Value Engineer",
+      "location": "Karben, Germany",
+      "url": "https://www.oesl-automotive.com",
+      "startDate": "2026-02-01",
+      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
+      "highlights": [
+        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
+        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
+        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
+        "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
+        "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
+      ],
+      "keywords": ["Use Case Scaling", "AI-Driven Process Optimization", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
+      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
+    },
+    {
+      "name": "Continental AG",
+      "position": "Digital Business Value Engineer",
+      "location": "Karben, Germany",
+      "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+      "startDate": "2024-01-01",
+      "endDate": "2026-01-31",
+      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.",
+      "highlights": [
+        "Scaled more than 150 digitalization use cases globally, achieving more than €1M in annual cost savings by applying data-driven optimization.",
+        "Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.",
+        "Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization",
+        "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
+        "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
+      ],
+      "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
+      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
+    },
+    {
+      "name": "Continental AG",
+      "position": "Analytics and Data Engineer",
+      "location": "Karben, Germany",
+      "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+      "startDate": "2022-01-01",
+      "endDate": "2023-12-31",
+      "summary": "Designed and implemented analytics-driven solutions for manufacturing challenges while enabling global scalability across production sites.",
+      "highlights": [
+        "Transformed raw production data into actionable insights, uncovering hidden inefficiencies and improving overall equipment effectiveness (OEE) across multiple lines.",
+        "Orchestrated cross-functional teams of 5+ members to develop predictive analytics models that prevented production bottlenecks and reduced scrap waste.",
+        "Defined global digitalization standards that unified data quality, analytics methodologies, and reporting across 8+ manufacturing plants.",
+        "Built intuitive Power BI dashboards used daily by 50+ operators and engineers for faster, evidence-based decision-making.",
+        "Created knowledge-sharing platforms and internal documentation that accelerated onboarding and scaled analytics adoption enterprise-wide."
+      ],
+      "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"],
+      "industries": ["Automotive", "Manufacturing", "Data Science"]
+    },
+    {
+      "name": "Continental AG",
+      "position": "Quality Engineer",
+      "location": "Waltershausen, Germany",
+      "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
+      "startDate": "2018-10-01",
+      "endDate": "2021-12-31",
+      "summary": "Ensured product quality during ramp up through risk management, process optimization, and customer-focused quality control and improvement initiatives.",
+      "highlights": [
+        "Drove continuous improvement by systematically identifying and eliminating root causes of quality issues using 8D and Six Sigma methods, reducing defect rates during product ramp-up.",
+        "Collaborated with cross-functional teams to strengthen FMEA practices, transforming risk assessments into actionable process improvements across 3+ production lines.",
+        "Designed and implemented end-to-end inspection concepts for new products, enhancing product reliability and full traceability.",
+        "Built trusted customer relationships through transparent communication, on-site acceptance tests, and consistently successful audit results.",
+        "Introduced real-time quality dashboards visualizing key KPIs, improving shop-floor decision-making speed and reducing reaction time to quality events."
+      ],
+      "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"],
+      "industries": ["Automotive", "Manufacturing", "Quality Assurance"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Applied Sciences Schmalkalden",
+      "url": "https://www.hsm-fernstudium.de/masterstudiengaenge/angewandte-kunststofftechnik-meng",
+      "area": "Applied Polymer Engineering",
+      "studyType": "Master of Engineering",
+      "startDate": "2019-04-01",
+      "endDate": "2024-12-31",
+      "score": "2.0 (3.0 US GPA)",
+      "summary": "Advanced academic foundation in polymer engineering with a strong focus on industrial applications, process optimization, and manufacturing.",
+      "courses": [],
+      "highlights": [
+        "Master Thesis: Process Mining in Manufacturing - A Case Study on Data-Driven Potential Analysis.",
+        "Project: Developed a predictive model for weld strength using infrared imaging and process data analytics."
       ]
     },
-    "work": [
-      {
-        "name": "OESL Automotive",
-        "position": "Digital Business Value Engineer",
-        "location": "Karben, Deutschland",
-        "url": "https://www.oesl-automotive.com",
-        "startDate": "2026-02-01",
-        "summary": "Verantwortung für die digitale Transformations- und Analyticsstrategie an globalen Fertigungsstandorten während des Unternehmens-Carve-outs, Sicherstellung der Geschäftskontinuität und Skalierbarkeit etablierter Smart-Factory-Lösungen.",
-        "highlights": [
-          "Migration und Sicherstellung der Kontinuität von über 150 Digitalisierungs-Use-Cases an mehr als 8 globalen Standorten während des Carve-outs, ohne Ausfallzeit der Analytics-Services.",
-          "Wartung und Weiterentwicklung von Energie- und Prozesseffizienz-Analytics-Workflows an globalen Fertigungsstandorten mit Erhalt von über 1 Mio. € jährlicher Einsparungen.",
-          "Vorantreiben von KI-gestützten Prozessoptimierungsinitiativen zur Automatisierung komplexer Fertigungsentscheidungen und Reduzierung manueller Eingriffe.",
-          "Aufbau organisatorischer Fähigkeiten durch gezielte Schulungsprogramme und Erweiterung des Smart-Factory-Power-User-Netzwerks weltweit.",
-          "Neugestaltung wichtiger Prozesse durch Analytics-Erkenntnisse zur Reduzierung von Durchlaufzeiten und Steigerung der operativen Effizienz."
-        ],
-        "keywords": ["Use Case Skalierung", "KI-gestützte Prozessoptimierung", "Prozessautomatisierung", "Prozessstandardisierung", "Agiles Projektmanagement", "Digitale Transformation"],
-        "industries": ["Automobilindustrie", "Fertigung", "Industrietechnologie"]
-      },
-      {
-        "name": "Continental AG",
-        "position": "Digital Business Value Engineer",
-        "location": "Karben, Deutschland",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2024-01-01",
-        "endDate": "2026-01-31",
-        "summary": "Verantwortung für die digitale Transformations- und Analyticsstrategie an globalen Fertigungsstandorten mit Fokus auf messbare Wertschöpfung und Skalierbarkeit.",
-        "highlights": [
-          "Skalierung von über 150 Digitalisierungs-Use-Cases weltweit mit über 1 Mio. € jährlicher Kosteneinsparung durch datengetriebene Optimierung.",
-          "Entwicklung von Energie- und Prozesseffizienz-Analytics-Workflows, die zu Referenzmodellen für datengetriebene Fertigung wurden.",
-          "Förderung von über 15 Innovationsinitiativen jährlich, Begleitung von Proof-of-Concepts bis zur operativen Nutzung.",
-          "Aufbau organisatorischer Fähigkeiten durch über 20 Schulungsprogramme und Erweiterung des Smart-Factory-Netzwerks weltweit.",
-          "Neugestaltung zweier wesentlicher Prozesse zur Reduzierung der Durchlaufzeiten um über 10% durch Analytics-Erkenntnisse."
-        ],
-        "keywords": ["Use Case Skalierung", "System-Skalierung", "Prozessautomatisierung", "Prozessstandardisierung", "Agiles Projektmanagement", "Digitale Transformation"],
-        "industries": ["Automobilindustrie", "Fertigung", "Industrietechnologie"]
-      },
-      {
-        "name": "Continental AG",
-        "position": "Analytics and Data Engineer",
-        "location": "Karben, Deutschland",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2022-01-01",
-        "endDate": "2023-12-31",
-        "summary": "Konzeption und Implementierung analytikgetriebener Lösungen für Fertigungsherausforderungen bei gleichzeitiger Ermöglichung globaler Skalierbarkeit über Produktionsstandorte.",
-        "highlights": [
-          "Transformation von Produktionsrohdaten in umsetzbare Erkenntnisse, Aufdeckung versteckter Ineffizienzen und Verbesserung der Gesamtanlageneffektivität (OEE) über mehrere Linien.",
-          "Koordination funktionsübergreifender Teams von über 5 Mitgliedern zur Entwicklung prädiktiver Analysemodelle zur Vermeidung von Produktionsengpässen und Reduzierung von Ausschuss.",
-          "Definition globaler Digitalisierungsstandards zur Vereinheitlichung von Datenqualität, Analytics-Methoden und Reporting über mehr als 8 Fertigungswerke.",
-          "Erstellung intuitiver Power BI-Dashboards, die täglich von über 50 Bedienern und Ingenieuren für schnellere, evidenzbasierte Entscheidungen genutzt werden.",
-          "Aufbau von Wissensaustausch-Plattformen und interner Dokumentation zur Beschleunigung des Onboardings und unternehmensweiter Analytics-Adoption."
-        ],
-        "keywords": ["Manufacturing Intelligence", "Datenanalyse", "Industrie 4.0", "Prozessverbesserung", "Prädiktive Analytik", "Wissensmanagement"],
-        "industries": ["Automobilindustrie", "Fertigung", "Data Science"]
-      },
-      {
-        "name": "Continental AG",
-        "position": "Qualitätsingenieur",
-        "location": "Waltershausen, Deutschland",
-        "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
-        "startDate": "2018-10-01",
-        "endDate": "2021-12-31",
-        "summary": "Sicherstellung der Produktqualität während des Hochlaufs durch Risikomanagement, Prozessoptimierung und kundenorientierte Qualitätskontrollen und Verbesserungsinitiativen.",
-        "highlights": [
-          "Vorantreiben kontinuierlicher Verbesserung durch systematische Identifikation und Beseitigung von Fehlerursachen mittels 8D- und Six-Sigma-Methoden, Reduzierung der Fehlerquoten während des Produkthochlaufs.",
-          "Zusammenarbeit mit funktionsübergreifenden Teams zur Stärkung der FMEA-Praxis, Transformation von Risikobewertungen in umsetzbare Prozessverbesserungen über 3+ Produktionslinien.",
-          "Konzeption und Implementierung durchgängiger Prüfkonzepte für neue Produkte zur Steigerung der Produktzuverlässigkeit und vollständigen Rückverfolgbarkeit.",
-          "Aufbau vertrauensvoller Kundenbeziehungen durch transparente Kommunikation, Vor-Ort-Abnahmetests und durchgehend erfolgreiche Auditergebnisse.",
-          "Einführung von Echtzeit-Qualitätsdashboards zur Visualisierung wichtiger KPIs, Verbesserung der Entscheidungsgeschwindigkeit in der Fertigung und Verkürzung der Reaktionszeit bei Qualitätsereignissen."
-        ],
-        "keywords": ["Qualitätsmanagement", "FMEA", "Six Sigma", "Kontinuierliche Verbesserung", "Risikoanalyse"],
-        "industries": ["Automobilindustrie", "Fertigung", "Qualitätssicherung"]
-      }
-    ],
-    "education": [
-      {
-        "institution": "Hochschule Schmalkalden",
-        "url": "https://www.hsm-fernstudium.de/masterstudiengaenge/angewandte-kunststofftechnik-meng",
-        "area": "Angewandte Kunststofftechnik",
-        "studyType": "Master of Engineering",
-        "startDate": "2019-04-01",
-        "endDate": "2024-12-31",
-        "score": "2,0",
-        "summary": "Weiterführende akademische Grundlage in Kunststofftechnik mit starkem Fokus auf industrielle Anwendungen, Prozessoptimierung und Fertigung.",
-        "courses": [],
-        "highlights": [
-          "Masterarbeit: Process Mining in der Fertigung – Eine Fallstudie zur datengetriebenen Potenzialanalyse.",
-          "Projekt: Entwicklung eines prädiktiven Modells für die Schweißnahtfestigkeit mittels Infrarotbildgebung und Prozessdatenanalyse."
-        ]
-      },
-      {
-        "institution": "Duale Hochschule Gera Eisenach",
-        "url": "https://www.dhge.de/DHGE/Studieninteressierte/Studieng-nge/Detail~Technik~Kunststofftechnik-Bachelor-of-Engineering~.html",
-        "area": "Kunststofftechnik",
-        "studyType": "Bachelor of Engineering",
-        "startDate": "2015-10-01",
-        "endDate": "2018-09-30",
-        "score": "1,6",
-        "summary": "Duales Studium mit Kombination aus akademischer Theorie und praktischen industriellen Anwendungen in der Kunststofftechnik.",
-        "courses": [],
-        "highlights": [
-          "Bachelorarbeit: Automatisierung von Prüf- und Verpackungsprozessen mittels Robotik und Bildverarbeitungssystemen in einer Montagelinie."
-        ]
-      }
-    ],
-    "skills": [
-      {
-        "name": "Digitale Transformation",
-        "level": "Expert",
-        "keywords": ["Industrie 4.0", "IoT-Systeme", "Prozessautomatisierung", "Change Management", "Smart Factory", "Digitaler Zwilling", "Edge Computing"]
-      },
-      {
-        "name": "Data Engineering, Analytics & KI",
-        "level": "Expert",
-        "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "KI-Agent-Design", "Prädiktive Modellierung", "Statistische Analyse", "Machine Learning", "Datenmodellierung", "Azure", "Process Mining"]
-      },
-      {
-        "name": "Prozess- & Qualitätstechnik",
-        "level": "Advanced",
-        "keywords": ["FMEA", "Lean Six Sigma", "Prozessoptimierung", "APQP", "Ursachenanalyse", "SPC", "8D", "Control Plans"]
-      },
-      {
-        "name": "Führung & Methodik",
-        "level": "Advanced",
-        "keywords": ["Agile/Scrum", "Stakeholder-Management", "Schulung & Befähigung", "Funktionsübergreifende Zusammenarbeit", "Projektmanagement"]
-      }
-    ],
-    "languages": [
-      {
-        "language": "Deutsch",
-        "fluency": "Muttersprache"
-      },
-      {
-        "language": "Englisch",
-        "fluency": "Fließend"
-      }
-    ],
-    "certificates": [
-      {
-        "name": "The Power MBA",
-        "date": "2024-11-08",
-        "issuer": "ThePower Business School",
-        "url": "https://www.thepowermba.com/en/thepowermba"
-      },
-      {
-        "name": "Continental Leading Self Program",
-        "date": "2023-10-10",
-        "issuer": "Continental AG",
-        "url": "https://www.continental.com/en/career/working-at-continental/your-development/leadership/"
-      },
-      {
-        "name": "Advanced Analytics Methodologies",
-        "date": "2021-10-11",
-        "issuer": "AdvancedAnalytics.Academy GmbH",
-        "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
-      },
-      {
-        "name": "Produktauditor VDA 6.5",
-        "date": "2019-09-18",
-        "issuer": "TÜV Hessen",
-        "url": "https://www.tuev-club.de/656/tuev-know-how-club-seminare/"
-      }
-    ],
-    "interests": [
-      {
-        "name": "Innovation & Neue Technologien",
-        "keywords": ["KI/ML", "Prozessintelligenz", "Nachhaltigkeit in der Fertigung"]
-      }
-    ]
-  }
+    {
+      "institution": "Duale Hochschule Gera Eisenach",
+      "url": "https://www.dhge.de/DHGE/Studieninteressierte/Studieng-nge/Detail~Technik~Kunststofftechnik-Bachelor-of-Engineering~.html",
+      "area": "Polymer Engineering",
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2015-10-01",
+      "endDate": "2018-09-30",
+      "score": "1.6 (3.3 US GPA)",
+      "summary": "Dual degree combining academic theory with hands-on industrial applications in polymer engineering.",
+      "courses": [],
+      "highlights": [
+        "Bachelor Thesis: Automation of Testing and Packaging using Robotics and Vision Systems in an Assembly Line."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Digital Transformation",
+      "level": "Expert",
+      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "Digital Twin", "Edge Computing"]
+    },
+    {
+      "name": "Data Engineering, Analytics & AI",
+      "level": "Expert",
+      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "Data Modeling", "Azure", "Process Mining"]
+    },
+    {
+      "name": "Process & Quality Engineering",
+      "level": "Advanced",
+      "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis", "SPC", "8D", "Control Plans"]
+    },
+    {
+      "name": "Leadership & Methodology",
+      "level": "Advanced",
+      "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "Project Management"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "German",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "The Power MBA",
+      "date": "2024-11-08",
+      "issuer": "ThePower Business School",
+      "url": "https://www.thepowermba.com/en/thepowermba"
+    },
+    {
+      "name": "Continental Leading Self Program",
+      "date": "2023-10-10",
+      "issuer": "Continental AG",
+      "url": "https://www.continental.com/en/career/working-at-continental/your-development/leadership/"
+    },
+    {
+      "name": "Advanced Analytics Methodologies",
+      "date": "2021-10-11",
+      "issuer": "AdvancedAnalytics.Academy GmbH",
+      "url": "https://advancedanalytics.academy/trainings/fundamentals/advanced-analytics-methodologies"
+    },
+    {
+      "name": "Product Auditor VDA 6.5",
+      "date": "2019-09-18",
+      "issuer": "TÜV Hessen",
+      "url": "https://www.tuev-club.de/656/tuev-know-how-club-seminare/"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Innovation & Emerging Tech",
+      "keywords": ["AI/ML", "Process Intelligence", "Sustainability in Manufacturing"]
+    }
+  ]
 }

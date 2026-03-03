@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
 import { openContactForm } from "@/components/ContactFormModal";
 import { useEffect, lazy, Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useCalendly } from "@/hooks/useCalendly";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
@@ -26,8 +27,25 @@ const Index = () => {
   const { language } = useLanguage();
   const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
   const { openCalendly } = useCalendly();
+  const [searchParams, setSearchParams] = useSearchParams();
   const resumeData = getResumeData(language);
   const basics = resumeData?.basics;
+
+  // Scroll to section from URL param (e.g. /?section=hero)
+  useEffect(() => {
+    const section = searchParams.get('section');
+    if (section) {
+      // Remove the param so it doesn't persist on refresh
+      setSearchParams({}, { replace: true });
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop - 80;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [searchParams, setSearchParams]);
 
   // Track section views
   useSectionTracking(['hero', 'timeline', 'skills'], {
