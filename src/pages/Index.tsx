@@ -207,7 +207,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-border/50 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-smooth"
+                  className="border-border/50 hover:border-primary hover:text-primary transition-smooth"
                   onClick={() => {
                     openCalendly();
                     trackSocialClick('calendly', 'calendly_popup');

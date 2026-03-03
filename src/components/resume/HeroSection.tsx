@@ -183,14 +183,14 @@ export const HeroSection = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="border-border/50 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-smooth h-auto py-1 px-3"
+                className="border-border/50 hover:border-primary hover:text-primary transition-smooth h-auto py-1 px-3"
                 onClick={() => {
                   openCalendly();
                   trackExternalLink('calendly', 'calendly_popup');
                 }}
               >
                 <CalendarDays className="w-4 h-4 mr-2" />
-                {language === 'de' ? 'Termin buchen' : 'Book a Call'}
+                Book a Call
               </Button>
             </div>
             

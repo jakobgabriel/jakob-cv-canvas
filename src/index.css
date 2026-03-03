@@ -6,91 +6,91 @@
 
 @layer base {
   :root {
-    /* Professional Color Palette with Subtle Accent - WCAG AAA Compliant */
+    /* Industrial Teal — Modern, Friendly, Tech-Forward */
     --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
-    
+    --foreground: 185 15% 10%;
+
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
-    
+    --card-foreground: 185 15% 10%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
-    
-    --primary: 217 33% 8%;
+    --popover-foreground: 185 15% 10%;
+
+    --primary: 175 50% 28%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 217 33% 16%;
-    
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
-    
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    
-    --accent: 217 33% 97%;
-    --accent-foreground: 217 33% 8%;
-    
+    --primary-glow: 175 45% 36%;
+
+    --secondary: 175 15% 96%;
+    --secondary-foreground: 185 15% 10%;
+
+    --muted: 175 15% 96%;
+    --muted-foreground: 175 8% 46%;
+
+    --accent: 175 25% 96%;
+    --accent-foreground: 175 50% 28%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
-    --ring: 217 33% 8%;
-    
+
+    --border: 175 12% 89%;
+    --input: 175 12% 89%;
+    --ring: 175 50% 28%;
+
     --radius: 0.5rem;
-    
-    /* Enhanced gradients with accent color */
-    --gradient-primary: linear-gradient(135deg, hsl(217, 33%, 8%), hsl(217, 33%, 16%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(217, 33%, 99%));
-    --gradient-accent: linear-gradient(45deg, hsl(217, 33%, 97%), hsl(217, 33%, 94%));
-    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(217, 33%, 98%) 50%, hsl(217, 33%, 96%) 100%);
-    
-    /* Sophisticated shadows with accent tint */
+
+    /* Teal-tinted gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(175, 50%, 28%), hsl(175, 45%, 36%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(175, 20%, 98%));
+    --gradient-accent: linear-gradient(45deg, hsl(175, 25%, 96%), hsl(175, 20%, 93%));
+    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(175, 20%, 98%) 50%, hsl(175, 25%, 96%) 100%);
+
+    /* Teal-tinted shadows */
     --shadow-minimal: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-professional: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-dramatic: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-glow: 0 0 40px hsl(217 33% 16% / 0.15);
-    
+    --shadow-glow: 0 0 40px hsl(175 50% 28% / 0.15);
+
     /* Smooth transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 0 0% 4%;
+    --background: 185 20% 5%;
     --foreground: 0 0% 98%;
-    
-    --card: 0 0% 6%;
+
+    --card: 185 18% 7%;
     --card-foreground: 0 0% 98%;
-    
-    --popover: 0 0% 6%;
+
+    --popover: 185 18% 7%;
     --popover-foreground: 0 0% 98%;
-    
-    --primary: 217 33% 78%;
-    --primary-foreground: 0 0% 9%;
-    --primary-glow: 217 33% 85%;
-    
-    --secondary: 0 0% 12%;
+
+    --primary: 175 50% 62%;
+    --primary-foreground: 185 20% 5%;
+    --primary-glow: 175 45% 70%;
+
+    --secondary: 185 12% 12%;
     --secondary-foreground: 0 0% 98%;
-    
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 63%;
-    
-    --accent: 217 33% 14%;
-    --accent-foreground: 217 33% 90%;
-    
+
+    --muted: 185 12% 12%;
+    --muted-foreground: 175 8% 63%;
+
+    --accent: 175 25% 14%;
+    --accent-foreground: 175 40% 85%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 217 33% 78%;
-    
-    /* Dark mode gradients with accent */
-    --gradient-primary: linear-gradient(135deg, hsl(217, 33%, 78%), hsl(217, 33%, 85%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 4%), hsl(217, 33%, 8%));
-    --gradient-accent: linear-gradient(45deg, hsl(217, 33%, 10%), hsl(217, 33%, 14%));
-    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 4%) 0%, hsl(217, 33%, 6%) 50%, hsl(217, 33%, 8%) 100%);
-    --shadow-glow: 0 0 40px hsl(217 33% 50% / 0.2);
+
+    --border: 185 12% 18%;
+    --input: 185 12% 18%;
+    --ring: 175 50% 62%;
+
+    /* Dark mode teal gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(175, 50%, 62%), hsl(175, 45%, 70%));
+    --gradient-subtle: linear-gradient(180deg, hsl(185, 20%, 5%), hsl(175, 20%, 8%));
+    --gradient-accent: linear-gradient(45deg, hsl(175, 20%, 10%), hsl(175, 25%, 14%));
+    --gradient-hero: linear-gradient(135deg, hsl(185, 20%, 5%) 0%, hsl(175, 18%, 7%) 50%, hsl(175, 20%, 9%) 100%);
+    --shadow-glow: 0 0 40px hsl(175 50% 50% / 0.2);
   }
 }
 

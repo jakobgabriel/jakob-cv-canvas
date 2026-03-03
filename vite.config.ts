@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
         name: 'Jakob Gabriel - Digital Business Value Engineer',
         short_name: 'Jakob Gabriel',
         description: 'Digital Business Value Engineer — AI-Driven Process Optimization, Digital Transformation, Smart Factory & Industry 4.0',
-        theme_color: '#1a1a2e',
+        theme_color: '#0d4f4a',
         background_color: '#ffffff',
         display: 'standalone',
         scope: '/jakob-cv-canvas/',
