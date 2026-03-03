@@ -135,12 +135,12 @@
     {
       "name": "Digital Transformation",
       "level": "Expert",
-      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "MES Integration", "Digital Twin", "Edge Computing"]
+      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "Digital Twin", "Edge Computing"]
     },
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "ETL Pipelines", "Data Modeling", "Azure", "DAX", "Process Mining"]
+      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "Data Modeling", "Azure", "Process Mining"]
     },
     {
       "name": "Process & Quality Engineering",
@@ -150,7 +150,7 @@
     {
       "name": "Leadership & Methodology",
       "level": "Advanced",
-      "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "OKRs", "Project Management"]
+      "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "Project Management"]
     }
   ],
   "languages": [
