@@ -7,7 +7,7 @@ const images = [
     name: "LinkedIn Banner",
     file: "linkedin-banner.png",
     size: "1584 × 396",
-    description: "Profile background / cover image",
+    description: "Neutral abstract profile background",
   },
   {
     name: "Post Image",

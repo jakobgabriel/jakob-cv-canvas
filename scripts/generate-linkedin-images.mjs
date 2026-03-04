@@ -25,7 +25,7 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 // Skill keywords for decoration
 const keywords = ['Industry 4.0', 'Smart Factory', 'AI', 'Python', 'Power BI', 'MS Fabric', 'IoT', 'Digital Twin'];
 
-// ─── 1. LinkedIn Banner (1584 x 396) ───
+// ─── 1. LinkedIn Banner (1584 x 396) — neutral, abstract ───
 function bannerSvg() {
   const w = 1584, h = 396;
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
@@ -37,28 +37,23 @@ function bannerSvg() {
   </defs>
   <rect width="${w}" height="${h}" fill="url(#bg)"/>
   <!-- Teal accent bar left -->
-  <rect x="0" y="0" width="6" height="${h}" fill="${TEAL}"/>
-  <!-- Decorative circles -->
-  <circle cx="${w - 200}" cy="80" r="260" fill="${TEAL}" opacity="0.06"/>
-  <circle cx="${w - 80}" cy="320" r="180" fill="${TEAL_LIGHT}" opacity="0.04"/>
-  <circle cx="300" cy="380" r="120" fill="${TEAL}" opacity="0.03"/>
-  <!-- Accent line -->
-  <rect x="80" y="100" width="60" height="4" rx="2" fill="${TEAL}"/>
-  <!-- Name -->
-  <text x="80" y="165" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="bold" fill="#ffffff">${esc(name)}</text>
-  <!-- Title -->
-  <text x="80" y="215" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="${LIGHT_GRAY}">${esc(title)}</text>
-  <!-- Stats -->
-  <text x="80" y="275" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="${TEAL_LIGHT}">7+ Years  ·  150+ Use Cases  ·  €1M+ Savings  ·  8+ Global Sites</text>
-  <!-- Keywords pills -->
-  ${keywords.map((kw, i) => {
-    const x = 80 + i * 150;
-    if (x > w - 200) return '';
-    return `<rect x="${x}" y="310" width="${kw.length * 10 + 20}" height="28" rx="14" fill="${TEAL}" opacity="0.2"/>
-    <text x="${x + 10 + kw.length * 5}" y="329" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEAL_LIGHT}" text-anchor="middle">${esc(kw)}</text>`;
-  }).join('\n  ')}
-  <!-- URL -->
-  <text x="${w - 40}" y="375" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="${GRAY}" text-anchor="end">${url}</text>
+  <rect x="0" y="0" width="5" height="${h}" fill="${TEAL}"/>
+  <!-- Large soft circles -->
+  <circle cx="350" cy="50" r="320" fill="${TEAL}" opacity="0.045"/>
+  <circle cx="900" cy="400" r="400" fill="${TEAL_LIGHT}" opacity="0.035"/>
+  <circle cx="${w - 150}" cy="100" r="220" fill="${TEAL}" opacity="0.04"/>
+  <circle cx="700" cy="-50" r="180" fill="${TEAL_LIGHT}" opacity="0.025"/>
+  <circle cx="${w - 500}" cy="350" r="260" fill="${TEAL}" opacity="0.03"/>
+  <!-- Floating rounded rectangles -->
+  <rect x="200" y="80" width="180" height="180" rx="30" fill="${TEAL}" opacity="0.04" transform="rotate(-12 290 170)"/>
+  <rect x="800" y="50" width="140" height="140" rx="24" fill="${TEAL_LIGHT}" opacity="0.035" transform="rotate(8 870 120)"/>
+  <rect x="${w - 400}" y="180" width="200" height="200" rx="35" fill="${TEAL}" opacity="0.03" transform="rotate(-6 ${w - 300} 280)"/>
+  <rect x="500" y="220" width="120" height="120" rx="20" fill="${TEAL_LIGHT}" opacity="0.025" transform="rotate(15 560 280)"/>
+  <!-- Subtle horizontal lines -->
+  <rect x="60" y="198" width="300" height="1" rx="0.5" fill="${TEAL}" opacity="0.08"/>
+  <rect x="${w - 460}" y="198" width="400" height="1" rx="0.5" fill="${TEAL}" opacity="0.06"/>
+  <!-- Teal accent bar bottom -->
+  <rect x="0" y="${h - 3}" width="${w}" height="3" fill="${TEAL}" opacity="0.3"/>
 </svg>`;
 }
 
