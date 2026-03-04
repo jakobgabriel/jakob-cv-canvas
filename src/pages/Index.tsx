@@ -18,6 +18,7 @@ import { useSearchParams } from "react-router-dom";
 import { useCalendly } from "@/hooks/useCalendly";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
+import { LinkedInImagesSection } from "@/components/resume/LinkedInImagesSection";
 
 // Lazy load below-fold sections for better performance
 const TimelineSection = lazy(() => import("@/components/resume/TimelineSection").then(module => ({ default: module.TimelineSection })));
@@ -131,6 +132,9 @@ const Index = () => {
         <Suspense fallback={<SkillsSkeleton />}>
           <SkillsSection />
         </Suspense>
+      </div>
+      <div id="linkedin-images">
+        <LinkedInImagesSection />
       </div>
       {/* Footer */}
       <footer className="relative py-16 border-t border-border/50 bg-gradient-accent backdrop-blur-sm overflow-hidden">
