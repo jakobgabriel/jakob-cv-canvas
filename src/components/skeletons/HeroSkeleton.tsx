@@ -1,13 +1,13 @@
 export const HeroSkeleton = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden will-change-transform pointer-events-none">
         <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-20 w-40 h-40 bg-primary-glow/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="hidden sm:block absolute bottom-1/4 right-20 w-40 h-40 bg-primary-glow/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           {/* Portrait Skeleton */}
           <div className="flex justify-center">
