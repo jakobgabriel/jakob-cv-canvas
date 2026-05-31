@@ -11,8 +11,9 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, Globe, Twitter, Instagram, Facebook, Youtube, ExternalLink, CalendarDays, MessageSquare } from "lucide-react";
-import { openContactForm } from "@/components/ContactFormModal";
+import { Mail, CalendarDays, MessageSquare } from "lucide-react";
+import { useContactForm } from "@/contexts/ContactFormContext";
+import { profileConfigs, getAvailableProfiles } from "@/lib/profileConfig";
 import { useEffect, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useCalendly } from "@/hooks/useCalendly";
@@ -27,6 +28,7 @@ const Index = () => {
   const { language } = useLanguage();
   const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
   const { openCalendly } = useCalendly();
+  const { open: openContactForm } = useContactForm();
   const [searchParams, setSearchParams] = useSearchParams();
   const resumeData = getResumeData(language);
   const basics = resumeData?.basics;
@@ -79,30 +81,8 @@ const Index = () => {
     };
   }, []);
 
-  // Define profile configurations for the 10 most common platforms
-  const profileConfigs = {
-    'LinkedIn': { icon: LinkedinIcon, color: 'text-blue-600 dark:text-blue-400' },
-    'GitHub': { icon: Github, color: 'text-gray-900 dark:text-gray-100' },
-    'Twitter': { icon: Twitter, color: 'text-blue-400 dark:text-blue-300' },
-    'X': { 
-      icon: () => (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      ), 
-      color: 'text-gray-900 dark:text-gray-100' 
-    },
-    'Instagram': { icon: Instagram, color: 'text-pink-600 dark:text-pink-400' },
-    'Facebook': { icon: Facebook, color: 'text-blue-600 dark:text-blue-400' },
-    'YouTube': { icon: Youtube, color: 'text-red-600 dark:text-red-400' },
-    'Portfolio': { icon: ExternalLink, color: 'text-purple-600 dark:text-purple-400' },
-    'Website': { icon: Globe, color: 'text-green-600 dark:text-green-400' }
-  };
-
-  // Get all available profiles
-  const availableProfiles = basics?.profiles?.filter(profile => 
-    profileConfigs[profile.network as keyof typeof profileConfigs]
-  ) || [];
+  // Social/profile networks that have a known icon + colour configuration
+  const availableProfiles = getAvailableProfiles(basics);
 
   return (
     <div className="min-h-screen scroll-smooth">
@@ -137,25 +117,24 @@ const Index = () => {
               {/* Social links */}
               <div className="flex flex-wrap gap-3 justify-center">
                 {availableProfiles.map((profile) => {
-                  const config = profileConfigs[profile.network as keyof typeof profileConfigs];
-                  const IconComponent = config.icon;
-                  
+                  const IconComponent = profileConfigs[profile.network].icon;
+
                   return (
-                    <Button 
+                    <Button
                       key={profile.network}
-                      variant="outline" 
+                      variant="outline"
                       size="sm"
                       className="border-border/50 hover:border-primary transition-smooth"
                       asChild
                     >
-                      <a 
+                      <a
                         href={profile.url}
-                        target="_blank" 
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
                         onClick={() => trackSocialClick(profile.network, profile.url)}
                       >
-                        <IconComponent className="w-4 h-4" />
+                        <IconComponent className="w-4 h-4" aria-hidden="true" />
                         {profile.network}
                       </a>
                     </Button>
@@ -175,7 +154,7 @@ const Index = () => {
                       className="flex items-center gap-2"
                       onClick={() => trackSocialClick('email', basics.email)}
                     >
-                      <Mail className="w-4 h-4" />
+                      <Mail className="w-4 h-4" aria-hidden="true" />
                       Email
                     </a>
                   </Button>
@@ -191,7 +170,7 @@ const Index = () => {
                     trackSocialClick('contact', 'contact_form_popup');
                   }}
                 >
-                  <MessageSquare className="w-4 h-4 mr-2" />
+                  <MessageSquare className="w-4 h-4 mr-2" aria-hidden="true" />
                   Contact
                 </Button>
 
@@ -205,7 +184,7 @@ const Index = () => {
                     trackSocialClick('calendly', 'calendly_popup');
                   }}
                 >
-                  <CalendarDays className="w-4 h-4 mr-2" />
+                  <CalendarDays className="w-4 h-4 mr-2" aria-hidden="true" />
                   Calendly
                 </Button>
               </div>

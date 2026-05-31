@@ -10,12 +10,7 @@ import {
 } from "lucide-react";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
-
-let openContactFormFn: (() => void) | null = null;
-
-export const openContactForm = () => {
-  openContactFormFn?.();
-};
+import { useContactForm } from "@/contexts/ContactFormContext";
 
 interface ValidationErrors {
   name?: string;
@@ -32,7 +27,7 @@ export const ContactFormModal = () => {
   const { toast } = useToast();
   const { t, language } = useLanguage();
   const { trackFormInteraction } = useAnalytics();
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, close: closeModal } = useContactForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -49,26 +44,14 @@ export const ContactFormModal = () => {
 
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  const open = useCallback(() => {
-    previousFocusRef.current = document.activeElement as HTMLElement;
-    setIsOpen(true);
-  }, []);
-
+  // Reset transient form state and restore focus (via the context) on close.
   const close = useCallback(() => {
-    setIsOpen(false);
     setIsSuccess(false);
     setErrors({});
     setTouched({});
-    // Restore focus to the element that opened the modal
-    setTimeout(() => {
-      previousFocusRef.current?.focus();
-    }, 100);
-  }, []);
-
-  // Register the open function globally
-  openContactFormFn = open;
+    closeModal();
+  }, [closeModal]);
 
   // Body scroll lock when modal is open
   useEffect(() => {
