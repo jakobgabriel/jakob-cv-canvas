@@ -96,7 +96,7 @@ export const Navigation = ({ className }: NavigationProps) => {
     <>
       {/* Fixed Navigation */}
       <nav className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-200",
         isScrolled 
           ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-minimal" 
           : "bg-transparent",
@@ -190,7 +190,7 @@ export const Navigation = ({ className }: NavigationProps) => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "w-3 h-3 rounded-full transition-all duration-300",
+                  "w-3 h-3 rounded-full transition duration-200",
                   activeSection === item.id
                     ? "bg-primary scale-125"
                     : "bg-muted-foreground/30 hover:bg-muted-foreground/50"

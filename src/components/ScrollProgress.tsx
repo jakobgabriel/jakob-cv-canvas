@@ -16,9 +16,12 @@ export const ScrollProgress = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] h-1 bg-border/20">
-      <div 
-        className="h-full bg-gradient-to-r from-primary via-primary-glow to-primary transition-all duration-150 ease-out shadow-glow"
-        style={{ width: `${progress}%` }}
+      <div
+        className="h-full w-full origin-left bg-gradient-to-r from-primary via-primary-glow to-primary shadow-glow"
+        style={{
+          transform: `scaleX(${Math.min(Math.max(progress, 0), 100) / 100})`,
+          transition: 'transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)',
+        }}
       />
     </div>
   );
