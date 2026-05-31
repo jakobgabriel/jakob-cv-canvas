@@ -8,7 +8,7 @@ export interface Config {
     };
     contactForm: {
       enabled: boolean;
-      formspreeEndpoint: string;
+      recipientEmail: string;
     };
     multiLanguage: {
       enabled: boolean;

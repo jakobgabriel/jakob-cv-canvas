@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon, Github, Mail, FileText, MapPin, Phone, Globe, Twitter, Instagram, Facebook, Youtube, Camera, ExternalLink, Briefcase, ChevronDown, CalendarDays } from "lucide-react";
+import { FileText, MapPin, Globe, Briefcase, ChevronDown, CalendarDays } from "lucide-react";
 import jakobPortrait from "@/assets/jakob-portrait.jpeg";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
@@ -54,32 +54,6 @@ export const HeroSection = () => {
   }
 
   const { basics } = resumeData;
-  
-  // Define profile configurations for the 10 most common platforms
-  const profileConfigs = {
-    'LinkedIn': { icon: LinkedinIcon, color: 'text-blue-600 dark:text-blue-400' },
-    'GitHub': { icon: Github, color: 'text-gray-900 dark:text-gray-100' },
-    'Twitter': { icon: Twitter, color: 'text-blue-400 dark:text-blue-300' },
-    'X': {
-      icon: () => (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      ),
-      color: 'text-gray-900 dark:text-gray-100'
-    },
-    'Instagram': { icon: Instagram, color: 'text-pink-600 dark:text-pink-400' },
-    'Facebook': { icon: Facebook, color: 'text-blue-600 dark:text-blue-400' },
-    'YouTube': { icon: Youtube, color: 'text-red-600 dark:text-red-400' },
-    'Portfolio': { icon: ExternalLink, color: 'text-purple-600 dark:text-purple-400' },
-    'Website': { icon: Globe, color: 'text-green-600 dark:text-green-400' },
-    'Calendly': { icon: CalendarDays, color: 'text-blue-500 dark:text-blue-400' }
-  };
-
-  // Get all available profiles
-  const availableProfiles = basics.profiles?.filter(profile => 
-    profileConfigs[profile.network as keyof typeof profileConfigs]
-  ) || [];
 
   return (
     <section ref={sectionRef} className="relative min-h-[100svh] flex items-center justify-center bg-gradient-hero pt-16 pb-16 overflow-hidden">
@@ -130,7 +104,7 @@ export const HeroSection = () => {
               <div className="flex justify-center">
                 <div className="flex flex-wrap gap-2 justify-center items-center max-w-2xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-                    <Briefcase className="w-3.5 h-3.5 text-primary" />
+                    <Briefcase className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
                     <span className="text-xs font-medium text-primary">7+ Years</span>
                   </div>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
@@ -156,7 +130,7 @@ export const HeroSection = () => {
             {/* Contact Info - Minimal */}
             <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-4 h-4" aria-hidden="true" />
                 {basics.location.city} {basics.location.region}
               </div>
               {basics.url && (
@@ -173,7 +147,7 @@ export const HeroSection = () => {
                     className="flex items-center gap-2 text-sm"
                     onClick={() => trackExternalLink(basics.url, 'website')}
                   >
-                    <Globe className="w-4 h-4" />
+                    <Globe className="w-4 h-4" aria-hidden="true" />
                     jakobgabriel.github.io
                   </a>
                 </Button>
@@ -187,7 +161,7 @@ export const HeroSection = () => {
                   trackExternalLink('calendly', 'calendly_popup');
                 }}
               >
-                <CalendarDays className="w-4 h-4 mr-2" />
+                <CalendarDays className="w-4 h-4 mr-2" aria-hidden="true" />
                 Book a Call
               </Button>
             </div>
@@ -204,7 +178,7 @@ export const HeroSection = () => {
                   download="Jakob_Gabriel_Resume.pdf"
                   onClick={() => trackDownload('resume.pdf', 'pdf')}
                 >
-                  <FileText className="w-5 h-5 mr-2" />
+                  <FileText className="w-5 h-5 mr-2" aria-hidden="true" />
                   {t('hero.downloadResume')}
                 </a>
               </Button>
@@ -220,7 +194,7 @@ export const HeroSection = () => {
         aria-label="Scroll to experience section"
       >
         <div className="p-2 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm group-hover:border-primary group-hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
-          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary" aria-hidden="true" />
         </div>
       </button>
     </section>

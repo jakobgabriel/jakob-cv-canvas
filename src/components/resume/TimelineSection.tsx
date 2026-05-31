@@ -118,6 +118,7 @@ export const TimelineSection = () => {
                   onClick={(e) => handleItemClick(exp, e)}
                   role="button"
                   tabIndex={0}
+                  aria-label={`View details for ${exp.position} at ${exp.name}`}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleItemClick(exp, e as any); } }}
                 >
                   <div className="p-6">
@@ -162,6 +163,7 @@ export const TimelineSection = () => {
                   onClick={(e) => handleItemClick(edu, e)}
                   role="button"
                   tabIndex={0}
+                  aria-label={`View details for ${edu.studyType} in ${edu.area} at ${edu.institution}`}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleItemClick(edu, e as any); } }}
                 >
                   <div className="p-6">

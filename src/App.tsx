@@ -10,6 +10,8 @@ import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { CookieManager } from "@/lib/cookieManager";
 import { config } from "@/data/config";
 import { ContactFormModal } from "@/components/ContactFormModal";
+import { ContactFormProvider } from "@/contexts/ContactFormContext";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -32,20 +34,24 @@ const App: React.FC = () => {
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <LanguageDetector>
         <TooltipProvider>
-          <HashRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* Redirect section anchors (e.g. #hero, #timeline, #skills) to home with scroll param */}
-              <Route path="/hero" element={<Navigate to="/?section=hero" replace />} />
-              <Route path="/timeline" element={<Navigate to="/?section=timeline" replace />} />
-              <Route path="/skills" element={<Navigate to="/?section=skills" replace />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </HashRouter>
-          <ContactFormModal />
-          <CookieConsent />
-          <Toaster />
-          <Sonner />
+          <ContactFormProvider>
+            <ErrorBoundary>
+              <HashRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  {/* Redirect section anchors (e.g. #hero, #timeline, #skills) to home with scroll param */}
+                  <Route path="/hero" element={<Navigate to="/?section=hero" replace />} />
+                  <Route path="/timeline" element={<Navigate to="/?section=timeline" replace />} />
+                  <Route path="/skills" element={<Navigate to="/?section=skills" replace />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </HashRouter>
+              <ContactFormModal />
+            </ErrorBoundary>
+            <CookieConsent />
+            <Toaster />
+            <Sonner />
+          </ContactFormProvider>
         </TooltipProvider>
       </LanguageDetector>
     </ThemeProvider>
