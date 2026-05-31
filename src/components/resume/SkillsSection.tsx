@@ -95,9 +95,9 @@ export const SkillsSection = () => {
 
   return (
     <section ref={sectionRef} className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
             {t('skills.skillsAndExpertise')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

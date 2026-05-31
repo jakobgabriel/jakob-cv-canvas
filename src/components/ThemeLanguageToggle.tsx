@@ -49,7 +49,7 @@ export const ThemeLanguageToggle = () => {
     availableLanguages.length > 1;
 
   return (
-    <div className="fixed top-0 right-6 z-50 flex gap-2 h-16 items-center">
+    <div className="fixed top-0 right-16 md:right-6 z-50 flex gap-2 h-16 items-center">
       {/* Language Toggle - Only shown when multi-language is enabled */}
       {showLanguageToggle && (
         <DropdownMenu>
