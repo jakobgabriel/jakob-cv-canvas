@@ -67,14 +67,6 @@ export const HeroSection = () => {
     'YouTube': { icon: Youtube, color: 'text-red-600 dark:text-red-400' },
     'Portfolio': { icon: ExternalLink, color: 'text-purple-600 dark:text-purple-400' },
     'Website': { icon: Globe, color: 'text-green-600 dark:text-green-400' },
-    'XING': {
-      icon: () => (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.284.552 4.727 8.58 4.727 8.58.186.335.517.66.927.66h3.905c.74 0 .927-.558.927-.558 0-.182-.239-.517-.239-.517l-4.683-8.326s7.647-13.567 7.647-13.567c.018-.036.018-.073.018-.11C22.789.29 22.506 0 22.506 0h-4.318zm-14.1 6.429c-.741 0-.927.558-.927.558 0 .181.239.517.239.517l2.623 4.797s-2.987 5.51-2.987 5.51c-.018.036-.018.073-.018.11 0 .558.284.848.284.848h4.318c.517 0 .741-.325.927-.66 0 0 3.041-5.619 3.041-5.619l-2.623-4.797s-.239-.517-.239-.517c-.186-.335-.517-.66-.927-.66H4.088z"/>
-        </svg>
-      ),
-      color: 'text-teal-600 dark:text-teal-400'
-    },
     'Calendly': { icon: CalendarDays, color: 'text-blue-500 dark:text-blue-400' }
   };
 

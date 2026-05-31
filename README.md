@@ -121,7 +121,7 @@ Add entries to the `basics.profiles` array in `resume.json`:
 }
 ```
 
-Supported networks: LinkedIn, GitHub, X (Twitter), Xing, Instagram, Facebook, YouTube, Website/Portfolio.
+Supported networks: LinkedIn, GitHub, X (Twitter), Instagram, Facebook, YouTube, Website/Portfolio.
 
 ## Multi-language Support
 
