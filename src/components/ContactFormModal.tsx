@@ -157,6 +157,10 @@ export const ContactFormModal = () => {
 
     setIsSubmitting(true);
 
+    // Abort the request if it hangs so the button can't get stuck in "Sending…".
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
     try {
       const response = await fetch(`https://formsubmit.co/ajax/${config.features.contactForm.recipientEmail}`, {
         method: 'POST',
@@ -173,6 +177,7 @@ export const ContactFormModal = () => {
           message: formData.message,
           _template: 'table'
         }),
+        signal: controller.signal,
       });
 
       const result = await response.json();
@@ -187,6 +192,7 @@ export const ContactFormModal = () => {
         throw new Error('Failed to send message');
       }
     } catch {
+      // Covers network failures, non-success responses and aborts (timeout).
       trackFormInteraction('error', 'contact');
       toast({
         title: t('contact.form.errorTitle'),
@@ -194,6 +200,7 @@ export const ContactFormModal = () => {
         variant: "destructive"
       });
     } finally {
+      clearTimeout(timeoutId);
       setIsSubmitting(false);
     }
   };

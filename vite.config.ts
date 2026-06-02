@@ -13,6 +13,21 @@ export default defineConfig(({ mode }) => ({
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
     css: true,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      // Focus coverage on hand-written logic, not generated UI primitives.
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "src/components/ui/**",
+        "src/**/*.test.{ts,tsx}",
+        "src/test/**",
+        "src/main.tsx",
+        "src/vite-env.d.ts",
+      ],
+      // Modest floor so CI isn't destabilized; raise as coverage grows.
+      thresholds: { statements: 20, branches: 50, functions: 30, lines: 20 },
+    },
   },
   server: {
     host: "::",

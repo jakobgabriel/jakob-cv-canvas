@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/resume/HeroSection";
 import { Navigation } from "@/components/Navigation";
-import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CookieSettings } from "@/components/CookieSettings";
 import { BackToTop } from "@/components/BackToTop";
@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, CalendarDays, MessageSquare } from "lucide-react";
 import { useContactForm } from "@/contexts/ContactFormContext";
 import { profileConfigs, getAvailableProfiles } from "@/lib/profileConfig";
+import { NAV_SCROLL_OFFSET } from "@/lib/constants";
 import { useEffect, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useCalendly } from "@/hooks/useCalendly";
@@ -42,7 +43,7 @@ const Index = () => {
       setTimeout(() => {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop - 80;
+          const offsetTop = element.offsetTop - NAV_SCROLL_OFFSET;
           window.scrollTo({ top: offsetTop, behavior: 'smooth' });
         }
       }, 100);
@@ -86,24 +87,32 @@ const Index = () => {
 
   return (
     <div className="min-h-screen scroll-smooth">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-professional focus:ring-2 focus:ring-primary"
+      >
+        Skip to main content
+      </a>
       <ScrollProgress />
       <Navigation />
-      <ThemeLanguageToggle />
+      <ThemeToggle />
       <CookieSettings />
       <BackToTop />
-      <div id="hero">
-        <HeroSection />
-      </div>
-      <div id="timeline">
-        <Suspense fallback={<TimelineSkeleton />}>
-          <TimelineSection />
-        </Suspense>
-      </div>
-      <div id="skills">
-        <Suspense fallback={<SkillsSkeleton />}>
-          <SkillsSection />
-        </Suspense>
-      </div>
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        <div id="hero">
+          <HeroSection />
+        </div>
+        <div id="timeline">
+          <Suspense fallback={<TimelineSkeleton />}>
+            <TimelineSection />
+          </Suspense>
+        </div>
+        <div id="skills">
+          <Suspense fallback={<SkillsSkeleton />}>
+            <SkillsSection />
+          </Suspense>
+        </div>
+      </main>
       {/* Footer */}
       <footer className="relative py-16 border-t border-border/50 bg-gradient-accent backdrop-blur-sm overflow-hidden">
         {/* Decorative elements */}
