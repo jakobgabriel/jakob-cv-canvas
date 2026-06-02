@@ -51,7 +51,7 @@ export const profileConfigs: Record<string, ProfileConfig> = {
   YouTube: { icon: Youtube, color: "text-red-600 dark:text-red-400" },
   Portfolio: { icon: ExternalLink, color: "text-purple-600 dark:text-purple-400" },
   Website: { icon: Globe, color: "text-green-600 dark:text-green-400" },
-  Calendly: { icon: CalendarDays, color: "text-blue-500 dark:text-blue-400" },
+  Calendly: { icon: CalendarDays, color: "text-primary" },
 };
 
 /**
