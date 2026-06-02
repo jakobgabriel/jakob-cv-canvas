@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/resume/HeroSection";
 import { Navigation } from "@/components/Navigation";
-import { ThemeLanguageToggle } from "@/components/ThemeLanguageToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CookieSettings } from "@/components/CookieSettings";
 import { BackToTop } from "@/components/BackToTop";
@@ -88,7 +88,7 @@ const Index = () => {
     <div className="min-h-screen scroll-smooth">
       <ScrollProgress />
       <Navigation />
-      <ThemeLanguageToggle />
+      <ThemeToggle />
       <CookieSettings />
       <BackToTop />
       <div id="hero">
