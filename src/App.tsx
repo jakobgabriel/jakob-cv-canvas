@@ -9,7 +9,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { CookieManager } from "@/lib/cookieManager";
 import { config } from "@/data/config";
-import { ContactFormModal } from "@/components/ContactFormModal";
+import { LazyContactFormModal } from "@/components/LazyContactFormModal";
 import { ContactFormProvider } from "@/contexts/ContactFormContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </HashRouter>
-              <ContactFormModal />
+              <LazyContactFormModal />
             </ErrorBoundary>
             <CookieConsent />
             <Toaster />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Briefcase, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { NAV_SCROLL_OFFSET } from "@/lib/constants";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface NavigationProps {
@@ -32,7 +33,7 @@ export const Navigation = ({ className }: NavigationProps) => {
         setTimeout(() => {
           const element = document.getElementById(section);
           if (element) {
-            const offsetTop = element.offsetTop - 80;
+            const offsetTop = element.offsetTop - NAV_SCROLL_OFFSET;
             window.scrollTo({ top: offsetTop, behavior: 'smooth' });
           }
         }, 100);
@@ -77,8 +78,8 @@ export const Navigation = ({ className }: NavigationProps) => {
     
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
-      
+      const offsetTop = element.offsetTop - NAV_SCROLL_OFFSET;
+
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
