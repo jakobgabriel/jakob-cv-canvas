@@ -7,8 +7,6 @@ import { ThemeProvider } from "next-themes";
 import { LanguageDetector } from "@/components/LanguageDetector";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/lib/googleAnalytics";
-import { CookieManager } from "@/lib/cookieManager";
-import { config } from "@/data/config";
 import { LazyContactFormModal } from "@/components/LazyContactFormModal";
 import { ContactFormProvider } from "@/contexts/ContactFormContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -16,18 +14,14 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
+  // Analytics is bootstrapped in main.tsx; App only owns page views. The app
+  // uses a HashRouter, so route changes never reload the page and would
+  // otherwise be invisible to Google Analytics. This lives here, not in
+  // useAnalytics, because App renders exactly once — the hook does not.
   useEffect(() => {
-    // Initialize Google Analytics with tracking ID from config
-    if (config?.analytics?.googleAnalyticsId) {
-      GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
-      GoogleAnalytics.init();
-
-      // If user has already consented, enable analytics
-      const preferences = CookieManager.getPreferences();
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.enable();
-      }
-    }
+    const handleRouteChange = () => GoogleAnalytics.trackPageView();
+    window.addEventListener("hashchange", handleRouteChange);
+    return () => window.removeEventListener("hashchange", handleRouteChange);
   }, []);
 
   return (

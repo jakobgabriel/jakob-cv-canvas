@@ -1,142 +1,131 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { CookieManager } from '@/lib/cookieManager';
 import { GoogleAnalytics } from '@/lib/googleAnalytics';
-import { config } from '@/data/config';
 
-// Hook to track user interactions with Google Analytics
+/**
+ * Thin, side-effect-free wrapper around {@link GoogleAnalytics}.
+ *
+ * Deliberately does no initialization and sends no page view: the hook is used
+ * by many components, so anything it did on mount would happen once per
+ * consumer. Bootstrapping lives in `bootstrapAnalytics()` and page views in
+ * `App`, both of which run exactly once.
+ */
 export const useAnalytics = () => {
-  useEffect(() => {
-    // Only initialize if tracking ID is provided in config
-    if (config?.analytics?.googleAnalyticsId) {
-      GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
-      GoogleAnalytics.init();
-      
-      // Check if user has given analytics consent
-      const preferences = CookieManager.getPreferences();
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.enable();
-      }
+  // GoogleAnalytics already refuses to send while consent is missing; this is
+  // the belt-and-braces check for the cookie decision itself.
+  const allowed = useCallback(() => CookieManager.analyticsAllowed(), []);
 
-      // Track page view on component mount (if consent given)
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.trackPageView();
-      }
-    }
-  }, []);
-
-  const trackEvent = (action: string, category?: string, label?: string, value?: number) => {
-    // Still track locally for basic functionality
-    CookieManager.trackInteraction(action, { category, label, value });
-    
-    // Track with Google Analytics if consent given
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackEvent = useCallback(
+    (action: string, category?: string, label?: string, value?: number) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackEvent(action, category, label, value);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackClick = (element: string, details?: Record<string, any>) => {
-    trackEvent('click', 'engagement', element);
-  };
+  const trackClick = useCallback(
+    (element: string, details?: Record<string, unknown>) => {
+      if (!allowed()) return;
+      GoogleAnalytics.trackUserEngagement('click', { element, ...details });
+    },
+    [allowed]
+  );
 
-  const trackDownload = (fileName: string, type: string) => {
-    trackEvent('download', 'files', fileName);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackDownload = useCallback(
+    (fileName: string, type: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackDownload(fileName, type);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackSocialClick = (platform: string, url: string) => {
-    trackEvent('social_click', 'social', platform);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackSocialClick = useCallback(
+    (platform: string, url: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackSocial(platform, 'click', url);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackLanguageChange = (from: string, to: string) => {
-    trackEvent('language_change', 'preferences');
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackLanguageChange = useCallback(
+    (from: string, to: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackLanguageChange(from, to);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackThemeChange = (theme: string) => {
-    trackEvent('theme_change', 'preferences');
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackThemeChange = useCallback(
+    (theme: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackThemeChange(theme);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackSectionView = (sectionId: string) => {
-    trackEvent('section_view', 'engagement', sectionId);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackSectionView = useCallback(
+    (sectionId: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackSectionView(sectionId);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackScrollDepth = (percentage: number) => {
-    trackEvent('scroll_depth', 'engagement', `${percentage}%`, percentage);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackScrollDepth = useCallback(
+    (percentage: number) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackScrollDepth(percentage);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackNavigation = (from: string, to: string) => {
-    trackEvent('navigation', 'navigation', `${from} to ${to}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackNavigation = useCallback(
+    (from: string, to: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackNavigationClick(from, to);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackDetailView = (type: 'experience' | 'education', title: string) => {
-    trackEvent('detail_view', 'content', `${type}: ${title}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackDetailView = useCallback(
+    (type: 'experience' | 'education', title: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackDetailView(type, title);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackFormInteraction = (action: 'focus' | 'submit' | 'success' | 'error', formName: string) => {
-    trackEvent('form_interaction', 'forms', `${formName}: ${action}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackFormInteraction = useCallback(
+    (action: 'focus' | 'submit' | 'success' | 'error', formName: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackFormEvent(action, formName, action === 'success');
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackExternalLink = (url: string, label: string) => {
-    trackEvent('external_link', 'outbound', label);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackExternalLink = useCallback(
+    (url: string, label: string) => {
+      if (!allowed()) return;
       GoogleAnalytics.trackOutboundLink(url, label);
-    }
-  };
+    },
+    [allowed]
+  );
 
-  const trackConsentAction = (action: 'accept' | 'decline' | 'customize') => {
-    trackEvent('consent_action', 'privacy', action);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
+  const trackSessionDuration = useCallback(
+    (seconds: number) => {
+      if (!allowed()) return;
+      GoogleAnalytics.trackSessionDuration(seconds);
+    },
+    [allowed]
+  );
+
+  const trackConsentAction = useCallback(
+    (action: 'accept' | 'decline' | 'customize') => {
+      if (!allowed()) return;
       GoogleAnalytics.trackUserEngagement('cookie_consent', { action });
-    }
-  };
+    },
+    [allowed]
+  );
 
   return {
     trackEvent,
@@ -151,6 +140,7 @@ export const useAnalytics = () => {
     trackDetailView,
     trackFormInteraction,
     trackExternalLink,
+    trackSessionDuration,
     trackConsentAction,
   };
 };

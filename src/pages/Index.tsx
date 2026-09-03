@@ -27,7 +27,8 @@ const SkillsSection = lazy(() => import("@/components/resume/SkillsSection").the
 
 const Index = () => {
   const { language } = useLanguage();
-  const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
+  const { trackSocialClick, trackSectionView, trackScrollDepth, trackSessionDuration } =
+    useAnalytics();
   const { openCalendly } = useCalendly();
   const { open: openContactForm } = useContactForm();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,27 +61,33 @@ const Index = () => {
     onScrollDepth: trackScrollDepth,
   });
 
-  // Track session duration on page unload via Google Analytics
+  // Track session duration when the page goes away. `pagehide` plus a hidden
+  // `visibilitychange` covers mobile, where `beforeunload` often never fires —
+  // and unlike `beforeunload` it does not disqualify the page from bfcache.
+  // Goes through useAnalytics so the consent gate applies, rather than poking
+  // window.gtag directly.
   useEffect(() => {
     const sessionStart = Date.now();
+    let sent = false;
 
-    const handleBeforeUnload = () => {
-      const duration = Math.round((Date.now() - sessionStart) / 1000);
-      // Use Google Analytics to track session duration instead of non-existent API
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'session_duration', {
-          event_category: 'engagement',
-          duration_seconds: duration,
-        });
-      }
+    const reportDuration = () => {
+      if (sent) return;
+      sent = true;
+      trackSessionDuration(Math.round((Date.now() - sessionStart) / 1000));
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') reportDuration();
+    };
+
+    window.addEventListener('pagehide', reportDuration);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', reportDuration);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [trackSessionDuration]);
 
   // Social/profile networks that have a known icon + colour configuration
   const availableProfiles = getAvailableProfiles(basics);

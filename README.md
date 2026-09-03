@@ -49,7 +49,7 @@ src/
     resume.ts               # Data access: getResumeData(lang)
     config.ts               # Site config loader
   hooks/                    # useAnalytics, useCalendly, useSectionTracking, ...
-  lib/                      # googleAnalytics, cookieManager, utils
+  lib/                      # googleAnalytics, analyticsBootstrap, cookieManager, utils
   types/                    # TypeScript interfaces
 
 public/

@@ -17,7 +17,8 @@ interface CookieConsentProps {
 export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+  // Off by default: a pre-ticked analytics switch is not valid consent.
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const { t } = useLanguage();
   const { trackConsentAction } = useAnalytics();
 
@@ -28,56 +29,45 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
     }
   }, []);
 
-  const handleAccept = () => {
-    trackConsentAction('accept');
+  /**
+   * Store the decision, then bring Google Analytics in line with it. Order
+   * matters: the consent event can only be recorded once consent is stored and
+   * analytics is running, otherwise it is dropped by its own consent gate.
+   */
+  const applyConsent = (
+    analytics: boolean,
+    action: 'accept' | 'decline' | 'customize'
+  ) => {
     CookieManager.setConsent(true);
-    CookieManager.setPreferences({ 
-      essential: true, 
-      analytics: analyticsEnabled 
-    });
-    
-    // Enable Google Analytics and initialize session if analytics is enabled
-    if (analyticsEnabled) {
-      GoogleAnalytics.enable();
-      CookieManager.initializeSession();
-    }
-    
-    setIsVisible(false);
-    onAccept?.();
-  };
+    CookieManager.setPreferences({ essential: true, analytics });
 
-  const handleDecline = () => {
-    trackConsentAction('decline');
-    CookieManager.setConsent(false);
-    CookieManager.setPreferences({ 
-      essential: true, 
-      analytics: false 
-    });
-    
-    // Disable Google Analytics
-    GoogleAnalytics.disable();
-    
-    setIsVisible(false);
-    onDecline?.();
-  };
-
-  const handleCustomize = () => {
-    trackConsentAction('customize');
-    CookieManager.setConsent(true);
-    CookieManager.setPreferences({ 
-      essential: true, 
-      analytics: analyticsEnabled 
-    });
-    
-    // Enable/disable Google Analytics and session based on user choice
-    if (analyticsEnabled) {
+    if (analytics) {
       GoogleAnalytics.enable();
       CookieManager.initializeSession();
     } else {
       GoogleAnalytics.disable();
+      CookieManager.clearSessionData();
     }
-    
+
+    trackConsentAction(action);
     setIsVisible(false);
+  };
+
+  const handleAccept = () => {
+    // "Accept All" means all — independent of the details toggle.
+    setAnalyticsEnabled(true);
+    applyConsent(true, 'accept');
+    onAccept?.();
+  };
+
+  const handleDecline = () => {
+    setAnalyticsEnabled(false);
+    applyConsent(false, 'decline');
+    onDecline?.();
+  };
+
+  const handleCustomize = () => {
+    applyConsent(analyticsEnabled, 'customize');
     onAccept?.();
   };
 

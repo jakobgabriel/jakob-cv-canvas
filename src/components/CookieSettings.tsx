@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Cookie, Shield, BarChart3 } from 'lucide-react';
-import { CookieManager } from '@/lib/cookieManager';
+import { CookieManager, CONSENT_CHANGE_EVENT } from '@/lib/cookieManager';
 import { GoogleAnalytics } from '@/lib/googleAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -12,40 +12,56 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 export const CookieSettings = () => {
   const { t } = useLanguage();
   const { trackConsentAction } = useAnalytics();
-  const preferences = CookieManager.getPreferences();
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(preferences.analytics || false);
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(
+    () => CookieManager.getPreferences().analytics
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
 
-  // Only show the floating icon after user has made a consent decision
+  // Only show the floating icon after user has made a consent decision. The
+  // banner dismissing is a consent change, so listen rather than checking once
+  // on mount — otherwise the gear stays hidden until the next page load.
   useEffect(() => {
-    setShowIcon(CookieManager.hasConsentDecision());
+    const sync = () => setShowIcon(CookieManager.hasConsentDecision());
+    sync();
+    window.addEventListener(CONSENT_CHANGE_EVENT, sync);
+    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, sync);
   }, []);
 
+  // Re-read the stored choice each time the dialog opens, so a decision made
+  // in the banner (or in another tab) is reflected rather than a stale default.
+  const handleOpenChange = (open: boolean) => {
+    if (open) setAnalyticsEnabled(CookieManager.getPreferences().analytics);
+    setIsOpen(open);
+  };
+
   const handleSave = () => {
-    trackConsentAction('customize');
     CookieManager.setConsent(true);
-    CookieManager.setPreferences({ 
-      essential: true, 
-      analytics: analyticsEnabled 
+    CookieManager.setPreferences({
+      essential: true,
+      analytics: analyticsEnabled
     });
-    
+
     // Enable/disable Google Analytics and session based on user choice
     if (analyticsEnabled) {
       GoogleAnalytics.enable();
       CookieManager.initializeSession();
     } else {
       GoogleAnalytics.disable();
-      CookieManager.clearTrackingData();
+      // Drop the session cookie but keep the consent decision itself —
+      // clearing that would bring the banner back on the next visit.
+      CookieManager.clearSessionData();
     }
-    
+
+    // Recorded after the new preference is live, or the event is dropped.
+    trackConsentAction('customize');
     setIsOpen(false);
   };
 
   if (!showIcon) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button 
           variant="outline" 
