@@ -40,14 +40,19 @@ export default defineConfig(({ mode }) => ({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpeg,jpg,woff2}'],
+        // woff2 is deliberately not precached. The self-hosted variable faces
+        // ship one file per subset (latin, cyrillic, greek, ...) and unicode-range
+        // means a visitor downloads only the one their content needs; precaching
+        // the set would fetch several megabytes nobody reads.
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpeg,jpg}'],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
+            // Same-origin fonts only — there is no third-party font host any more.
+            urlPattern: ({ request }) => request.destination === 'font',
             handler: 'CacheFirst',
             options: {
-              cacheName: 'google-fonts',
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheName: 'fonts',
+              expiration: { maxEntries: 12, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

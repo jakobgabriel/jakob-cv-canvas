@@ -22,9 +22,12 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-			display: ['DM Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-			mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
+			// The self-hosted faces are variable builds, which Fontsource names
+			// "<Family> Variable". The plain name stays as the next fallback so a
+			// locally installed copy is still used before system-ui.
+			inter: ['Inter Variable', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+			display: ['DM Sans Variable', 'DM Sans', 'Inter Variable', 'system-ui', '-apple-system', 'sans-serif'],
+			mono: ['JetBrains Mono Variable', 'JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
 		},
 			colors: {
 				border: "hsl(var(--border))",

@@ -179,7 +179,7 @@
   
   /* Typography */
   .font-display {
-    font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans Variable', 'DM Sans', 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: "ss01" 1, "ss02" 1;
   }
   
