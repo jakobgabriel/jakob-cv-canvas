@@ -13,7 +13,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackDownload, trackExternalLink } = useAnalytics();
-  const { openCalendly } = useCalendly();
+  const { requestCalendly } = useCalendly();
   const resumeData = getResumeData(language);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -157,7 +157,7 @@ export const HeroSection = () => {
                 size="sm"
                 className="border-border/50 hover:border-primary hover:text-primary transition-smooth min-h-11 py-2 px-3"
                 onClick={() => {
-                  openCalendly();
+                  requestCalendly();
                   trackExternalLink('calendly', 'calendly_popup');
                 }}
               >

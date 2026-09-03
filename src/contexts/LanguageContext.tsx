@@ -69,6 +69,10 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.optional': 'Optional',
     'cookies.savePreferences': 'Save Preferences',
     'cookies.settings': 'Cookie Settings',
+    'calendly.title': 'Open Calendly?',
+    'calendly.description':
+      'Booking runs on Calendly, a service of Calendly LLC in the USA. Opening it transmits your IP address to Calendly and lets Calendly set cookies. Nothing is loaded until you confirm.',
+    'calendly.confirm': 'Open Calendly',
     'cookies.privacySignal':
       'Your browser sends a Do Not Track / Global Privacy Control signal, so analytics stays off.',
     'common.cancel': 'Cancel',
@@ -136,6 +140,10 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.optional': 'Optional',
     'cookies.savePreferences': 'Einstellungen speichern',
     'cookies.settings': 'Cookie-Einstellungen',
+    'calendly.title': 'Calendly öffnen?',
+    'calendly.description':
+      'Die Terminbuchung läuft über Calendly, einen Dienst der Calendly LLC in den USA. Beim Öffnen wird Ihre IP-Adresse an Calendly übertragen und Calendly kann Cookies setzen. Vorher wird nichts geladen.',
+    'calendly.confirm': 'Calendly öffnen',
     'cookies.privacySignal':
       'Ihr Browser sendet ein Do-Not-Track- bzw. Global-Privacy-Control-Signal, daher bleibt die Analyse deaktiviert.',
     'common.cancel': 'Abbrechen',

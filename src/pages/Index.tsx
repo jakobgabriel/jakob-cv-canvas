@@ -29,7 +29,7 @@ const Index = () => {
   const { language } = useLanguage();
   const { trackSocialClick, trackSectionView, trackScrollDepth, trackSessionDuration } =
     useAnalytics();
-  const { openCalendly } = useCalendly();
+  const { requestCalendly } = useCalendly();
   const { open: openContactForm } = useContactForm();
   const [searchParams, setSearchParams] = useSearchParams();
   const resumeData = getResumeData(language);
@@ -196,7 +196,7 @@ const Index = () => {
                   size="sm"
                   className="border-border/50 hover:border-primary hover:text-primary transition-smooth"
                   onClick={() => {
-                    openCalendly();
+                    requestCalendly();
                     trackSocialClick('calendly', 'calendly_popup');
                   }}
                 >

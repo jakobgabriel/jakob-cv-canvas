@@ -9,6 +9,8 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { LazyContactFormModal } from "@/components/LazyContactFormModal";
 import { ContactFormProvider } from "@/contexts/ContactFormContext";
+import { CalendlyProvider } from "@/contexts/CalendlyContext";
+import { CalendlyConsentDialog } from "@/components/CalendlyConsentDialog";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -29,6 +31,7 @@ const App: React.FC = () => {
       <LanguageDetector>
         <TooltipProvider>
           <ContactFormProvider>
+            <CalendlyProvider>
             <ErrorBoundary>
               <HashRouter>
                 <Routes>
@@ -42,9 +45,11 @@ const App: React.FC = () => {
               </HashRouter>
               <LazyContactFormModal />
             </ErrorBoundary>
+            <CalendlyConsentDialog />
             <CookieConsent />
             <Toaster />
             <Sonner />
+            </CalendlyProvider>
           </ContactFormProvider>
         </TooltipProvider>
       </LanguageDetector>
