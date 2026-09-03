@@ -109,6 +109,30 @@ npm run dev
 
 `public/data/config.json` controls feature toggles: Google Analytics ID, Calendly URL, and other runtime settings.
 
+### Privacy & Analytics
+
+Google Analytics is off until the visitor opts in, and the site stores exactly
+one cookie of its own:
+
+| Cookie | Purpose | Lifetime |
+|---|---|---|
+| `cookie-consent` | The visitor's decision, as `{ version, analytics, timestamp }` | 365 days |
+
+Google's own `_ga*` cookies are written only after analytics is accepted, and
+are deleted again if it is withdrawn.
+
+- **Nothing loads before consent.** `gtag.js` is injected on acceptance, not on
+  page load. Consent Mode v2 defaults every category to denied.
+- **Browser opt-outs win.** Global Privacy Control and Do Not Track suppress
+  analytics entirely, whatever the banner says, and clear any `_ga*` cookies
+  left from an earlier visit.
+- **Consent is versioned.** Bump `CONSENT_VERSION` in `src/lib/cookieManager.ts`
+  when adding a cookie category; stored decisions from an older version are
+  treated as no decision, so visitors are asked again rather than silently
+  opted into something new.
+- Setting `analytics.googleAnalyticsId` to `""` in `config.json` disables the
+  integration completely.
+
 ### Adding Social Profiles
 
 Add entries to the `basics.profiles` array in `resume.json`:

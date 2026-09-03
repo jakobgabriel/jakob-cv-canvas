@@ -21,6 +21,10 @@ describe('GoogleAnalytics', () => {
     gtagScripts().forEach((s) => s.remove());
     Object.keys(Cookies.get()).forEach((name) => Cookies.remove(name, { path: '/' }));
     Object.defineProperty(navigator, 'doNotTrack', { value: null, configurable: true });
+    Object.defineProperty(navigator, 'globalPrivacyControl', {
+      value: undefined,
+      configurable: true,
+    });
   });
 
   afterEach(() => {
@@ -124,6 +128,38 @@ describe('GoogleAnalytics', () => {
     expect(Cookies.get(`_ga_${TRACKING_ID.replace('G-', '')}`)).toBeUndefined();
     // Unrelated cookies must survive.
     expect(Cookies.get('user-consent')).toBe('true');
+  });
+
+  it('honours Global Privacy Control, the legally binding successor to DNT', () => {
+    Object.defineProperty(navigator, 'globalPrivacyControl', {
+      value: true,
+      configurable: true,
+    });
+    GoogleAnalytics.setTrackingId(TRACKING_ID);
+
+    expect(GoogleAnalytics.init()).toBe(false);
+    expect(GoogleAnalytics.isSuppressedByPrivacySignal()).toBe(true);
+
+    GoogleAnalytics.enable();
+    expect(gtagScripts()).toHaveLength(0);
+    expect(GoogleAnalytics.isAnalyticsEnabled()).toBe(false);
+  });
+
+  it('clears analytics cookies left over from before the opt-out was turned on', () => {
+    Cookies.set('_ga', 'GA1.1.123.456', { path: '/' });
+    Object.defineProperty(navigator, 'globalPrivacyControl', {
+      value: true,
+      configurable: true,
+    });
+
+    GoogleAnalytics.setTrackingId(TRACKING_ID);
+    GoogleAnalytics.init();
+
+    expect(Cookies.get('_ga')).toBeUndefined();
+  });
+
+  it('reports no privacy signal when the browser sends none', () => {
+    expect(GoogleAnalytics.isSuppressedByPrivacySignal()).toBe(false);
   });
 
   it('honours Do Not Track and never throws when enable/disable are still called', () => {

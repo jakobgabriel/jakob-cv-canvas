@@ -69,6 +69,8 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.optional': 'Optional',
     'cookies.savePreferences': 'Save Preferences',
     'cookies.settings': 'Cookie Settings',
+    'cookies.privacySignal':
+      'Your browser sends a Do Not Track / Global Privacy Control signal, so analytics stays off.',
     'common.cancel': 'Cancel',
     'loading': 'Loading...',
     'close': 'Close'
@@ -134,6 +136,8 @@ const translations: Record<string, Record<string, string>> = {
     'cookies.optional': 'Optional',
     'cookies.savePreferences': 'Einstellungen speichern',
     'cookies.settings': 'Cookie-Einstellungen',
+    'cookies.privacySignal':
+      'Ihr Browser sendet ein Do-Not-Track- bzw. Global-Privacy-Control-Signal, daher bleibt die Analyse deaktiviert.',
     'common.cancel': 'Abbrechen',
     'loading': 'Lädt...',
     'close': 'Schließen'

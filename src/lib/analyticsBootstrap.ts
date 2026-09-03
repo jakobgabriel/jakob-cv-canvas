@@ -19,6 +19,5 @@ export const bootstrapAnalytics = (): void => {
 
   if (CookieManager.analyticsAllowed()) {
     GoogleAnalytics.enable();
-    CookieManager.initializeSession();
   }
 };

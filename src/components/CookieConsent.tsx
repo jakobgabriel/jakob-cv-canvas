@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useId } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +21,13 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const { t } = useLanguage();
   const { trackConsentAction } = useAnalytics();
+  const headingId = useId();
+  const descriptionId = useId();
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  // The browser may already have opted the visitor out, in which case the
+  // analytics switch cannot do anything and should not pretend otherwise.
+  const suppressedByBrowser = GoogleAnalytics.isSuppressedByPrivacySignal();
 
   useEffect(() => {
     // Show consent banner if user hasn't made ANY decision yet
@@ -28,6 +35,13 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
       setIsVisible(true);
     }
   }, []);
+
+  // Move focus to the banner once it appears. Without this a keyboard or
+  // screen-reader user has to tab through the whole page to reach a choice
+  // that is blocking their consent decision.
+  useEffect(() => {
+    if (isVisible) bannerRef.current?.focus();
+  }, [isVisible]);
 
   /**
    * Store the decision, then bring Google Analytics in line with it. Order
@@ -38,15 +52,12 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
     analytics: boolean,
     action: 'accept' | 'decline' | 'customize'
   ) => {
-    CookieManager.setConsent(true);
-    CookieManager.setPreferences({ essential: true, analytics });
+    CookieManager.saveConsent(analytics);
 
     if (analytics) {
       GoogleAnalytics.enable();
-      CookieManager.initializeSession();
     } else {
       GoogleAnalytics.disable();
-      CookieManager.clearSessionData();
     }
 
     trackConsentAction(action);
@@ -79,28 +90,40 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-96">
+    <div
+      ref={bannerRef}
+      role="dialog"
+      // Non-modal on purpose: the page stays readable and usable while the
+      // visitor decides, so focus must not be trapped here.
+      aria-modal="false"
+      aria-labelledby={headingId}
+      aria-describedby={descriptionId}
+      tabIndex={-1}
+      className="fixed bottom-4 left-4 right-4 z-50 outline-none md:left-auto md:right-4 md:w-96"
+    >
       <Card className="p-4 border shadow-professional bg-card/95 backdrop-blur-sm">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Cookie className="w-5 h-5 text-primary" />
-            <h3 className="font-medium text-sm">{t('cookies.title')}</h3>
+            <Cookie className="w-5 h-5 text-primary" aria-hidden="true" />
+            <h2 id={headingId} className="font-medium text-sm">{t('cookies.title')}</h2>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={handleClose}
             className="h-6 w-6 p-0"
+            aria-label={t('cookies.decline') || 'Essential Only'}
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4" aria-hidden="true" />
           </Button>
         </div>
 
-        <p className="text-sm text-muted-foreground mb-4">
+        <p id={descriptionId} className="text-sm text-muted-foreground mb-4">
           {t('cookies.description')}
           {!showDetails && (
-            <button 
-              onClick={() => setShowDetails(!showDetails)}
+            <button
+              onClick={() => setShowDetails(true)}
+              aria-expanded={showDetails}
               className="text-primary hover:underline ml-1"
             >
               {t('cookies.learnMore')}
@@ -111,7 +134,10 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
         {showDetails && (
           <div className="mb-4 space-y-3 text-sm">
             <div className="flex items-start gap-2">
-              <Shield className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+              <Shield
+                className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              />
               <div className="flex-1">
                 <div className="font-medium">{t('cookies.essential.title')}</div>
                 <div className="text-muted-foreground text-xs">
@@ -120,27 +146,35 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
               </div>
               <Badge variant="secondary" className="text-xs">{t('cookies.required')}</Badge>
             </div>
-            
+
             <div className="flex items-start gap-2">
-              <BarChart3 className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+              <BarChart3
+                className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              />
               <div className="flex-1">
                 <div className="font-medium">{t('cookies.analytics.title')}</div>
                 <div className="text-muted-foreground text-xs">
-                  {t('cookies.analytics.description')}
+                  {suppressedByBrowser
+                    ? t('cookies.privacySignal')
+                    : t('cookies.analytics.description')}
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Switch 
-                  checked={analyticsEnabled}
+                <Switch
+                  checked={analyticsEnabled && !suppressedByBrowser}
                   onCheckedChange={setAnalyticsEnabled}
+                  disabled={suppressedByBrowser}
+                  aria-label={t('cookies.analytics.title')}
                   className="scale-75"
                 />
                 <Badge variant="outline" className="text-xs">{t('cookies.optional')}</Badge>
               </div>
             </div>
 
-            <button 
+            <button
               onClick={() => setShowDetails(false)}
+              aria-expanded={showDetails}
               className="text-primary hover:underline text-xs"
             >
               {t('cookies.showLess')}
@@ -163,7 +197,7 @@ export const CookieConsent = ({ onAccept, onDecline }: CookieConsentProps) => {
               size="sm"
               className="flex-1 h-8"
             >
-              <Settings className="w-3 h-3 mr-1" />
+              <Settings className="w-3 h-3 mr-1" aria-hidden="true" />
               {t('cookies.savePreferences') || 'Save Choices'}
             </Button>
           )}

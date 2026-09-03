@@ -28,13 +28,29 @@ export class GoogleAnalytics {
     this.trackingId = id || null;
   }
 
-  private static doNotTrackEnabled(): boolean {
+  /**
+   * Browser-level opt-outs. Global Privacy Control is the successor to Do Not
+   * Track and, unlike DNT, carries legal weight (CPRA and several US state
+   * laws treat it as a binding opt-out), so both are honoured before any
+   * banner is even shown.
+   */
+  private static privacySignalEnabled(): boolean {
     if (typeof navigator === 'undefined') return false;
+
+    const gpc = (navigator as unknown as { globalPrivacyControl?: boolean })
+      .globalPrivacyControl;
+    if (gpc === true) return true;
+
     const dnt =
       navigator.doNotTrack ??
       (window as unknown as { doNotTrack?: string }).doNotTrack ??
       (navigator as unknown as { msDoNotTrack?: string }).msDoNotTrack;
     return dnt === '1' || dnt === 'yes';
+  }
+
+  /** Whether a browser-level opt-out is suppressing analytics entirely. */
+  static isSuppressedByPrivacySignal(): boolean {
+    return this.isBlocked || this.privacySignalEnabled();
   }
 
   /**
@@ -49,8 +65,11 @@ export class GoogleAnalytics {
 
     if (typeof window === 'undefined' || !this.trackingId) return false;
 
-    if (this.doNotTrackEnabled()) {
+    if (this.privacySignalEnabled()) {
       this.isBlocked = true;
+      // Honour the signal retroactively too: cookies from a previous visit,
+      // before the opt-out was turned on, should not survive it.
+      this.clearAnalyticsCookies();
       return false;
     }
 

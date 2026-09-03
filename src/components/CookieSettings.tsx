@@ -13,10 +13,14 @@ export const CookieSettings = () => {
   const { t } = useLanguage();
   const { trackConsentAction } = useAnalytics();
   const [analyticsEnabled, setAnalyticsEnabled] = useState(
-    () => CookieManager.getPreferences().analytics
+    () => CookieManager.analyticsAllowed()
   );
   const [isOpen, setIsOpen] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
+
+  // The browser may already have opted the visitor out, in which case the
+  // analytics switch cannot do anything and should not pretend otherwise.
+  const suppressedByBrowser = GoogleAnalytics.isSuppressedByPrivacySignal();
 
   // Only show the floating icon after user has made a consent decision. The
   // banner dismissing is a consent change, so listen rather than checking once
@@ -31,26 +35,19 @@ export const CookieSettings = () => {
   // Re-read the stored choice each time the dialog opens, so a decision made
   // in the banner (or in another tab) is reflected rather than a stale default.
   const handleOpenChange = (open: boolean) => {
-    if (open) setAnalyticsEnabled(CookieManager.getPreferences().analytics);
+    if (open) setAnalyticsEnabled(CookieManager.analyticsAllowed());
     setIsOpen(open);
   };
 
   const handleSave = () => {
-    CookieManager.setConsent(true);
-    CookieManager.setPreferences({
-      essential: true,
-      analytics: analyticsEnabled
-    });
+    // Saving always records a decision, so switching analytics off keeps the
+    // banner away rather than resetting the visitor to "never asked".
+    CookieManager.saveConsent(analyticsEnabled);
 
-    // Enable/disable Google Analytics and session based on user choice
     if (analyticsEnabled) {
       GoogleAnalytics.enable();
-      CookieManager.initializeSession();
     } else {
       GoogleAnalytics.disable();
-      // Drop the session cookie but keep the consent decision itself —
-      // clearing that would bring the banner back on the next visit.
-      CookieManager.clearSessionData();
     }
 
     // Recorded after the new preference is live, or the event is dropped.
@@ -100,13 +97,17 @@ export const CookieSettings = () => {
             <div className="flex-1">
               <div className="font-medium text-sm">{t('cookies.analytics.title')}</div>
               <div className="text-muted-foreground text-xs mt-1">
-                {t('cookies.analytics.description')}
+                {suppressedByBrowser
+                  ? t('cookies.privacySignal')
+                  : t('cookies.analytics.description')}
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Switch 
-                checked={analyticsEnabled}
+              <Switch
+                checked={analyticsEnabled && !suppressedByBrowser}
                 onCheckedChange={setAnalyticsEnabled}
+                disabled={suppressedByBrowser}
+                aria-label={t('cookies.analytics.title')}
               />
               <Badge variant="outline" className="text-xs">{t('cookies.optional')}</Badge>
             </div>

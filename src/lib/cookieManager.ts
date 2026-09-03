@@ -1,34 +1,44 @@
 import Cookies from 'js-cookie';
 
-export interface CookiePreferences {
-  /** Always on: needed for the site to work at all. */
-  essential: boolean;
-  /** Google Analytics. Off unless the visitor opts in. */
+/**
+ * Bump when the cookie categories change (a new vendor, a new purpose).
+ * Consent recorded under an older version is treated as no decision at all,
+ * so visitors are asked again rather than silently opted into something new.
+ */
+export const CONSENT_VERSION = 1;
+
+/** How long a recorded decision stays valid before we ask again. */
+const CONSENT_EXPIRY_DAYS = 365;
+
+export interface ConsentRecord {
+  /** Schema version this decision was recorded under. */
+  version: number;
+  /** Whether Google Analytics may run. */
   analytics: boolean;
+  /** When the visitor decided, as epoch milliseconds. */
+  timestamp: number;
 }
 
 /**
- * Dispatched on `window` whenever the stored consent decision or preferences
- * change, so UI mounted elsewhere (the settings gear) can react without a reload.
+ * Dispatched on `window` whenever the stored decision changes, so UI mounted
+ * elsewhere (the settings gear) can react without a reload.
  */
 export const CONSENT_CHANGE_EVENT = 'cookie-consent-change';
 
-const DEFAULT_PREFERENCES: CookiePreferences = { essential: true, analytics: false };
+const CONSENT_COOKIE = 'cookie-consent';
 
-// Cookie consent and tracking utilities
+/** Cookies written by earlier versions of this app, cleaned up on read. */
+const LEGACY_COOKIES = ['user-consent', 'user-preferences', 'user-tracking'];
+
 export class CookieManager {
-  private static readonly CONSENT_COOKIE = 'user-consent';
-  private static readonly TRACKING_COOKIE = 'user-tracking';
-  private static readonly PREFERENCES_COOKIE = 'user-preferences';
-
   /**
    * Browsers silently drop `Secure` cookies on plain http, which would throw
-   * away the consent decision on local and LAN previews (and in jsdom). Ask
-   * for `Secure` only where it can actually be honoured.
+   * away the decision on local and LAN previews (and in jsdom). Ask for
+   * `Secure` only where it can actually be honoured.
    */
-  private static attributes(expires: number): Cookies.CookieAttributes {
+  private static attributes(): Cookies.CookieAttributes {
     return {
-      expires,
+      expires: CONSENT_EXPIRY_DAYS,
       path: '/',
       sameSite: 'Strict',
       secure: typeof window !== 'undefined' && window.location.protocol === 'https:',
@@ -40,74 +50,102 @@ export class CookieManager {
     window.dispatchEvent(new CustomEvent(CONSENT_CHANGE_EVENT));
   }
 
-  // Check if user has given consent
-  static hasConsent(): boolean {
-    return Cookies.get(this.CONSENT_COOKIE) === 'true';
-  }
+  /**
+   * Earlier builds split the decision across `user-consent` and
+   * `user-preferences`, and wrote a `user-tracking` session id that nothing
+   * ever read. Carry the real choice over once, then drop all three so
+   * returning visitors are not re-prompted and are not left holding cookies
+   * the site no longer uses.
+   */
+  private static migrateLegacyCookies(): ConsentRecord | null {
+    const legacyConsent = Cookies.get('user-consent');
+    const legacyPreferences = Cookies.get('user-preferences');
 
-  // Check if user has made any consent decision (accept/decline)
-  static hasConsentDecision(): boolean {
-    return Cookies.get(this.CONSENT_COOKIE) !== undefined;
-  }
+    const clearLegacy = () =>
+      LEGACY_COOKIES.forEach((name) => Cookies.remove(name, { path: '/' }));
 
-  // Set user consent
-  static setConsent(consent: boolean): void {
-    Cookies.set(this.CONSENT_COOKIE, consent.toString(), this.attributes(365));
-    this.notifyChange();
-  }
+    if (legacyConsent === undefined) {
+      // Nothing to carry over, but a stray session cookie may still be around.
+      if (legacyPreferences !== undefined || Cookies.get('user-tracking') !== undefined) {
+        clearLegacy();
+      }
+      return null;
+    }
 
-  // Set user preferences
-  static setPreferences(preferences: CookiePreferences): void {
-    Cookies.set(this.PREFERENCES_COOKIE, JSON.stringify(preferences), this.attributes(365));
-    this.notifyChange();
-  }
-
-  // Get user preferences
-  static getPreferences(): CookiePreferences {
-    const raw = Cookies.get(this.PREFERENCES_COOKIE);
-    if (!raw) return { ...DEFAULT_PREFERENCES };
-
+    let analytics = false;
     try {
-      const parsed = JSON.parse(raw) as Partial<CookiePreferences> | null;
-      return { essential: true, analytics: parsed?.analytics === true };
+      analytics =
+        legacyConsent === 'true' &&
+        (JSON.parse(legacyPreferences ?? '{}') as { analytics?: boolean })?.analytics === true;
+    } catch {
+      analytics = false;
+    }
+
+    clearLegacy();
+    const record = this.write(analytics);
+    return record;
+  }
+
+  private static write(analytics: boolean): ConsentRecord {
+    const record: ConsentRecord = {
+      version: CONSENT_VERSION,
+      analytics,
+      timestamp: Date.now(),
+    };
+    Cookies.set(CONSENT_COOKIE, JSON.stringify(record), this.attributes());
+    return record;
+  }
+
+  /**
+   * The visitor's stored decision, or `null` when there is none to honour —
+   * never asked, cookie corrupted, or recorded under a superseded version.
+   */
+  static getConsent(): ConsentRecord | null {
+    const raw = Cookies.get(CONSENT_COOKIE);
+    if (raw === undefined) return this.migrateLegacyCookies();
+
+    let parsed: Partial<ConsentRecord> | null;
+    try {
+      parsed = JSON.parse(raw) as Partial<ConsentRecord> | null;
     } catch {
       // A hand-edited or truncated cookie must not take the whole app down.
-      // Drop it and fall back to the privacy-preserving defaults.
-      Cookies.remove(this.PREFERENCES_COOKIE, { path: '/' });
-      return { ...DEFAULT_PREFERENCES };
+      Cookies.remove(CONSENT_COOKIE, { path: '/' });
+      return null;
     }
+
+    if (!parsed || parsed.version !== CONSENT_VERSION) {
+      // Superseded schema: ask again rather than guessing what was agreed to.
+      return null;
+    }
+
+    return {
+      version: CONSENT_VERSION,
+      analytics: parsed.analytics === true,
+      timestamp: typeof parsed.timestamp === 'number' ? parsed.timestamp : 0,
+    };
+  }
+
+  /** Whether the visitor has answered the current version of the banner. */
+  static hasConsentDecision(): boolean {
+    return this.getConsent() !== null;
   }
 
   /** Single source of truth for "may we run analytics?". */
   static analyticsAllowed(): boolean {
-    return this.hasConsent() && this.getPreferences().analytics;
+    return this.getConsent()?.analytics === true;
   }
 
-  // Initialize tracking session (no-op without analytics consent)
-  static initializeSession(): string | null {
-    if (!this.analyticsAllowed()) return null;
-
-    let sessionId = Cookies.get(this.TRACKING_COOKIE);
-    if (!sessionId) {
-      sessionId = `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
-      Cookies.set(this.TRACKING_COOKIE, sessionId, this.attributes(1));
-    }
-    return sessionId;
+  /** Record a decision. `analytics: false` is still a decision, not an absence. */
+  static saveConsent(analytics: boolean): ConsentRecord {
+    const record = this.write(analytics);
+    this.notifyChange();
+    return record;
   }
 
-  /**
-   * Drop the session cookie only. Used when analytics is switched off but the
-   * consent decision itself must be remembered.
-   */
-  static clearSessionData(): void {
-    Cookies.remove(this.TRACKING_COOKIE, { path: '/' });
-  }
-
-  // Clear all tracking data, including the consent decision itself
-  static clearTrackingData(): void {
-    Cookies.remove(this.CONSENT_COOKIE, { path: '/' });
-    Cookies.remove(this.TRACKING_COOKIE, { path: '/' });
-    Cookies.remove(this.PREFERENCES_COOKIE, { path: '/' });
+  /** Forget the decision entirely; the banner will be shown again. */
+  static clearConsent(): void {
+    Cookies.remove(CONSENT_COOKIE, { path: '/' });
+    LEGACY_COOKIES.forEach((name) => Cookies.remove(name, { path: '/' }));
     this.notifyChange();
   }
 }
