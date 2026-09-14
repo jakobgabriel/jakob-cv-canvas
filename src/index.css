@@ -57,6 +57,7 @@
 
     /* Custom easing curves (emil-design-eng) */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-reveal: cubic-bezier(0.33, 1, 0.68, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
@@ -265,6 +266,46 @@
     }
   }
 
+  /*
+    Word-by-word heading reveal. Each word slides up from behind its own
+    clipping mask — the mask is what makes it read as a reveal rather than a
+    fade, and translateY(100%) is relative to the word's own height so it
+    works at every heading size.
+
+    `backwards` fill supplies the hidden start state only while the animation
+    is pending; the word's resting style is the visible one, so a heading can
+    never be left stuck off-screen.
+  */
+  .title-reveal-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    /* Room for descenders and accents, which the mask would otherwise clip. */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  /* Word spacing. The masks are inline-blocks, so the whitespace between them
+     would collapse — an em-based margin keeps the gap proportional at every
+     heading size, and avoids a literal non-breaking space in the markup. */
+  .title-reveal-mask:not(:last-child) {
+    margin-right: 0.26em;
+  }
+
+  .title-reveal-word {
+    display: inline-block;
+    animation: title-word-in 0.85s var(--ease-reveal) backwards;
+  }
+
+  @keyframes title-word-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   /* Stagger animation classes */
   .stagger-item {
     animation: fade-in-up 0.5s var(--ease-out) backwards;
@@ -399,6 +440,7 @@
     }
 
     /* Entrance reveals: keep a gentle opacity fade, drop the movement */
+    .title-reveal-word,
     [data-reveal] > *,
     .scroll-reveal,
     .stagger-item,
@@ -415,6 +457,12 @@
     .pressable:hover,
     .pressable:active {
       transform: none;
+    }
+
+    /* The mask only exists to clip the slide; without motion it can only
+       cause trouble (clipped descenders), so neutralise it. */
+    .title-reveal-mask {
+      overflow: visible;
     }
   }
 }

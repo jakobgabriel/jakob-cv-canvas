@@ -9,6 +9,7 @@ import { useCalendly } from "@/hooks/useCalendly";
 import { LazyImage } from "@/components/LazyImage";
 import { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { AnimatedTitle } from "@/components/AnimatedTitle";
 
 /**
  * Three claims, strongest first. This replaces the flat row of five equally
@@ -109,11 +110,17 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          <div className="mt-6 space-y-3 animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight">
-              {basics.name}
-            </h1>
-            <h2 className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal">
+          <div className="mt-6 space-y-3">
+            <AnimatedTitle
+              text={basics.name}
+              className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight"
+            />
+            {/* Starts as the last word of the name lands, so the two read as
+                one gesture rather than two separate animations. */}
+            <h2
+              className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal animate-fade-in"
+              style={{ animationDelay: "0.35s" }}
+            >
               {basics.label}
             </h2>
           </div>
@@ -121,7 +128,7 @@ export const HeroSection = () => {
           {/* Credentials strip — the three things worth knowing before scrolling */}
           <dl
             className="mt-7 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
+            style={{ animationDelay: "0.45s" }}
           >
             {CREDENTIALS.map(({ valueKey, labelKey }) => (
               <div
@@ -143,7 +150,7 @@ export const HeroSection = () => {
 
           <p
             className="mt-7 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in"
-            style={{ animationDelay: "0.15s" }}
+            style={{ animationDelay: "0.55s" }}
           >
             {basics.summary}
           </p>
@@ -151,7 +158,7 @@ export const HeroSection = () => {
           {/* Primary actions, paired so neither reads as an afterthought */}
           <div
             className="mt-8 flex flex-col sm:flex-row gap-3 justify-center animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
+            style={{ animationDelay: "0.62s" }}
           >
             {config.features.downloadResume.enabled && (
               <Button size="lg" className="px-8 shadow-professional" asChild>
