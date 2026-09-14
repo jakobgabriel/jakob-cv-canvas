@@ -18,6 +18,7 @@ import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { calculateDuration, calculateDurationGerman, formatDateRange } from "@/lib/dateUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 export const TimelineSection = () => {
   const { language, t } = useLanguage();
@@ -28,6 +29,8 @@ export const TimelineSection = () => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const experienceListRef = useRevealOnScroll<HTMLOListElement>();
+  const educationListRef = useRevealOnScroll<HTMLOListElement>();
 
   const handleItemClick = (item: any, event: React.MouseEvent) => {
     triggerRef.current = event.currentTarget as HTMLElement;
@@ -135,19 +138,19 @@ export const TimelineSection = () => {
               </h3>
             </div>
 
-            <ol className="relative ml-[5px] space-y-4 border-l border-border pl-7">
+            <ol
+              ref={experienceListRef}
+              data-reveal
+              className="relative ml-[5px] space-y-4 border-l border-border pl-7"
+            >
               {experiences.map((exp, index) => (
-                <li
-                  key={index}
-                  className="relative stagger-item"
-                  style={{ animationDelay: `${index * 0.06}s` }}
-                >
+                <li key={index} className="relative" style={{ animationDelay: `${index * 0.06}s` }}>
                   <span
                     className="absolute -left-[33px] top-7 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background"
                     aria-hidden="true"
                   />
                   <Card
-                    className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:-translate-y-0.5 hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     onClick={(e) => handleItemClick(exp, e)}
                     role="button"
                     tabIndex={0}
@@ -197,19 +200,19 @@ export const TimelineSection = () => {
               </h3>
             </div>
 
-            <ol className="relative ml-[5px] space-y-4 border-l border-border pl-7">
+            <ol
+              ref={educationListRef}
+              data-reveal
+              className="relative ml-[5px] space-y-4 border-l border-border pl-7"
+            >
               {education.map((edu, index) => (
-                <li
-                  key={index}
-                  className="relative stagger-item"
-                  style={{ animationDelay: `${index * 0.06}s` }}
-                >
+                <li key={index} className="relative" style={{ animationDelay: `${index * 0.06}s` }}>
                   <span
                     className="absolute -left-[33px] top-7 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background"
                     aria-hidden="true"
                   />
                   <Card
-                    className="bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:-translate-y-0.5 hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     onClick={(e) => handleItemClick(edu, e)}
                     role="button"
                     tabIndex={0}

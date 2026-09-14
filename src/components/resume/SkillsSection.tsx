@@ -4,10 +4,13 @@ import { Award, Globe } from "lucide-react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { formatMonthYear } from "@/lib/dateUtils";
+import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 export const SkillsSection = () => {
   const { language, t } = useLanguage();
   const resumeData = getResumeData(language);
+  const skillGridRef = useRevealOnScroll<HTMLDivElement>();
+  const detailGridRef = useRevealOnScroll<HTMLDivElement>();
 
   if (!resumeData) {
     return <div className="py-24 text-center">{t("loading")}</div>;
@@ -33,11 +36,15 @@ export const SkillsSection = () => {
             lists what sits underneath it — the previous two blocks showed the
             same four names twice, once as rings and once as bar meters.
           */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 items-start">
+          <div
+            ref={skillGridRef}
+            data-reveal
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 items-start"
+          >
             {skills.map((skill, index) => (
               <Card
                 key={skill.name}
-                className="p-5 h-full bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:-translate-y-0.5 hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-200 stagger-item"
+                className="p-5 h-full bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:-translate-y-0.5 hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-200"
                 style={{ animationDelay: `${index * 0.06}s` }}
               >
                 <h3 className="text-base font-medium leading-snug">{skill.name}</h3>
@@ -61,10 +68,10 @@ export const SkillsSection = () => {
           </div>
 
           {/* items-start keeps the shorter card from stretching to fill the row */}
-          <div className="grid gap-4 md:grid-cols-2 items-start">
+          <div ref={detailGridRef} data-reveal className="grid gap-4 md:grid-cols-2 items-start">
             <Card
-              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal stagger-item"
-              style={{ animationDelay: "0.24s" }}
+              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal"
+              style={{ animationDelay: "0s" }}
             >
               <div className="flex items-center gap-3 mb-5">
                 <Globe className="w-5 h-5 text-primary" aria-hidden="true" />
@@ -84,8 +91,8 @@ export const SkillsSection = () => {
             </Card>
 
             <Card
-              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal stagger-item"
-              style={{ animationDelay: "0.3s" }}
+              className="p-6 bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal"
+              style={{ animationDelay: "0.06s" }}
             >
               <div className="flex items-center gap-3 mb-5">
                 <Award className="w-5 h-5 text-primary" aria-hidden="true" />

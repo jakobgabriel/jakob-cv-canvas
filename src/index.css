@@ -270,6 +270,23 @@
     animation: fade-in-up 0.5s var(--ease-out) backwards;
   }
 
+  /*
+    Scroll-triggered reveal. The container gets `data-revealed` from
+    useRevealOnScroll the first time it enters the viewport; until then the
+    children hold the animation at its first frame with `animation-play-state`.
+
+    Crucially the resting style is the visible one — `backwards` fill supplies
+    the hidden from-state only while the animation is pending. If the observer
+    never runs, nothing is paused and the content simply shows.
+  */
+  [data-reveal] > * {
+    animation: fade-in-up 0.5s var(--ease-out) backwards paused;
+  }
+
+  [data-reveal][data-revealed] > * {
+    animation-play-state: running;
+  }
+
   @keyframes fade-in-up {
     from {
       opacity: 0;
@@ -278,6 +295,29 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Press feedback for card-sized pressable surfaces. Subtler than the 0.97
+     used on buttons — a 300px card scaling that far reads as a jump. */
+  .pressable {
+    transition:
+      transform 0.16s var(--ease-out),
+      box-shadow 0.2s var(--ease-out),
+      border-color 0.2s ease;
+  }
+
+  .pressable:active {
+    transform: scale(0.99);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pressable:hover {
+      transform: translateY(-2px);
+    }
+
+    .pressable:active {
+      transform: scale(0.99);
     }
   }
 
@@ -359,6 +399,7 @@
     }
 
     /* Entrance reveals: keep a gentle opacity fade, drop the movement */
+    [data-reveal] > *,
     .scroll-reveal,
     .stagger-item,
     .animate-fade-in,
@@ -367,7 +408,13 @@
     .animate-scale-in,
     .animate-bounce-in {
       animation: reduced-fade-in 0.3s ease forwards !important;
+      animation-play-state: running !important;
       transform: none !important;
+    }
+
+    .pressable:hover,
+    .pressable:active {
+      transform: none;
     }
   }
 }
