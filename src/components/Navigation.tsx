@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Briefcase, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,44 +10,51 @@ interface NavigationProps {
 }
 
 const navigationItems = [
-  { id: 'hero', label: 'About', icon: User },
-  { id: 'timeline', label: 'Experience', icon: Briefcase },
-  { id: 'skills', label: 'Skills', icon: Award },
+  { id: "hero", label: "About", icon: User },
+  { id: "timeline", label: "Experience", icon: Briefcase },
+  { id: "skills", label: "Skills", icon: Award },
 ];
 
 export const Navigation = ({ className }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  // A ref, not state: the scroll listener is registered once, so a state value
+  // would be frozen at its initial `false` and the guard below would never fire.
+  const isScrollingRef = useRef(false);
+  const scrollEndTimer = useRef<ReturnType<typeof setTimeout>>();
   const { trackNavigation } = useAnalytics();
 
   useEffect(() => {
     // Handle initial section param on page load (e.g. /#/?section=hero)
     const handleInitialSection = () => {
-      const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
-      const section = params.get('section');
-      if (section && navigationItems.some(item => item.id === section)) {
+      const params = new URLSearchParams(window.location.hash.split("?")[1] || "");
+      const section = params.get("section");
+      if (section && navigationItems.some((item) => item.id === section)) {
         setActiveSection(section);
         // Delay scroll to ensure DOM is ready
         setTimeout(() => {
           const element = document.getElementById(section);
           if (element) {
             const offsetTop = element.offsetTop - NAV_SCROLL_OFFSET;
-            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            window.scrollTo({ top: offsetTop, behavior: "smooth" });
           }
         }, 100);
       }
     };
 
-    const handleScroll = () => {
+    // Layout reads are batched into one rAF so a flick-scroll cannot queue a
+    // getBoundingClientRect per scroll event.
+    let frame = 0;
+
+    const measure = () => {
+      frame = 0;
       setIsScrolled(window.scrollY > 50);
 
       // Skip section detection during programmatic scrolling
-      if (isScrolling) return;
+      if (isScrollingRef.current) return;
 
-      // Simplified active section detection
-      const sections = ['hero', 'timeline', 'skills'];
+      const sections = ["hero", "timeline", "skills"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -60,34 +67,43 @@ export const Navigation = ({ className }: NavigationProps) => {
       }
     };
 
-    handleInitialSection();
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(measure);
+    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleInitialSection();
+    measure();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) cancelAnimationFrame(frame);
+      clearTimeout(scrollEndTimer.current);
     };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     // Track navigation
     trackNavigation(activeSection, sectionId);
-    
-    setIsScrolling(true);
+
+    isScrollingRef.current = true;
     setActiveSection(sectionId);
-    
+
     const element = document.getElementById(sectionId);
     if (element) {
       const offsetTop = element.offsetTop - NAV_SCROLL_OFFSET;
 
       window.scrollTo({
         top: offsetTop,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
 
       // Re-enable scroll detection after smooth scrolling completes
-      setTimeout(() => {
-        setIsScrolling(false);
+      clearTimeout(scrollEndTimer.current);
+      scrollEndTimer.current = setTimeout(() => {
+        isScrollingRef.current = false;
       }, 1000);
     }
     setIsOpen(false);
@@ -96,18 +112,20 @@ export const Navigation = ({ className }: NavigationProps) => {
   return (
     <>
       {/* Fixed Navigation */}
-      <nav className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-colors duration-200",
-        isScrolled 
-          ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-minimal" 
-          : "bg-transparent",
-        className
-      )}>
+      <nav
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-colors duration-200",
+          isScrolled
+            ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-minimal"
+            : "bg-transparent",
+          className,
+        )}
+      >
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center h-16 relative">
             {/* Logo/Brand - Positioned absolutely to the left */}
-            <button 
-              onClick={() => scrollToSection('hero')}
+            <button
+              onClick={() => scrollToSection("hero")}
               className="absolute left-0 font-display font-medium text-lg hover:text-primary transition-smooth"
             >
               Jakob Gabriel
@@ -125,9 +143,9 @@ export const Navigation = ({ className }: NavigationProps) => {
                     onClick={() => scrollToSection(item.id)}
                     className={cn(
                       "flex items-center gap-2 px-4 py-2 transition-smooth text-sm",
-                      activeSection === item.id 
-                        ? "bg-primary/10 text-primary font-medium" 
-                        : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
+                      activeSection === item.id
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
                     )}
                   >
                     <Icon className="w-4 h-4" />
@@ -154,7 +172,10 @@ export const Navigation = ({ className }: NavigationProps) => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div id="mobile-navigation" className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50">
+          <div
+            id="mobile-navigation"
+            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50"
+          >
             <div className="container mx-auto px-6 py-4">
               <div className="flex flex-col space-y-1">
                 {navigationItems.map((item) => {
@@ -166,9 +187,9 @@ export const Navigation = ({ className }: NavigationProps) => {
                       onClick={() => scrollToSection(item.id)}
                       className={cn(
                         "flex items-center gap-3 justify-start px-4 py-3 w-full transition-smooth text-base",
-                        activeSection === item.id 
-                          ? "bg-primary/10 text-primary font-medium" 
-                          : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
+                        activeSection === item.id
+                          ? "bg-primary/10 text-primary font-medium"
+                          : "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
                       )}
                     >
                       <Icon className="w-5 h-5" />
@@ -194,11 +215,11 @@ export const Navigation = ({ className }: NavigationProps) => {
                   "w-3 h-3 rounded-full transition duration-200",
                   activeSection === item.id
                     ? "bg-primary scale-125"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
                 )}
                 title={item.label}
                 aria-label={`Navigate to ${item.label} section`}
-                aria-current={activeSection === item.id ? 'true' : undefined}
+                aria-current={activeSection === item.id ? "true" : undefined}
               />
             ))}
           </div>
