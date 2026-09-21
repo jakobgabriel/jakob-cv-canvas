@@ -24,6 +24,33 @@
   },
   "work": [
     {
+      "name": "neuwerk",
+      "position": "Digital Business Value Engineer",
+      "location": "Karben, Germany",
+      "startDate": "2026-09-01",
+      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
+      "highlights": [
+        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
+        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
+        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
+        "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
+        "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
+      ],
+      "keywords": [
+        "Use Case Scaling",
+        "AI-Driven Process Optimization",
+        "Process Automation",
+        "Process Standardization",
+        "Agile Project Management",
+        "Digital Transformation"
+      ],
+      "industries": [
+        "Automotive",
+        "Manufacturing",
+        "Industrial Technology"
+      ]
+    },
+    {
       "name": "OESL Automotive",
       "position": "Digital Business Value Engineer",
       "location": "Karben, Germany",
@@ -37,8 +64,20 @@
         "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
         "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
       ],
-      "keywords": ["Use Case Scaling", "AI-Driven Process Optimization", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
-      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
+      "keywords": [
+        "Use Case Scaling",
+        "AI-Driven Process Optimization",
+        "Process Automation",
+        "Process Standardization",
+        "Agile Project Management",
+        "Digital Transformation"
+      ],
+      "industries": [
+        "Automotive",
+        "Manufacturing",
+        "Industrial Technology"
+      ],
+      "endDate": "2026-08-31"
     },
     {
       "name": "Continental AG",
@@ -55,8 +94,19 @@
         "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
         "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
       ],
-      "keywords": ["Use Case Scaling", "System Scaling", "Process Automation", "Process Standardization", "Agile Project Management", "Digital Transformation"],
-      "industries": ["Automotive", "Manufacturing", "Industrial Technology"]
+      "keywords": [
+        "Use Case Scaling",
+        "System Scaling",
+        "Process Automation",
+        "Process Standardization",
+        "Agile Project Management",
+        "Digital Transformation"
+      ],
+      "industries": [
+        "Automotive",
+        "Manufacturing",
+        "Industrial Technology"
+      ]
     },
     {
       "name": "Continental AG",
@@ -73,8 +123,19 @@
         "Built intuitive Power BI dashboards used daily by 50+ operators and engineers for faster, evidence-based decision-making.",
         "Created knowledge-sharing platforms and internal documentation that accelerated onboarding and scaled analytics adoption enterprise-wide."
       ],
-      "keywords": ["Manufacturing Intelligence", "Data Analytics", "Industry 4.0", "Process Improvement", "Predictive Analytics", "Knowledge Management"],
-      "industries": ["Automotive", "Manufacturing", "Data Science"]
+      "keywords": [
+        "Manufacturing Intelligence",
+        "Data Analytics",
+        "Industry 4.0",
+        "Process Improvement",
+        "Predictive Analytics",
+        "Knowledge Management"
+      ],
+      "industries": [
+        "Automotive",
+        "Manufacturing",
+        "Data Science"
+      ]
     },
     {
       "name": "Continental AG",
@@ -91,8 +152,18 @@
         "Built trusted customer relationships through transparent communication, on-site acceptance tests, and consistently successful audit results.",
         "Introduced real-time quality dashboards visualizing key KPIs, improving shop-floor decision-making speed and reducing reaction time to quality events."
       ],
-      "keywords": ["Quality Management", "FMEA", "Six Sigma", "Continuous Improvement", "Risk Analysis"],
-      "industries": ["Automotive", "Manufacturing", "Quality Assurance"]
+      "keywords": [
+        "Quality Management",
+        "FMEA",
+        "Six Sigma",
+        "Continuous Improvement",
+        "Risk Analysis"
+      ],
+      "industries": [
+        "Automotive",
+        "Manufacturing",
+        "Quality Assurance"
+      ]
     }
   ],
   "education": [
@@ -130,22 +201,58 @@
     {
       "name": "Digital Transformation",
       "level": "Expert",
-      "keywords": ["Industry 4.0", "IoT Systems", "Process Automation", "Change Management", "Smart Factory", "Digital Twin", "Edge Computing"]
+      "keywords": [
+        "Industry 4.0",
+        "IoT Systems",
+        "Process Automation",
+        "Change Management",
+        "Smart Factory",
+        "Digital Twin",
+        "Edge Computing"
+      ]
     },
     {
       "name": "Data Engineering, Analytics & AI",
       "level": "Expert",
-      "keywords": ["MS Fabric", "Power BI", "Python", "SQL", "n8n", "AI Agent Design", "Predictive Modeling", "Statistical Analysis", "Machine Learning", "Data Modeling", "Azure", "Process Mining"]
+      "keywords": [
+        "MS Fabric",
+        "Power BI",
+        "Python",
+        "SQL",
+        "n8n",
+        "AI Agent Design",
+        "Predictive Modeling",
+        "Statistical Analysis",
+        "Machine Learning",
+        "Data Modeling",
+        "Azure",
+        "Process Mining"
+      ]
     },
     {
       "name": "Process & Quality Engineering",
       "level": "Advanced",
-      "keywords": ["FMEA", "Lean Six Sigma", "Process Optimization", "APQP", "Root Cause Analysis", "SPC", "8D", "Control Plans"]
+      "keywords": [
+        "FMEA",
+        "Lean Six Sigma",
+        "Process Optimization",
+        "APQP",
+        "Root Cause Analysis",
+        "SPC",
+        "8D",
+        "Control Plans"
+      ]
     },
     {
       "name": "Leadership & Methodology",
       "level": "Advanced",
-      "keywords": ["Agile/Scrum", "Stakeholder Management", "Training & Enablement", "Cross-Functional Collaboration", "Project Management"]
+      "keywords": [
+        "Agile/Scrum",
+        "Stakeholder Management",
+        "Training & Enablement",
+        "Cross-Functional Collaboration",
+        "Project Management"
+      ]
     }
   ],
   "languages": [
@@ -187,7 +294,11 @@
   "interests": [
     {
       "name": "Innovation & Emerging Tech",
-      "keywords": ["AI/ML", "Process Intelligence", "Sustainability in Manufacturing"]
+      "keywords": [
+        "AI/ML",
+        "Process Intelligence",
+        "Sustainability in Manufacturing"
+      ]
     }
   ]
 }
