@@ -7,6 +7,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { GoogleAnalytics } from "@/lib/googleAnalytics";
 import { useSectionTracking } from "@/hooks/useSectionTracking";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { Button } from "@/components/ui/button";
@@ -65,25 +66,30 @@ const Index = () => {
     onScrollDepth: trackScrollDepth,
   });
 
-  // Track session duration on page unload via Google Analytics
+  /**
+   * Session duration. Reported on the first `visibilitychange` to hidden
+   * rather than on `beforeunload`, which mobile Safari and Chrome routinely
+   * never fire — so on phones this metric was simply missing. Routed through
+   * GoogleAnalytics rather than window.gtag directly so it goes through the
+   * same consent and Do-Not-Track guards as every other event.
+   */
   useEffect(() => {
     const sessionStart = Date.now();
+    let reported = false;
 
-    const handleBeforeUnload = () => {
-      const duration = Math.round((Date.now() - sessionStart) / 1000);
-      // Use Google Analytics to track session duration instead of non-existent API
-      if (typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "session_duration", {
-          event_category: "engagement",
-          duration_seconds: duration,
-        });
-      }
+    const report = () => {
+      if (reported || document.visibilityState !== "hidden") return;
+      reported = true;
+      GoogleAnalytics.trackSessionDuration(Math.round((Date.now() - sessionStart) / 1000));
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", report);
+    // pagehide covers the bfcache path, where visibilitychange can be missed.
+    window.addEventListener("pagehide", report);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("visibilitychange", report);
+      window.removeEventListener("pagehide", report);
     };
   }, []);
 

@@ -1,142 +1,66 @@
-import { useEffect } from 'react';
-import { CookieManager } from '@/lib/cookieManager';
-import { GoogleAnalytics } from '@/lib/googleAnalytics';
-import { config } from '@/data/config';
+import { CookieManager } from "@/lib/cookieManager";
+import { GoogleAnalytics } from "@/lib/googleAnalytics";
 
-// Hook to track user interactions with Google Analytics
+/**
+ * Event API for the app. Initialisation, consent and the single page view all
+ * live in App, deliberately: this hook is used by eight components, and when
+ * it owned a mount effect each of them fired its own page view — nine per
+ * visit once GA's own send_page_view is counted.
+ *
+ * Each helper sends exactly one GA event. Previously each sent two or three:
+ * CookieManager.trackInteraction pushed a raw gtag event, trackEvent pushed
+ * the same action again, and the specific wrapper added a third.
+ */
 export const useAnalytics = () => {
-  useEffect(() => {
-    // Only initialize if tracking ID is provided in config
-    if (config?.analytics?.googleAnalyticsId) {
-      GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
-      GoogleAnalytics.init();
-      
-      // Check if user has given analytics consent
-      const preferences = CookieManager.getPreferences();
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.enable();
-      }
-
-      // Track page view on component mount (if consent given)
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.trackPageView();
-      }
-    }
-  }, []);
-
-  const trackEvent = (action: string, category?: string, label?: string, value?: number) => {
-    // Still track locally for basic functionality
-    CookieManager.trackInteraction(action, { category, label, value });
-    
-    // Track with Google Analytics if consent given
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackEvent(action, category, label, value);
-    }
+  const consented = () => {
+    if (!CookieManager.hasConsent()) return false;
+    return Boolean(CookieManager.getPreferences().analytics);
   };
 
-  const trackClick = (element: string, details?: Record<string, any>) => {
-    trackEvent('click', 'engagement', element);
+  /** Runs `send` only when the visitor has consented to analytics. */
+  const withConsent = (send: () => void) => {
+    if (consented()) send();
   };
 
-  const trackDownload = (fileName: string, type: string) => {
-    trackEvent('download', 'files', fileName);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackDownload(fileName, type);
-    }
-  };
+  const trackEvent = (action: string, category?: string, label?: string, value?: number) =>
+    withConsent(() => GoogleAnalytics.trackEvent(action, category, label, value));
 
-  const trackSocialClick = (platform: string, url: string) => {
-    trackEvent('social_click', 'social', platform);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackSocial(platform, 'click', url);
-    }
-  };
+  const trackClick = (element: string) => trackEvent("click", "engagement", element);
 
-  const trackLanguageChange = (from: string, to: string) => {
-    trackEvent('language_change', 'preferences');
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackLanguageChange(from, to);
-    }
-  };
+  const trackDownload = (fileName: string, type: string) =>
+    withConsent(() => GoogleAnalytics.trackDownload(fileName, type));
 
-  const trackThemeChange = (theme: string) => {
-    trackEvent('theme_change', 'preferences');
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackThemeChange(theme);
-    }
-  };
+  const trackSocialClick = (platform: string, url: string) =>
+    withConsent(() => GoogleAnalytics.trackSocial(platform, "click", url));
 
-  const trackSectionView = (sectionId: string) => {
-    trackEvent('section_view', 'engagement', sectionId);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackSectionView(sectionId);
-    }
-  };
+  const trackLanguageChange = (from: string, to: string) =>
+    withConsent(() => GoogleAnalytics.trackLanguageChange(from, to));
 
-  const trackScrollDepth = (percentage: number) => {
-    trackEvent('scroll_depth', 'engagement', `${percentage}%`, percentage);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackScrollDepth(percentage);
-    }
-  };
+  const trackThemeChange = (theme: string) =>
+    withConsent(() => GoogleAnalytics.trackThemeChange(theme));
 
-  const trackNavigation = (from: string, to: string) => {
-    trackEvent('navigation', 'navigation', `${from} to ${to}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackNavigationClick(from, to);
-    }
-  };
+  const trackSectionView = (sectionId: string) =>
+    withConsent(() => GoogleAnalytics.trackSectionView(sectionId));
 
-  const trackDetailView = (type: 'experience' | 'education', title: string) => {
-    trackEvent('detail_view', 'content', `${type}: ${title}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackDetailView(type, title);
-    }
-  };
+  const trackScrollDepth = (percentage: number) =>
+    withConsent(() => GoogleAnalytics.trackScrollDepth(percentage));
 
-  const trackFormInteraction = (action: 'focus' | 'submit' | 'success' | 'error', formName: string) => {
-    trackEvent('form_interaction', 'forms', `${formName}: ${action}`);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackFormEvent(action, formName, action === 'success');
-    }
-  };
+  const trackNavigation = (from: string, to: string) =>
+    withConsent(() => GoogleAnalytics.trackNavigationClick(from, to));
 
-  const trackExternalLink = (url: string, label: string) => {
-    trackEvent('external_link', 'outbound', label);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackOutboundLink(url, label);
-    }
-  };
+  const trackDetailView = (type: "experience" | "education", title: string) =>
+    withConsent(() => GoogleAnalytics.trackDetailView(type, title));
 
-  const trackConsentAction = (action: 'accept' | 'decline' | 'customize') => {
-    trackEvent('consent_action', 'privacy', action);
-    
-    const preferences = CookieManager.getPreferences();
-    if (CookieManager.hasConsent() && preferences.analytics) {
-      GoogleAnalytics.trackUserEngagement('cookie_consent', { action });
-    }
-  };
+  const trackFormInteraction = (
+    action: "focus" | "submit" | "success" | "error",
+    formName: string,
+  ) => withConsent(() => GoogleAnalytics.trackFormEvent(action, formName, action === "success"));
+
+  const trackExternalLink = (url: string, label: string) =>
+    withConsent(() => GoogleAnalytics.trackOutboundLink(url, label));
+
+  const trackConsentAction = (action: "accept" | "decline" | "customize") =>
+    withConsent(() => GoogleAnalytics.trackUserEngagement("cookie_consent", { action }));
 
   return {
     trackEvent,

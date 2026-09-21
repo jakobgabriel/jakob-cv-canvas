@@ -16,17 +16,21 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
+  /**
+   * The single place analytics is set up. useAnalytics used to do this too,
+   * and it is used by eight components — each one enabled GA and fired its
+   * own page view, so a returning visitor was counted nine times per load.
+   * enable() sends the one page view itself via send_page_view.
+   */
   useEffect(() => {
-    // Initialize Google Analytics with tracking ID from config
-    if (config?.analytics?.googleAnalyticsId) {
-      GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
-      GoogleAnalytics.init();
+    if (!config?.analytics?.googleAnalyticsId) return;
 
-      // If user has already consented, enable analytics
-      const preferences = CookieManager.getPreferences();
-      if (CookieManager.hasConsent() && preferences.analytics) {
-        GoogleAnalytics.enable();
-      }
+    GoogleAnalytics.setTrackingId(config.analytics.googleAnalyticsId);
+    GoogleAnalytics.init();
+
+    const preferences = CookieManager.getPreferences();
+    if (CookieManager.hasConsent() && preferences.analytics) {
+      GoogleAnalytics.enable();
     }
   }, []);
 
