@@ -5,7 +5,7 @@ import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useCalendly } from "@/hooks/useCalendly";
+import { useBooking } from "@/hooks/useBooking";
 import { LazyImage } from "@/components/LazyImage";
 import { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -24,7 +24,7 @@ const CREDENTIALS = [
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackDownload, trackExternalLink } = useAnalytics();
-  const { openCalendly } = useCalendly();
+  const { openBooking, isBookingEnabled } = useBooking();
   const resumeData = getResumeData(language);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -172,18 +172,20 @@ export const HeroSection = () => {
                 </a>
               </Button>
             )}
-            <Button
-              size="lg"
-              variant="outline"
-              className="px-8 border-border/60 hover:border-primary hover:text-primary"
-              onClick={() => {
-                openCalendly();
-                trackExternalLink("calendly", "calendly_popup");
-              }}
-            >
-              <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />
-              {t("hero.bookCall")}
-            </Button>
+            {isBookingEnabled && (
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 border-border/60 hover:border-primary hover:text-primary"
+                onClick={() => {
+                  openBooking();
+                  trackExternalLink("booking", "booking_page");
+                }}
+              >
+                <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />
+                {t("hero.bookCall")}
+              </Button>
+            )}
           </div>
 
           {/* Secondary detail — demoted to plain text so it does not compete with the CTAs */}

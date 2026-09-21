@@ -16,7 +16,7 @@ import { profileConfigs, getAvailableProfiles } from "@/lib/profileConfig";
 import { NAV_SCROLL_OFFSET } from "@/lib/constants";
 import { useEffect, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useCalendly } from "@/hooks/useCalendly";
+import { useBooking } from "@/hooks/useBooking";
 import { TimelineSkeleton } from "@/components/skeletons/TimelineSkeleton";
 import { SkillsSkeleton } from "@/components/skeletons/SkillsSkeleton";
 
@@ -33,7 +33,7 @@ const SkillsSection = lazy(() =>
 const Index = () => {
   const { language, t } = useLanguage();
   const { trackSocialClick, trackSectionView, trackScrollDepth } = useAnalytics();
-  const { openCalendly } = useCalendly();
+  const { openBooking, isBookingEnabled } = useBooking();
   const { open: openContactForm } = useContactForm();
   const [searchParams, setSearchParams] = useSearchParams();
   const resumeData = getResumeData(language);
@@ -139,17 +139,19 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground leading-relaxed">{t("cta.description")}</p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <Button
-                size="lg"
-                className="px-8 shadow-professional"
-                onClick={() => {
-                  openCalendly();
-                  trackSocialClick("calendly", "calendly_popup");
-                }}
-              >
-                <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />
-                {t("hero.bookCall")}
-              </Button>
+              {isBookingEnabled && (
+                <Button
+                  size="lg"
+                  className="px-8 shadow-professional"
+                  onClick={() => {
+                    openBooking();
+                    trackSocialClick("booking", "booking_page");
+                  }}
+                >
+                  <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />
+                  {t("hero.bookCall")}
+                </Button>
+              )}
               <Button
                 size="lg"
                 variant="outline"

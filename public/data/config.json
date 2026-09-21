@@ -4,6 +4,10 @@
       "enabled": true,
       "url": "/resume.pdf"
     },
+    "booking": {
+      "enabled": true,
+      "url": "https://cal.com/jakob-gabriel-rqzr03"
+    },
     "contactForm": {
       "enabled": true,
       "recipientEmail": "jakob.gabriel5@googlemail.com"
