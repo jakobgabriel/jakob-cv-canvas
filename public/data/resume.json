@@ -2,7 +2,7 @@
   "basics": {
     "name": "Jakob Gabriel",
     "label": "Digital Business Value Engineer",
-    "image": "/src/assets/jakob-portrait.jpeg",
+    "image": "https://jakobgabriel.github.io/jakob-cv-canvas/jakob-portrait.jpg",
     "email": "jakob.gabriel5@googlemail.com",
     "phone": "",
     "url": "",
@@ -27,6 +27,7 @@
       "name": "neuwerk",
       "position": "Digital Business Value Engineer",
       "location": "Karben, Germany",
+      "url": "https://www.nww.com/",
       "startDate": "2026-09-01",
       "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
       "highlights": [
