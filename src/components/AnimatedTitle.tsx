@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { ElementType, Fragment } from "react";
 import { cn } from "@/lib/utils";
 
 interface AnimatedTitleProps {
@@ -37,14 +37,20 @@ export const AnimatedTitle = ({
   return (
     <Tag className={cn("title-reveal", className)} aria-label={text}>
       {words.map((word, index) => (
-        <span key={`${word}-${index}`} className="title-reveal-mask" aria-hidden="true">
-          <span
-            className="title-reveal-word"
-            style={{ animationDelay: `${delay + index * stagger}s` }}
-          >
-            {word}
+        <Fragment key={`${word}-${index}`}>
+          {/* A real space between the masks, so the heading's text content
+              still reads "Jakob Gabriel" when copied or scraped. Spacing it
+              with CSS alone rendered correctly but concatenated the words. */}
+          {index > 0 ? " " : null}
+          <span className="title-reveal-mask" aria-hidden="true">
+            <span
+              className="title-reveal-word"
+              style={{ animationDelay: `${delay + index * stagger}s` }}
+            >
+              {word}
+            </span>
           </span>
-        </span>
+        </Fragment>
       ))}
     </Tag>
   );

@@ -285,13 +285,6 @@
     margin-bottom: -0.12em;
   }
 
-  /* Word spacing. The masks are inline-blocks, so the whitespace between them
-     would collapse — an em-based margin keeps the gap proportional at every
-     heading size, and avoids a literal non-breaking space in the markup. */
-  .title-reveal-mask:not(:last-child) {
-    margin-right: 0.26em;
-  }
-
   .title-reveal-word {
     display: inline-block;
     animation: title-word-in 0.85s var(--ease-reveal) backwards;
