@@ -42,7 +42,12 @@
     --gradient-primary: linear-gradient(135deg, hsl(175, 50%, 28%), hsl(175, 45%, 36%));
     --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(175, 20%, 98%));
     --gradient-accent: linear-gradient(45deg, hsl(175, 25%, 96%), hsl(175, 20%, 93%));
-    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(175, 20%, 98%) 50%, hsl(175, 25%, 96%) 100%);
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(0, 0%, 100%) 0%,
+      hsl(175, 20%, 98%) 50%,
+      hsl(175, 25%, 96%) 100%
+    );
 
     /* Teal-tinted shadows */
     --shadow-minimal: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -52,12 +57,14 @@
 
     /* Custom easing curves (emil-design-eng) */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-reveal: cubic-bezier(0.33, 1, 0.68, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
     /* Smooth transitions — specific properties only, sub-300ms, custom easing */
-    --transition-smooth: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.2s var(--ease-out), transform 0.16s var(--ease-out), opacity 0.18s ease;
-    --transition-bounce: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1);
+    --transition-smooth:
+      color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease,
+      box-shadow 0.2s var(--ease-out), transform 0.16s var(--ease-out), opacity 0.18s ease;
   }
 
   .dark {
@@ -94,7 +101,12 @@
     --gradient-primary: linear-gradient(135deg, hsl(175, 50%, 62%), hsl(175, 45%, 70%));
     --gradient-subtle: linear-gradient(180deg, hsl(185, 20%, 5%), hsl(175, 20%, 8%));
     --gradient-accent: linear-gradient(45deg, hsl(175, 20%, 10%), hsl(175, 25%, 14%));
-    --gradient-hero: linear-gradient(135deg, hsl(185, 20%, 5%) 0%, hsl(175, 18%, 7%) 50%, hsl(175, 20%, 9%) 100%);
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(185, 20%, 5%) 0%,
+      hsl(175, 18%, 7%) 50%,
+      hsl(175, 20%, 9%) 100%
+    );
     --shadow-glow: 0 0 40px hsl(175 50% 50% / 0.2);
   }
 }
@@ -103,18 +115,25 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground font-inter;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
     letter-spacing: -0.01em;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-medium tracking-tight;
     letter-spacing: -0.02em;
   }
-  
+
   /* Smooth scroll with offset for fixed nav */
   html {
     scroll-padding-top: 80px;
@@ -128,75 +147,79 @@
     background-size: 200% auto;
     animation: gradient-shift 3s ease infinite;
   }
-  
+
   @keyframes gradient-shift {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 100% center; }
+    0%,
+    100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
   }
-  
+
   /* Shadow system */
   .shadow-minimal {
     box-shadow: var(--shadow-minimal);
   }
-  
+
   .shadow-professional {
     box-shadow: var(--shadow-professional);
   }
-  
+
   .shadow-dramatic {
     box-shadow: var(--shadow-dramatic);
   }
-  
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
-  
+
   /* Transitions */
   .transition-smooth {
     transition: var(--transition-smooth);
   }
-  
-  .transition-bounce {
-    transition: var(--transition-bounce);
-  }
-  
+
   /* Backgrounds */
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
-  }
-  
   .bg-gradient-subtle {
     background: var(--gradient-subtle);
   }
-  
+
   .bg-gradient-accent {
     background: var(--gradient-accent);
   }
-  
+
   .bg-gradient-hero {
     background: var(--gradient-hero);
   }
-  
+
   /* Typography */
   .font-display {
-    font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: "ss01" 1, "ss02" 1;
+    font-family:
+      "DM Sans",
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-feature-settings:
+      "ss01" 1,
+      "ss02" 1;
   }
-  
+
   /* Performance optimizations */
   .scroll-smooth {
     scroll-behavior: smooth;
   }
-  
+
   .will-change-transform {
     will-change: transform;
   }
-  
+
   .gpu-accelerated {
     transform: translateZ(0);
     backface-visibility: hidden;
   }
-  
+
   /* Line clamping */
   .line-clamp-2 {
     display: -webkit-box;
@@ -204,41 +227,24 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  /* Hover effects — gated to real hover-capable pointers (skill: avoid sticky hover on touch) */
-  .hover-lift {
-    @apply transition-all duration-300;
-  }
 
-  @media (hover: hover) and (pointer: fine) {
-    .hover-lift:hover {
-      @apply -translate-y-1 shadow-professional;
-    }
-
-    .hover-glow:hover {
-      @apply shadow-glow;
-    }
-  }
-  
   /* Scroll reveal animations */
   .scroll-reveal {
-    opacity: 0;
-    transform: translateY(8px);
-    animation: scroll-fade-in 0.6s var(--ease-out) forwards;
+    animation: scroll-fade-in 0.5s var(--ease-out) backwards;
   }
-  
+
   @keyframes scroll-fade-in {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    from {
+      opacity: 0;
+      transform: translateY(8px);
     }
   }
-  
+
   /* Critical loading optimization */
   img {
     content-visibility: auto;
   }
-  
+
   /* Shimmer effect for skeleton loaders */
   .skeleton-shimmer {
     background: linear-gradient(
@@ -252,56 +258,163 @@
   }
 
   @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  /* Card accent border */
-  .card-accent {
-    position: relative;
-    border-left: 4px solid transparent;
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .card-accent:hover {
-      border-left-color: hsl(var(--primary));
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
     }
   }
 
-  /* Timeline connector line */
-  .timeline-connector {
-    position: relative;
+  /*
+    Word-by-word heading reveal. Each word slides up from behind its own
+    clipping mask — the mask is what makes it read as a reveal rather than a
+    fade, and translateY(100%) is relative to the word's own height so it
+    works at every heading size.
+
+    `backwards` fill supplies the hidden start state only while the animation
+    is pending; the word's resting style is the visible one, so a heading can
+    never be left stuck off-screen.
+  */
+  .title-reveal-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    /* Room for descenders and accents, which the mask would otherwise clip. */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
   }
 
-  .timeline-connector::before {
-    content: '';
-    position: absolute;
-    left: 23px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(
-      to bottom,
-      hsl(var(--primary) / 0.3),
-      hsl(var(--border))
-    );
+  .title-reveal-word {
+    display: inline-block;
+    animation: title-word-in 0.85s var(--ease-reveal) backwards;
   }
 
-  /* Progress ring for skills */
-  .progress-ring {
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
+  @keyframes title-word-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
-  .progress-ring-circle {
-    transition: stroke-dashoffset 0.6s var(--ease-out);
+  /*
+    Mobile navigation panel.
+
+    Kept mounted rather than conditionally rendered: an unmounted element has
+    nothing left to transition, so the close would always be an instant pop.
+    `visibility` flips immediately on open and only after the fade on close,
+    which also keeps the links out of the tab order while the menu is shut.
+
+    Enter 200ms / exit 150ms — the system should get out of the way faster
+    than it arrives.
+  */
+  .mobile-menu {
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+    transition:
+      opacity 0.15s ease-out,
+      transform 0.15s var(--ease-out),
+      visibility 0s linear 0.15s;
+  }
+
+  .mobile-menu[data-state="open"] {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.2s var(--ease-out),
+      visibility 0s;
+  }
+
+  /* Transitions, not keyframes: the menu can be toggled faster than it
+     animates, and transitions retarget instead of restarting. */
+  .mobile-menu-item {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.18s ease-out,
+      transform 0.18s var(--ease-out);
+  }
+
+  .mobile-menu[data-state="open"] .mobile-menu-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger on the way in only — on close everything leaves together. */
+  .mobile-menu[data-state="open"] .mobile-menu-item:nth-child(1) {
+    transition-delay: 0.03s;
+  }
+  .mobile-menu[data-state="open"] .mobile-menu-item:nth-child(2) {
+    transition-delay: 0.06s;
+  }
+  .mobile-menu[data-state="open"] .mobile-menu-item:nth-child(3) {
+    transition-delay: 0.09s;
+  }
+
+  /*
+    A card that has opened its detail panel stays marked until the panel
+    closes, so the panel is visibly anchored to the thing that was clicked
+    and the eye lands back on it afterwards.
+  */
+  .pressable[data-open] {
+    border-color: hsl(var(--primary) / 0.55);
+    box-shadow: var(--shadow-professional);
+    transform: translateY(-2px);
+  }
+
+  /*
+    Detail panel body. The panel slides in first and then fills, so it reads
+    as a surface arriving rather than one rigid slab. `backwards` keeps the
+    resting style visible, so content can never be stranded hidden.
+  */
+  .drawer-content > * {
+    animation: fade-in-up 0.34s var(--ease-out) backwards;
+  }
+
+  .drawer-content > *:nth-child(1) {
+    animation-delay: 0.14s;
+  }
+  .drawer-content > *:nth-child(2) {
+    animation-delay: 0.19s;
+  }
+  .drawer-content > *:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  .drawer-content > *:nth-child(4) {
+    animation-delay: 0.29s;
+  }
+  .drawer-content > *:nth-child(5) {
+    animation-delay: 0.34s;
+  }
+  .drawer-content > *:nth-child(n + 6) {
+    animation-delay: 0.38s;
   }
 
   /* Stagger animation classes */
   .stagger-item {
-    opacity: 0;
-    animation: fade-in-up 0.6s var(--ease-out) forwards;
+    animation: fade-in-up 0.5s var(--ease-out) backwards;
+  }
+
+  /*
+    Scroll-triggered reveal. The container gets `data-revealed` from
+    useRevealOnScroll the first time it enters the viewport; until then the
+    children hold the animation at its first frame with `animation-play-state`.
+
+    Crucially the resting style is the visible one — `backwards` fill supplies
+    the hidden from-state only while the animation is pending. If the observer
+    never runs, nothing is paused and the content simply shows.
+  */
+  [data-reveal] > * {
+    animation: fade-in-up 0.5s var(--ease-out) backwards paused;
+  }
+
+  [data-reveal][data-revealed] > * {
+    animation-play-state: running;
   }
 
   @keyframes fade-in-up {
@@ -315,9 +428,27 @@
     }
   }
 
-  /* Magnetic button effect */
-  .magnetic-btn {
-    transition: transform 0.2s var(--ease-out);
+  /* Press feedback for card-sized pressable surfaces. Subtler than the 0.97
+     used on buttons — a 300px card scaling that far reads as a jump. */
+  .pressable {
+    transition:
+      transform 0.16s var(--ease-out),
+      box-shadow 0.2s var(--ease-out),
+      border-color 0.2s ease;
+  }
+
+  .pressable:active {
+    transform: scale(0.99);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pressable:hover {
+      transform: translateY(-2px);
+    }
+
+    .pressable:active {
+      transform: scale(0.99);
+    }
   }
 
   /* Back to top button styles */
@@ -326,7 +457,10 @@
     opacity: 0;
     transform: translateY(16px);
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s var(--ease-out),
+      box-shadow 0.2s var(--ease-out);
   }
 
   .back-to-top.visible {
@@ -348,8 +482,13 @@
   }
 
   @keyframes bounce-gentle {
-    0%, 100% { transform: translateY(0) translateX(-50%); }
-    50% { transform: translateY(-8px) translateX(-50%); }
+    0%,
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    50% {
+      transform: translateY(-8px) translateX(-50%);
+    }
   }
 
   /* Parallax blob animation */
@@ -360,8 +499,12 @@
 
   /* Reduce motion for accessibility — fewer/gentler, not zero (keep opacity & color) */
   @keyframes reduced-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -386,6 +529,9 @@
     }
 
     /* Entrance reveals: keep a gentle opacity fade, drop the movement */
+    .title-reveal-word,
+    .drawer-content > *,
+    [data-reveal] > *,
     .scroll-reveal,
     .stagger-item,
     .animate-fade-in,
@@ -394,7 +540,26 @@
     .animate-scale-in,
     .animate-bounce-in {
       animation: reduced-fade-in 0.3s ease forwards !important;
+      animation-play-state: running !important;
       transform: none !important;
+    }
+
+    .pressable:hover,
+    .pressable:active,
+    .pressable[data-open] {
+      transform: none;
+    }
+
+    /* Menu still fades, but nothing slides. */
+    .mobile-menu,
+    .mobile-menu-item {
+      transform: none !important;
+    }
+
+    /* The mask only exists to clip the slide; without motion it can only
+       cause trouble (clipped descenders), so neutralise it. */
+    .title-reveal-mask {
+      overflow: visible;
     }
   }
 }

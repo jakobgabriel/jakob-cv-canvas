@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export const ScrollProgress = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+
+    const measure = () => {
+      frame = 0;
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress = (window.scrollY / totalHeight) * 100;
-      setProgress(scrollProgress);
+      // A page shorter than the viewport has nowhere to scroll — guard the
+      // divide so the bar does not render NaN.
+      setProgress(totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // One layout read per frame rather than one per scroll event.
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
@@ -20,7 +34,7 @@ export const ScrollProgress = () => {
         className="h-full w-full origin-left bg-gradient-to-r from-primary via-primary-glow to-primary shadow-glow"
         style={{
           transform: `scaleX(${Math.min(Math.max(progress, 0), 100) / 100})`,
-          transition: 'transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)',
+          transition: "transform 0.15s cubic-bezier(0.23, 1, 0.32, 1)",
         }}
       />
     </div>

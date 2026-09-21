@@ -33,7 +33,12 @@ const App: React.FC = () => {
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <LanguageDetector>
-        <TooltipProvider>
+        {/*
+          delayDuration keeps an accidental hover from firing a tooltip;
+          skipDelayDuration then lets every neighbouring tooltip open
+          instantly while the user is still scanning the same row.
+        */}
+        <TooltipProvider delayDuration={400} skipDelayDuration={800}>
           <ContactFormProvider>
             <ErrorBoundary>
               <HashRouter>
