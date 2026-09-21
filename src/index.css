@@ -280,6 +280,38 @@
     is pending; the word's resting style is the visible one, so a heading can
     never be left stuck off-screen.
   */
+  /* The caret for the rotating headline. It holds still while characters are
+     appearing or disappearing — a caret that blinks through its own typing
+     reads as two competing rhythms — and blinks only during the pause. */
+  .type-caret {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: -0.1em;
+    background-color: hsl(var(--muted-foreground));
+    animation: caret-blink 1.06s steps(1, end) infinite;
+  }
+
+  .type-caret[data-phase="typing"],
+  .type-caret[data-phase="deleting"] {
+    animation: none;
+  }
+
+  @keyframes caret-blink {
+    0%,
+    45% {
+      opacity: 1;
+    }
+    50%,
+    95% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .title-reveal-mask {
     display: inline-block;
     overflow: hidden;
@@ -522,6 +554,7 @@
     }
 
     /* Stop decorative / looping motion entirely */
+    .type-caret,
     .animate-float,
     .animate-pulse-slow,
     .animate-bounce-gentle,

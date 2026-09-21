@@ -2,6 +2,12 @@
 export interface JsonResumeBasics {
   name: string;
   label: string;
+  /**
+   * Optional rotation for the headline. `label` remains the canonical single
+   * line — the accessible text, the reduced-motion text, and what any other
+   * consumer of this file reads.
+   */
+  labels?: string[];
   image: string;
   email: string;
   phone: string;
