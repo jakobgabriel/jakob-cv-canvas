@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   calculateDuration,
   calculateDurationGerman,
+  effectiveEndDate,
   formatDateRange,
   formatMonthYear,
   hasStarted,
@@ -27,6 +28,10 @@ describe("calculateDuration", () => {
   it("formats years and months together", () => {
     expect(calculateDuration("2020-01-01", "2021-04-01")).toBe("1 year, 3 months");
   });
+
+  it('does not render a brand-new role as "0 months"', () => {
+    expect(calculateDuration("2026-12-01", "2026-12-05")).toBe("Less than a month");
+  });
 });
 
 describe("calculateDurationGerman", () => {
@@ -40,6 +45,10 @@ describe("calculateDurationGerman", () => {
 
   it("formats years and months together", () => {
     expect(calculateDurationGerman("2020-01-01", "2021-04-01")).toBe("1 Jahr, 3 Monate");
+  });
+
+  it("does not render a brand-new role as 0 Monate", () => {
+    expect(calculateDurationGerman("2026-12-01", "2026-12-05")).toBe("Weniger als 1 Monat");
   });
 });
 
@@ -77,6 +86,43 @@ describe("formatDateRange", () => {
     expect(formatDateRange("2026-02-01")).toBe("Feb 2026 — Present");
     expect(formatDateRange("2026-02-01", undefined, "de")).toBe("Feb 2026 — Heute");
   });
+
+  it("still reads as ongoing while the end date is in the future", () => {
+    const now = new Date("2026-09-21T12:00:00Z");
+    expect(formatDateRange("2026-09-01", "2026-11-30", "en", now)).toBe("Sep 2026 — Present");
+    expect(formatDateRange("2026-09-01", "2026-11-30", "de", now)).toBe("Sep 2026 — Heute");
+  });
+
+  it("closes itself once the end date has passed", () => {
+    const now = new Date("2026-12-01T12:00:00Z");
+    expect(formatDateRange("2026-09-01", "2026-11-30", "en", now)).toBe("Sep 2026 — Nov 2026");
+  });
+});
+
+describe("effectiveEndDate", () => {
+  const now = new Date("2026-09-21T12:00:00Z");
+
+  it("drops an end date that has not arrived, so the role counts as ongoing", () => {
+    expect(effectiveEndDate("2026-11-30", now)).toBeUndefined();
+  });
+
+  it("keeps an end date that has passed", () => {
+    expect(effectiveEndDate("2026-08-31", now)).toBe("2026-08-31");
+  });
+
+  it("counts the end day itself as still ongoing", () => {
+    expect(effectiveEndDate("2026-09-21", now)).toBeUndefined();
+    expect(effectiveEndDate("2026-09-21", new Date("2026-09-22T00:30:00"))).toBe("2026-09-21");
+  });
+
+  it("treats no end date and the literal present as ongoing", () => {
+    expect(effectiveEndDate(undefined, now)).toBeUndefined();
+    expect(effectiveEndDate("present", now)).toBeUndefined();
+  });
+
+  it("passes an unparseable value through for the formatter to fall back on", () => {
+    expect(effectiveEndDate("not-a-date", now)).toBe("not-a-date");
+  });
 });
 
 describe("hasStarted", () => {
@@ -97,22 +143,5 @@ describe("hasStarted", () => {
   it("treats a missing or unparseable date as started, rather than hiding the role", () => {
     expect(hasStarted(undefined, now)).toBe(true);
     expect(hasStarted("not-a-date", now)).toBe(true);
-  });
-});
-
-describe("formatDateRange for a role that has not begun", () => {
-  const now = new Date("2026-09-21T12:00:00Z");
-
-  it("says when it starts instead of claiming it is current", () => {
-    expect(formatDateRange("2026-12-01", undefined, "en", now)).toBe("Starting Dec 2026");
-    expect(formatDateRange("2026-12-01", undefined, "de", now)).toBe("Ab Dez 2026");
-  });
-
-  it("still renders a normal range once it has begun", () => {
-    expect(formatDateRange("2026-09-01", undefined, "en", now)).toBe("Sep 2026 — Present");
-  });
-
-  it("is unaffected when an endDate is present", () => {
-    expect(formatDateRange("2026-12-01", "2027-06-30", "en", now)).toBe("Dec 2026 — Jun 2027");
   });
 });

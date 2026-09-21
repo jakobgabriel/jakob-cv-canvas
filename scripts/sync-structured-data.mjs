@@ -8,9 +8,10 @@
  * sit there telling search engines the wrong current employer indefinitely.
  * That is exactly what happened across the OESL to neuwerk change.
  *
- * "Current" means: no endDate, and a startDate that has already passed. A role
- * added ahead of its start date therefore does not become the advertised
- * employer until the day it begins.
+ * "Current" means: a startDate that has already passed and no endDate that
+ * has. A role added ahead of its start date therefore does not become the
+ * advertised employer until the day it begins, and the outgoing role stays the
+ * advertised one until its own end date arrives.
  *
  * Runs on prebuild. Pass --check to fail instead of rewriting, for CI.
  */
@@ -34,8 +35,16 @@ const started = (entry) => {
   return Number.isNaN(d.getTime()) ? true : d <= now;
 };
 
+// An end date still in the future belongs to a role the person is still in —
+// the same rule the site uses to render it as "Present".
+const ended = (entry) => {
+  if (!entry.endDate) return false;
+  const d = new Date(entry.endDate);
+  return Number.isNaN(d.getTime()) ? true : d <= now;
+};
+
 const current = (resume.work ?? [])
-  .filter((w) => !w.endDate && started(w))
+  .filter((w) => !ended(w) && started(w))
   .sort((a, b) => String(b.startDate).localeCompare(String(a.startDate)))[0];
 
 if (!current) {

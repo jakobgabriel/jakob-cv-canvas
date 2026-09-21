@@ -19,6 +19,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   calculateDuration,
   calculateDurationGerman,
+  effectiveEndDate,
   formatDateRange,
   hasStarted,
 } from "@/lib/dateUtils";
@@ -120,7 +121,11 @@ export const TimelineSection = () => {
     return <div className="py-24 text-center">{t("loading")}</div>;
   }
 
-  const { work: experiences, education } = resumeData;
+  const { work, education } = resumeData;
+  // A role that has not begun is not shown at all. It appears on its own, on
+  // the day it starts, without anything needing to be edited or redeployed —
+  // the filter runs at render time in the browser.
+  const experiences = work.filter((entry: { startDate?: string }) => hasStarted(entry.startDate));
 
   return (
     <section className="py-20 relative bg-gradient-subtle" id="experience">
@@ -186,11 +191,6 @@ export const TimelineSection = () => {
                             <span className="text-xs font-medium tracking-wide">
                               {formatDateRange(exp.startDate, exp.endDate, language)}
                             </span>
-                            {!hasStarted(exp.startDate) && (
-                              <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em]">
-                                {t("timeline.upcoming")}
-                              </span>
-                            )}
                           </div>
                           <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-colors duration-200">
                             {exp.position}
@@ -366,22 +366,20 @@ export const TimelineSection = () => {
                         {formatDateRange(selectedItem.startDate, selectedItem.endDate, language)}
                       </span>
                     </div>
-                    {hasStarted(selectedItem.startDate) && (
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm">
-                          {t("language") === "de"
-                            ? calculateDurationGerman(
-                                selectedItem.startDate,
-                                selectedItem.endDate || "present",
-                              )
-                            : calculateDuration(
-                                selectedItem.startDate,
-                                selectedItem.endDate || "present",
-                              )}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Clock className="w-4 h-4" />
+                      <span className="text-sm">
+                        {t("language") === "de"
+                          ? calculateDurationGerman(
+                              selectedItem.startDate,
+                              effectiveEndDate(selectedItem.endDate) || "present",
+                            )
+                          : calculateDuration(
+                              selectedItem.startDate,
+                              effectiveEndDate(selectedItem.endDate) || "present",
+                            )}
+                      </span>
+                    </div>
                   </div>
 
                   {"score" in selectedItem && selectedItem.score && (
@@ -408,20 +406,22 @@ export const TimelineSection = () => {
 
                   <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
 
-                  <div>
-                    <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
-                      <Award className="w-4 h-4 text-primary" />
-                      {t("timeline.keyAchievements")}
-                    </h4>
-                    <ul className="space-y-2 text-muted-foreground">
-                      {selectedItem.highlights?.map((highlight: string, i: number) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="text-primary mt-1 text-xs">•</span>
-                          <span className="leading-relaxed text-sm">{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {selectedItem.highlights && selectedItem.highlights.length > 0 && (
+                    <div>
+                      <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                        <Award className="w-4 h-4 text-primary" />
+                        {t("timeline.keyAchievements")}
+                      </h4>
+                      <ul className="space-y-2 text-muted-foreground">
+                        {selectedItem.highlights.map((highlight: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="text-primary mt-1 text-xs">•</span>
+                            <span className="leading-relaxed text-sm">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {"courses" in selectedItem &&
                     selectedItem.courses &&
