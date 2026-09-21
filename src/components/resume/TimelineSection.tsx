@@ -196,9 +196,11 @@ export const TimelineSection = () => {
                             {exp.position}
                           </h4>
                           <div className="text-muted-foreground font-medium mb-2">{exp.name}</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                            {exp.summary}
-                          </p>
+                          {exp.summary && (
+                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                              {exp.summary}
+                            </p>
+                          )}
                         </div>
                         <ArrowRight
                           className="w-4 h-4 shrink-0 mt-1 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-[color,transform] duration-200"
@@ -404,7 +406,9 @@ export const TimelineSection = () => {
                     </div>
                   )}
 
-                  <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
+                  {selectedItem.summary && (
+                    <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
+                  )}
 
                   {selectedItem.highlights && selectedItem.highlights.length > 0 && (
                     <div>
