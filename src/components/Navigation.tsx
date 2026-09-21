@@ -170,37 +170,41 @@ export const Navigation = ({ className }: NavigationProps) => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div
-            id="mobile-navigation"
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50"
-          >
-            <div className="container mx-auto px-6 py-4">
-              <div className="flex flex-col space-y-1">
-                {navigationItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Button
-                      key={item.id}
-                      variant="ghost"
-                      onClick={() => scrollToSection(item.id)}
-                      className={cn(
-                        "flex items-center gap-3 justify-start px-4 py-3 w-full transition-smooth text-base",
-                        activeSection === item.id
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
-                      )}
-                    >
-                      <Icon className="w-5 h-5" />
-                      <span>{item.label}</span>
-                    </Button>
-                  );
-                })}
-              </div>
+        {/*
+          Mobile Navigation — always mounted so it can animate closed as well
+          as open, and positioned absolutely so it overlays the page instead
+          of stretching the fixed bar's own background box.
+        */}
+        <div
+          id="mobile-navigation"
+          data-state={isOpen ? "open" : "closed"}
+          className="mobile-menu md:hidden absolute top-full inset-x-0 bg-background/95 backdrop-blur-lg border-b border-border/50"
+        >
+          <div className="container mx-auto px-6 py-4">
+            <div className="flex flex-col space-y-1">
+              {navigationItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Button
+                    key={item.id}
+                    variant="ghost"
+                    tabIndex={isOpen ? undefined : -1}
+                    onClick={() => scrollToSection(item.id)}
+                    className={cn(
+                      "mobile-menu-item flex items-center gap-3 justify-start px-4 py-3 w-full transition-smooth text-base",
+                      activeSection === item.id
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "hover:bg-muted/50 text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </Button>
+                );
+              })}
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Floating Navigation Indicators (Desktop) */}

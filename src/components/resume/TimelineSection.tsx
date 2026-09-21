@@ -29,6 +29,7 @@ export const TimelineSection = () => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const headingRef = useRevealOnScroll<HTMLDivElement>();
   const experienceListRef = useRevealOnScroll<HTMLOListElement>();
   const educationListRef = useRevealOnScroll<HTMLOListElement>();
 
@@ -119,11 +120,16 @@ export const TimelineSection = () => {
   return (
     <section className="py-20 relative bg-gradient-subtle" id="experience">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        {/* The heading reveals with the section instead of sitting already
+            landed while the cards animate beneath it. */}
+        <div ref={headingRef} data-reveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
             {t("timeline.professionalJourney")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            style={{ animationDelay: "0.06s" }}
+          >
             {t("timeline.journeyDescription")}
           </p>
         </div>
@@ -144,13 +150,18 @@ export const TimelineSection = () => {
               className="relative ml-[5px] space-y-4 border-l border-border pl-7"
             >
               {experiences.map((exp, index) => (
-                <li key={index} className="relative" style={{ animationDelay: `${index * 0.06}s` }}>
+                <li
+                  key={index}
+                  className="relative"
+                  style={{ animationDelay: `${0.12 + index * 0.06}s` }}
+                >
                   <span
                     className="absolute -left-[33px] top-7 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background"
                     aria-hidden="true"
                   />
                   <Card
                     className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    data-open={isDetailsVisible && selectedItem === exp ? "" : undefined}
                     onClick={(e) => handleItemClick(exp, e)}
                     role="button"
                     tabIndex={0}
@@ -206,13 +217,18 @@ export const TimelineSection = () => {
               className="relative ml-[5px] space-y-4 border-l border-border pl-7"
             >
               {education.map((edu, index) => (
-                <li key={index} className="relative" style={{ animationDelay: `${index * 0.06}s` }}>
+                <li
+                  key={index}
+                  className="relative"
+                  style={{ animationDelay: `${0.12 + index * 0.06}s` }}
+                >
                   <span
                     className="absolute -left-[33px] top-7 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background"
                     aria-hidden="true"
                   />
                   <Card
                     className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    data-open={isDetailsVisible && selectedItem === edu ? "" : undefined}
                     onClick={(e) => handleItemClick(edu, e)}
                     role="button"
                     tabIndex={0}
@@ -332,7 +348,7 @@ export const TimelineSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-6">
+                <div className="p-6 space-y-6 drawer-content">
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-primary">
                       <Calendar className="w-4 h-4" />

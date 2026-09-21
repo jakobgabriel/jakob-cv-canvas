@@ -9,6 +9,7 @@ import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 export const SkillsSection = () => {
   const { language, t } = useLanguage();
   const resumeData = getResumeData(language);
+  const headingRef = useRevealOnScroll<HTMLDivElement>();
   const skillGridRef = useRevealOnScroll<HTMLDivElement>();
   const detailGridRef = useRevealOnScroll<HTMLDivElement>();
 
@@ -21,11 +22,14 @@ export const SkillsSection = () => {
   return (
     <section className="py-20 relative">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <div ref={headingRef} data-reveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-medium tracking-tight mb-4">
             {t("skills.skillsAndExpertise")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            style={{ animationDelay: "0.06s" }}
+          >
             {t("skills.skillsDescription")}
           </p>
         </div>
@@ -45,7 +49,7 @@ export const SkillsSection = () => {
               <Card
                 key={skill.name}
                 className="p-5 h-full bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:-translate-y-0.5 hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-200"
-                style={{ animationDelay: `${index * 0.06}s` }}
+                style={{ animationDelay: `${0.12 + index * 0.06}s` }}
               >
                 <h3 className="text-base font-medium leading-snug">{skill.name}</h3>
                 <p className="mt-1 text-xs uppercase tracking-[0.08em] text-primary">
