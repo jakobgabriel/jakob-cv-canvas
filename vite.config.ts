@@ -54,9 +54,9 @@ export default defineConfig(({ mode }) => ({
         ],
       },
       manifest: {
-        name: 'Jakob Gabriel - Digital Business Value Engineer',
+        name: 'Jakob Gabriel - Digital Transformation & IT/OT in Manufacturing',
         short_name: 'Jakob Gabriel',
-        description: 'Digital Business Value Engineer — AI-Driven Process Optimization, Digital Transformation, Smart Factory & Industry 4.0',
+        description: 'Digital Transformation & IT/OT in Manufacturing — smart factory, Industry 4.0 and AI-driven process optimization',
         theme_color: '#0d4f4a',
         background_color: '#ffffff',
         display: 'standalone',

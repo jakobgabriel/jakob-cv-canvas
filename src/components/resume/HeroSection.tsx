@@ -11,6 +11,7 @@ import { LazyImage } from "@/components/LazyImage";
 import { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
+import { TypedLabel } from "@/components/TypedLabel";
 
 /**
  * Three claims, strongest first. This replaces the flat row of five equally
@@ -122,12 +123,12 @@ export const HeroSection = () => {
             />
             {/* Starts as the last word of the name lands, so the two read as
                 one gesture rather than two separate animations. */}
-            <h2
+            <TypedLabel
+              phrases={basics.labels ?? [basics.label]}
+              fallback={basics.label}
               className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal animate-fade-in"
               style={{ animationDelay: "0.35s" }}
-            >
-              {basics.label}
-            </h2>
+            />
           </div>
 
           {/* Credentials strip — the three things worth knowing before scrolling */}

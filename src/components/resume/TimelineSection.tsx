@@ -196,9 +196,11 @@ export const TimelineSection = () => {
                             {exp.position}
                           </h4>
                           <div className="text-muted-foreground font-medium mb-2">{exp.name}</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                            {exp.summary}
-                          </p>
+                          {exp.summary && (
+                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                              {exp.summary}
+                            </p>
+                          )}
                         </div>
                         <ArrowRight
                           className="w-4 h-4 shrink-0 mt-1 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-[color,transform] duration-200"
@@ -404,24 +406,44 @@ export const TimelineSection = () => {
                     </div>
                   )}
 
-                  <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
-
-                  {selectedItem.highlights && selectedItem.highlights.length > 0 && (
-                    <div>
-                      <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
-                        <Award className="w-4 h-4 text-primary" />
-                        {t("timeline.keyAchievements")}
-                      </h4>
-                      <ul className="space-y-2 text-muted-foreground">
-                        {selectedItem.highlights.map((highlight: string, i: number) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-primary mt-1 text-xs">•</span>
-                            <span className="leading-relaxed text-sm">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {selectedItem.summary && (
+                    <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
                   )}
+
+                  {(() => {
+                    // A role that has only just begun has scope, not results.
+                    // Listing that scope under "Key Achievements" would claim
+                    // things nobody has done yet, so the heading follows the
+                    // data: highlights are achievements, responsibilities are
+                    // the brief.
+                    const achievements = selectedItem.highlights ?? [];
+                    const responsibilities =
+                      "responsibilities" in selectedItem
+                        ? ((selectedItem.responsibilities as string[] | undefined) ?? [])
+                        : [];
+                    const items = achievements.length > 0 ? achievements : responsibilities;
+                    if (items.length === 0) return null;
+                    const heading =
+                      achievements.length > 0
+                        ? t("timeline.keyAchievements")
+                        : t("timeline.responsibilities");
+                    return (
+                      <div>
+                        <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                          <Award className="w-4 h-4 text-primary" />
+                          {heading}
+                        </h4>
+                        <ul className="space-y-2 text-muted-foreground">
+                          {items.map((highlight: string, i: number) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="text-primary mt-1 text-xs">•</span>
+                              <span className="leading-relaxed text-sm">{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })()}
 
                   {"courses" in selectedItem &&
                     selectedItem.courses &&
