@@ -4,6 +4,7 @@ import {
   calculateDurationGerman,
   formatDateRange,
   formatMonthYear,
+  hasStarted,
 } from "./dateUtils";
 
 describe("calculateDuration", () => {
@@ -75,5 +76,43 @@ describe("formatDateRange", () => {
   it("renders an open-ended range as ongoing", () => {
     expect(formatDateRange("2026-02-01")).toBe("Feb 2026 — Present");
     expect(formatDateRange("2026-02-01", undefined, "de")).toBe("Feb 2026 — Heute");
+  });
+});
+
+describe("hasStarted", () => {
+  const now = new Date("2026-09-21T12:00:00Z");
+
+  it("is true for a date in the past", () => {
+    expect(hasStarted("2026-09-01", now)).toBe(true);
+  });
+
+  it("is false for a date in the future", () => {
+    expect(hasStarted("2026-12-01", now)).toBe(false);
+  });
+
+  it("treats the start day itself as started", () => {
+    expect(hasStarted("2026-09-21", now)).toBe(true);
+  });
+
+  it("treats a missing or unparseable date as started, rather than hiding the role", () => {
+    expect(hasStarted(undefined, now)).toBe(true);
+    expect(hasStarted("not-a-date", now)).toBe(true);
+  });
+});
+
+describe("formatDateRange for a role that has not begun", () => {
+  const now = new Date("2026-09-21T12:00:00Z");
+
+  it("says when it starts instead of claiming it is current", () => {
+    expect(formatDateRange("2026-12-01", undefined, "en", now)).toBe("Starting Dec 2026");
+    expect(formatDateRange("2026-12-01", undefined, "de", now)).toBe("Ab Dez 2026");
+  });
+
+  it("still renders a normal range once it has begun", () => {
+    expect(formatDateRange("2026-09-01", undefined, "en", now)).toBe("Sep 2026 — Present");
+  });
+
+  it("is unaffected when an endDate is present", () => {
+    expect(formatDateRange("2026-12-01", "2027-06-30", "en", now)).toBe("Dec 2026 — Jun 2027");
   });
 });

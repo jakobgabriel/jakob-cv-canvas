@@ -67,6 +67,24 @@ const MONTHS: Record<string, string[]> = {
 
 const PRESENT: Record<string, string> = { en: "Present", de: "Heute" };
 
+const STARTING: Record<string, string> = { en: "Starting", de: "Ab" };
+
+/**
+ * Whether a role has actually begun. A position added before its start date
+ * would otherwise render as "Dec 2026 — Present" and, in the detail panel, as
+ * a negative duration ("-1 years, -2 months") — calculateDuration simply
+ * subtracts, with no guard for a start in the future.
+ *
+ * An unparseable date counts as started: better to show a role than to hide
+ * one behind a date typo.
+ */
+export const hasStarted = (startDate?: string, now: Date = new Date()): boolean => {
+  if (!startDate) return true;
+  const parsed = parseISO(startDate);
+  if (Number.isNaN(parsed.getTime())) return true;
+  return parsed.getTime() <= now.getTime();
+};
+
 /**
  * Renders an ISO date as "Feb 2026". Falls back to the raw string for anything
  * unparseable so a malformed entry degrades to text rather than "Invalid Date".
@@ -82,6 +100,19 @@ export const formatMonthYear = (date?: string, language = "en"): string => {
   return `${months[parsed.getMonth()]} ${parsed.getFullYear()}`;
 };
 
-/** Renders a start/end pair as "Feb 2026 — Present". */
-export const formatDateRange = (startDate: string, endDate?: string, language = "en"): string =>
-  `${formatMonthYear(startDate, language)} — ${formatMonthYear(endDate, language)}`;
+/**
+ * Renders a start/end pair as "Feb 2026 — Present", or "Starting Dec 2026"
+ * for an open-ended role whose start date has not arrived yet.
+ */
+export const formatDateRange = (
+  startDate: string,
+  endDate?: string,
+  language = "en",
+  now: Date = new Date(),
+): string => {
+  if (!endDate && !hasStarted(startDate, now)) {
+    const prefix = STARTING[language] ?? STARTING.en;
+    return `${prefix} ${formatMonthYear(startDate, language)}`;
+  }
+  return `${formatMonthYear(startDate, language)} — ${formatMonthYear(endDate, language)}`;
+};

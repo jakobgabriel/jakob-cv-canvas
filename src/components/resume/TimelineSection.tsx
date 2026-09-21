@@ -16,7 +16,12 @@ import {
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { calculateDuration, calculateDurationGerman, formatDateRange } from "@/lib/dateUtils";
+import {
+  calculateDuration,
+  calculateDurationGerman,
+  formatDateRange,
+  hasStarted,
+} from "@/lib/dateUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -181,6 +186,11 @@ export const TimelineSection = () => {
                             <span className="text-xs font-medium tracking-wide">
                               {formatDateRange(exp.startDate, exp.endDate, language)}
                             </span>
+                            {!hasStarted(exp.startDate) && (
+                              <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em]">
+                                {t("timeline.upcoming")}
+                              </span>
+                            )}
                           </div>
                           <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-colors duration-200">
                             {exp.position}
@@ -356,20 +366,22 @@ export const TimelineSection = () => {
                         {formatDateRange(selectedItem.startDate, selectedItem.endDate, language)}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Clock className="w-4 h-4" />
-                      <span className="text-sm">
-                        {t("language") === "de"
-                          ? calculateDurationGerman(
-                              selectedItem.startDate,
-                              selectedItem.endDate || "present",
-                            )
-                          : calculateDuration(
-                              selectedItem.startDate,
-                              selectedItem.endDate || "present",
-                            )}
-                      </span>
-                    </div>
+                    {hasStarted(selectedItem.startDate) && (
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Clock className="w-4 h-4" />
+                        <span className="text-sm">
+                          {t("language") === "de"
+                            ? calculateDurationGerman(
+                                selectedItem.startDate,
+                                selectedItem.endDate || "present",
+                              )
+                            : calculateDuration(
+                                selectedItem.startDate,
+                                selectedItem.endDate || "present",
+                              )}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {"score" in selectedItem && selectedItem.score && (
