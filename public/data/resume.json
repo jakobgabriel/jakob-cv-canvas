@@ -24,11 +24,34 @@
   },
   "work": [
     {
-      "name": "REHAU AG",
-      "position": "Manager IT/OT Applications",
+      "name": "REHAU Industries SE & Co. KG",
+      "position": "Manager IT/OT Integration & Applications",
+      "location": "Rehau, Germany",
       "startDate": "2026-12-01",
-      "summary": "",
-      "highlights": []
+      "summary": "Owning the IT system landscape for REHAU's global Window Solutions plants and driving IT/OT integration from data architecture through to AI applications on the shopfloor, while leading the international Operations IT team.",
+      "responsibilities": [
+        "Own and continuously evolve the IT system landscape across REHAU Window Solutions plants worldwide.",
+        "Drive the IT/OT integration roadmap around the Unified Namespace, from strategy through to scaled rollout in the plants.",
+        "Build an AI framework for production operations and coordinate its implementation from concept to go-live.",
+        "Lead the international Operations IT support team.",
+        "Manage digitalization innovation projects in manufacturing: machine learning, AI-assisted operator systems, and (semi-)autonomous control loops.",
+        "Evaluate and pilot new technologies, and decide what actually goes into rollout.",
+        "Act as the central interface between IT, Operations Management and the international plants, bringing stakeholders onto a common course."
+      ],
+      "keywords": [
+        "IT/OT Integration",
+        "Unified Namespace",
+        "MES",
+        "AI in Production",
+        "Team Leadership",
+        "Technology Evaluation",
+        "Manufacturing Digitalization"
+      ],
+      "industries": [
+        "Building Solutions",
+        "Polymer Processing",
+        "Manufacturing"
+      ]
     },
     {
       "name": "neuwerk",

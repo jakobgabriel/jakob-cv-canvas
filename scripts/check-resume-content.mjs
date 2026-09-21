@@ -44,7 +44,11 @@ const daysUntil = (startDate) => {
 const missing = (entry) => {
   const gaps = [];
   if (!entry.summary || !entry.summary.trim()) gaps.push("summary");
-  if (!entry.highlights || entry.highlights.length === 0) gaps.push("highlights");
+  // Either is a description. A role that has only just begun lists the brief
+  // under responsibilities; achievements come later, and highlights replace
+  // them in the drawer when they do.
+  const bullets = (entry.highlights ?? []).length + (entry.responsibilities ?? []).length;
+  if (bullets === 0) gaps.push("highlights or responsibilities");
   return gaps;
 };
 
