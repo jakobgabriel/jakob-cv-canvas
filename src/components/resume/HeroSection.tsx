@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FileText, MapPin, Globe, ChevronDown, CalendarDays } from "lucide-react";
-import jakobPortrait from "@/assets/jakob-portrait.jpeg";
+import portrait288 from "@/assets/jakob-portrait-288.webp";
+import portrait432 from "@/assets/jakob-portrait-432.webp";
 import { config } from "@/data/config";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -99,7 +100,11 @@ export const HeroSection = () => {
           <div className="flex justify-center">
             <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-professional border border-border/50">
               <LazyImage
-                src={jakobPortrait}
+                src={portrait288}
+                /* The slot is 96/128/144px, so 288 covers 2x and 432 covers 3x.
+                   The original was an 800x800 JPEG — 109 KB for a 144px frame. */
+                srcSet={`${portrait288} 288w, ${portrait432} 432w`}
+                sizes="(min-width: 1024px) 144px, (min-width: 640px) 128px, 96px"
                 alt={`${basics.name} - Professional headshot`}
                 className="w-full h-full object-cover gpu-accelerated rounded-full"
                 loading="eager"

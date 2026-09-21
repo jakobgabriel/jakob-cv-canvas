@@ -16,7 +16,13 @@ import {
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getResumeData } from "@/data/resume";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { calculateDuration, calculateDurationGerman, formatDateRange } from "@/lib/dateUtils";
+import {
+  calculateDuration,
+  calculateDurationGerman,
+  effectiveEndDate,
+  formatDateRange,
+  hasStarted,
+} from "@/lib/dateUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -115,7 +121,11 @@ export const TimelineSection = () => {
     return <div className="py-24 text-center">{t("loading")}</div>;
   }
 
-  const { work: experiences, education } = resumeData;
+  const { work, education } = resumeData;
+  // A role that has not begun is not shown at all. It appears on its own, on
+  // the day it starts, without anything needing to be edited or redeployed —
+  // the filter runs at render time in the browser.
+  const experiences = work.filter((entry: { startDate?: string }) => hasStarted(entry.startDate));
 
   return (
     <section className="py-20 relative bg-gradient-subtle" id="experience">
@@ -362,11 +372,11 @@ export const TimelineSection = () => {
                         {t("language") === "de"
                           ? calculateDurationGerman(
                               selectedItem.startDate,
-                              selectedItem.endDate || "present",
+                              effectiveEndDate(selectedItem.endDate) || "present",
                             )
                           : calculateDuration(
                               selectedItem.startDate,
-                              selectedItem.endDate || "present",
+                              effectiveEndDate(selectedItem.endDate) || "present",
                             )}
                       </span>
                     </div>
@@ -396,20 +406,22 @@ export const TimelineSection = () => {
 
                   <p className="text-muted-foreground leading-relaxed">{selectedItem.summary}</p>
 
-                  <div>
-                    <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
-                      <Award className="w-4 h-4 text-primary" />
-                      {t("timeline.keyAchievements")}
-                    </h4>
-                    <ul className="space-y-2 text-muted-foreground">
-                      {selectedItem.highlights?.map((highlight: string, i: number) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="text-primary mt-1 text-xs">•</span>
-                          <span className="leading-relaxed text-sm">{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {selectedItem.highlights && selectedItem.highlights.length > 0 && (
+                    <div>
+                      <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                        <Award className="w-4 h-4 text-primary" />
+                        {t("timeline.keyAchievements")}
+                      </h4>
+                      <ul className="space-y-2 text-muted-foreground">
+                        {selectedItem.highlights.map((highlight: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="text-primary mt-1 text-xs">•</span>
+                            <span className="leading-relaxed text-sm">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {"courses" in selectedItem &&
                     selectedItem.courses &&

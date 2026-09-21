@@ -2,7 +2,7 @@
   "basics": {
     "name": "Jakob Gabriel",
     "label": "Digital Business Value Engineer",
-    "image": "/src/assets/jakob-portrait.jpeg",
+    "image": "https://jakobgabriel.github.io/jakob-cv-canvas/jakob-portrait.jpg",
     "email": "jakob.gabriel5@googlemail.com",
     "phone": "",
     "url": "",
@@ -24,10 +24,19 @@
   },
   "work": [
     {
+      "name": "REHAU AG",
+      "position": "Manager IT/OT Applications",
+      "startDate": "2026-12-01",
+      "summary": "",
+      "highlights": []
+    },
+    {
       "name": "neuwerk",
       "position": "Digital Business Value Engineer",
       "location": "Karben, Germany",
+      "url": "https://www.nww.com/",
       "startDate": "2026-09-01",
+      "endDate": "2026-11-30",
       "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
       "highlights": [
         "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
