@@ -28,21 +28,23 @@
       "position": "Manager IT/OT Integration & Applications",
       "location": "Rehau, Germany",
       "startDate": "2026-12-01",
-      "summary": "Owning the IT system landscape for REHAU's global Window Solutions plants and driving IT/OT integration from data architecture through to AI applications on the shopfloor, while leading the international Operations IT team.",
+      "summary": "Owning the IT system landscape across REHAU's global Window Solutions plants and leading the international Operations IT team. The remit runs end to end on two axes — strategy through to implementation on site, and data architecture through to AI applications on the shopfloor — spanning the IT/OT integration roadmap around a Unified Namespace, an AI framework for production operations, and the innovation portfolio behind manufacturing digitalization.",
       "responsibilities": [
-        "Own and continuously evolve the IT system landscape across REHAU Window Solutions plants worldwide.",
-        "Drive the IT/OT integration roadmap around the Unified Namespace, from strategy through to scaled rollout in the plants.",
-        "Build an AI framework for production operations and coordinate its implementation from concept to go-live.",
-        "Lead the international Operations IT support team.",
-        "Manage digitalization innovation projects in manufacturing: machine learning, AI-assisted operator systems, and (semi-)autonomous control loops.",
-        "Evaluate and pilot new technologies, and decide what actually goes into rollout.",
-        "Act as the central interface between IT, Operations Management and the international plants, bringing stakeholders onto a common course."
+        "Own the production-near IT system landscape for REHAU Window Solutions plants worldwide, evolving MES and the applications around it as a standing accountability rather than a fixed-term programme.",
+        "Drive the IT/OT integration roadmap with a Unified Namespace at its core, carrying it from data architecture and strategy through to scaled, plant-by-plant rollout.",
+        "Build the AI framework for production operations and take it from concept through to go-live, giving delivery teams a common foundation to build production use cases on.",
+        "Lead and grow the international Operations IT team, owning escalation and technical direction while the team runs day-to-day plant IT.",
+        "Manage the manufacturing digitalization innovation portfolio — machine learning, AI-assisted operator systems and (semi-)autonomous control loops — taking deliberate bets and retiring the ones that do not prove out.",
+        "Act as the decision gate on new technology: evaluate candidates, run pilots, and decide what is worth the cost of a rollout across the plants.",
+        "Broker alignment between IT, Operations Management and the international plants, bringing stakeholders onto a common course rather than relaying positions between them."
       ],
       "keywords": [
         "IT/OT Integration",
         "Unified Namespace",
+        "MQTT",
         "MES",
         "AI in Production",
+        "Machine Learning",
         "Team Leadership",
         "Technology Evaluation",
         "Manufacturing Digitalization"
