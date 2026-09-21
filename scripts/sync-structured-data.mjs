@@ -1,17 +1,26 @@
 #!/usr/bin/env node
 /**
- * Keeps the JSON-LD `worksFor` in index.html in step with resume.json.
+ * Keeps the JSON-LD in index.html in step with resume.json.
  *
- * The employer lives in four places (resume data, structured data, the PDF
- * template, the built PDF) and the structured one is the easiest to forget —
- * it is buried in a script tag and nothing renders it, so a stale value can
- * sit there telling search engines the wrong current employer indefinitely.
- * That is exactly what happened across the OESL to neuwerk change.
+ * The employer and job title live in several places — resume data, structured
+ * data, the page's own meta tags, the PDF — and the structured one is the
+ * easiest to forget: it is buried in a script tag and nothing renders it, so a
+ * stale value can sit there telling search engines the wrong thing
+ * indefinitely. That is exactly what happened across the OESL to neuwerk
+ * change.
  *
- * "Current" means: a startDate that has already passed and no endDate that
- * has. A role added ahead of its start date therefore does not become the
- * advertised employer until the day it begins, and the outgoing role stays the
- * advertised one until its own end date arrives.
+ * Four fields follow the current role: worksFor, jobTitle, and the name and
+ * location of the single hasOccupation entry. They move together on purpose.
+ * Updating the employer alone would have produced structured data claiming a
+ * job that does not exist — the old title at the new company — which is worse
+ * than being uniformly out of date.
+ *
+ * What it deliberately leaves alone is the page's positioning: <title>, the
+ * social cards, and the JSON-LD `name` and `description` are a personal brand
+ * that outlives any one job, and are edited by hand.
+ *
+ * "Current" means a startDate that has passed and no endDate that has, the
+ * same rule the site uses to render a role as ongoing.
  *
  * Runs on prebuild. Pass --check to fail instead of rewriting, for CI.
  */
@@ -53,45 +62,78 @@ if (!current) {
 }
 
 const html = readFileSync(INDEX, "utf8");
-// Capture the line's own indentation so the rewrite matches the surrounding file.
-const match = html.match(/([ \t]*)"worksFor":\s*\{[^}]*\}/);
-if (!match) {
-  console.error("sync-structured-data: no worksFor block in index.html");
+const block = html.match(/([ \t]*)<script type="application\/ld\+json">\n([\s\S]*?)\n[ \t]*<\/script>/);
+if (!block) {
+  console.error("sync-structured-data: no JSON-LD block in index.html");
   process.exit(1);
 }
 
-// Rebuilt from the data rather than string-patched, so the shape stays valid.
-const fields = [`"@type": "Organization"`, `"name": ${JSON.stringify(current.name)}`];
-if (current.url) fields.push(`"url": ${JSON.stringify(current.url)}`);
-const outer = match[1];
-const inner = `${outer}  `;
-const replacement = `${outer}"worksFor": {\n${inner}${fields.join(`,\n${inner}`)}\n${outer}}`;
+const [full, outer, body] = block;
 
-if (match[0] === replacement) {
-  console.log(`sync-structured-data: worksFor already matches "${current.name}"`);
+// Parsed and re-serialised rather than string-patched. With four fields to
+// keep in step, a regex per field is how one of them quietly stops matching
+// after an unrelated edit and goes stale without anyone noticing.
+let graph;
+try {
+  graph = JSON.parse(body);
+} catch (err) {
+  console.error("sync-structured-data: index.html holds invalid JSON-LD:", err.message);
+  process.exit(1);
+}
+
+const person = (graph["@graph"] ?? []).find((node) => node["@type"] === "Person");
+if (!person) {
+  console.error("sync-structured-data: no Person node in the JSON-LD");
+  process.exit(1);
+}
+
+person.worksFor = {
+  "@type": "Organization",
+  name: current.name,
+  ...(current.url ? { url: current.url } : {}),
+};
+person.jobTitle = current.position;
+
+const occupation = (person.hasOccupation ?? [])[0];
+if (occupation) {
+  occupation.name = current.position;
+  if (current.location) {
+    occupation.occupationLocation = { "@type": "Place", name: current.location };
+  } else {
+    delete occupation.occupationLocation;
+  }
+  if (current.keywords?.length) occupation.skills = current.keywords.join(", ");
+}
+
+const inner = `${outer}  `;
+const serialised = JSON.stringify(graph, null, 2)
+  .split("\n")
+  .map((line) => `${inner}${line}`)
+  .join("\n");
+const replacement = `${outer}<script type="application/ld+json">\n${serialised}\n${outer}</script>`;
+
+if (full === replacement) {
+  console.log(`sync-structured-data: JSON-LD already matches "${current.position}, ${current.name}"`);
   process.exit(0);
 }
 
 if (checkOnly) {
   console.error(
-    `sync-structured-data: index.html worksFor is stale — resume.json says "${current.name}".\n` +
+    `sync-structured-data: index.html JSON-LD is stale — resume.json says ` +
+      `"${current.position}" at "${current.name}".\n` +
       "Run `node scripts/sync-structured-data.mjs` to fix.",
   );
   process.exit(1);
 }
 
-const updated = html.replace(match[0], replacement);
-// Confirm the JSON-LD still parses before writing over a working file.
-const ld = updated.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+const updated = html.replace(full, replacement);
+// Confirm the result still parses before writing over a working file.
 try {
-  JSON.parse(ld[1]);
+  JSON.parse(updated.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 } catch (err) {
-  console.error(
-    "sync-structured-data: rewrite would produce invalid JSON-LD, aborting:",
-    err.message,
-  );
+  console.error("sync-structured-data: rewrite would produce invalid JSON-LD, aborting:", err.message);
   process.exit(1);
 }
 
 writeFileSync(INDEX, updated);
-console.log(`sync-structured-data: worksFor updated to "${current.name}"`);
+console.log(`sync-structured-data: JSON-LD updated to "${current.position}, ${current.name}"`);
