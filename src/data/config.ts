@@ -1,8 +1,13 @@
-import configData from '../../public/data/config.json';
+import configData from "../../public/data/config.json";
 
 export interface Config {
   features: {
     downloadResume: {
+      enabled: boolean;
+      url: string;
+    };
+    /** Scheduling page opened by the "Book a Call" buttons. */
+    booking: {
       enabled: boolean;
       url: string;
     };
@@ -26,12 +31,13 @@ export interface Config {
 
 const defaultConfig: Config = {
   features: {
-    downloadResume: { enabled: false, url: '' },
-    contactForm: { enabled: false, recipientEmail: '' },
-    multiLanguage: { enabled: false, defaultLanguage: 'en' },
+    downloadResume: { enabled: false, url: "" },
+    booking: { enabled: false, url: "" },
+    contactForm: { enabled: false, recipientEmail: "" },
+    multiLanguage: { enabled: false, defaultLanguage: "en" },
   },
-  analytics: { googleAnalyticsId: '' },
-  theme: { primaryColor: '', darkMode: false },
+  analytics: { googleAnalyticsId: "" },
+  theme: { primaryColor: "", darkMode: false },
 };
 
 // Merge the bundled config over safe defaults so a partially-edited or
@@ -44,6 +50,10 @@ export const config: Config = {
     downloadResume: {
       ...defaultConfig.features.downloadResume,
       ...raw.features?.downloadResume,
+    },
+    booking: {
+      ...defaultConfig.features.booking,
+      ...raw.features?.booking,
     },
     contactForm: {
       ...defaultConfig.features.contactForm,
