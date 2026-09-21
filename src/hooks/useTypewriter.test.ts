@@ -106,6 +106,26 @@ describe("useTypewriter", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
+  it("keeps typing while the parent re-renders faster than a character", () => {
+    setReducedMotion(false);
+    // `labels ?? [label]` rebuilds the array on every render, and HeroSection
+    // re-renders continuously while the parallax tracks scrolling. With the
+    // array as an effect dependency, each of those renders cleared the pending
+    // character timer and restarted its delay, so the headline froze for as
+    // long as the visitor kept scrolling.
+    const { result, rerender } = renderHook(
+      ({ items }) => useTypewriter(items, { startDelayMs: 0, typeMs: 10 }),
+      { initialProps: { items: ["abc"] } },
+    );
+
+    for (let i = 0; i < 12; i += 1) {
+      act(() => void vi.advanceTimersByTime(5));
+      rerender({ items: ["abc"] });
+    }
+
+    expect(result.current.text).toBe("abc");
+  });
+
   it("survives an empty list", () => {
     setReducedMotion(false);
     const { result } = renderHook(() => useTypewriter([]));

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export type TypewriterPhase = "typing" | "holding" | "deleting";
 
@@ -42,7 +42,16 @@ export const useTypewriter = (phrases: string[], options: TypewriterOptions = {}
   const { typeMs, deleteMs, holdMs, startDelayMs } = { ...DEFAULTS, ...options };
 
   const reduced = prefersReducedMotion();
-  const first = phrases[0] ?? "";
+
+  // Keyed on content, not identity. `phrases` is an effect dependency, and a
+  // caller writing a perfectly ordinary `labels ?? [label]` hands us a fresh
+  // array on every render — which would re-run the effect, clear the pending
+  // timer before it ever fired, and leave the headline blank for good. The
+  // failure is silent and total, so the hook defends against it here rather
+  // than relying on every caller to memoise.
+  const signature = phrases.join("\u0000");
+  const list = useMemo(() => (signature === "" ? [] : signature.split("\u0000")), [signature]);
+  const first = list[0] ?? "";
 
   const [index, setIndex] = useState(0);
   const [text, setText] = useState(reduced ? first : "");
@@ -50,15 +59,15 @@ export const useTypewriter = (phrases: string[], options: TypewriterOptions = {}
   const started = useRef(false);
 
   useEffect(() => {
-    if (reduced || phrases.length === 0) return;
+    if (reduced || list.length === 0) return;
 
-    const current = phrases[index % phrases.length];
+    const current = list[index % list.length];
     let timer: ReturnType<typeof setTimeout>;
 
     if (phase === "typing") {
       if (text === current) {
         // A single phrase has nowhere to go next, so it simply stays.
-        if (phrases.length === 1) return;
+        if (list.length === 1) return;
         timer = setTimeout(() => setPhase("holding"), 0);
       } else {
         const delay = started.current ? typeMs : startDelayMs;
@@ -70,7 +79,7 @@ export const useTypewriter = (phrases: string[], options: TypewriterOptions = {}
     } else {
       if (text === "") {
         timer = setTimeout(() => {
-          setIndex((i) => (i + 1) % phrases.length);
+          setIndex((i) => (i + 1) % list.length);
           setPhase("typing");
         }, 0);
       } else {
@@ -79,7 +88,7 @@ export const useTypewriter = (phrases: string[], options: TypewriterOptions = {}
     }
 
     return () => clearTimeout(timer);
-  }, [text, phase, index, phrases, reduced, typeMs, deleteMs, holdMs, startDelayMs]);
+  }, [text, phase, index, list, reduced, typeMs, deleteMs, holdMs, startDelayMs]);
 
   return { text, phase, reduced };
 };
