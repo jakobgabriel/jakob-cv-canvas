@@ -13,16 +13,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { TypedLabel } from "@/components/TypedLabel";
 
-/**
- * Three claims, strongest first. This replaces the flat row of five equally
- * weighted pills — those read as tags, this reads as a position.
- */
-const CREDENTIALS = [
-  { valueKey: "hero.stat.yearsValue", labelKey: "hero.stat.yearsLabel" },
-  { valueKey: "hero.stat.domainValue", labelKey: "hero.stat.domainLabel" },
-  { valueKey: "hero.stat.focusValue", labelKey: "hero.stat.focusLabel" },
-] as const;
-
 export const HeroSection = () => {
   const { language, t } = useLanguage();
   const { trackDownload, trackExternalLink } = useAnalytics();
@@ -131,32 +121,9 @@ export const HeroSection = () => {
             />
           </div>
 
-          {/* Credentials strip — the three things worth knowing before scrolling */}
-          <dl
-            className="mt-7 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 animate-fade-in"
-            style={{ animationDelay: "0.45s" }}
-          >
-            {CREDENTIALS.map(({ valueKey, labelKey }) => (
-              <div
-                key={valueKey}
-                className="bg-background/70 backdrop-blur-sm px-2 py-3 sm:px-4 sm:py-4"
-              >
-                <dt className="sr-only">{t(labelKey)}</dt>
-                <dd>
-                  <span className="block font-display text-sm sm:text-base lg:text-lg font-medium text-foreground leading-tight">
-                    {t(valueKey)}
-                  </span>
-                  <span className="mt-1 block text-[10px] sm:text-xs uppercase tracking-[0.08em] text-muted-foreground leading-tight">
-                    {t(labelKey)}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-
           <p
             className="mt-7 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in"
-            style={{ animationDelay: "0.55s" }}
+            style={{ animationDelay: "0.45s" }}
           >
             {basics.summary}
           </p>
@@ -164,7 +131,7 @@ export const HeroSection = () => {
           {/* Primary actions, paired so neither reads as an afterthought */}
           <div
             className="mt-8 flex flex-col sm:flex-row gap-3 justify-center animate-fade-in"
-            style={{ animationDelay: "0.62s" }}
+            style={{ animationDelay: "0.52s" }}
           >
             {config.features.downloadResume.enabled && (
               <Button size="lg" className="px-8 shadow-professional" asChild>
