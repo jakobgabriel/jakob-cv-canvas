@@ -170,19 +170,22 @@ export const TimelineSection = () => {
                     aria-hidden="true"
                   />
                   <Card
-                    className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="pressable relative bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background"
                     data-open={isDetailsVisible && selectedItem === exp ? "" : undefined}
-                    onClick={(e) => handleItemClick(exp, e)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`View details for ${exp.position} at ${exp.name}`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        handleItemClick(exp, e as any);
-                      }
-                    }}
                   >
+                    {/* The card's action is a real button stretched over it,
+                        instead of a div with role="button". Native Enter and
+                        Space come for free, and — the reason it changed — the
+                        grading-scale tooltip below is now a sibling rather
+                        than a button nested inside a button, which axe flags
+                        as a serious violation and screen readers announce as
+                        a control inside a control. */}
+                    <button
+                      type="button"
+                      className="absolute inset-0 z-0 rounded-[inherit] focus:outline-none"
+                      aria-label={`View details for ${exp.position} at ${exp.name}`}
+                      onClick={(e) => handleItemClick(exp, e)}
+                    />
                     <div className="p-5 sm:p-6">
                       <div className="flex items-start gap-4 w-full">
                         <div className="flex-1 min-w-0">
@@ -239,19 +242,22 @@ export const TimelineSection = () => {
                     aria-hidden="true"
                   />
                   <Card
-                    className="pressable bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="pressable relative bg-card/50 backdrop-blur-sm border-border/50 shadow-minimal hover:shadow-professional hover:border-primary/30 cursor-pointer group has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background"
                     data-open={isDetailsVisible && selectedItem === edu ? "" : undefined}
-                    onClick={(e) => handleItemClick(edu, e)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`View details for ${edu.studyType} in ${edu.area} at ${edu.institution}`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        handleItemClick(edu, e as any);
-                      }
-                    }}
                   >
+                    {/* The card's action is a real button stretched over it,
+                        instead of a div with role="button". Native Enter and
+                        Space come for free, and — the reason it changed — the
+                        grading-scale tooltip below is now a sibling rather
+                        than a button nested inside a button, which axe flags
+                        as a serious violation and screen readers announce as
+                        a control inside a control. */}
+                    <button
+                      type="button"
+                      className="absolute inset-0 z-0 rounded-[inherit] focus:outline-none"
+                      aria-label={`View details for ${edu.studyType} in ${edu.area} at ${edu.institution}`}
+                      onClick={(e) => handleItemClick(edu, e)}
+                    />
                     <div className="p-5 sm:p-6">
                       <div className="flex items-start gap-4 w-full">
                         <div className="flex-1 min-w-0">
@@ -277,7 +283,7 @@ export const TimelineSection = () => {
                                   <button
                                     type="button"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="rounded-sm text-muted-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                    className="relative z-10 rounded-sm text-muted-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                     aria-label="About the grading scale"
                                   >
                                     <Info className="w-3 h-3" aria-hidden="true" />
