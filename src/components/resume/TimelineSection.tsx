@@ -12,9 +12,11 @@ import {
   CheckCircle,
   Clock,
   Info,
+  FolderGit2,
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getResumeData } from "@/data/resume";
+import type { JsonResumeWorkProject } from "@/types/jsonResume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   calculateDuration,
@@ -446,6 +448,52 @@ export const TimelineSection = () => {
                               <span className="leading-relaxed text-sm">{highlight}</span>
                             </li>
                           ))}
+                        </ul>
+                      </div>
+                    );
+                  })()}
+
+                  {(() => {
+                    // Education entries never carry projects, and a position
+                    // without them renders exactly the drawer that shipped
+                    // before this section existed.
+                    const projects =
+                      "projects" in selectedItem
+                        ? ((selectedItem.projects as JsonResumeWorkProject[] | undefined) ?? [])
+                        : [];
+                    if (projects.length === 0) return null;
+                    return (
+                      <div>
+                        <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                          <FolderGit2 className="w-4 h-4 text-primary" />
+                          {t("timeline.projects")}
+                        </h4>
+                        <ul className="space-y-3 text-muted-foreground">
+                          {projects.map((project, i) => {
+                            // Stack and period share one line; either may be
+                            // absent, and with both absent the line is gone.
+                            const meta = [...(project.keywords ?? []), project.period]
+                              .filter(Boolean)
+                              .join(" \u00B7 ");
+                            return (
+                              <li key={i} className="flex items-start gap-3">
+                                <span className="text-primary mt-1 text-xs">•</span>
+                                <div>
+                                  <span className="leading-relaxed text-sm">
+                                    <strong className="font-semibold text-foreground">
+                                      {project.name}
+                                    </strong>
+                                    {project.summary ? ` \u2014 ${project.summary}` : null}
+                                  </span>
+                                  {meta ? (
+                                    <div className="mt-0.5 text-xs text-muted-foreground">
+                                      {meta}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     );
