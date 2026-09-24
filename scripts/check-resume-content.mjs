@@ -44,11 +44,14 @@ const daysUntil = (startDate) => {
 const missing = (entry) => {
   const gaps = [];
   if (!entry.summary || !entry.summary.trim()) gaps.push("summary");
-  // Either is a description. A role that has only just begun lists the brief
-  // under responsibilities; achievements come later, and highlights replace
-  // them in the drawer when they do.
-  const bullets = (entry.highlights ?? []).length + (entry.responsibilities ?? []).length;
-  if (bullets === 0) gaps.push("highlights or responsibilities");
+  // Any of the three is a description. A role that has only just begun lists
+  // the brief under responsibilities; achievements come later, and highlights
+  // replace them in the drawer when they do. Projects can stand on their own.
+  const bullets =
+    (entry.highlights ?? []).length +
+    (entry.responsibilities ?? []).length +
+    (entry.projects ?? []).length;
+  if (bullets === 0) gaps.push("highlights, responsibilities or projects");
   return gaps;
 };
 

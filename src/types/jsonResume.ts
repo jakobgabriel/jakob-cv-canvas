@@ -27,6 +27,26 @@ export interface JsonResumeBasics {
   }>;
 }
 
+/**
+ * A named piece of work inside a position.
+ *
+ * Deliberately terse. The position's `highlights` say what changed and by how
+ * much; a project says what the thing was called and what it was built with.
+ * Repeating a figure here puts the same claim in the drawer twice, which is
+ * what the section is meant to avoid.
+ *
+ * Only `name` is required, so a project can be recorded before its dates or
+ * stack are known.
+ */
+export interface JsonResumeWorkProject {
+  name: string;
+  summary?: string;
+  /** Rendered as the small line under the bullet, joined with the period. */
+  keywords?: string[];
+  /** Free text rather than ISO dates: "2022-2023", "six months in 2023". */
+  period?: string;
+}
+
 export interface JsonResumeWork {
   name: string;
   position: string;
@@ -42,6 +62,7 @@ export interface JsonResumeWork {
    * because a job nobody has done yet has no achievements to list.
    */
   responsibilities?: string[];
+  projects?: JsonResumeWorkProject[];
   keywords?: string[];
 }
 
