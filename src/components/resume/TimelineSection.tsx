@@ -13,10 +13,11 @@ import {
   Clock,
   Info,
   FolderGit2,
+  Building2,
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getResumeData } from "@/data/resume";
-import type { JsonResumeWorkProject } from "@/types/jsonResume";
+import type { JsonResumeCompanyPeriod, JsonResumeWorkProject } from "@/types/jsonResume";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   calculateDuration,
@@ -200,7 +201,16 @@ export const TimelineSection = () => {
                           <h4 className="text-lg font-medium leading-tight mb-1 group-hover:text-primary transition-colors duration-200">
                             {exp.position}
                           </h4>
-                          <div className="text-muted-foreground font-medium mb-2">{exp.name}</div>
+                          <div className="text-muted-foreground font-medium mb-2">
+                            {/* A renamed employer shows the chain, oldest
+                                first, so one continuous role does not read as
+                                a job hop. */}
+                            {exp.companies && exp.companies.length > 1
+                              ? exp.companies
+                                  .map((c: JsonResumeCompanyPeriod) => c.name)
+                                  .join(" \u2192 ")
+                              : exp.name}
+                          </div>
                           {exp.summary && (
                             <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                               {exp.summary}
@@ -353,7 +363,15 @@ export const TimelineSection = () => {
                           : `${selectedItem.studyType} in ${selectedItem.area}`}
                       </h3>
                       <p className="text-muted-foreground">
-                        {"position" in selectedItem ? selectedItem.name : selectedItem.institution}
+                        {"companies" in selectedItem &&
+                        selectedItem.companies &&
+                        selectedItem.companies.length > 1
+                          ? (selectedItem.companies as JsonResumeCompanyPeriod[])
+                              .map((c) => c.name)
+                              .join(" \u2192 ")
+                          : "position" in selectedItem
+                            ? selectedItem.name
+                            : selectedItem.institution}
                       </p>
                     </div>
                   </div>
@@ -391,6 +409,40 @@ export const TimelineSection = () => {
                       </span>
                     </div>
                   </div>
+
+                  {(() => {
+                    // Which name applied when. The chain in the header says the
+                    // employer was renamed; this says when, which is what a
+                    // reader checking dates against a reference actually needs.
+                    const companies =
+                      "companies" in selectedItem
+                        ? ((selectedItem.companies as JsonResumeCompanyPeriod[] | undefined) ?? [])
+                        : [];
+                    if (companies.length < 2) return null;
+                    return (
+                      <div>
+                        <h4 className="font-medium mb-4 text-foreground flex items-center gap-2">
+                          <Building2 className="w-4 h-4 text-primary" />
+                          {t("timeline.companyHistory")}
+                        </h4>
+                        <ul className="space-y-2 text-muted-foreground">
+                          {companies.map((company, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="text-primary mt-1 text-xs">•</span>
+                              <div>
+                                <span className="leading-relaxed text-sm text-foreground">
+                                  {company.name}
+                                </span>
+                                <div className="mt-0.5 text-xs text-muted-foreground">
+                                  {formatDateRange(company.startDate, company.endDate, language)}
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })()}
 
                   {"score" in selectedItem && selectedItem.score && (
                     <div className="text-primary font-medium text-sm flex items-center gap-2">

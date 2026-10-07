@@ -47,6 +47,20 @@ export interface JsonResumeWorkProject {
   period?: string;
 }
 
+/**
+ * One name a single employer went by, and the span it applied to.
+ *
+ * A carve-out or a rebrand does not end a job. Splitting one continuous role
+ * into an entry per company name makes the timeline read as three short jobs
+ * and hides the only number that matters — how long it actually ran.
+ */
+export interface JsonResumeCompanyPeriod {
+  name: string;
+  startDate: string;
+  endDate?: string;
+  url?: string;
+}
+
 export interface JsonResumeWork {
   name: string;
   position: string;
@@ -63,6 +77,12 @@ export interface JsonResumeWork {
    */
   responsibilities?: string[];
   projects?: JsonResumeWorkProject[];
+  /**
+   * Every name the employer had during this role, oldest first. `name` stays
+   * the latest one, so JSON Resume consumers and the structured data read a
+   * single current employer and need know nothing about this.
+   */
+  companies?: JsonResumeCompanyPeriod[];
   keywords?: string[];
 }
 
