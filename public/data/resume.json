@@ -69,72 +69,36 @@
       "position": "Digital Business Value Engineer",
       "location": "Karben, Germany",
       "url": "https://www.nww.com/",
-      "startDate": "2026-09-01",
-      "endDate": "2026-11-30",
-      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
-      "highlights": [
-        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
-        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
-        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
-        "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
-        "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
-      ],
-      "keywords": [
-        "Use Case Scaling",
-        "AI-Driven Process Optimization",
-        "Process Automation",
-        "Process Standardization",
-        "Agile Project Management",
-        "Digital Transformation"
-      ],
-      "industries": [
-        "Automotive",
-        "Manufacturing",
-        "Industrial Technology"
-      ]
-    },
-    {
-      "name": "OESL Automotive",
-      "position": "Digital Business Value Engineer",
-      "location": "Karben, Germany",
-      "url": "https://www.oesl-automotive.com",
-      "startDate": "2026-02-01",
-      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites during company carve-out, ensuring business continuity and scalability of established smart factory solutions.",
-      "highlights": [
-        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
-        "Maintained and evolved energy and process efficiency analytics workflows across global manufacturing sites, preserving €1M+ in annual savings.",
-        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
-        "Built organizational capabilities through targeted training programs, expanding the Smart Factory power-user network worldwide.",
-        "Redesigned key processes leveraging analytics insights to reduce lead times and increase operational efficiency across production lines."
-      ],
-      "keywords": [
-        "Use Case Scaling",
-        "AI-Driven Process Optimization",
-        "Process Automation",
-        "Process Standardization",
-        "Agile Project Management",
-        "Digital Transformation"
-      ],
-      "industries": [
-        "Automotive",
-        "Manufacturing",
-        "Industrial Technology"
-      ],
-      "endDate": "2026-08-31"
-    },
-    {
-      "name": "Continental AG",
-      "position": "Digital Business Value Engineer",
-      "location": "Karben, Germany",
-      "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems",
       "startDate": "2024-01-01",
-      "endDate": "2026-01-31",
-      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, with a focus on measurable value creation and scalability.",
+      "endDate": "2026-11-30",
+      "companies": [
+        {
+          "name": "Continental AG",
+          "startDate": "2024-01-01",
+          "endDate": "2026-01-31",
+          "url": "https://www.continental-industry.com/de/topnavi/company/organization/mobile-fluid-systems"
+        },
+        {
+          "name": "OESL Automotive",
+          "startDate": "2026-02-01",
+          "endDate": "2026-08-31",
+          "url": "https://www.oesl-automotive.com"
+        },
+        {
+          "name": "neuwerk",
+          "startDate": "2026-09-01",
+          "endDate": "2026-11-30",
+          "url": "https://www.nww.com/"
+        }
+      ],
+      "summary": "Driving digital transformation and analytics strategy across global manufacturing sites, from scaling smart-factory solutions to carrying them through a corporate carve-out without interruption.",
       "highlights": [
         "Scaled more than 150 digitalization use cases globally, achieving more than €1M in annual cost savings by applying data-driven optimization.",
         "Developed energy and process efficiency analytics workflows that became reference models for data-driven manufacturing.",
-        "Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization",
-        "Built organizational capabilities through 20+ training programs, expanding the Smart Factory network worldwide.",
+        "Migrated and ensured continuity of 150+ digitalization use cases across 8+ global sites during company carve-out, achieving zero downtime in analytics services.",
+        "Spearheading AI-driven process optimization initiatives to automate complex manufacturing decisions and reduce manual intervention.",
+        "Championed more than 15 innovation initiatives annually, guiding proof-of-concepts until operational utilization.",
+        "Built organizational capabilities through 20+ training programs, expanding the Smart Factory power-user network worldwide.",
         "Redesigned two major processes to reduce lead times by more than 10%, leveraging analytics insights."
       ],
       "keywords": [
@@ -143,7 +107,8 @@
         "Process Automation",
         "Process Standardization",
         "Agile Project Management",
-        "Digital Transformation"
+        "Digital Transformation",
+        "AI-Driven Process Optimization"
       ],
       "industries": [
         "Automotive",
